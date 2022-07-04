@@ -1,0 +1,3293 @@
+[
+   {
+      "hasParent":false,
+      "hasChild":false,
+      "children":[
+         
+      ],
+      "name":"Abstract Language",
+      "id":"http://pid.bayer.com/kos/19014/AbstractLanguage",
+      "inboundProperties":{
+         
+      },
+      "properties":{
+         "http://www.w3.org/1999/02/22-rdf-syntax-ns#type":[
+            "http://www.w3.org/2002/07/owl#Class"
+         ],
+         "http://www.w3.org/2000/01/rdf-schema#comment":[
+            "A system of communication used by a different agents, who can be humans or machines, to exchange information."
+         ],
+         "http://www.w3.org/2000/01/rdf-schema#label":[
+            "Abstract Language"
+         ],
+         "http://pid.bayer.com/kos/19014/definition":[
+            "A system of communication used by a different agents, who can be humans or machines, to exchange information."
+         ],
+         "http://www.w3.org/2000/01/rdf-schema#subClassOf":[
+            "http://www.w3.org/2002/07/owl#Thing"
+         ]
+      }
+   },
+   {
+      "hasParent":false,
+      "hasChild":false,
+      "children":[
+         
+      ],
+      "name":"Activity",
+      "id":"http://pid.bayer.com/kos/19014/Activity",
+      "inboundProperties":{
+         
+      },
+      "properties":{
+         "http://www.w3.org/1999/02/22-rdf-syntax-ns#type":[
+            "http://www.w3.org/2002/07/owl#Class"
+         ],
+         "http://pid.bayer.com/kos/19014/editorialNote":[
+            "2019.02.18: Marius (GIVTK): Corresponds to the concept btlo:Activity of the Bayer Top Level Ontlogy (BTLO) which was developed until 21.01.2018. Since October 2018, the BTLO concepts have been completely distributed to \"Enterprise Core Ontology\" and \"R&D Ontology\". Prefix \"BTLO\" and name \"Bayer Top Level Ontology\" will be discontinued."
+         ],
+         "http://www.w3.org/2000/01/rdf-schema#comment":[
+            "Everything that can be performed by an agent on anything. Activities can be processing, transforming, modifying, relocating, using etc."
+         ],
+         "http://www.w3.org/2000/01/rdf-schema#label":[
+            "Activity"
+         ],
+         "http://pid.bayer.com/kos/19014/definition":[
+            "Everything that can be performed by an agent on anything. Activities can be processing, transforming, modifying, relocating, using etc."
+         ],
+         "http://www.w3.org/2000/01/rdf-schema#subClassOf":[
+            "http://www.w3.org/2002/07/owl#Thing"
+         ],
+         "http://pid.bayer.com/kos/19014/wasDerivedFrom":[
+            "http://schema.org/Action",
+            "http://www.w3.org/ns/prov#Activity"
+         ]
+      }
+   },
+   {
+      "hasParent":false,
+      "hasChild":false,
+      "children":[
+         
+      ],
+      "name":"Agent",
+      "id":"http://pid.bayer.com/kos/19014/Agent",
+      "inboundProperties":{
+         
+      },
+      "properties":{
+         "http://www.w3.org/1999/02/22-rdf-syntax-ns#type":[
+            "http://www.w3.org/2002/07/owl#Class"
+         ],
+         "http://www.w3.org/2000/01/rdf-schema#comment":[
+            "An agent is something that is able to perform an activity. Some subclasses can be Person, Organization etc."
+         ],
+         "http://www.w3.org/2000/01/rdf-schema#label":[
+            "Agent"
+         ],
+         "http://pid.bayer.com/kos/19014/definition":[
+            "An agent is something that is able to perform an activity. Some subclasses can be Person, Organization etc."
+         ],
+         "http://www.w3.org/2000/01/rdf-schema#subClassOf":[
+            "http://www.w3.org/2002/07/owl#Thing"
+         ],
+         "http://pid.bayer.com/kos/19014/wasDerivedFrom":[
+            "http://purl.org/dc/terms/Agent",
+            "http://xmlns.com/foaf/0.1/Agent",
+            "http://www.w3.org/ns/prov#Agent"
+         ]
+      }
+   },
+   {
+      "hasParent":false,
+      "hasChild":false,
+      "children":[
+         
+      ],
+      "name":"Application",
+      "id":"https://pid.bayer.com/kos/19050/Application",
+      "inboundProperties":{
+         
+      },
+      "properties":{
+         "http://www.w3.org/1999/02/22-rdf-syntax-ns#type":[
+            "http://www.w3.org/2002/07/owl#Class",
+            "http://www.w3.org/ns/shacl#NodeShape"
+         ],
+         "http://www.w3.org/2000/01/rdf-schema#comment":[
+            "Business application as entered in BEAT"
+         ],
+         "http://www.w3.org/2000/01/rdf-schema#label":[
+            "Application"
+         ],
+         "http://www.w3.org/2000/01/rdf-schema#subClassOf":[
+            "https://pid.bayer.com/kos/19050/444556"
+         ],
+         "http://www.w3.org/ns/shacl#property":[
+            "https://pid.bayer.com/kos/19050/Application-hasApplicationId",
+            "https://pid.bayer.com/kos/19050/Application-hasApplicationManager",
+            "https://pid.bayer.com/kos/19050/Application-hasBusinessOwner",
+            "https://pid.bayer.com/kos/19050/Application-hasSystemOwner",
+            "https://pid.bayer.com/kos/19050/Application-hasAlias",
+            "https://pid.bayer.com/kos/19050/Application-linkedToRdfData",
+            "https://pid.bayer.com/kos/19050/Application-hasInternalLifecycle",
+            "https://pid.bayer.com/kos/19050/Application-hasGeographicalScope",
+            "https://pid.bayer.com/kos/19050/Application-hasBusinessCriticality"
+         ],
+         "http://datashapes.org/dash#abstract":[
+            "false"
+         ]
+      }
+   },
+   {
+      "hasParent":false,
+      "hasChild":false,
+      "children":[
+         
+      ],
+      "name":"Article",
+      "id":"http://pid.bayer.com/kos/19014/Article",
+      "inboundProperties":{
+         
+      },
+      "properties":{
+         "http://datashapes.org/dash#abstract":[
+            "true"
+         ],
+         "http://www.w3.org/1999/02/22-rdf-syntax-ns#type":[
+            "http://www.w3.org/2002/07/owl#Class"
+         ],
+         "http://www.w3.org/2000/01/rdf-schema#comment":[
+            "An article, such as a scientific paper, news article or piece of report."
+         ],
+         "http://www.w3.org/2000/01/rdf-schema#label":[
+            "Article"
+         ],
+         "http://pid.bayer.com/kos/19014/definition":[
+            "An article, such as a scientific paper, news article or piece of report."
+         ],
+         "http://www.w3.org/2000/01/rdf-schema#subClassOf":[
+            "http://pid.bayer.com/kos/19014/Document"
+         ],
+         "http://pid.bayer.com/kos/19014/wasDerivedFrom":[
+            "https://schema.org/Article"
+         ]
+      }
+   },
+   {
+      "hasParent":false,
+      "hasChild":false,
+      "children":[
+         
+      ],
+      "name":"Asset",
+      "id":"http://pid.bayer.com/kos/19014/Asset",
+      "inboundProperties":{
+         
+      },
+      "properties":{
+         "http://www.w3.org/1999/02/22-rdf-syntax-ns#type":[
+            "http://www.w3.org/2002/07/owl#Class"
+         ],
+         "http://www.w3.org/2000/01/rdf-schema#comment":[
+            "An asset is an object with well-known business value. Because of its value it is governed by explicitly selected care takers according to a well-defined process."
+         ],
+         "http://www.w3.org/2000/01/rdf-schema#label":[
+            "Asset"
+         ],
+         "http://pid.bayer.com/kos/19014/definition":[
+            "An asset is an object with well-known business value. Because of its value it is governed by explicitly selected care takers according to a well-defined process."
+         ],
+         "http://www.w3.org/2000/01/rdf-schema#subClassOf":[
+            "http://www.w3.org/2002/07/owl#Thing"
+         ]
+      }
+   },
+   {
+      "hasParent":false,
+      "hasChild":false,
+      "children":[
+         
+      ],
+      "name":"Attachment",
+      "id":"https://pid.bayer.com/kos/19050/Attachment",
+      "inboundProperties":{
+         
+      },
+      "properties":{
+         "http://www.w3.org/1999/02/22-rdf-syntax-ns#type":[
+            "http://www.w3.org/2002/07/owl#Class",
+            "http://www.w3.org/ns/shacl#NodeShape"
+         ],
+         "http://www.w3.org/2000/01/rdf-schema#label":[
+            "Attachment"
+         ],
+         "http://www.w3.org/2000/01/rdf-schema#subClassOf":[
+            "https://pid.bayer.com/kos/19050/PID_Concepts"
+         ],
+         "http://www.w3.org/ns/shacl#property":[
+            "https://pid.bayer.com/kos/19050/Attachment-hasFileType",
+            "https://pid.bayer.com/kos/19050/Attachment-hasFileSize",
+            "https://pid.bayer.com/kos/19050/Attachment-comment",
+            "https://pid.bayer.com/kos/19050/Attachment-label",
+            "https://pid.bayer.com/kos/19050/Attachment-type"
+         ],
+         "http://datashapes.org/dash#abstract":[
+            "false"
+         ]
+      }
+   },
+   {
+      "hasParent":false,
+      "hasChild":false,
+      "children":[
+         
+      ],
+      "name":"BEAT Concepts",
+      "id":"https://pid.bayer.com/kos/19050/BEAT_Concepts",
+      "inboundProperties":{
+         
+      },
+      "properties":{
+         "http://www.w3.org/1999/02/22-rdf-syntax-ns#type":[
+            "http://www.w3.org/2002/07/owl#Class",
+            "http://www.w3.org/ns/shacl#NodeShape"
+         ],
+         "http://www.w3.org/2000/01/rdf-schema#comment":[
+            "Includes all BEAT relevant concepts"
+         ],
+         "http://www.w3.org/2000/01/rdf-schema#label":[
+            "BEAT Concepts"
+         ],
+         "http://www.w3.org/2000/01/rdf-schema#subClassOf":[
+            "https://pid.bayer.com/kos/19050/PID_Concepts"
+         ]
+      }
+   },
+   {
+      "hasParent":false,
+      "hasChild":false,
+      "children":[
+         
+      ],
+      "name":"Browsable Resource",
+      "id":"http://pid.bayer.com/kos/19014/BrowsableResource",
+      "inboundProperties":{
+         
+      },
+      "properties":{
+         "http://datashapes.org/dash#abstract":[
+            "false"
+         ],
+         "http://www.w3.org/1999/02/22-rdf-syntax-ns#type":[
+            "http://www.w3.org/2002/07/owl#Class"
+         ],
+         "http://www.w3.org/2000/01/rdf-schema#comment":[
+            "A networked resource that can be opened in a web browser if access is granted e.g. a HTML documentation page of a resource."
+         ],
+         "http://www.w3.org/2000/01/rdf-schema#label":[
+            "Browsable Resource"
+         ],
+         "http://pid.bayer.com/kos/19014/definition":[
+            "A networked resource that can be opened in a web browser if access is granted e.g. a HTML documentation page of a resource."
+         ],
+         "http://www.w3.org/2000/01/rdf-schema#subClassOf":[
+            "http://pid.bayer.com/kos/19014/NetworkedResource"
+         ]
+      }
+   },
+   {
+      "hasParent":false,
+      "hasChild":false,
+      "children":[
+         
+      ],
+      "name":"Business Criticality",
+      "id":"https://pid.bayer.com/kos/19050/BusinessCriticality",
+      "inboundProperties":{
+         
+      },
+      "properties":{
+         "http://www.w3.org/1999/02/22-rdf-syntax-ns#type":[
+            "http://www.w3.org/2002/07/owl#Class",
+            "http://www.w3.org/ns/shacl#NodeShape"
+         ],
+         "http://www.w3.org/2000/01/rdf-schema#comment":[
+            "Level of significance for the utilizing organization(s) based on the Business Significance Rating matrix."
+         ],
+         "http://www.w3.org/2000/01/rdf-schema#label":[
+            "Business Criticality"
+         ],
+         "http://www.w3.org/2000/01/rdf-schema#subClassOf":[
+            "https://pid.bayer.com/kos/19050/BEAT_Concepts"
+         ]
+      }
+   },
+   {
+      "hasParent":false,
+      "hasChild":false,
+      "children":[
+         
+      ],
+      "name":"COLID Entry",
+      "id":"https://pid.bayer.com/kos/19050/PID_Concept",
+      "inboundProperties":{
+         
+      },
+      "properties":{
+         "http://www.w3.org/1999/02/22-rdf-syntax-ns#type":[
+            "http://www.w3.org/2002/07/owl#Class",
+            "http://www.w3.org/ns/shacl#NodeShape"
+         ],
+         "http://www.w3.org/2000/01/rdf-schema#comment":[
+            "This is the starting node for all content that is registered in COLID."
+         ],
+         "http://www.w3.org/2000/01/rdf-schema#label":[
+            "COLID Entry"
+         ],
+         "http://www.w3.org/2000/01/rdf-schema#subClassOf":[
+            "http://pid.bayer.com/kos/19014/DigitalResource",
+            "https://pid.bayer.com/kos/19050/PID_Concepts"
+         ],
+         "http://www.w3.org/ns/shacl#property":[
+            "https://pid.bayer.com/kos/19050/PID_Concept-hasPIDEditorialNote",
+            "https://pid.bayer.com/kos/19050/PID_Concept-lastChangeDateTime",
+            "https://pid.bayer.com/kos/19050/PID_Concept-hasInformationClassification",
+            "https://pid.bayer.com/kos/19050/PID_Concept-hasLifecycleStatus",
+            "https://pid.bayer.com/kos/19050/PID_Concept-dateCreated",
+            "https://pid.bayer.com/kos/19050/PID_Concept-hasResourceDefinition",
+            "https://pid.bayer.com/kos/19050/PID_Concept-hasLabel",
+            "https://pid.bayer.com/kos/19050/PID_Concept-lastChangeUser",
+            "https://pid.bayer.com/kos/19050/PID_Concept-hasDataSteward",
+            "https://pid.bayer.com/kos/19050/PID_Concept-author",
+            "https://pid.bayer.com/kos/19050/PID_Concept-hasVersion",
+            "https://pid.bayer.com/kos/19050/PID_Concept-distribution",
+            "https://pid.bayer.com/kos/19050/PID_Concept-hasConsumerGroup",
+            "https://pid.bayer.com/kos/19050/PID_Concept-type",
+            "https://pid.bayer.com/kos/19050/PID_Concept-hasLaterVersion",
+            "https://pid.bayer.com/kos/19050/PID_Concept-hasHistoricVersion",
+            "https://pid.bayer.com/kos/19050/PID_Concept--0",
+            "https://pid.bayer.com/kos/19050/PID_Concept--1",
+            "https://pid.bayer.com/kos/19050/PID_Concept-Attachments",
+            "https://pid.bayer.com/kos/19050/PID_Concept--2",
+            "https://pid.bayer.com/kos/19050/PID_Concept-hasEntryLifecycleStatus"
+         ]
+      }
+   },
+   {
+      "hasParent":false,
+      "hasChild":false,
+      "children":[
+         
+      ],
+      "name":"Category",
+      "id":"http://pid.bayer.com/scilic_model/Category",
+      "inboundProperties":{
+         
+      },
+      "properties":{
+         "http://www.w3.org/1999/02/22-rdf-syntax-ns#type":[
+            "http://www.w3.org/2002/07/owl#Class",
+            "http://www.w3.org/ns/shacl#NodeShape"
+         ],
+         "http://www.w3.org/2000/01/rdf-schema#label":[
+            "Category"
+         ],
+         "http://www.w3.org/2000/01/rdf-schema#subClassOf":[
+            "http://pid.bayer.com/scilic/Concepts"
+         ]
+      }
+   },
+   {
+      "hasParent":false,
+      "hasChild":false,
+      "children":[
+         
+      ],
+      "name":"City",
+      "id":"http://pid.bayer.com/kos/19014/City",
+      "inboundProperties":{
+         
+      },
+      "properties":{
+         "http://www.w3.org/1999/02/22-rdf-syntax-ns#type":[
+            "http://www.w3.org/2002/07/owl#Class"
+         ],
+         "http://www.w3.org/2000/01/rdf-schema#comment":[
+            "A city is a large human settlement."
+         ],
+         "http://www.w3.org/2000/01/rdf-schema#label":[
+            "City"
+         ],
+         "http://pid.bayer.com/kos/19014/definition":[
+            "A city is a large human settlement."
+         ],
+         "http://www.w3.org/2000/01/rdf-schema#subClassOf":[
+            "http://pid.bayer.com/kos/19014/GeographicalLocation"
+         ]
+      }
+   },
+   {
+      "hasParent":false,
+      "hasChild":false,
+      "children":[
+         
+      ],
+      "name":"Climate Corp Concepts",
+      "id":"https://pid.bayer.com/kos/19050/Climate_Corp_Ontology#ClimateCorpConcepts",
+      "inboundProperties":{
+         
+      },
+      "properties":{
+         "http://www.w3.org/1999/02/22-rdf-syntax-ns#type":[
+            "http://www.w3.org/2002/07/owl#Class",
+            "http://www.w3.org/ns/shacl#NodeShape"
+         ],
+         "http://www.w3.org/2000/01/rdf-schema#label":[
+            "Climate Corp Concepts"
+         ],
+         "http://www.w3.org/2000/01/rdf-schema#subClassOf":[
+            "https://pid.bayer.com/kos/19050/PID_Concepts"
+         ]
+      }
+   },
+   {
+      "hasParent":false,
+      "hasChild":false,
+      "children":[
+         
+      ],
+      "name":"Climate Corp Data",
+      "id":"https://pid.bayer.com/kos/19050/Climate_Corp_Ontology#ClimateCorpData",
+      "inboundProperties":{
+         
+      },
+      "properties":{
+         "http://www.w3.org/1999/02/22-rdf-syntax-ns#type":[
+            "http://www.w3.org/2002/07/owl#Class",
+            "http://www.w3.org/ns/shacl#NodeShape"
+         ],
+         "http://www.w3.org/2000/01/rdf-schema#comment":[
+            "Dataset created for Climate Corporation"
+         ],
+         "http://www.w3.org/2000/01/rdf-schema#label":[
+            "Climate Corp Data"
+         ],
+         "http://www.w3.org/2000/01/rdf-schema#subClassOf":[
+            "https://pid.bayer.com/kos/19050/NonRDFDataset"
+         ],
+         "http://www.w3.org/ns/shacl#property":[
+            "https://pid.bayer.com/kos/19050/Climate_Corp_Ontology#ClimateCorpData-ClimateDataGovernance",
+            "https://pid.bayer.com/kos/19050/Climate_Corp_Ontology#ClimateCorpData-ClimateDataInputMethod",
+            "https://pid.bayer.com/kos/19050/Climate_Corp_Ontology#ClimateCorpData-ClimateDataInputSource",
+            "https://pid.bayer.com/kos/19050/Climate_Corp_Ontology#ClimateCorpData-ClimateDataQualityMeasurementsDefined",
+            "https://pid.bayer.com/kos/19050/Climate_Corp_Ontology#ClimateCorpData-ClimateDatasetCategories",
+            "https://pid.bayer.com/kos/19050/Climate_Corp_Ontology#ClimateCorpData-IsTheDatasetASourceOfTruth(SoT%3F)",
+            "https://pid.bayer.com/kos/19050/Climate_Corp_Ontology#ClimateCorpData-LegalPatents",
+            "https://pid.bayer.com/kos/19050/Climate_Corp_Ontology#ClimateCorpData-RateAtWhichTheDatasetIsRefreshed",
+            "https://pid.bayer.com/kos/19050/Climate_Corp_Ontology#ClimateCorpData-SoTForWhatBusinessProcess(es)%3F"
+         ],
+         "http://datashapes.org/dash#abstract":[
+            "false"
+         ]
+      }
+   },
+   {
+      "hasParent":false,
+      "hasChild":false,
+      "children":[
+         
+      ],
+      "name":"Climate Data Governance Domain",
+      "id":"https://pid.bayer.com/kos/19050/Climate_Corp_Ontology#ClimateDataGovernanceDomain",
+      "inboundProperties":{
+         
+      },
+      "properties":{
+         "http://www.w3.org/1999/02/22-rdf-syntax-ns#type":[
+            "http://www.w3.org/2002/07/owl#Class",
+            "http://www.w3.org/ns/shacl#NodeShape"
+         ],
+         "http://www.w3.org/2000/01/rdf-schema#label":[
+            "Climate Data Governance Domain"
+         ],
+         "http://www.w3.org/2000/01/rdf-schema#subClassOf":[
+            "https://pid.bayer.com/kos/19050/Climate_Corp_Ontology#ClimateCorpConcepts"
+         ]
+      }
+   },
+   {
+      "hasParent":false,
+      "hasChild":false,
+      "children":[
+         
+      ],
+      "name":"Climate Data Input Method",
+      "id":"https://pid.bayer.com/kos/19050/Climate_Corp_Ontology#ClimateDataInputMethod",
+      "inboundProperties":{
+         
+      },
+      "properties":{
+         "http://www.w3.org/1999/02/22-rdf-syntax-ns#type":[
+            "http://www.w3.org/2002/07/owl#Class",
+            "http://www.w3.org/ns/shacl#NodeShape"
+         ],
+         "http://www.w3.org/2000/01/rdf-schema#label":[
+            "Climate Data Input Method"
+         ],
+         "http://www.w3.org/2000/01/rdf-schema#subClassOf":[
+            "https://pid.bayer.com/kos/19050/Climate_Corp_Ontology#ClimateCorpConcepts"
+         ]
+      }
+   },
+   {
+      "hasParent":false,
+      "hasChild":false,
+      "children":[
+         
+      ],
+      "name":"Climate Data Input Source",
+      "id":"https://pid.bayer.com/kos/19050/Climate_Corp_Ontology#ClimateDataInputSource",
+      "inboundProperties":{
+         
+      },
+      "properties":{
+         "http://www.w3.org/1999/02/22-rdf-syntax-ns#type":[
+            "http://www.w3.org/2002/07/owl#Class",
+            "http://www.w3.org/ns/shacl#NodeShape"
+         ],
+         "http://www.w3.org/2000/01/rdf-schema#label":[
+            "Climate Data Input Source"
+         ],
+         "http://www.w3.org/2000/01/rdf-schema#subClassOf":[
+            "https://pid.bayer.com/kos/19050/Climate_Corp_Ontology#ClimateCorpConcepts"
+         ]
+      }
+   },
+   {
+      "hasParent":false,
+      "hasChild":false,
+      "children":[
+         
+      ],
+      "name":"Climate Data Refresh Rate",
+      "id":"https://pid.bayer.com/kos/19050/Climate_Corp_Ontology#ClimateDataRefreshRate",
+      "inboundProperties":{
+         
+      },
+      "properties":{
+         "http://www.w3.org/1999/02/22-rdf-syntax-ns#type":[
+            "http://www.w3.org/2002/07/owl#Class",
+            "http://www.w3.org/ns/shacl#NodeShape"
+         ],
+         "http://www.w3.org/2000/01/rdf-schema#label":[
+            "Climate Data Refresh Rate"
+         ],
+         "http://www.w3.org/2000/01/rdf-schema#subClassOf":[
+            "https://pid.bayer.com/kos/19050/Climate_Corp_Ontology#ClimateCorpConcepts"
+         ]
+      }
+   },
+   {
+      "hasParent":false,
+      "hasChild":false,
+      "children":[
+         
+      ],
+      "name":"Climate Dataset Categories",
+      "id":"https://pid.bayer.com/kos/19050/Climate_Corp_Ontology#ClimateDatasetCategories",
+      "inboundProperties":{
+         
+      },
+      "properties":{
+         "http://www.w3.org/1999/02/22-rdf-syntax-ns#type":[
+            "http://www.w3.org/2002/07/owl#Class",
+            "http://www.w3.org/ns/shacl#NodeShape"
+         ],
+         "http://www.w3.org/2000/01/rdf-schema#label":[
+            "Climate Dataset Categories"
+         ],
+         "http://www.w3.org/2000/01/rdf-schema#subClassOf":[
+            "https://pid.bayer.com/kos/19050/Climate_Corp_Ontology#ClimateCorpConcepts"
+         ]
+      }
+   },
+   {
+      "hasParent":false,
+      "hasChild":false,
+      "children":[
+         
+      ],
+      "name":"Climate Legal Patents",
+      "id":"https://pid.bayer.com/kos/19050/Climate_Corp_Ontology#ClimateLegalPatents",
+      "inboundProperties":{
+         
+      },
+      "properties":{
+         "http://www.w3.org/1999/02/22-rdf-syntax-ns#type":[
+            "http://www.w3.org/2002/07/owl#Class",
+            "http://www.w3.org/ns/shacl#NodeShape"
+         ],
+         "http://www.w3.org/2000/01/rdf-schema#label":[
+            "Climate Legal Patents"
+         ],
+         "http://www.w3.org/2000/01/rdf-schema#subClassOf":[
+            "http://www.w3.org/2004/02/skos/core#Concept",
+            "https://pid.bayer.com/kos/19050/Climate_Corp_Ontology#ClimateCorpConcepts"
+         ]
+      }
+   },
+   {
+      "hasParent":false,
+      "hasChild":false,
+      "children":[
+         
+      ],
+      "name":"Climate SoT Business Processes",
+      "id":"https://pid.bayer.com/kos/19050/Climate_Corp_Ontology#ClimateSoTBusinessProcesses",
+      "inboundProperties":{
+         
+      },
+      "properties":{
+         "http://www.w3.org/1999/02/22-rdf-syntax-ns#type":[
+            "http://www.w3.org/2002/07/owl#Class",
+            "http://www.w3.org/ns/shacl#NodeShape"
+         ],
+         "http://www.w3.org/2000/01/rdf-schema#label":[
+            "Climate SoT Business Processes"
+         ],
+         "http://www.w3.org/2000/01/rdf-schema#subClassOf":[
+            "https://pid.bayer.com/kos/19050/Climate_Corp_Ontology#ClimateCorpConcepts"
+         ],
+         "https://pid.bayer.com/ns/shacl/instanceGraph":[
+            "https://pid.bayer.com/instances/climatecorp/businessprocesses"
+         ]
+      }
+   },
+   {
+      "hasParent":false,
+      "hasChild":false,
+      "children":[
+         
+      ],
+      "name":"Column",
+      "id":"https://pid.bayer.com/kos/19050/444582",
+      "inboundProperties":{
+         
+      },
+      "properties":{
+         "http://www.w3.org/1999/02/22-rdf-syntax-ns#type":[
+            "http://www.w3.org/2002/07/owl#Class",
+            "http://www.w3.org/ns/shacl#NodeShape"
+         ],
+         "http://www.w3.org/2000/01/rdf-schema#comment":[
+            "Columns, represented in their column header, as in databases or file based data."
+         ],
+         "http://www.w3.org/2000/01/rdf-schema#label":[
+            "Column"
+         ],
+         "http://www.w3.org/2000/01/rdf-schema#subClassOf":[
+            "https://pid.bayer.com/kos/19050/444556"
+         ],
+         "http://www.w3.org/ns/shacl#property":[
+            "https://pid.bayer.com/kos/19050/444582--1",
+            "https://pid.bayer.com/kos/19050/444582--0",
+            "https://pid.bayer.com/kos/19050/444582-"
+         ],
+         "http://datashapes.org/dash#abstract":[
+            "false"
+         ]
+      }
+   },
+   {
+      "hasParent":false,
+      "hasChild":false,
+      "children":[
+         
+      ],
+      "name":"Company",
+      "id":"http://pid.bayer.com/kos/19014/Company",
+      "inboundProperties":{
+         
+      },
+      "properties":{
+         "http://www.w3.org/1999/02/22-rdf-syntax-ns#type":[
+            "http://www.w3.org/2002/07/owl#Class"
+         ],
+         "http://www.w3.org/2000/01/rdf-schema#comment":[
+            "A company is a legal entity that acts commercially."
+         ],
+         "http://www.w3.org/2000/01/rdf-schema#label":[
+            "Company"
+         ],
+         "http://pid.bayer.com/kos/19014/definition":[
+            "A company is a legal entity that acts commercially."
+         ],
+         "http://www.w3.org/2000/01/rdf-schema#subClassOf":[
+            "http://pid.bayer.com/kos/19014/LegalEntity",
+            "http://pid.bayer.com/kos/19014/Organization"
+         ],
+         "http://pid.bayer.com/kos/19014/wasDerivedFrom":[
+            "A company is a legal entity that acts commercially."
+         ],
+         "http://pid.bayer.com/kos/19014/example":[
+            "Bayer AG, Siemens, Microsoft"
+         ]
+      }
+   },
+   {
+      "hasParent":false,
+      "hasChild":false,
+      "children":[
+         
+      ],
+      "name":"Consumer Group Lifecycle Status",
+      "id":"https://pid.bayer.com/kos/19050/ConsumerGroupLifecycleStatus",
+      "inboundProperties":{
+         
+      },
+      "properties":{
+         "http://www.w3.org/1999/02/22-rdf-syntax-ns#type":[
+            "http://www.w3.org/2002/07/owl#Class",
+            "http://www.w3.org/ns/shacl#NodeShape"
+         ],
+         "http://www.w3.org/2000/01/rdf-schema#label":[
+            "Consumer Group Lifecycle Status"
+         ],
+         "http://www.w3.org/2000/01/rdf-schema#subClassOf":[
+            "https://pid.bayer.com/kos/19050/PID_Concepts"
+         ]
+      }
+   },
+   {
+      "hasParent":false,
+      "hasChild":false,
+      "children":[
+         
+      ],
+      "name":"ConsumerGroup",
+      "id":"https://pid.bayer.com/kos/19050#ConsumerGroup",
+      "inboundProperties":{
+         
+      },
+      "properties":{
+         "http://www.w3.org/1999/02/22-rdf-syntax-ns#type":[
+            "http://www.w3.org/2002/07/owl#Class",
+            "http://www.w3.org/ns/shacl#NodeShape"
+         ],
+         "http://www.w3.org/2000/01/rdf-schema#comment":[
+            "The consumer groups."
+         ],
+         "http://www.w3.org/2000/01/rdf-schema#label":[
+            "ConsumerGroup"
+         ],
+         "http://www.w3.org/2000/01/rdf-schema#subClassOf":[
+            "https://pid.bayer.com/kos/19050/PID_Concepts"
+         ],
+         "http://www.w3.org/ns/shacl#property":[
+            "https://pid.bayer.com/kos/19050/ConsumerGroup-type",
+            "https://pid.bayer.com/kos/19050/ConsumerGroup-hasPidUriTemplate",
+            "https://pid.bayer.com/kos/19050/ConsumerGroup-hasAdRole",
+            "https://pid.bayer.com/kos/19050/ConsumerGroup-name",
+            "https://pid.bayer.com/kos/19050#ConsumerGroup-hasConsumerGroupLifecycleStatus",
+            "https://pid.bayer.com/kos/19050#ConsumerGroup-hasConsumerGroupContactPerson",
+            "https://pid.bayer.com/kos/19050#ConsumerGroup-hasDefaultPidUriTemplate"
+         ]
+      }
+   },
+   {
+      "hasParent":false,
+      "hasChild":false,
+      "children":[
+         
+      ],
+      "name":"Contract Type",
+      "id":"http://pid.bayer.com/scilic/ContractType",
+      "inboundProperties":{
+         
+      },
+      "properties":{
+         "http://www.w3.org/1999/02/22-rdf-syntax-ns#type":[
+            "http://www.w3.org/2002/07/owl#Class",
+            "http://www.w3.org/ns/shacl#NodeShape"
+         ],
+         "http://www.w3.org/2000/01/rdf-schema#label":[
+            "Contract Type"
+         ],
+         "http://www.w3.org/2000/01/rdf-schema#subClassOf":[
+            "http://pid.bayer.com/scilic/Concepts"
+         ]
+      }
+   },
+   {
+      "hasParent":false,
+      "hasChild":false,
+      "children":[
+         
+      ],
+      "name":"Core Entities",
+      "id":"https://pid.bayer.com/kos/19050/444556",
+      "inboundProperties":{
+         
+      },
+      "properties":{
+         "http://www.w3.org/1999/02/22-rdf-syntax-ns#type":[
+            "http://www.w3.org/2002/07/owl#Class",
+            "http://www.w3.org/ns/shacl#NodeShape"
+         ],
+         "http://www.w3.org/2000/01/rdf-schema#comment":[
+            "Elemental units of information, can be classes, properties, tables and column descriptions. These are registered to explain and construct more complex resources and data assets."
+         ],
+         "http://www.w3.org/2000/01/rdf-schema#label":[
+            "Core Entities"
+         ],
+         "http://www.w3.org/2000/01/rdf-schema#subClassOf":[
+            "https://pid.bayer.com/kos/19050/PID_Concept"
+         ],
+         "http://www.w3.org/ns/shacl#property":[
+            "https://pid.bayer.com/kos/19050/444556-"
+         ]
+      }
+   },
+   {
+      "hasParent":false,
+      "hasChild":false,
+      "children":[
+         
+      ],
+      "name":"Country",
+      "id":"http://pid.bayer.com/kos/19014/Country",
+      "inboundProperties":{
+         
+      },
+      "properties":{
+         "http://www.w3.org/1999/02/22-rdf-syntax-ns#type":[
+            "http://www.w3.org/2002/07/owl#Class"
+         ],
+         "http://www.w3.org/2000/01/rdf-schema#comment":[
+            "A country is a region that is identified as a distinct entity in political geography and refers to a sovereign state."
+         ],
+         "http://www.w3.org/2000/01/rdf-schema#label":[
+            "Country"
+         ],
+         "http://pid.bayer.com/kos/19014/definition":[
+            "A country is a region that is identified as a distinct entity in political geography and refers to a sovereign state."
+         ],
+         "http://www.w3.org/2000/01/rdf-schema#subClassOf":[
+            "http://pid.bayer.com/kos/19014/GeographicalLocation"
+         ]
+      }
+   },
+   {
+      "hasParent":false,
+      "hasChild":false,
+      "children":[
+         
+      ],
+      "name":"Creative Work",
+      "id":"http://pid.bayer.com/kos/19014/CreativeWork",
+      "inboundProperties":{
+         
+      },
+      "properties":{
+         "http://www.w3.org/1999/02/22-rdf-syntax-ns#type":[
+            "http://www.w3.org/2002/07/owl#Class"
+         ],
+         "http://www.w3.org/2000/01/rdf-schema#comment":[
+            "The most generic kind of creative work, including books, movies, photographs, software programs, data models, etc. It is created by a creator. There can be different versions of the same creative work."
+         ],
+         "http://www.w3.org/2000/01/rdf-schema#label":[
+            "Creative Work"
+         ],
+         "http://pid.bayer.com/kos/19014/definition":[
+            "The most generic kind of creative work, including books, movies, photographs, software programs, data models, etc. It is created by a creator. There can be different versions of the same creative work."
+         ],
+         "http://www.w3.org/2000/01/rdf-schema#subClassOf":[
+            "http://www.w3.org/2002/07/owl#Thing"
+         ]
+      }
+   },
+   {
+      "hasParent":false,
+      "hasChild":false,
+      "children":[
+         
+      ],
+      "name":"Crop Science Concepts",
+      "id":"https://pid.bayer.com/kos/19050/CropScienceConcepts",
+      "inboundProperties":{
+         
+      },
+      "properties":{
+         "http://www.w3.org/1999/02/22-rdf-syntax-ns#type":[
+            "http://www.w3.org/2002/07/owl#Class",
+            "http://www.w3.org/ns/shacl#NodeShape"
+         ],
+         "http://www.w3.org/2000/01/rdf-schema#comment":[
+            "Includes all relevant concepts for Crop Science"
+         ],
+         "http://www.w3.org/2000/01/rdf-schema#label":[
+            "Crop Science Concepts"
+         ],
+         "http://www.w3.org/2000/01/rdf-schema#subClassOf":[
+            "https://pid.bayer.com/kos/19050/PID_Concepts"
+         ]
+      }
+   },
+   {
+      "hasParent":false,
+      "hasChild":false,
+      "children":[
+         
+      ],
+      "name":"Crop Science Dataset",
+      "id":"https://pid.bayer.com/kos/19050/CropScienceDataset",
+      "inboundProperties":{
+         
+      },
+      "properties":{
+         "http://www.w3.org/1999/02/22-rdf-syntax-ns#type":[
+            "http://www.w3.org/2002/07/owl#Class",
+            "http://www.w3.org/ns/shacl#NodeShape"
+         ],
+         "http://www.w3.org/2000/01/rdf-schema#comment":[
+            "Any resource that contains instance data, e.g. CSV, database table or exposed view. Specific for Crop Science data as it contains additional, CS specific, metadata."
+         ],
+         "http://www.w3.org/2000/01/rdf-schema#label":[
+            "Crop Science Dataset"
+         ],
+         "http://www.w3.org/2000/01/rdf-schema#subClassOf":[
+            "https://pid.bayer.com/kos/19050/NonRDFDataset"
+         ],
+         "http://www.w3.org/ns/shacl#property":[
+            "https://pid.bayer.com/kos/19050/CropScienceDataset-hasSpatialInformation",
+            "https://pid.bayer.com/kos/19050/CropScienceDataset-hasCropScienceGroupAssignment"
+         ],
+         "http://datashapes.org/dash#abstract":[
+            "false"
+         ]
+      }
+   },
+   {
+      "hasParent":false,
+      "hasChild":false,
+      "children":[
+         
+      ],
+      "name":"Crop Science Group Assignment",
+      "id":"https://pid.bayer.com/kos/19050/CropScienceGroupAssignment",
+      "inboundProperties":{
+         
+      },
+      "properties":{
+         "http://www.w3.org/1999/02/22-rdf-syntax-ns#type":[
+            "http://www.w3.org/2002/07/owl#Class",
+            "http://www.w3.org/ns/shacl#NodeShape"
+         ],
+         "http://www.w3.org/2000/01/rdf-schema#label":[
+            "Crop Science Group Assignment"
+         ],
+         "http://www.w3.org/2000/01/rdf-schema#subClassOf":[
+            "https://pid.bayer.com/kos/19050/CropScienceConcepts"
+         ]
+      }
+   },
+   {
+      "hasParent":false,
+      "hasChild":false,
+      "children":[
+         
+      ],
+      "name":"Currency",
+      "id":"http://pid.bayer.com/kos/19014/Currency",
+      "inboundProperties":{
+         
+      },
+      "properties":{
+         "http://www.w3.org/1999/02/22-rdf-syntax-ns#type":[
+            "http://www.w3.org/2002/07/owl#Class"
+         ],
+         "http://www.w3.org/2000/01/rdf-schema#comment":[
+            "A currency is a system of money (monetary units) in common use, especially for people in a nation"
+         ],
+         "http://www.w3.org/2000/01/rdf-schema#label":[
+            "Currency"
+         ],
+         "http://pid.bayer.com/kos/19014/definition":[
+            "A currency is a system of money (monetary units) in common use, especially for people in a nation"
+         ],
+         "http://www.w3.org/2000/01/rdf-schema#subClassOf":[
+            "http://www.w3.org/2002/07/owl#Thing"
+         ],
+         "http://pid.bayer.com/kos/19014/wasDerivedFrom":[
+            "http://www.omg.org/spec/EDMC-FIBO/FND/Accounting/CurrencyAmount/Currency"
+         ]
+      }
+   },
+   {
+      "hasParent":false,
+      "hasChild":false,
+      "children":[
+         
+      ],
+      "name":"Data Lake Endpoint",
+      "id":"https://pid.bayer.com/kos/19050/DataLakeEndpoint",
+      "inboundProperties":{
+         
+      },
+      "properties":{
+         "http://www.w3.org/1999/02/22-rdf-syntax-ns#type":[
+            "http://www.w3.org/2002/07/owl#Class",
+            "http://www.w3.org/ns/shacl#NodeShape"
+         ],
+         "http://www.w3.org/2000/01/rdf-schema#label":[
+            "Data Lake Endpoint"
+         ],
+         "http://www.w3.org/2000/01/rdf-schema#subClassOf":[
+            "http://pid.bayer.com/kos/19014/NetworkedResource"
+         ],
+         "http://www.w3.org/ns/shacl#property":[
+            "https://pid.bayer.com/kos/19050/DataLakeEndpoint-hasAmazonResourceName",
+            "https://pid.bayer.com/kos/19050/DataLakeEndpoint-hasJupyterHubConnection",
+            "https://pid.bayer.com/kos/19050/DataLakeEndpoint-hasAdGroups"
+         ],
+         "http://datashapes.org/dash#abstract":[
+            "false"
+         ]
+      }
+   },
+   {
+      "hasParent":false,
+      "hasChild":false,
+      "children":[
+         
+      ],
+      "name":"Data Source Type",
+      "id":"http://pid.bayer.com/scilic_model/DataSourceType",
+      "inboundProperties":{
+         
+      },
+      "properties":{
+         "http://www.w3.org/1999/02/22-rdf-syntax-ns#type":[
+            "http://www.w3.org/2002/07/owl#Class",
+            "http://www.w3.org/ns/shacl#NodeShape"
+         ],
+         "http://www.w3.org/2000/01/rdf-schema#label":[
+            "Data Source Type"
+         ],
+         "http://www.w3.org/2000/01/rdf-schema#subClassOf":[
+            "http://pid.bayer.com/scilic/Concepts"
+         ],
+         "https://pid.bayer.com/ns/shacl/instanceGraph":[
+            "https://pid.bayer.com/instances/scilic_model/DataSourceType"
+         ]
+      }
+   },
+   {
+      "hasParent":false,
+      "hasChild":false,
+      "children":[
+         
+      ],
+      "name":"Data Storage System",
+      "id":"http://pid.bayer.com/kos/19014/DataStorageSystem",
+      "inboundProperties":{
+         
+      },
+      "properties":{
+         "http://www.w3.org/1999/02/22-rdf-syntax-ns#type":[
+            "http://www.w3.org/2002/07/owl#Class"
+         ],
+         "http://www.w3.org/2000/01/rdf-schema#comment":[
+            "A data storage system is a software that is designed to store data persistently, e.g. relation database, document database, graph database."
+         ],
+         "http://www.w3.org/2000/01/rdf-schema#label":[
+            "Data Storage System"
+         ],
+         "http://pid.bayer.com/kos/19014/definition":[
+            "A data storage system is a software that is designed to store data persistently, e.g. relation database, document database, graph database."
+         ],
+         "http://www.w3.org/2000/01/rdf-schema#subClassOf":[
+            "http://pid.bayer.com/kos/19014/SoftwareApplication"
+         ]
+      }
+   },
+   {
+      "hasParent":false,
+      "hasChild":false,
+      "children":[
+         
+      ],
+      "name":"Dataset",
+      "id":"https://pid.bayer.com/kos/19050/NonRDFDataset",
+      "inboundProperties":{
+         
+      },
+      "properties":{
+         "http://www.w3.org/1999/02/22-rdf-syntax-ns#type":[
+            "http://www.w3.org/2002/07/owl#Class",
+            "http://www.w3.org/ns/shacl#NodeShape"
+         ],
+         "http://www.w3.org/2000/01/rdf-schema#comment":[
+            "Any resource that contains instance data, e.g. CSV, database table, exposed view as well as RDF instances."
+         ],
+         "http://www.w3.org/2000/01/rdf-schema#label":[
+            "Dataset"
+         ],
+         "http://pid.bayer.com/kos/19014/definition":[
+            "Any resource that contains instance data, e.g. CSV, database table, exposed view as well as RDF instances."
+         ],
+         "http://www.w3.org/2000/01/rdf-schema#subClassOf":[
+            "http://pid.bayer.com/kos/19014/Dataset",
+            "https://pid.bayer.com/kos/19050/444558"
+         ],
+         "http://www.w3.org/ns/shacl#property":[
+            "https://pid.bayer.com/kos/19050/NonRDFDataset-isPersonalData",
+            "https://pid.bayer.com/kos/19050/NonRDFDataset-containsLicensedData",
+            "https://pid.bayer.com/kos/19050/NonRDFDataset-isDerivedFromDataset",
+            "https://pid.bayer.com/kos/19050/NonRDFDataset-sameDatasetAs",
+            "https://pid.bayer.com/kos/19050/NonRDFDataset-isCopyOfDataset",
+            "https://pid.bayer.com/kos/19050/NonRDFDataset-isSubsetOfDataset",
+            "https://pid.bayer.com/kos/19050/NonRDFDataset-hasCountryContext",
+            "https://pid.bayer.com/kos/19050/NonRDFDataset-ContainsComplementaryInformation",
+            "https://pid.bayer.com/kos/19050/NonRDFDataset-hasDataCategory"
+         ]
+      }
+   },
+   {
+      "hasParent":false,
+      "hasChild":false,
+      "children":[
+         
+      ],
+      "name":"Dataset",
+      "id":"http://pid.bayer.com/kos/19014/Dataset",
+      "inboundProperties":{
+         
+      },
+      "properties":{
+         "http://www.w3.org/1999/02/22-rdf-syntax-ns#type":[
+            "http://www.w3.org/2002/07/owl#Class"
+         ],
+         "http://www.w3.org/2000/01/rdf-schema#comment":[
+            "A collection of data, published or curated by a single source which can be stored and processed by machines. <br /><br />Alternative definition: A dataset is a digital resource (can be stored in a computing system) which contains a collection of data elements. It is maintained by a data steward (who created or curated it)."
+         ],
+         "http://www.w3.org/2000/01/rdf-schema#label":[
+            "Dataset"
+         ],
+         "http://pid.bayer.com/kos/19014/definition":[
+            "A collection of data, published or curated by a single source which can be stored and processed by machines."
+         ],
+         "http://www.w3.org/2000/01/rdf-schema#subClassOf":[
+            "http://pid.bayer.com/kos/19014/DigitalResource"
+         ],
+         "http://pid.bayer.com/kos/19014/wasDerivedFrom":[
+            "http://www.w3.org/ns/dcat#Dataset",
+            "http://purl.org/dc/dcmitype/Dataset"
+         ]
+      }
+   },
+   {
+      "hasParent":false,
+      "hasChild":false,
+      "children":[
+         
+      ],
+      "name":"Declarative Language",
+      "id":"http://pid.bayer.com/kos/19014/DeclarativeLanguage",
+      "inboundProperties":{
+         
+      },
+      "properties":{
+         "http://www.w3.org/1999/02/22-rdf-syntax-ns#type":[
+            "http://www.w3.org/2002/07/owl#Class"
+         ],
+         "http://www.w3.org/2000/01/rdf-schema#comment":[
+            "Programming language used for declarative programming. Declarative programming is a programming paradigm &mdash; a style of building the structure and elements of computer programs &mdash; that expresses the logic of a computation without describing its control flow."
+         ],
+         "http://www.w3.org/2000/01/rdf-schema#label":[
+            "Declarative Language"
+         ],
+         "http://pid.bayer.com/kos/19014/definition":[
+            "Programming language used for declarative programming. Declarative programming is a programming paradigm — a style of building the structure and elements of computer programs — that expresses the logic of a computation without describing its control flow."
+         ],
+         "http://www.w3.org/2000/01/rdf-schema#subClassOf":[
+            "http://pid.bayer.com/kos/19014/ProgrammingLanguage"
+         ],
+         "http://pid.bayer.com/kos/19014/wasDerivedFrom":[
+            "https://en.wikipedia.org/wiki/Declarative_programming"
+         ]
+      }
+   },
+   {
+      "hasParent":false,
+      "hasChild":false,
+      "children":[
+         
+      ],
+      "name":"Digital Asset",
+      "id":"http://pid.bayer.com/kos/19014/DigitalAsset",
+      "inboundProperties":{
+         
+      },
+      "properties":{
+         "http://www.w3.org/1999/02/22-rdf-syntax-ns#type":[
+            "http://www.w3.org/2002/07/owl#Class"
+         ],
+         "http://www.w3.org/2000/01/rdf-schema#comment":[
+            "A digital asset is a digital resource that is seen as an asset in an enterprise and governed accordingly."
+         ],
+         "http://www.w3.org/2000/01/rdf-schema#label":[
+            "Digital Asset"
+         ],
+         "http://pid.bayer.com/kos/19014/definition":[
+            "A digital asset is a digital resource that is seen as an asset in an enterprise and governed accordingly."
+         ],
+         "http://www.w3.org/2000/01/rdf-schema#subClassOf":[
+            "http://pid.bayer.com/kos/19014/Asset",
+            "http://pid.bayer.com/kos/19014/DigitalResource"
+         ]
+      }
+   },
+   {
+      "hasParent":false,
+      "hasChild":false,
+      "children":[
+         
+      ],
+      "name":"Digital Resource",
+      "id":"http://pid.bayer.com/kos/19014/DigitalResource",
+      "inboundProperties":{
+         
+      },
+      "properties":{
+         "http://www.w3.org/1999/02/22-rdf-syntax-ns#type":[
+            "http://www.w3.org/2002/07/owl#Class"
+         ],
+         "http://www.w3.org/2000/01/rdf-schema#comment":[
+            "A digital resource is a <a href=\"http://pid.bayer.com/kos/19014/Resource\">resource</a> that can be stored on and processed by computers."
+         ],
+         "http://www.w3.org/2000/01/rdf-schema#label":[
+            "Digital Resource",
+            "Digitale Ressource"
+         ],
+         "http://www.w3.org/2000/01/rdf-schema#subClassOf":[
+            "http://pid.bayer.com/kos/19014/Resource"
+         ]
+      }
+   },
+   {
+      "hasParent":false,
+      "hasChild":false,
+      "children":[
+         
+      ],
+      "name":"Distribution Endpoint Lifecycle Status",
+      "id":"https://pid.bayer.com/kos/19050/DistributionEndpointLifecycleStatus",
+      "inboundProperties":{
+         
+      },
+      "properties":{
+         "http://www.w3.org/1999/02/22-rdf-syntax-ns#type":[
+            "http://www.w3.org/2002/07/owl#Class"
+         ],
+         "http://www.w3.org/2000/01/rdf-schema#comment":[
+            "Status of a Distribution Endpoint of a PID resource. Allows to keep a deprecated endpoint visible, but ignore it for the URI redirect process."
+         ],
+         "http://www.w3.org/2000/01/rdf-schema#label":[
+            "Distribution Endpoint Lifecycle Status"
+         ],
+         "http://www.w3.org/2000/01/rdf-schema#subClassOf":[
+            "https://pid.bayer.com/kos/19050/PID_Concepts"
+         ]
+      }
+   },
+   {
+      "hasParent":false,
+      "hasChild":false,
+      "children":[
+         
+      ],
+      "name":"Document",
+      "id":"http://pid.bayer.com/kos/19014/Document",
+      "inboundProperties":{
+         
+      },
+      "properties":{
+         "http://pid.bayer.com/kos/19014/editorialNote":[
+            "2020.07.02 Goekhan Coskun: added rdfs:subClassOf relation to PID Resource so we can register documents in COLID.",
+            "2019.04.15: Marius (GIVTK): Why the limitation to \"digital\" documents? If necessary then change label to \"Digital Document\". Otherwise remove the \"digital\" apect from the definition or add something like \"all digital and non-digital documents\"."
+         ],
+         "http://www.w3.org/2000/01/rdf-schema#subClassOf":[
+            "https://pid.bayer.com/kos/19050/444558",
+            "http://pid.bayer.com/kos/19014/CreativeWork"
+         ],
+         "http://datashapes.org/dash#abstract":[
+            "false"
+         ],
+         "http://www.w3.org/1999/02/22-rdf-syntax-ns#type":[
+            "http://www.w3.org/2002/07/owl#Class"
+         ],
+         "http://www.w3.org/2000/01/rdf-schema#comment":[
+            "This concept represents all digital as well as non-digital documents."
+         ],
+         "http://www.w3.org/2000/01/rdf-schema#label":[
+            "Document"
+         ],
+         "http://pid.bayer.com/kos/19014/definition":[
+            "This concept represents all digital as well as non-digital documents."
+         ],
+         "http://pid.bayer.com/kos/19014/wasDerivedFrom":[
+            "https://schema.org/DigitalDocument",
+            "http://xmlns.com/foaf/0.1/Document"
+         ]
+      }
+   },
+   {
+      "hasParent":false,
+      "hasChild":false,
+      "children":[
+         
+      ],
+      "name":"Event",
+      "id":"http://pid.bayer.com/kos/19014/Event",
+      "inboundProperties":{
+         
+      },
+      "properties":{
+         "http://www.w3.org/1999/02/22-rdf-syntax-ns#type":[
+            "http://www.w3.org/2002/07/owl#Class"
+         ],
+         "http://www.w3.org/2000/01/rdf-schema#comment":[
+            "An event is something that happens. It can have one single date/time relation or can be duration with a beginning and an ending date/time."
+         ],
+         "http://www.w3.org/2000/01/rdf-schema#label":[
+            "Event"
+         ],
+         "http://pid.bayer.com/kos/19014/definition":[
+            "An event is something that happens. It can have one single date/time relation or can be duration with a beginning and an ending date/time."
+         ],
+         "http://www.w3.org/2000/01/rdf-schema#subClassOf":[
+            "http://www.w3.org/2002/07/owl#Thing"
+         ],
+         "http://pid.bayer.com/kos/19014/wasDerivedFrom":[
+            "https://schema.org/Event",
+            "http://ontologies.semanticarts.com/gist/Event"
+         ]
+      }
+   },
+   {
+      "hasParent":false,
+      "hasChild":false,
+      "children":[
+         
+      ],
+      "name":"ExtendedUriTemplate",
+      "id":"https://pid.bayer.com/kos/19050#ExtendedUriTemplate",
+      "inboundProperties":{
+         
+      },
+      "properties":{
+         "http://www.w3.org/1999/02/22-rdf-syntax-ns#type":[
+            "http://www.w3.org/2002/07/owl#Class",
+            "http://www.w3.org/ns/shacl#NodeShape"
+         ],
+         "http://www.w3.org/2000/01/rdf-schema#comment":[
+            "Extended URI Templates."
+         ],
+         "http://www.w3.org/2000/01/rdf-schema#label":[
+            "ExtendedUriTemplate"
+         ],
+         "http://www.w3.org/2000/01/rdf-schema#subClassOf":[
+            "https://pid.bayer.com/kos/19050/PID_Concepts"
+         ],
+         "http://www.w3.org/ns/shacl#property":[
+            "https://pid.bayer.com/kos/19050#ExtendedUriTemplate-hasOrder",
+            "https://pid.bayer.com/kos/19050/ExtendedUriTemplate-hasTargetUriMatchRegex",
+            "https://pid.bayer.com/kos/19050/ExtendedUriTemplate-label",
+            "https://pid.bayer.com/kos/19050#ExtendedUriTemplate-UseHttpScheme",
+            "https://pid.bayer.com/kos/19050/ExtendedUriTemplate-hasPidUriSearchRegex",
+            "https://pid.bayer.com/kos/19050/ExtendedUriTemplate-hasReplacementString",
+            "https://pid.bayer.com/kos/19050/ExtendedUriTemplate-type"
+         ]
+      }
+   },
+   {
+      "hasParent":false,
+      "hasChild":false,
+      "children":[
+         
+      ],
+      "name":"External Data Offer Provider",
+      "id":"https://pid.bayer.com/kos/19050/ExternalDataOfferProvider",
+      "inboundProperties":{
+         
+      },
+      "properties":{
+         "http://www.w3.org/1999/02/22-rdf-syntax-ns#type":[
+            "http://www.w3.org/2002/07/owl#Class",
+            "http://www.w3.org/ns/shacl#NodeShape"
+         ],
+         "http://www.w3.org/2000/01/rdf-schema#label":[
+            "External Data Offer Provider"
+         ],
+         "http://www.w3.org/2000/01/rdf-schema#subClassOf":[
+            "https://pid.bayer.com/kos/19050/PID_Concepts"
+         ],
+         "https://pid.bayer.com/ns/shacl/instanceGraph":[
+            "https://pid.bayer.com/instances/scilic_model/Provider"
+         ]
+      }
+   },
+   {
+      "hasParent":false,
+      "hasChild":false,
+      "children":[
+         
+      ],
+      "name":"External Data Offers",
+      "id":"https://pid.bayer.com/kos/19050/ExternalDataOffers",
+      "inboundProperties":{
+         
+      },
+      "properties":{
+         "http://www.w3.org/1999/02/22-rdf-syntax-ns#type":[
+            "http://www.w3.org/2002/07/owl#Class",
+            "http://www.w3.org/ns/shacl#NodeShape"
+         ],
+         "http://www.w3.org/2000/01/rdf-schema#comment":[
+            "Datasets that are offered by external data vendors. These datasets are not necessarily available inside Bayer and need to be acquired or licensed first.&nbsp;In that case a separate entry should be linked to this entry."
+         ],
+         "http://www.w3.org/2000/01/rdf-schema#label":[
+            "External Data Offers"
+         ],
+         "http://www.w3.org/2000/01/rdf-schema#subClassOf":[
+            "https://pid.bayer.com/kos/19050/444558"
+         ],
+         "http://www.w3.org/ns/shacl#property":[
+            "https://pid.bayer.com/kos/19050/ExternalDataOffers-PricingModels",
+            "https://pid.bayer.com/kos/19050/ExternalDataOffers-Provider"
+         ],
+         "http://datashapes.org/dash#abstract":[
+            "false"
+         ]
+      }
+   },
+   {
+      "hasParent":false,
+      "hasChild":false,
+      "children":[
+         
+      ],
+      "name":"File System",
+      "id":"http://pid.bayer.com/kos/19014/FileSystem",
+      "inboundProperties":{
+         
+      },
+      "properties":{
+         "http://www.w3.org/1999/02/22-rdf-syntax-ns#type":[
+            "http://www.w3.org/2002/07/owl#Class"
+         ],
+         "http://www.w3.org/2000/01/rdf-schema#comment":[
+            "A file system is a data storage system that stores data in buckets called \"file\", e.g. CSV-files, Excel-files. Usually, a file system is a major part of an operating system. There are different file system standards like ext3, fat32, ntfs etc."
+         ],
+         "http://www.w3.org/2000/01/rdf-schema#label":[
+            "File System"
+         ],
+         "http://pid.bayer.com/kos/19014/definition":[
+            "A file system is a data storage system that stores data in buckets called \"file\", e.g. CSV-files, Excel-files. Usually, a file system is a major part of an operating system. There are different file system standards like ext3, fat32, ntfs etc."
+         ],
+         "http://www.w3.org/2000/01/rdf-schema#subClassOf":[
+            "http://pid.bayer.com/kos/19014/DataStorageSystem"
+         ]
+      }
+   },
+   {
+      "hasParent":false,
+      "hasChild":false,
+      "children":[
+         
+      ],
+      "name":"Generic Dataset",
+      "id":"https://pid.bayer.com/kos/19050/GenericDataset",
+      "inboundProperties":{
+         
+      },
+      "properties":{
+         "http://www.w3.org/1999/02/22-rdf-syntax-ns#type":[
+            "http://www.w3.org/2002/07/owl#Class",
+            "http://www.w3.org/ns/shacl#NodeShape"
+         ],
+         "http://www.w3.org/2000/01/rdf-schema#comment":[
+            "Any dataset that is not an RDF dataset, nor one of the more specific types of non-RDF datasets. It can be a file like xml, xls, csv or data stored in systems like sql, MongoDB, Neo4J etc."
+         ],
+         "http://www.w3.org/2000/01/rdf-schema#label":[
+            "Generic Dataset"
+         ],
+         "http://pid.bayer.com/kos/19014/definition":[
+            "Any dataset that is not an RDF dataset, nor one of the more specific types of non-RDF datasets. It can be a file like xml, xls, csv or data stored in systems like sql, MongoDB, Neo4J etc."
+         ],
+         "http://www.w3.org/2000/01/rdf-schema#subClassOf":[
+            "https://pid.bayer.com/kos/19050/NonRDFDataset"
+         ],
+         "http://datashapes.org/dash#abstract":[
+            "false"
+         ],
+         "https://pid.bayer.com/kos/19050/435897":[
+            "https://dataservices-icons.s3.eu-central-1.amazonaws.com/https%253A%252F%252Fpid.bayer.com%252Fkos%252F19050%252FGenericDataset.svg"
+         ]
+      }
+   },
+   {
+      "hasParent":false,
+      "hasChild":false,
+      "children":[
+         
+      ],
+      "name":"Geographical Location",
+      "id":"http://pid.bayer.com/kos/19014/GeographicalLocation",
+      "inboundProperties":{
+         
+      },
+      "properties":{
+         "http://www.w3.org/1999/02/22-rdf-syntax-ns#type":[
+            "http://www.w3.org/2002/07/owl#Class"
+         ],
+         "http://www.w3.org/2000/01/rdf-schema#comment":[
+            "A position, site, or point in space where something can be found."
+         ],
+         "http://www.w3.org/2000/01/rdf-schema#label":[
+            "Geographical Location"
+         ],
+         "http://pid.bayer.com/kos/19014/definition":[
+            "A position, site, or point in space where something can be found."
+         ],
+         "http://www.w3.org/2000/01/rdf-schema#subClassOf":[
+            "http://www.w3.org/2002/07/owl#Thing"
+         ],
+         "http://pid.bayer.com/kos/19014/wasDerivedFrom":[
+            "https://schema.org/Place"
+         ]
+      }
+   },
+   {
+      "hasParent":false,
+      "hasChild":false,
+      "children":[
+         
+      ],
+      "name":"Geographical Scope",
+      "id":"https://pid.bayer.com/kos/19050/GeographicalScope",
+      "inboundProperties":{
+         
+      },
+      "properties":{
+         "http://www.w3.org/1999/02/22-rdf-syntax-ns#type":[
+            "http://www.w3.org/2002/07/owl#Class",
+            "http://www.w3.org/ns/shacl#NodeShape"
+         ],
+         "http://www.w3.org/2000/01/rdf-schema#label":[
+            "Geographical Scope"
+         ],
+         "http://www.w3.org/2000/01/rdf-schema#subClassOf":[
+            "https://pid.bayer.com/kos/19050/BEAT_Concepts"
+         ]
+      }
+   },
+   {
+      "hasParent":false,
+      "hasChild":false,
+      "children":[
+         
+      ],
+      "name":"Geospatial Layer",
+      "id":"https://pid.bayer.com/kos/19050/GeospatialLayer",
+      "inboundProperties":{
+         
+      },
+      "properties":{
+         "http://www.w3.org/1999/02/22-rdf-syntax-ns#type":[
+            "http://www.w3.org/2002/07/owl#Class",
+            "http://www.w3.org/ns/shacl#NodeShape"
+         ],
+         "http://www.w3.org/2000/01/rdf-schema#comment":[
+            "Geospatial layer as in legacy Monsanto CKan system"
+         ],
+         "http://www.w3.org/2000/01/rdf-schema#label":[
+            "Geospatial Layer"
+         ],
+         "http://www.w3.org/2000/01/rdf-schema#subClassOf":[
+            "https://pid.bayer.com/kos/19050/CropScienceConcepts"
+         ]
+      }
+   },
+   {
+      "hasParent":false,
+      "hasChild":false,
+      "children":[
+         
+      ],
+      "name":"Geospatial Rest API",
+      "id":"https://pid.bayer.com/kos/19050/GeospatialRestAPI",
+      "inboundProperties":{
+         
+      },
+      "properties":{
+         "http://www.w3.org/1999/02/22-rdf-syntax-ns#type":[
+            "http://www.w3.org/2002/07/owl#Class",
+            "http://www.w3.org/ns/shacl#NodeShape"
+         ],
+         "http://www.w3.org/2000/01/rdf-schema#comment":[
+            "REST API that delivers data with geospatial information. The specific interface type must be specified."
+         ],
+         "http://www.w3.org/2000/01/rdf-schema#label":[
+            "Geospatial Rest API"
+         ],
+         "http://www.w3.org/2000/01/rdf-schema#subClassOf":[
+            "http://pid.bayer.com/kos/19014/NetworkedResource"
+         ],
+         "http://www.w3.org/ns/shacl#property":[
+            "https://pid.bayer.com/kos/19050/GeospatialRestAPI-hasGeospatialLayer"
+         ],
+         "http://datashapes.org/dash#abstract":[
+            "false"
+         ]
+      }
+   },
+   {
+      "hasParent":false,
+      "hasChild":false,
+      "children":[
+         
+      ],
+      "name":"Government Body",
+      "id":"http://pid.bayer.com/kos/19014/GovernmentBody",
+      "inboundProperties":{
+         
+      },
+      "properties":{
+         "http://www.w3.org/1999/02/22-rdf-syntax-ns#type":[
+            "http://www.w3.org/2002/07/owl#Class"
+         ],
+         "http://www.w3.org/2000/01/rdf-schema#comment":[
+            "A formal organization that is an agency, instrumentality, or other body of supranational, national, federal, state, or local government, including certain multijurisdictional agencies and departments that carry out the business of government"
+         ],
+         "http://www.w3.org/2000/01/rdf-schema#label":[
+            "Government Body"
+         ],
+         "http://pid.bayer.com/kos/19014/definition":[
+            "A formal organization that is an agency, instrumentality, or other body of supranational, national, federal, state, or local government, including certain multijurisdictional agencies and departments that carry out the business of government"
+         ],
+         "http://www.w3.org/2000/01/rdf-schema#subClassOf":[
+            "http://pid.bayer.com/kos/19014/LegalEntity",
+            "http://pid.bayer.com/kos/19014/Organization"
+         ],
+         "http://pid.bayer.com/kos/19014/wasDerivedFrom":[
+            "https://spec.edmcouncil.org/static/glossary/production.html#Imported%20Ontologies::GovernmentEntities::government%20body"
+         ]
+      }
+   },
+   {
+      "hasParent":false,
+      "hasChild":false,
+      "children":[
+         
+      ],
+      "name":"Identifier",
+      "id":"http://pid.bayer.com/kos/19014/Identifier",
+      "inboundProperties":{
+         
+      },
+      "properties":{
+         "http://www.w3.org/1999/02/22-rdf-syntax-ns#type":[
+            "http://www.w3.org/2002/07/owl#Class"
+         ],
+         "http://www.w3.org/2000/01/rdf-schema#comment":[
+            "This is a generic concept that represents any kind of identifier."
+         ],
+         "http://www.w3.org/2000/01/rdf-schema#label":[
+            "Identifier"
+         ],
+         "http://pid.bayer.com/kos/19014/definition":[
+            "This is a generic concept that represents any kind of identifier."
+         ],
+         "http://www.w3.org/2000/01/rdf-schema#subClassOf":[
+            "http://www.w3.org/2002/07/owl#Thing"
+         ],
+         "http://pid.bayer.com/kos/19014/example":[
+            "Baynumber, ISBN, URI, PID, CWID"
+         ]
+      }
+   },
+   {
+      "hasParent":false,
+      "hasChild":false,
+      "children":[
+         
+      ],
+      "name":"Imperative Language",
+      "id":"http://pid.bayer.com/kos/19014/ImperativeLanguage",
+      "inboundProperties":{
+         
+      },
+      "properties":{
+         "http://www.w3.org/1999/02/22-rdf-syntax-ns#type":[
+            "http://www.w3.org/2002/07/owl#Class"
+         ],
+         "http://www.w3.org/2000/01/rdf-schema#comment":[
+            "Programming language used for imperative programming. Imperative programming is a programming paradigm that uses statements that change a program's state."
+         ],
+         "http://www.w3.org/2000/01/rdf-schema#label":[
+            "Imperative Language"
+         ],
+         "http://pid.bayer.com/kos/19014/definition":[
+            "Programming language used for imperative programming. Imperative programming is a programming paradigm that uses statements that change a program's state."
+         ],
+         "http://www.w3.org/2000/01/rdf-schema#subClassOf":[
+            "http://pid.bayer.com/kos/19014/ProgrammingLanguage"
+         ],
+         "http://pid.bayer.com/kos/19014/wasDerivedFrom":[
+            "https://en.wikipedia.org/wiki/Imperative_programming"
+         ]
+      }
+   },
+   {
+      "hasParent":false,
+      "hasChild":false,
+      "children":[
+         
+      ],
+      "name":"Information Classification",
+      "id":"https://pid.bayer.com/kos/19050/InformationClassification",
+      "inboundProperties":{
+         
+      },
+      "properties":{
+         "http://www.w3.org/1999/02/22-rdf-syntax-ns#type":[
+            "http://www.w3.org/2002/07/owl#Class"
+         ],
+         "http://www.w3.org/2000/01/rdf-schema#label":[
+            "Information Classification"
+         ],
+         "http://www.w3.org/2000/01/rdf-schema#subClassOf":[
+            "https://pid.bayer.com/kos/19050/PID_Concepts"
+         ]
+      }
+   },
+   {
+      "hasParent":false,
+      "hasChild":false,
+      "children":[
+         
+      ],
+      "name":"Internal Application Lifecycle",
+      "id":"https://pid.bayer.com/kos/19050/InternalApplicationLifecycle",
+      "inboundProperties":{
+         
+      },
+      "properties":{
+         "http://www.w3.org/1999/02/22-rdf-syntax-ns#type":[
+            "http://www.w3.org/2002/07/owl#Class",
+            "http://www.w3.org/ns/shacl#NodeShape"
+         ],
+         "http://www.w3.org/2000/01/rdf-schema#comment":[
+            "Internal lifecycle of an application."
+         ],
+         "http://www.w3.org/2000/01/rdf-schema#label":[
+            "Internal Application Lifecycle"
+         ],
+         "http://www.w3.org/2000/01/rdf-schema#subClassOf":[
+            "https://pid.bayer.com/kos/19050/BEAT_Concepts"
+         ]
+      }
+   },
+   {
+      "hasParent":false,
+      "hasChild":false,
+      "children":[
+         
+      ],
+      "name":"Keyword",
+      "id":"https://pid.bayer.com/kos/19050/Keyword",
+      "inboundProperties":{
+         
+      },
+      "properties":{
+         "http://www.w3.org/1999/02/22-rdf-syntax-ns#type":[
+            "http://www.w3.org/2002/07/owl#Class",
+            "http://www.w3.org/ns/shacl#NodeShape"
+         ],
+         "http://www.w3.org/2000/01/rdf-schema#label":[
+            "Keyword"
+         ],
+         "http://www.w3.org/2000/01/rdf-schema#subClassOf":[
+            "https://pid.bayer.com/kos/19050/PID_Concepts"
+         ],
+         "http://www.w3.org/ns/shacl#property":[
+            "https://pid.bayer.com/kos/19050/Keyword-label",
+            "https://pid.bayer.com/kos/19050/Keyword-type"
+         ]
+      }
+   },
+   {
+      "hasParent":false,
+      "hasChild":false,
+      "children":[
+         
+      ],
+      "name":"Legal Entity",
+      "id":"http://pid.bayer.com/kos/19014/LegalEntity",
+      "inboundProperties":{
+         
+      },
+      "properties":{
+         "http://www.w3.org/1999/02/22-rdf-syntax-ns#type":[
+            "http://www.w3.org/2002/07/owl#Class"
+         ],
+         "http://www.w3.org/2000/01/rdf-schema#comment":[
+            "A person, partnership, corporation, or any other organization having the capacity to negotiate contracts, organized under the laws of some jurisdiction."
+         ],
+         "http://www.w3.org/2000/01/rdf-schema#label":[
+            "Legal Entity"
+         ],
+         "http://pid.bayer.com/kos/19014/definition":[
+            "A person, partnership, corporation, or any other organization having the capacity to negotiate contracts, organized under the laws of some jurisdiction."
+         ],
+         "http://www.w3.org/2000/01/rdf-schema#subClassOf":[
+            "http://pid.bayer.com/kos/19014/Agent"
+         ]
+      }
+   },
+   {
+      "hasParent":false,
+      "hasChild":false,
+      "children":[
+         
+      ],
+      "name":"License Format",
+      "id":"http://pid.bayer.com/scilic_model/LicenseFormat",
+      "inboundProperties":{
+         
+      },
+      "properties":{
+         "http://www.w3.org/1999/02/22-rdf-syntax-ns#type":[
+            "http://www.w3.org/2002/07/owl#Class",
+            "http://www.w3.org/ns/shacl#NodeShape"
+         ],
+         "http://www.w3.org/2000/01/rdf-schema#comment":[
+            "License Format"
+         ],
+         "http://www.w3.org/2000/01/rdf-schema#label":[
+            "License Format"
+         ],
+         "http://www.w3.org/2000/01/rdf-schema#subClassOf":[
+            "http://pid.bayer.com/scilic/Concepts"
+         ],
+         "http://www.w3.org/2000/01/rdf-schema#range":[
+            "http://pid.bayer.com/scilic_model/LicenseFormat"
+         ],
+         "https://pid.bayer.com/ns/shacl/instanceGraph":[
+            "https://pid.bayer.com/instances/scilic_model/LicenseFormat"
+         ]
+      }
+   },
+   {
+      "hasParent":false,
+      "hasChild":false,
+      "children":[
+         
+      ],
+      "name":"License Right of Use",
+      "id":"http://pid.bayer.com/scilic_model/LicenseRightOfUse",
+      "inboundProperties":{
+         
+      },
+      "properties":{
+         "http://www.w3.org/1999/02/22-rdf-syntax-ns#type":[
+            "http://www.w3.org/2002/07/owl#Class",
+            "http://www.w3.org/ns/shacl#NodeShape"
+         ],
+         "http://www.w3.org/2000/01/rdf-schema#label":[
+            "License Right of Use"
+         ],
+         "http://www.w3.org/2000/01/rdf-schema#subClassOf":[
+            "http://pid.bayer.com/scilic/Concepts"
+         ],
+         "https://pid.bayer.com/ns/shacl/instanceGraph":[
+            "https://pid.bayer.com/instances/scilic_model/LicenseRightOfUse"
+         ]
+      }
+   },
+   {
+      "hasParent":false,
+      "hasChild":false,
+      "children":[
+         
+      ],
+      "name":"License Scope",
+      "id":"http://pid.bayer.com/scilic_model/LicenseScope",
+      "inboundProperties":{
+         
+      },
+      "properties":{
+         "http://www.w3.org/1999/02/22-rdf-syntax-ns#type":[
+            "http://www.w3.org/2002/07/owl#Class",
+            "http://www.w3.org/ns/shacl#NodeShape"
+         ],
+         "http://www.w3.org/2000/01/rdf-schema#label":[
+            "License Scope"
+         ],
+         "http://www.w3.org/2000/01/rdf-schema#subClassOf":[
+            "http://pid.bayer.com/scilic/Concepts"
+         ]
+      }
+   },
+   {
+      "hasParent":false,
+      "hasChild":false,
+      "children":[
+         
+      ],
+      "name":"License Training",
+      "id":"http://pid.bayer.com/scilic/LicenseTraining",
+      "inboundProperties":{
+         
+      },
+      "properties":{
+         "http://www.w3.org/1999/02/22-rdf-syntax-ns#type":[
+            "http://www.w3.org/2002/07/owl#Class",
+            "http://www.w3.org/ns/shacl#NodeShape"
+         ],
+         "http://www.w3.org/2000/01/rdf-schema#label":[
+            "License Training"
+         ],
+         "http://www.w3.org/2000/01/rdf-schema#subClassOf":[
+            "http://pid.bayer.com/scilic/Concepts"
+         ],
+         "https://pid.bayer.com/ns/shacl/instanceGraph":[
+            "https://pid.bayer.com/instances/scilic_model/LicenseTraining"
+         ]
+      }
+   },
+   {
+      "hasParent":false,
+      "hasChild":false,
+      "children":[
+         
+      ],
+      "name":"Lifecycle Status",
+      "id":"https://pid.bayer.com/kos/19050/LifeCycleStatus",
+      "inboundProperties":{
+         
+      },
+      "properties":{
+         "http://www.w3.org/1999/02/22-rdf-syntax-ns#type":[
+            "http://www.w3.org/2002/07/owl#Class"
+         ],
+         "http://www.w3.org/2000/01/rdf-schema#comment":[
+            "Status of the actual resource that is registered in PID."
+         ],
+         "http://www.w3.org/2000/01/rdf-schema#label":[
+            "Lifecycle Status"
+         ],
+         "http://www.w3.org/2000/01/rdf-schema#subClassOf":[
+            "https://pid.bayer.com/kos/19050/PID_Concepts"
+         ]
+      }
+   },
+   {
+      "hasParent":false,
+      "hasChild":false,
+      "children":[
+         
+      ],
+      "name":"Maintenance Point",
+      "id":"http://pid.bayer.com/kos/19014/MaintenancePoint",
+      "inboundProperties":{
+         
+      },
+      "properties":{
+         "http://datashapes.org/dash#abstract":[
+            "false"
+         ],
+         "http://www.w3.org/1999/02/22-rdf-syntax-ns#type":[
+            "http://www.w3.org/2002/07/owl#Class"
+         ],
+         "http://www.w3.org/2000/01/rdf-schema#comment":[
+            "A networked resource that is an application which is used to maintain a specific resource e.g. TopBraid EDG (requires valid credentials)."
+         ],
+         "http://www.w3.org/2000/01/rdf-schema#label":[
+            "Maintenance Point"
+         ],
+         "http://pid.bayer.com/kos/19014/definition":[
+            "A networked resource that is an application which is used to maintain a specific resource e.g. TopBraid EDG (requires valid credentials)."
+         ],
+         "http://www.w3.org/2000/01/rdf-schema#subClassOf":[
+            "http://pid.bayer.com/kos/19014/NetworkedResource"
+         ]
+      }
+   },
+   {
+      "hasParent":false,
+      "hasChild":false,
+      "children":[
+         
+      ],
+      "name":"Mapping",
+      "id":"https://pid.bayer.com/kos/19050/Mapping",
+      "inboundProperties":{
+         
+      },
+      "properties":{
+         "http://www.w3.org/1999/02/22-rdf-syntax-ns#type":[
+            "http://www.w3.org/2002/07/owl#Class",
+            "http://www.w3.org/ns/shacl#NodeShape"
+         ],
+         "http://www.w3.org/2000/01/rdf-schema#comment":[
+            "This concept represents a mapping of a dataset to an ontology. It describes how elements of a dataset like tables and columns are mapped to the concepts and properties of an ontology."
+         ],
+         "http://www.w3.org/2000/01/rdf-schema#label":[
+            "Mapping"
+         ],
+         "http://www.w3.org/2000/01/rdf-schema#subClassOf":[
+            "https://pid.bayer.com/kos/19050/RDFDataset"
+         ],
+         "http://www.w3.org/ns/shacl#property":[
+            "https://pid.bayer.com/kos/19050/Mapping-",
+            "https://pid.bayer.com/kos/19050/Mapping--0"
+         ],
+         "http://datashapes.org/dash#abstract":[
+            "false"
+         ],
+         "https://pid.bayer.com/kos/19050/435897":[
+            "https://dataservices-icons.s3.eu-central-1.amazonaws.com/https%253A%252F%252Fpid.bayer.com%252Fkos%252F19050%252FMapping.svg"
+         ]
+      }
+   },
+   {
+      "hasParent":false,
+      "hasChild":false,
+      "children":[
+         
+      ],
+      "name":"Mathematical Model",
+      "id":"https://pid.bayer.com/kos/19050/MathematicalModel",
+      "inboundProperties":{
+         
+      },
+      "properties":{
+         "http://www.w3.org/1999/02/22-rdf-syntax-ns#type":[
+            "http://www.w3.org/2002/07/owl#Class",
+            "http://www.w3.org/ns/shacl#NodeShape"
+         ],
+         "http://www.w3.org/2000/01/rdf-schema#comment":[
+            "This concept represents models which have been created by data scientists."
+         ],
+         "http://www.w3.org/2000/01/rdf-schema#label":[
+            "Mathematical Model"
+         ],
+         "http://pid.bayer.com/kos/19014/definition":[
+            "This concept represents models which have been created by data scientists."
+         ],
+         "http://www.w3.org/2000/01/rdf-schema#subClassOf":[
+            "https://pid.bayer.com/kos/19050/444558"
+         ],
+         "http://www.w3.org/ns/shacl#property":[
+            "https://pid.bayer.com/kos/19050/MathematicalModel-hasMathematicalModelCategory",
+            "https://pid.bayer.com/kos/19050/MathematicalModel-appliedToDataset",
+            "https://pid.bayer.com/kos/19050/MathematicalModel-createdFromDataset"
+         ],
+         "http://datashapes.org/dash#abstract":[
+            "false"
+         ],
+         "https://pid.bayer.com/kos/19050/435897":[
+            "https://dataservices-icons.s3.eu-central-1.amazonaws.com/https%253A%252F%252Fpid.bayer.com%252Fkos%252F19050%252FMathematicalModel.svg"
+         ]
+      }
+   },
+   {
+      "hasParent":false,
+      "hasChild":false,
+      "children":[
+         
+      ],
+      "name":"MathematicalModelCategory",
+      "id":"https://pid.bayer.com/kos/19050/MathematicalModelCategory",
+      "inboundProperties":{
+         
+      },
+      "properties":{
+         "http://www.w3.org/1999/02/22-rdf-syntax-ns#type":[
+            "http://www.w3.org/2002/07/owl#Class"
+         ],
+         "http://www.w3.org/2000/01/rdf-schema#label":[
+            "MathematicalModelCategory"
+         ],
+         "http://www.w3.org/2000/01/rdf-schema#subClassOf":[
+            "https://pid.bayer.com/kos/19050/PID_Concepts",
+            "http://www.w3.org/2004/02/skos/core#Concept"
+         ]
+      }
+   },
+   {
+      "hasParent":false,
+      "hasChild":false,
+      "children":[
+         
+      ],
+      "name":"Metadata Graph Configuration",
+      "id":"https://pid.bayer.com/kos/19050/367403",
+      "inboundProperties":{
+         
+      },
+      "properties":{
+         "http://www.w3.org/1999/02/22-rdf-syntax-ns#type":[
+            "http://www.w3.org/2002/07/owl#Class",
+            "http://www.w3.org/ns/shacl#NodeShape"
+         ],
+         "http://www.w3.org/2000/01/rdf-schema#label":[
+            "Metadata Graph Configuration"
+         ],
+         "http://www.w3.org/2000/01/rdf-schema#subClassOf":[
+            "https://pid.bayer.com/kos/19050/PID_Concepts"
+         ],
+         "http://www.w3.org/ns/shacl#property":[
+            "https://pid.bayer.com/kos/19050/367403-startTime",
+            "https://pid.bayer.com/kos/19050/367403-",
+            "https://pid.bayer.com/kos/19050/367403--1",
+            "https://pid.bayer.com/kos/19050/367403--2",
+            "https://pid.bayer.com/kos/19050/367403--3",
+            "https://pid.bayer.com/kos/19050/367403--4",
+            "https://pid.bayer.com/kos/19050/367403--5",
+            "https://pid.bayer.com/kos/19050/367403-type",
+            "https://pid.bayer.com/kos/19050/367403--7",
+            "https://pid.bayer.com/kos/19050/367403-editorialNote",
+            "https://pid.bayer.com/kos/19050/367403-8",
+            "https://pid.bayer.com/kos/19050/367403--9",
+            "https://pid.bayer.com/kos/19050/367403--10"
+         ]
+      }
+   },
+   {
+      "hasParent":false,
+      "hasChild":false,
+      "children":[
+         
+      ],
+      "name":"Natural Language",
+      "id":"http://pid.bayer.com/kos/19014/NaturalLanguage",
+      "inboundProperties":{
+         
+      },
+      "properties":{
+         "http://www.w3.org/1999/02/22-rdf-syntax-ns#type":[
+            "http://www.w3.org/2002/07/owl#Class"
+         ],
+         "http://pid.bayer.com/kos/19014/editorialNote":[
+            "2019.04.15: Marius (GIVTK): I suggest to change the preferred label to \"Natural Language\" to better convey the distinction from formal languages like programming languages. If not changing the preferred label (e.g. because it's to confusing for some users) then at least add it as alternative label.",
+            "2019.04.15: Marius (GIVTK): I suggest to revise the definition of this concept. As of 2019-04-15, the definition is also applicable for formal languages, e.g. if one considers computers \"participants\" exchanging information using a language. My proposal: \"System of human communication by speaking, writing, or making signs in a way that can be understood.\". It is a slightly adapted version of the definitions given in the Cambridge Dictionary (https://dictionary.cambridge.org/dictionary/english/language).",
+            "2019.04.15: Gökhan (GGVCM): Both proposals have been accepted. The changes have been done."
+         ],
+         "http://www.w3.org/2000/01/rdf-schema#comment":[
+            "System of human communication by speaking, writing, or making signs in a way that can be understood."
+         ],
+         "http://www.w3.org/2000/01/rdf-schema#label":[
+            "Natural Language"
+         ],
+         "http://pid.bayer.com/kos/19014/definition":[
+            "System of human communication by speaking, writing, or making signs in a way that can be understood."
+         ],
+         "http://www.w3.org/2000/01/rdf-schema#subClassOf":[
+            "http://pid.bayer.com/kos/19014/AbstractLanguage"
+         ]
+      }
+   },
+   {
+      "hasParent":false,
+      "hasChild":false,
+      "children":[
+         
+      ],
+      "name":"Networked Resource",
+      "id":"http://pid.bayer.com/kos/19014/NetworkedResource",
+      "inboundProperties":{
+         
+      },
+      "properties":{
+         "http://www.w3.org/1999/02/22-rdf-syntax-ns#type":[
+            "http://www.w3.org/ns/shacl#NodeShape",
+            "http://www.w3.org/2002/07/owl#Class"
+         ],
+         "http://www.w3.org/ns/shacl#property":[
+            "http://pid.bayer.com/kos/19014/NetworkedResource-hasNetworkAddress",
+            "http://pid.bayer.com/kos/19014/NetworkedResource-hasNetworkedResourceLabel",
+            "http://pid.bayer.com/kos/19014/NetworkedResource-hasContactPerson",
+            "http://pid.bayer.com/kos/19014/NetworkedResource-type",
+            "http://pid.bayer.com/kos/19014/NetworkedResource-hasDistributionEndpointLifecycleStatus",
+            "http://pid.bayer.com/kos/19014/NetworkedResource-hasDataLocalization"
+         ],
+         "http://www.w3.org/2000/01/rdf-schema#comment":[
+            "A networked resource is a <a href=\"http://pid.bayer.com/kos/19014/DigitalResource\">digital resource</a> that is accessible in the communication network through the IP protocol."
+         ],
+         "http://www.w3.org/2000/01/rdf-schema#label":[
+            "Networked Resource"
+         ],
+         "http://pid.bayer.com/kos/19014/definition":[
+            "A networked resource is a <a href=\"http://pid.bayer.com/kos/19014/DigitalResource\">digital resource</a> that is accessible in the communication network through the IP protocol."
+         ],
+         "http://www.w3.org/2000/01/rdf-schema#subClassOf":[
+            "http://pid.bayer.com/kos/19014/DigitalResource"
+         ]
+      }
+   },
+   {
+      "hasParent":false,
+      "hasChild":false,
+      "children":[
+         
+      ],
+      "name":"Ontology",
+      "id":"http://pid.bayer.com/kos/19014/Ontology",
+      "inboundProperties":{
+         
+      },
+      "properties":{
+         "http://www.w3.org/1999/02/22-rdf-syntax-ns#type":[
+            "http://www.w3.org/ns/shacl#NodeShape",
+            "http://www.w3.org/2002/07/owl#Class"
+         ],
+         "http://www.w3.org/2000/01/rdf-schema#subClassOf":[
+            "https://pid.bayer.com/kos/19050/RDFDataset",
+            "http://pid.bayer.com/kos/19014/CreativeWork"
+         ],
+         "http://www.w3.org/ns/shacl#property":[
+            "http://pid.bayer.com/kos/19014/Ontology-isSchemaOfDataset",
+            "http://pid.bayer.com/kos/19014/Ontology-includesOntology",
+            "http://pid.bayer.com/kos/19014/Ontology-hasCompetencyQuestion"
+         ],
+         "http://datashapes.org/dash#abstract":[
+            "false"
+         ],
+         "https://pid.bayer.com/kos/19050/435897":[
+            "https://dataservices-icons.s3.eu-central-1.amazonaws.com/http%253A%252F%252Fpid.bayer.com%252Fkos%252F19014%252FOntology.svg"
+         ],
+         "http://www.w3.org/2000/01/rdf-schema#comment":[
+            "An ontology is an explicit and formal specification of a shared conceptualization."
+         ],
+         "http://www.w3.org/2000/01/rdf-schema#label":[
+            "Ontology"
+         ],
+         "http://pid.bayer.com/kos/19014/definition":[
+            "An ontology is an explicit and formal specification of a shared conceptualization."
+         ],
+         "http://pid.bayer.com/kos/19014/wasDerivedFrom":[
+            "http://www.w3.org/2002/07/owl#Ontology"
+         ]
+      }
+   },
+   {
+      "hasParent":false,
+      "hasChild":false,
+      "children":[
+         
+      ],
+      "name":"Organization",
+      "id":"http://pid.bayer.com/kos/19014/Organization",
+      "inboundProperties":{
+         
+      },
+      "properties":{
+         "http://www.w3.org/1999/02/22-rdf-syntax-ns#type":[
+            "http://www.w3.org/2002/07/owl#Class"
+         ],
+         "http://www.w3.org/2000/01/rdf-schema#comment":[
+            "An organization can be a non-profit organization, a company, a body of the government etc."
+         ],
+         "http://www.w3.org/2000/01/rdf-schema#label":[
+            "Organization"
+         ],
+         "http://pid.bayer.com/kos/19014/definition":[
+            "An organization can be a non-profit organization, a company, a body of the government etc."
+         ],
+         "http://www.w3.org/2000/01/rdf-schema#subClassOf":[
+            "http://pid.bayer.com/kos/19014/Agent"
+         ],
+         "http://pid.bayer.com/kos/19014/wasDerivedFrom":[
+            "https://schema.org/Organization",
+            "http://xmlns.com/foaf/0.1/Organization",
+            "https://pid.bayer.com/ext/gist/Organization"
+         ],
+         "http://pid.bayer.com/kos/19014/example":[
+            "Bayer Business Services GmbH, Enterprise Data Management Department, Food and Drug Administration"
+         ]
+      }
+   },
+   {
+      "hasParent":false,
+      "hasChild":false,
+      "children":[
+         
+      ],
+      "name":"PID Concepts",
+      "id":"https://pid.bayer.com/kos/19050/PID_Concepts",
+      "inboundProperties":{
+         
+      },
+      "properties":{
+         "http://www.w3.org/1999/02/22-rdf-syntax-ns#type":[
+            "http://www.w3.org/2002/07/owl#Class"
+         ],
+         "http://www.w3.org/2000/01/rdf-schema#label":[
+            "PID Concepts"
+         ],
+         "http://www.w3.org/2000/01/rdf-schema#subClassOf":[
+            "http://www.w3.org/2002/07/owl#Thing"
+         ]
+      }
+   },
+   {
+      "hasParent":false,
+      "hasChild":false,
+      "children":[
+         
+      ],
+      "name":"PID Entry Lifecycle Status",
+      "id":"https://pid.bayer.com/kos/19050/PIDEntryLifecycleStatus",
+      "inboundProperties":{
+         
+      },
+      "properties":{
+         "http://www.w3.org/1999/02/22-rdf-syntax-ns#type":[
+            "http://www.w3.org/2002/07/owl#Class"
+         ],
+         "http://www.w3.org/2000/01/rdf-schema#comment":[
+            "Status of the resource registration entry in PID. Not to be mistaken with the status of the resource itself."
+         ],
+         "http://www.w3.org/2000/01/rdf-schema#label":[
+            "PID Entry Lifecycle Status"
+         ],
+         "http://www.w3.org/2000/01/rdf-schema#subClassOf":[
+            "https://pid.bayer.com/kos/19050/PID_Concepts"
+         ]
+      }
+   },
+   {
+      "hasParent":false,
+      "hasChild":false,
+      "children":[
+         
+      ],
+      "name":"PIDEntry",
+      "id":"https://pid.bayer.com/kos/19050/PIDEntry",
+      "inboundProperties":{
+         
+      },
+      "properties":{
+         "http://www.w3.org/1999/02/22-rdf-syntax-ns#type":[
+            "http://www.w3.org/2002/07/owl#Class"
+         ],
+         "http://www.w3.org/2000/01/rdf-schema#label":[
+            "PIDEntry"
+         ],
+         "http://www.w3.org/2000/01/rdf-schema#subClassOf":[
+            "http://pid.bayer.com/kos/19014/BrowsableResource"
+         ]
+      }
+   },
+   {
+      "hasParent":false,
+      "hasChild":false,
+      "children":[
+         
+      ],
+      "name":"Permanent Identifier",
+      "id":"http://pid.bayer.com/kos/19014/PermanentIdentifier",
+      "inboundProperties":{
+         
+      },
+      "properties":{
+         "http://www.w3.org/1999/02/22-rdf-syntax-ns#type":[
+            "http://www.w3.org/ns/shacl#NodeShape",
+            "http://www.w3.org/2002/07/owl#Class"
+         ],
+         "http://www.w3.org/ns/shacl#property":[
+            "http://pid.bayer.com/kos/19014/PermanentIdentifier-hasURITemplate"
+         ],
+         "http://www.w3.org/2000/01/rdf-schema#comment":[
+            "This concept represents all permanent identifiers according to the PID idea."
+         ],
+         "http://www.w3.org/2000/01/rdf-schema#label":[
+            "Permanent Identifier"
+         ],
+         "http://pid.bayer.com/kos/19014/definition":[
+            "This concept represents all permanent identifiers according to the PID idea."
+         ],
+         "http://www.w3.org/2000/01/rdf-schema#subClassOf":[
+            "http://pid.bayer.com/kos/19014/Identifier"
+         ]
+      }
+   },
+   {
+      "hasParent":false,
+      "hasChild":false,
+      "children":[
+         
+      ],
+      "name":"Person",
+      "id":"http://pid.bayer.com/kos/19014/Person",
+      "inboundProperties":{
+         
+      },
+      "properties":{
+         "http://www.w3.org/1999/02/22-rdf-syntax-ns#type":[
+            "http://www.w3.org/2002/07/owl#Class"
+         ],
+         "http://www.w3.org/2000/01/rdf-schema#comment":[
+            "A person is a human being. A person can be alive, dead, a fiction or real."
+         ],
+         "http://www.w3.org/2000/01/rdf-schema#label":[
+            "Person"
+         ],
+         "http://pid.bayer.com/kos/19014/definition":[
+            "A person is a human being. A person can be alive, dead, a fiction or real."
+         ],
+         "http://www.w3.org/2000/01/rdf-schema#subClassOf":[
+            "http://pid.bayer.com/kos/19014/Agent"
+         ],
+         "http://pid.bayer.com/kos/19014/copyOf":[
+            "http://xmlns.com/foaf/0.1/Person"
+         ]
+      }
+   },
+   {
+      "hasParent":false,
+      "hasChild":false,
+      "children":[
+         
+      ],
+      "name":"Pid Uri Template",
+      "id":"https://pid.bayer.com/kos/19050#PidUriTemplate",
+      "inboundProperties":{
+         
+      },
+      "properties":{
+         "http://www.w3.org/1999/02/22-rdf-syntax-ns#type":[
+            "http://www.w3.org/2002/07/owl#Class",
+            "http://www.w3.org/ns/shacl#NodeShape"
+         ],
+         "http://www.w3.org/2000/01/rdf-schema#comment":[
+            "Templates for PID URIs."
+         ],
+         "http://www.w3.org/2000/01/rdf-schema#label":[
+            "Pid Uri Template"
+         ],
+         "http://www.w3.org/2000/01/rdf-schema#subClassOf":[
+            "https://pid.bayer.com/kos/19050/PID_Concepts"
+         ],
+         "http://www.w3.org/ns/shacl#property":[
+            "https://pid.bayer.com/kos/19050/PidUriTemplate-hasPidUriTemplateSuffix",
+            "https://pid.bayer.com/kos/19050/PidUriTemplate-hasPidUriTemplateIdType",
+            "https://pid.bayer.com/kos/19050/PidUriTemplate-hasRoute",
+            "https://pid.bayer.com/kos/19050/PidUriTemplate-type",
+            "https://pid.bayer.com/kos/19050#PidUriTemplate-IDLength",
+            "https://pid.bayer.com/kos/19050#PidUriTemplate-BaseURL",
+            "https://pid.bayer.com/kos/19050#PidUriTemplate-LifecycleStatus"
+         ]
+      }
+   },
+   {
+      "hasParent":false,
+      "hasChild":false,
+      "children":[
+         
+      ],
+      "name":"Pid Uri Template ID Type",
+      "id":"https://pid.bayer.com/kos/19050#PidUriTemplateIdType",
+      "inboundProperties":{
+         
+      },
+      "properties":{
+         "http://www.w3.org/1999/02/22-rdf-syntax-ns#type":[
+            "http://www.w3.org/2002/07/owl#Class",
+            "http://www.w3.org/ns/shacl#NodeShape"
+         ],
+         "http://www.w3.org/2000/01/rdf-schema#label":[
+            "Pid Uri Template ID Type"
+         ],
+         "http://www.w3.org/2000/01/rdf-schema#subClassOf":[
+            "https://pid.bayer.com/kos/19050/PID_Concepts"
+         ]
+      }
+   },
+   {
+      "hasParent":false,
+      "hasChild":false,
+      "children":[
+         
+      ],
+      "name":"Pid Uri Template Lifecycle Status",
+      "id":"https://pid.bayer.com/kos/19050/PidUriTemplateLifecycleStatus",
+      "inboundProperties":{
+         
+      },
+      "properties":{
+         "http://www.w3.org/1999/02/22-rdf-syntax-ns#type":[
+            "http://www.w3.org/2002/07/owl#Class",
+            "http://www.w3.org/ns/shacl#NodeShape"
+         ],
+         "http://www.w3.org/2000/01/rdf-schema#label":[
+            "Pid Uri Template Lifecycle Status"
+         ],
+         "http://www.w3.org/2000/01/rdf-schema#subClassOf":[
+            "https://pid.bayer.com/kos/19050/PID_Concepts"
+         ]
+      }
+   },
+   {
+      "hasParent":false,
+      "hasChild":false,
+      "children":[
+         
+      ],
+      "name":"PidUriTemplate Suffix",
+      "id":"https://pid.bayer.com/kos/19050#PidUriTemplateSuffix",
+      "inboundProperties":{
+         
+      },
+      "properties":{
+         "http://www.w3.org/1999/02/22-rdf-syntax-ns#type":[
+            "http://www.w3.org/2002/07/owl#Class",
+            "http://www.w3.org/ns/shacl#NodeShape"
+         ],
+         "http://www.w3.org/2000/01/rdf-schema#label":[
+            "PidUriTemplate Suffix"
+         ],
+         "http://www.w3.org/2000/01/rdf-schema#subClassOf":[
+            "https://pid.bayer.com/kos/19050/PID_Concepts"
+         ]
+      }
+   },
+   {
+      "hasParent":false,
+      "hasChild":false,
+      "children":[
+         
+      ],
+      "name":"Pricing Models",
+      "id":"https://pid.bayer.com/kos/19050/PricingModels",
+      "inboundProperties":{
+         
+      },
+      "properties":{
+         "http://www.w3.org/1999/02/22-rdf-syntax-ns#type":[
+            "http://www.w3.org/2002/07/owl#Class",
+            "http://www.w3.org/ns/shacl#NodeShape"
+         ],
+         "http://www.w3.org/2000/01/rdf-schema#label":[
+            "Pricing Models"
+         ],
+         "http://www.w3.org/2000/01/rdf-schema#subClassOf":[
+            "https://pid.bayer.com/kos/19050/PID_Concepts"
+         ]
+      }
+   },
+   {
+      "hasParent":false,
+      "hasChild":false,
+      "children":[
+         
+      ],
+      "name":"Product",
+      "id":"http://pid.bayer.com/scilic_model/Product",
+      "inboundProperties":{
+         
+      },
+      "properties":{
+         "http://www.w3.org/1999/02/22-rdf-syntax-ns#type":[
+            "http://www.w3.org/2002/07/owl#Class",
+            "http://www.w3.org/ns/shacl#NodeShape"
+         ],
+         "http://www.w3.org/2000/01/rdf-schema#label":[
+            "Product"
+         ],
+         "http://www.w3.org/2000/01/rdf-schema#subClassOf":[
+            "http://pid.bayer.com/scilic/Concepts"
+         ],
+         "https://pid.bayer.com/ns/shacl/instanceGraph":[
+            "https://pid.bayer.com/instances/scilic_model/Product"
+         ]
+      }
+   },
+   {
+      "hasParent":false,
+      "hasChild":false,
+      "children":[
+         
+      ],
+      "name":"Product",
+      "id":"http://pid.bayer.com/kos/19014/Product",
+      "inboundProperties":{
+         
+      },
+      "properties":{
+         "http://www.w3.org/1999/02/22-rdf-syntax-ns#type":[
+            "http://www.w3.org/2002/07/owl#Class"
+         ],
+         "http://www.w3.org/2000/01/rdf-schema#comment":[
+            "Any offered product or service. For example: a pair of shoes; a concert ticket; the rental of a car; a haircut; or an episode of a TV show streamed online."
+         ],
+         "http://www.w3.org/2000/01/rdf-schema#label":[
+            "Product"
+         ],
+         "http://pid.bayer.com/kos/19014/definition":[
+            "Any offered product or service. For example: a pair of shoes; a concert ticket; the rental of a car; a haircut; or an episode of a TV show streamed online."
+         ],
+         "http://www.w3.org/2000/01/rdf-schema#subClassOf":[
+            "http://www.w3.org/2002/07/owl#Thing"
+         ],
+         "http://pid.bayer.com/kos/19014/wasDerivedFrom":[
+            "https://schema.org/Product"
+         ]
+      }
+   },
+   {
+      "hasParent":false,
+      "hasChild":false,
+      "children":[
+         
+      ],
+      "name":"Programming Language",
+      "id":"http://pid.bayer.com/kos/19014/ProgrammingLanguage",
+      "inboundProperties":{
+         
+      },
+      "properties":{
+         "http://www.w3.org/1999/02/22-rdf-syntax-ns#type":[
+            "http://www.w3.org/2002/07/owl#Class"
+         ],
+         "http://www.w3.org/2000/01/rdf-schema#comment":[
+            "A programming language is a formal language, which comprises a set of instructions used to produce various kinds of output. Programming languages are used in computer programming to create programs that implement specific algorithms."
+         ],
+         "http://www.w3.org/2000/01/rdf-schema#label":[
+            "Programming Language"
+         ],
+         "http://pid.bayer.com/kos/19014/definition":[
+            "A programming language is a formal language, which comprises a set of instructions used to produce various kinds of output. Programming languages are used in computer programming to create programs that implement specific algorithms."
+         ],
+         "http://www.w3.org/2000/01/rdf-schema#subClassOf":[
+            "http://pid.bayer.com/kos/19014/AbstractLanguage"
+         ],
+         "http://pid.bayer.com/kos/19014/wasDerivedFrom":[
+            "https://en.wikipedia.org/wiki/Programming_language"
+         ]
+      }
+   },
+   {
+      "hasParent":false,
+      "hasChild":false,
+      "children":[
+         
+      ],
+      "name":"Provenance Note",
+      "id":"http://pid.bayer.com/kos/19014/ProvenanceNote",
+      "inboundProperties":{
+         
+      },
+      "properties":{
+         "http://www.w3.org/1999/02/22-rdf-syntax-ns#type":[
+            "http://www.w3.org/2002/07/owl#Class"
+         ],
+         "http://www.w3.org/2000/01/rdf-schema#comment":[
+            "Abstract node bundling provenance notes."
+         ],
+         "http://www.w3.org/2000/01/rdf-schema#label":[
+            "Provenance Note"
+         ],
+         "http://pid.bayer.com/kos/19014/definition":[
+            "Abstract node bundling provenance notes."
+         ],
+         "http://www.w3.org/2000/01/rdf-schema#subClassOf":[
+            "http://www.w3.org/2002/07/owl#Thing"
+         ]
+      }
+   },
+   {
+      "hasParent":false,
+      "hasChild":false,
+      "children":[
+         
+      ],
+      "name":"Provider",
+      "id":"http://pid.bayer.com/scilic_model/Provider",
+      "inboundProperties":{
+         
+      },
+      "properties":{
+         "http://www.w3.org/1999/02/22-rdf-syntax-ns#type":[
+            "http://www.w3.org/2002/07/owl#Class",
+            "http://www.w3.org/ns/shacl#NodeShape"
+         ],
+         "http://www.w3.org/2000/01/rdf-schema#label":[
+            "Provider"
+         ],
+         "http://www.w3.org/2000/01/rdf-schema#subClassOf":[
+            "http://pid.bayer.com/scilic/Concepts"
+         ],
+         "https://pid.bayer.com/ns/shacl/instanceGraph":[
+            "https://pid.bayer.com/instances/scilic_model/Provider"
+         ]
+      }
+   },
+   {
+      "hasParent":false,
+      "hasChild":false,
+      "children":[
+         
+      ],
+      "name":"Query Endpoint",
+      "id":"http://pid.bayer.com/kos/19014/QueryEndpoint",
+      "inboundProperties":{
+         
+      },
+      "properties":{
+         "http://www.w3.org/1999/02/22-rdf-syntax-ns#type":[
+            "http://www.w3.org/ns/shacl#NodeShape",
+            "http://www.w3.org/2002/07/owl#Class"
+         ],
+         "http://www.w3.org/ns/shacl#property":[
+            "http://pid.bayer.com/kos/19014/QueryEndpoint-",
+            "http://pid.bayer.com/kos/19014/QueryEndpoint--0",
+            "http://pid.bayer.com/kos/19014/QueryEndpoint--1",
+            "http://pid.bayer.com/kos/19014/QueryEndpoint--2",
+            "http://pid.bayer.com/kos/19014/QueryEndpoint-hasNetworkAddress"
+         ],
+         "http://datashapes.org/dash#abstract":[
+            "false"
+         ],
+         "http://www.w3.org/2000/01/rdf-schema#comment":[
+            "A networked resource that supports a query language e.g. SQL, SPARQL, CYPHER (might require valid credentials) based on a well-defined protocol."
+         ],
+         "http://www.w3.org/2000/01/rdf-schema#label":[
+            "Query Endpoint"
+         ],
+         "http://pid.bayer.com/kos/19014/definition":[
+            "A networked resource that supports a query language e.g. SQL, SPARQL, CYPHER (might require valid credentials) based on a well-defined protocol."
+         ],
+         "http://www.w3.org/2000/01/rdf-schema#subClassOf":[
+            "http://pid.bayer.com/kos/19014/NetworkedResource"
+         ]
+      }
+   },
+   {
+      "hasParent":false,
+      "hasChild":false,
+      "children":[
+         
+      ],
+      "name":"Query Type",
+      "id":"https://pid.bayer.com/kos/19050/QueryType",
+      "inboundProperties":{
+         
+      },
+      "properties":{
+         "http://www.w3.org/1999/02/22-rdf-syntax-ns#type":[
+            "http://www.w3.org/2002/07/owl#Class",
+            "http://www.w3.org/ns/shacl#NodeShape"
+         ],
+         "http://www.w3.org/2000/01/rdf-schema#label":[
+            "Query Type"
+         ],
+         "http://www.w3.org/2000/01/rdf-schema#subClassOf":[
+            "https://pid.bayer.com/kos/19050/PID_Concepts"
+         ],
+         "https://pid.bayer.com/ns/shacl/instanceGraph":[
+            "https://pid.bayer.com/instances/Query_Type"
+         ]
+      }
+   },
+   {
+      "hasParent":false,
+      "hasChild":false,
+      "children":[
+         
+      ],
+      "name":"RDF Data",
+      "id":"https://pid.bayer.com/kos/19050/RDFDataset",
+      "inboundProperties":{
+         
+      },
+      "properties":{
+         "http://www.w3.org/1999/02/22-rdf-syntax-ns#type":[
+            "http://www.w3.org/2002/07/owl#Class",
+            "http://www.w3.org/ns/shacl#NodeShape"
+         ],
+         "http://www.w3.org/2000/01/rdf-schema#comment":[
+            "Any resource that is based on W3C's RDF standard."
+         ],
+         "http://www.w3.org/2000/01/rdf-schema#label":[
+            "RDF Data"
+         ],
+         "http://pid.bayer.com/kos/19014/definition":[
+            "Any resource that is based on W3C's RDF standard."
+         ],
+         "http://www.w3.org/2000/01/rdf-schema#subClassOf":[
+            "http://pid.bayer.com/kos/19014/Dataset",
+            "https://pid.bayer.com/kos/19050/444558"
+         ],
+         "http://www.w3.org/ns/shacl#property":[
+            "https://pid.bayer.com/kos/19050/RDFDataset-hasBaseURI",
+            "https://pid.bayer.com/kos/19050/RDFDataset-mainDistribution"
+         ]
+      }
+   },
+   {
+      "hasParent":false,
+      "hasChild":false,
+      "children":[
+         
+      ],
+      "name":"RDF Dataset with Instances",
+      "id":"https://pid.bayer.com/kos/19050/RDFDatasetWithInstances",
+      "inboundProperties":{
+         
+      },
+      "properties":{
+         "http://www.w3.org/1999/02/22-rdf-syntax-ns#type":[
+            "http://www.w3.org/2002/07/owl#Class"
+         ],
+         "http://www.w3.org/2000/01/rdf-schema#comment":[
+            "A dataset stored in a triplestore and / or in one of the RDF syntax notations like .ttl .rdf .n3 etc. Generally there is also an ontology that is instantiated by the RDF dataset. Therefore, this resources type appears under both categories \"RDF Data\" as well as \"Dataset\". "
+         ],
+         "http://www.w3.org/2000/01/rdf-schema#label":[
+            "RDF Dataset with Instances"
+         ],
+         "http://pid.bayer.com/kos/19014/definition":[
+            "A dataset stored in a triplestore and / or in one of the RDF syntax notations like .ttl .rdf .n3 etc. Generally there is also an ontology that is instantiated by the RDF dataset. Therefore, this resources type appears under both categories \"RDF Data\" as well as \"Dataset\". "
+         ],
+         "http://www.w3.org/2000/01/rdf-schema#subClassOf":[
+            "https://pid.bayer.com/kos/19050/RDFDataset",
+            "https://pid.bayer.com/kos/19050/NonRDFDataset"
+         ],
+         "http://datashapes.org/dash#abstract":[
+            "false"
+         ],
+         "https://pid.bayer.com/kos/19050/435897":[
+            "https://dataservices-icons.s3.eu-central-1.amazonaws.com/https%253A%252F%252Fpid.bayer.com%252Fkos%252F19050%252FRDFDatasetWithInstances.svg"
+         ]
+      }
+   },
+   {
+      "hasParent":false,
+      "hasChild":false,
+      "children":[
+         
+      ],
+      "name":"Relational Database",
+      "id":"http://pid.bayer.com/kos/19014/RelationalDatabase",
+      "inboundProperties":{
+         
+      },
+      "properties":{
+         "http://www.w3.org/1999/02/22-rdf-syntax-ns#type":[
+            "http://www.w3.org/2002/07/owl#Class"
+         ],
+         "http://www.w3.org/2000/01/rdf-schema#comment":[
+            "A relational database is a software that stores data in tables consisting of rows, columns and cells. Example for relation databases are Microsoft SQL, Oracle Database, MariaDB, MySQL etc."
+         ],
+         "http://www.w3.org/2000/01/rdf-schema#label":[
+            "Relational Database"
+         ],
+         "http://pid.bayer.com/kos/19014/definition":[
+            "A relational database is a software that stores data in tables consisting of rows, columns and cells. Example for relation databases are Microsoft SQL, Oracle Database, MariaDB, MySQL etc."
+         ],
+         "http://www.w3.org/2000/01/rdf-schema#subClassOf":[
+            "http://pid.bayer.com/kos/19014/DataStorageSystem"
+         ],
+         "http://pid.bayer.com/kos/19014/example":[
+            "Microsoft SQL, Oracle Database, MariaDB, MySQL"
+         ]
+      }
+   },
+   {
+      "hasParent":false,
+      "hasChild":false,
+      "children":[
+         
+      ],
+      "name":"Resource",
+      "id":"http://pid.bayer.com/kos/19014/Resource",
+      "inboundProperties":{
+         
+      },
+      "properties":{
+         "http://www.w3.org/1999/02/22-rdf-syntax-ns#type":[
+            "http://www.w3.org/ns/shacl#NodeShape",
+            "http://www.w3.org/2002/07/owl#Class",
+            "http://www.w3.org/2000/01/rdf-schema#Class"
+         ],
+         "http://www.w3.org/ns/shacl#property":[
+            "http://pid.bayer.com/kos/19014/Resource-hasPID"
+         ],
+         "http://www.w3.org/2000/01/rdf-schema#comment":[
+            "A resource is a source or supply from which a benefit is produced. In an enterprise some resources are material stock, staff, cash etc."
+         ],
+         "http://www.w3.org/2000/01/rdf-schema#label":[
+            "Resource"
+         ],
+         "http://pid.bayer.com/kos/19014/definition":[
+            "A resource is a source or supply from which a benefit is produced. In an enterprise some resources are material stock, staff, cash etc."
+         ],
+         "http://www.w3.org/2000/01/rdf-schema#subClassOf":[
+            "http://www.w3.org/2002/07/owl#Thing"
+         ]
+      }
+   },
+   {
+      "hasParent":false,
+      "hasChild":false,
+      "children":[
+         
+      ],
+      "name":"Resources",
+      "id":"https://pid.bayer.com/kos/19050/444558",
+      "inboundProperties":{
+         
+      },
+      "properties":{
+         "http://www.w3.org/1999/02/22-rdf-syntax-ns#type":[
+            "http://www.w3.org/2002/07/owl#Class",
+            "http://www.w3.org/ns/shacl#NodeShape"
+         ],
+         "http://www.w3.org/2000/01/rdf-schema#comment":[
+            "Data and information assets that are constructed from multiple core elements, classes and concepts."
+         ],
+         "http://www.w3.org/2000/01/rdf-schema#label":[
+            "Resources"
+         ],
+         "http://www.w3.org/2000/01/rdf-schema#subClassOf":[
+            "https://pid.bayer.com/kos/19050/PID_Concept"
+         ],
+         "http://www.w3.org/ns/shacl#property":[
+            "https://pid.bayer.com/kos/19050/444558-IsConsumedIn",
+            "https://pid.bayer.com/kos/19050/444558-IsManagedIn"
+         ]
+      }
+   },
+   {
+      "hasParent":false,
+      "hasChild":false,
+      "children":[
+         
+      ],
+      "name":"Rest API",
+      "id":"http://pid.bayer.com/kos/19014/RestAPI",
+      "inboundProperties":{
+         
+      },
+      "properties":{
+         "http://datashapes.org/dash#abstract":[
+            "false"
+         ],
+         "http://www.w3.org/1999/02/22-rdf-syntax-ns#type":[
+            "http://www.w3.org/2002/07/owl#Class"
+         ],
+         "http://www.w3.org/2000/01/rdf-schema#comment":[
+            "A networked resource that is designed according to the RESTful architecture style (might require valid credentials)."
+         ],
+         "http://www.w3.org/2000/01/rdf-schema#label":[
+            "Rest API"
+         ],
+         "http://pid.bayer.com/kos/19014/definition":[
+            "A networked resource that is designed according to the RESTful architecture style (might require valid credentials)."
+         ],
+         "http://www.w3.org/2000/01/rdf-schema#subClassOf":[
+            "http://pid.bayer.com/kos/19014/NetworkedResource"
+         ]
+      }
+   },
+   {
+      "hasParent":false,
+      "hasChild":false,
+      "children":[
+         
+      ],
+      "name":"Scientific License",
+      "id":"https://pid.bayer.com/kos/19050/ScientificLicense",
+      "inboundProperties":{
+         
+      },
+      "properties":{
+         "http://www.w3.org/1999/02/22-rdf-syntax-ns#type":[
+            "http://www.w3.org/2002/07/owl#Class",
+            "http://www.w3.org/ns/shacl#NodeShape"
+         ],
+         "http://www.w3.org/2000/01/rdf-schema#comment":[
+            "Databases with content of scientific, medical, patent and competitive information with focus on globally, cross-divisional access rights."
+         ],
+         "http://www.w3.org/2000/01/rdf-schema#label":[
+            "Scientific License"
+         ],
+         "http://www.w3.org/2000/01/rdf-schema#subClassOf":[
+            "https://pid.bayer.com/kos/19050/NonRDFDataset"
+         ],
+         "http://www.w3.org/ns/shacl#property":[
+            "https://pid.bayer.com/kos/19050/ScientificLicense-hasCategory",
+            "https://pid.bayer.com/kos/19050/ScientificLicense-hasContractDate",
+            "https://pid.bayer.com/kos/19050/ScientificLicense-hasContractLifecycleManagementSystemNumber",
+            "https://pid.bayer.com/kos/19050/ScientificLicense-hasContractType",
+            "https://pid.bayer.com/kos/19050/ScientificLicense-hasDataSourceType",
+            "https://pid.bayer.com/kos/19050/ScientificLicense-hasLicenseCountry",
+            "https://pid.bayer.com/kos/19050/ScientificLicense-hasLicenseFormat",
+            "https://pid.bayer.com/kos/19050/ScientificLicense-hasLicenseRightsOfUse",
+            "https://pid.bayer.com/kos/19050/ScientificLicense-hasLicenseScope",
+            "https://pid.bayer.com/kos/19050/ScientificLicense-hasLicenseTraining",
+            "https://pid.bayer.com/kos/19050/ScientificLicense-hasProvider",
+            "https://pid.bayer.com/kos/19050/ScientificLicense-hasSupportAvailable",
+            "https://pid.bayer.com/kos/19050/ScientificLicense-hasUserAuthorization",
+            "https://pid.bayer.com/kos/19050/ScientificLicense-hasProduct"
+         ],
+         "http://datashapes.org/dash#abstract":[
+            "false"
+         ]
+      }
+   },
+   {
+      "hasParent":false,
+      "hasChild":false,
+      "children":[
+         
+      ],
+      "name":"Scientific Licensing Concepts",
+      "id":"http://pid.bayer.com/scilic/Concepts",
+      "inboundProperties":{
+         
+      },
+      "properties":{
+         "http://www.w3.org/1999/02/22-rdf-syntax-ns#type":[
+            "http://www.w3.org/2002/07/owl#Class",
+            "http://www.w3.org/ns/shacl#NodeShape"
+         ],
+         "http://www.w3.org/2000/01/rdf-schema#comment":[
+            "Groups all relevant concepts for Scientific Licensing"
+         ],
+         "http://www.w3.org/2000/01/rdf-schema#label":[
+            "Scientific Licensing Concepts"
+         ],
+         "http://www.w3.org/2000/01/rdf-schema#subClassOf":[
+            "https://pid.bayer.com/kos/19050/PID_Concepts"
+         ]
+      }
+   },
+   {
+      "hasParent":false,
+      "hasChild":false,
+      "children":[
+         
+      ],
+      "name":"Shared File",
+      "id":"http://pid.bayer.com/kos/19014/SharedFile",
+      "inboundProperties":{
+         
+      },
+      "properties":{
+         "http://datashapes.org/dash#abstract":[
+            "false"
+         ],
+         "http://www.w3.org/1999/02/22-rdf-syntax-ns#type":[
+            "http://www.w3.org/2002/07/owl#Class"
+         ],
+         "http://www.w3.org/2000/01/rdf-schema#comment":[
+            "A file that can be downloaded if access is granted."
+         ],
+         "http://www.w3.org/2000/01/rdf-schema#label":[
+            "Shared File"
+         ],
+         "http://pid.bayer.com/kos/19014/definition":[
+            "A file that can be downloaded if access is granted."
+         ],
+         "http://www.w3.org/2000/01/rdf-schema#subClassOf":[
+            "http://pid.bayer.com/kos/19014/NetworkedResource"
+         ]
+      }
+   },
+   {
+      "hasParent":false,
+      "hasChild":false,
+      "children":[
+         
+      ],
+      "name":"Software Application",
+      "id":"http://pid.bayer.com/kos/19014/SoftwareApplication",
+      "inboundProperties":{
+         
+      },
+      "properties":{
+         "http://www.w3.org/1999/02/22-rdf-syntax-ns#type":[
+            "http://www.w3.org/2002/07/owl#Class"
+         ],
+         "http://www.w3.org/2000/01/rdf-schema#comment":[
+            "A software application is an application that it used for some purporse and is in its essence a piece of software. Examples are Excel, Photoshop, Outlook, Visual Studio Code, Eclipse IDE."
+         ],
+         "http://www.w3.org/2000/01/rdf-schema#label":[
+            "Software Application"
+         ],
+         "http://pid.bayer.com/kos/19014/definition":[
+            "A software application is an application that it used for some purporse and is in its essence a piece of software. Examples are Excel, Photoshop, Outlook, Visual Studio Code, Eclipse IDE."
+         ],
+         "http://www.w3.org/2000/01/rdf-schema#subClassOf":[
+            "http://pid.bayer.com/kos/19014/Agent",
+            "http://pid.bayer.com/kos/19014/DigitalResource"
+         ]
+      }
+   },
+   {
+      "hasParent":false,
+      "hasChild":false,
+      "children":[
+         
+      ],
+      "name":"Table",
+      "id":"https://pid.bayer.com/kos/19050/444586",
+      "inboundProperties":{
+         
+      },
+      "properties":{
+         "http://www.w3.org/1999/02/22-rdf-syntax-ns#type":[
+            "http://www.w3.org/2002/07/owl#Class",
+            "http://www.w3.org/ns/shacl#NodeShape"
+         ],
+         "http://www.w3.org/2000/01/rdf-schema#comment":[
+            "Table as a unit of information in a database or a file."
+         ],
+         "http://www.w3.org/2000/01/rdf-schema#label":[
+            "Table"
+         ],
+         "http://www.w3.org/2000/01/rdf-schema#subClassOf":[
+            "https://pid.bayer.com/kos/19050/444556"
+         ],
+         "http://www.w3.org/ns/shacl#property":[
+            "https://pid.bayer.com/kos/19050/444586-"
+         ],
+         "http://datashapes.org/dash#abstract":[
+            "false"
+         ]
+      }
+   },
+   {
+      "hasParent":false,
+      "hasChild":false,
+      "children":[
+         
+      ],
+      "name":"Time Zone",
+      "id":"http://pid.bayer.com/kos/19014/TimeZone",
+      "inboundProperties":{
+         
+      },
+      "properties":{
+         "http://www.w3.org/1999/02/22-rdf-syntax-ns#type":[
+            "http://www.w3.org/2002/07/owl#Class"
+         ],
+         "http://www.w3.org/2000/01/rdf-schema#comment":[
+            "A Time Zone specifies the amount by which the local time is offset from UTC. A time zone is usually denoted geographically (e.g. Australian Eastern Daylight Time), with a constant value in a given region. The region where it applies and the offset from UTC are specified by a locally recognised governing authority."
+         ],
+         "http://www.w3.org/2000/01/rdf-schema#label":[
+            "Time Zone"
+         ],
+         "http://pid.bayer.com/kos/19014/definition":[
+            "A Time Zone specifies the amount by which the local time is offset from UTC. A time zone is usually denoted geographically (e.g. Australian Eastern Daylight Time), with a constant value in a given region. The region where it applies and the offset from UTC are specified by a locally recognised governing authority."
+         ],
+         "http://www.w3.org/2000/01/rdf-schema#subClassOf":[
+            "http://www.w3.org/2002/07/owl#Thing"
+         ],
+         "http://pid.bayer.com/kos/19014/wasDerivedFrom":[
+            "http://www.w3.org/2006/time#TimeZone"
+         ]
+      }
+   },
+   {
+      "hasParent":false,
+      "hasChild":false,
+      "children":[
+         
+      ],
+      "name":"Triplestore",
+      "id":"http://pid.bayer.com/kos/19014/Triplestore",
+      "inboundProperties":{
+         
+      },
+      "properties":{
+         "http://www.w3.org/1999/02/22-rdf-syntax-ns#type":[
+            "http://www.w3.org/2002/07/owl#Class"
+         ],
+         "http://www.w3.org/2000/01/rdf-schema#comment":[
+            "A Triplestore is a software that is optimized to store RDF data"
+         ],
+         "http://www.w3.org/2000/01/rdf-schema#label":[
+            "Triplestore"
+         ],
+         "http://pid.bayer.com/kos/19014/definition":[
+            "A Triplestore is a software that is optimized to store RDF data"
+         ],
+         "http://www.w3.org/2000/01/rdf-schema#subClassOf":[
+            "http://pid.bayer.com/kos/19014/DataStorageSystem"
+         ]
+      }
+   },
+   {
+      "hasParent":false,
+      "hasChild":false,
+      "children":[
+         
+      ],
+      "name":"User Authorization",
+      "id":"http://pid.bayer.com/scilic_model/UserAuthorization",
+      "inboundProperties":{
+         
+      },
+      "properties":{
+         "http://www.w3.org/1999/02/22-rdf-syntax-ns#type":[
+            "http://www.w3.org/2002/07/owl#Class",
+            "http://www.w3.org/ns/shacl#NodeShape"
+         ],
+         "http://www.w3.org/2000/01/rdf-schema#label":[
+            "User Authorization"
+         ],
+         "http://www.w3.org/2000/01/rdf-schema#subClassOf":[
+            "http://pid.bayer.com/scilic/Concepts"
+         ],
+         "https://pid.bayer.com/ns/shacl/instanceGraph":[
+            "https://pid.bayer.com/instances/scilic_model/UserAuthorization"
+         ]
+      }
+   },
+   {
+      "hasParent":false,
+      "hasChild":false,
+      "children":[
+         
+      ],
+      "name":"Web Application",
+      "id":"http://pid.bayer.com/kos/19014/WebApplication",
+      "inboundProperties":{
+         
+      },
+      "properties":{
+         "http://www.w3.org/1999/02/22-rdf-syntax-ns#type":[
+            "http://www.w3.org/2002/07/owl#Class"
+         ],
+         "http://www.w3.org/2000/01/rdf-schema#comment":[
+            "A software application that can be executed and used within a Web browser. Technically this means that the application is developed with the languages like javascript, css, html and makes use of HTTP or WebSockets as the underlying data transport protocol."
+         ],
+         "http://www.w3.org/2000/01/rdf-schema#label":[
+            "Web Application"
+         ],
+         "http://pid.bayer.com/kos/19014/definition":[
+            "A software application that can be executed and used within a Web browser. Technically this means that the application is developed with the languages like javascript, css, html and makes use of HTTP or WebSockets as the underlying data transport protocol."
+         ],
+         "http://www.w3.org/2000/01/rdf-schema#subClassOf":[
+            "http://pid.bayer.com/kos/19014/SoftwareApplication"
+         ]
+      }
+   }
+]

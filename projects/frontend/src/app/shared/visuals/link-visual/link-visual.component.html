@@ -1,0 +1,26 @@
+<ng-container *ngIf="link.source && link.target && link.display">
+  <!-- SVG line -->
+  <svg:path class="link" [attr.d]="link.d" stroke="darkgrey" fill="transparent" marker-end="url(#linkhead)">
+  </svg:path>
+  <!-- LineArrow -->
+  <svg:defs>
+    <svg:marker id="linkhead" viewBox="0 0 6 6" refX="6" refY="3" markerUnits="strokeWidth" markerWidth="6"
+      markerHeight="6" orient="auto">
+      <path class="arrow" d="M 0 0 L 6 3 L 0 6 z" />
+    </svg:marker>
+  </svg:defs>
+  <ng-container *ngIf="showConnectionLinkName">
+    <!-- Node link text box -->
+    <svg:text stroke="#f4f5f6" stroke-width="0.6em" font-weight="bolder" #textElem class="link-name"
+      text-anchor="middle" [attr.font-size]="12" [attr.x]="((link!.startPoint.x + link!.endPoint.x) / 2)"
+      [attr.y]="((link!.startPoint.y + link!.endPoint.y) / 2)+4">
+      {{link.name.name}}
+    </svg:text>
+    <!-- Node link text -->
+    <svg:text fill="darkgrey" font-weight="bolder" #textElem class="link-name" text-anchor="middle"
+      [attr.font-size]="12" [attr.x]="((link!.startPoint.x + link!.endPoint.x) / 2)"
+      [attr.y]="((link!.startPoint.y + link!.endPoint.y) / 2)+4">
+      {{link.name.name}}
+    </svg:text>
+  </ng-container>
+</ng-container>

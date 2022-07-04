@@ -1,0 +1,28 @@
+<div class="undo">
+    <div class="undo-label">Timemachine</div>
+    <div class="undo-item">
+        <button class="step" id="btn_step1" [class.selected]="SelectedStep === 'step1'"
+            (click)="selectStep('step1');"></button>
+        <button class="step" id="btn_step2" [class.selected]="SelectedStep === 'step2'"
+            (click)="selectStep('step2');"></button>
+        <button class="step" id="btn_step3" [class.selected]="SelectedStep === 'step3'"
+            (click)="selectStep('step3');"></button>
+        <button class="step" id="btn_step4" [class.selected]="SelectedStep === 'step4'"
+            (click)="selectStep('step4');"></button>
+        <button class="step" id="btn_step5" [class.selected]="SelectedStep === 'step5'"
+            (click)="selectStep('step5');"></button>
+        <button class="step" id="btn_step6" [class.selected]="SelectedStep === 'step6'"
+            (click)="selectStep('step6');"></button>
+    </div>
+    <!--
+        mat-radio-group
+        mat-radio-button
+    <mat-horizontal-stepper [linear]="isLinear" #stepper>
+        <mat-step class="step" label=""></mat-step>
+        <mat-step class="step" label=""></mat-step>
+        <mat-step class="step" label=""></mat-step>
+        <mat-step class="step" label=""></mat-step>
+        <mat-step class="step" label=""></mat-step>
+        <mat-step class="step" label=""></mat-step>
+    </mat-horizontal-stepper>-->
+</div>

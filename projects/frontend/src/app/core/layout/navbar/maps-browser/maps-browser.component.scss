@@ -1,0 +1,134 @@
+mat-form-field, table {
+    width: 100%;
+}
+
+::ng-deep.mat-form-field-wrapper {
+  padding-bottom: 0px !important;
+}
+
+::ng-deep .mat-form-field-infix {
+  padding: 0;
+}
+
+th.mat-header-cell {
+  vertical-align: bottom;
+}
+
+table {
+  width: 100%;
+}
+.table-container {
+  max-height: 95%;
+  max-width: 100%;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+::-webkit-scrollbar {
+  width: 16px;
+}
+
+::-webkit-scrollbar-thumb {
+  -webkit-border-radius: 7.5px;
+  border-radius: 7.5px;
+  background: #BABFC1;
+  border-width: 12px;
+}
+
+::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+  -webkit-border-radius: 7.5px;
+  border-radius: 7.5px;
+}
+
+.mat-row .mat-cell {
+    border-bottom: 1px solid transparent;
+    border-top: 1px solid transparent;
+    cursor: pointer;
+  }
+
+  .mat-row:hover .mat-cell {
+    border-color: currentColor;
+  }
+
+  ::ng-deep .mat-dialog-container {
+    height: 561px;
+    width: 777px;
+    margin-top: 50px;
+    padding: 14px;
+    box-shadow: -2px 4px 16px 0 rgba(0,0,0,0.5);
+  }
+
+.content-container {
+  box-sizing: border-box;
+  height: 530px;
+  width: 747px;
+  padding: 26px;
+  border: 2px solid #BABFC1;
+  overflow: hidden;
+}
+
+.mat-column-creator{
+  font-style: italic;
+  font-size: smaller;
+}
+
+::ng-deep .mat-form-field-underline {
+  display: none;
+}
+
+.empty-header {
+  width: 65%;
+  height: 20px;
+  float: left;
+}
+
+.empty-header-form {
+  width: 35%;
+  height: 20px;
+  padding-top: 20px;
+  float: left;
+}
+
+.label-header {
+  float: left;
+}
+
+::ng-deep .label-header-form {
+  float: left;
+  width: 50%;
+  color: rgb(49, 179, 223);
+  padding-bottom: 0;
+}
+
+.sorting-icon {
+  float: right;
+}
+
+#header-name {
+  width: 16em;
+  // height: fit-content;
+  margin-bottom: 0px;
+  padding-bottom: 0px;
+}
+
+#header-date {
+  width: 10em;
+  // height: fit-content;
+  margin-bottom: 0px;
+  padding-bottom: 0px;
+}
+
+.mat-header-cell, .mat-cell {
+  color: #465053;
+  font-size: 16px;
+  letter-spacing: 0;
+  line-height: 22px;
+}
+
+.mat-dialog-title {
+  font-size: 24px;
+  font-weight: 500;
+  letter-spacing: 0;
+  line-height: 30px;
+}

@@ -1,0 +1,12 @@
+<p>lineage works!</p>
+<mat-tree [dataSource]="dataSource" [treeControl]="treeControl" class="semantic-tree">
+    <mat-nested-tree-node id="mat-tree-link" *matTreeNodeDef="let node; when: hasChild">
+        <div class="mat-tree-node" id="mat-tree-link">
+            {{node.name}}
+        </div>
+        
+        <ul  [class.link-tree-invisible]="!treeControl.isExpanded(node)">
+            <ng-container matTreeNodeOutlet></ng-container>
+        </ul>
+    </mat-nested-tree-node>
+</mat-tree>

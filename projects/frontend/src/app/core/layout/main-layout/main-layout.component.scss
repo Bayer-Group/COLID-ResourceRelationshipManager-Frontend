@@ -1,0 +1,37 @@
+main {
+    background-color: #f4f5f6;
+}
+
+mat-sidenav { 
+    width: 1000px; 
+    height: 90%; 
+}
+
+.sidenav-content {
+    margin-top: 45px;
+    margin-left: 25px;
+}
+.sidenav-container{
+    overflow: hidden;
+}
+.sidebar-close{
+    position: absolute;
+    top:15px;
+    right:20px;
+    font-weight: bold;
+    font-size: large;
+}
+
+
+::ng-deep .rotated {
+
+    // margin-top: -34em;
+    // margin-left: 8em;
+    right: -110px;
+    top: 50%;
+    position: fixed;
+    width: 3em;
+    height: 18em;
+    transform: rotate(270deg);
+  
+  }

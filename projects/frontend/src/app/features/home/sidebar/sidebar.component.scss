@@ -1,0 +1,156 @@
+#siderbarComponent {
+    background: #fff;
+    position: absolute;
+    right: 0;
+    top: 60px;
+    bottom: 72px;
+    border: solid;
+    border-width: 1px;
+    border-color: #DCDFE0;
+}
+.sidebarHalf {
+    width: 500px;
+    transition: 1s;
+    #btn_sidebarClose {
+        display: inline-block;
+    }
+}
+.sidebarFull {
+    width: 100%;
+    transition: 1s;
+    #btn_sidebarClose {
+        display: inline-block;
+    }
+}
+.sidebarClose {
+    width: 22px;
+    transition: 1s;
+    #btn_sidebarClose {
+        display: none;
+    }
+}
+.sidebar_button {
+    background: blue;
+    height: 100%;
+    position: relative;
+    width: 22px;
+    left: 0;
+}
+.sidebar_content {
+    width: 93%;
+    position: absolute;
+    left: 47px;
+    top: 100px;
+    bottom: 25px;
+}
+.sidebar_menu {
+    height: 23px;
+    top: 0;
+    position: relative;
+    border-bottom: solid;
+    border-color: #BABFC1;
+    border-width: 1px;
+}
+.btn_menu {
+    border: none;
+    outline: none;
+    position: inherit;
+    overflow: hidden;
+    background: none;
+    margin-right: 25px;
+    font-size: 18px;
+    margin-top: -1px;
+    font-weight: 400;
+}
+.selected_menu_item {
+    border-bottom: solid;
+    border-color: #00aae5;
+    border-width: 3px;
+    font-weight: bold;
+}
+.tab_item {
+    display: none;    
+    width: 100%;
+    height: 95%;
+}
+.selected_tab {
+    //background: #00aae5;
+    display: inline-block;
+}
+
+.btn_menu:focus {
+    //border-bottom: solid;
+    //border-color: #00AAE5;
+}
+
+.sidebar_header {
+    width: 100%;
+    height: 75px;
+    top: 0;
+    position: inherit;
+    margin-left: 47px;
+}
+.header {
+    width: 900px;
+    height: 100%;
+    color: #00354f;
+    font-size: 18px;
+    display: inline-block;
+    vertical-align: middle;
+}
+#header_label {
+    display: inline-block;
+    font-size: 28px;
+    margin-top: 32px;
+    font-weight: 500;
+    line-height: 22px;
+}
+#icon_header {
+    display: inline-block;
+    height: 100%;
+}
+#btn_editResource {
+    height: 100%;
+    font-size: 16px;
+    line-height: 24px;
+    color: #00aae5;
+    border: none;
+    background: none;
+    font-weight: 600;
+    outline: none;
+    margin-left: 5px;
+}
+#icon_sidebarEditResource {
+    display: inline-block;
+}
+
+.btn_close {
+    border: none;
+    outline: none;
+    position: inherit;
+    right: 10px;
+    top: 20px;
+    overflow: hidden;
+    background: none;
+    width: 30px !important;
+}
+.btn_showButton {
+    display: inline-block;
+}
+
+#icon_sidebarToogle {
+    margin-left: -9px;
+    border: none !important;
+    outline: none !important;
+    background: none !important;
+}
+#icon_sidebarClose {
+    border: none !important;
+    outline: none !important;
+}
+#sidebarToogle {
+    height: 100%;
+    width: 100%;    
+    border: none;
+    outline: none;
+}

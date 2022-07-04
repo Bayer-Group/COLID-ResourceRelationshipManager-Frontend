@@ -1,0 +1,10 @@
+::ng-deep mat-icon svg {
+    pointer-events: none;
+    width: 24px;
+    height: 24px;
+
+}
+
+
+
+

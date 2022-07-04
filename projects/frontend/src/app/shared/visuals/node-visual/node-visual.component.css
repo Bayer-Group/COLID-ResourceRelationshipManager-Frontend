@@ -1,0 +1,89 @@
+.node {
+  transition: stroke-width 0.1s ease-out,
+    fill 0.1s ease-out,
+    stroke 0.1s ease-out;
+
+  stroke-width: 1;
+}
+
+.selected .node {
+  stroke-width: 2;
+  stroke: blue;
+}
+
+.node:not(.node-linking-selected) {
+  stroke: rgb(180, 180, 180);
+}
+
+.node:not(.node-linking-mode) {
+  cursor: pointer;
+}
+
+.node.node-linking-selected {
+  stroke: #334175;
+  stroke-width: 2px !important;
+  rx: 1px;
+}
+
+.node-name {
+  color: #334175;
+  cursor: pointer;
+  font-size: 14;
+  font-weight: 500;
+}
+
+.node-name div {
+  height: 40px;
+  width: 125px;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  align-content: center;
+  justify-content: center;
+}
+
+.node-name-text {
+  margin-top: 12px;
+  font-size: 12px;
+  line-height: normal;
+  font-weight: 500;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+
+.node-linking-mode {
+  cursor: grab;
+}
+
+.icon-resource-type {
+  cursor: pointer;
+}
+
+.filterInfoContainer {
+  width: 180px;
+}
+
+.filterInfo {
+  height: 20px;
+  width: 125px;
+  margin: 10px 0 0 35px;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  align-content: center;
+  justify-content: center;
+}
+
+.filter-info-text {
+  font-size: 12px;
+  line-height: normal;
+  font-weight: 500;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+}

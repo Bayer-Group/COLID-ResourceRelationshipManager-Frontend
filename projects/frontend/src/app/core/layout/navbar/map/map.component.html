@@ -1,0 +1,34 @@
+<button mat-button [matMenuTriggerFor]="map" class="navbar-item" (click)="cancelLinking()">Map</button>
+<mat-menu #map="matMenu">
+  <button mat-menu-item (click)="newMap()">New</button>
+  <button mat-menu-item (click)="save()">Save</button>
+  <button mat-menu-item *ngIf="currentMap.graphMapId != ''"(click)="saveAs()">Save As</button>
+  <button mat-menu-item *ngIf="currentMap.graphMapId != ''" (click)="deleteMap()">Delete {{currentMap.name}}
+    map</button>
+  <button mat-menu-item (click)="exportPng()">Export as PNG</button>
+  <button mat-menu-item (click)="extraMap()">Load map in current map</button>
+  <button mat-menu-item [matMenuTriggerFor]="myMaps">My Maps</button>
+  <button mat-menu-item (click)="allMaps()">Browse all maps</button>
+  <!-- <hr />
+    <button mat-menu-item>Search all Maps...</button> -->
+  <mat-menu #myMaps="matMenu">
+    <ng-container *ngIf="maps.length == 0 && !loadingOwnMaps">
+      <button mat-menu-item disabled>No maps present.</button>
+    </ng-container>
+    <ng-container *ngIf="loadingOwnMaps">
+      <button disabled mat-menu-item>Loading...</button>
+    </ng-container>
+    <ng-container *ngIf="maps.length > 0 && !loadingOwnMaps">
+      <button mat-menu-item *ngFor="let map of maps" (click)="loadMap(map.graphMapId)">{{map.name}}</button>
+    </ng-container>
+
+  </mat-menu>
+  <!--<hr />
+    <button mat-menu-item [matMenuTriggerFor]="myPageSetup">Page Setup</button>
+    <button mat-menu-item>Print</button>
+    <mat-menu #myPageSetup="matMenu">
+        <button mat-menu-item>CLD-Test-V4</button>
+        <button mat-menu-item>CLA-CLD-02</button>
+        <button mat-menu-item>CDV 56</button>
+    </mat-menu> -->
+</mat-menu>

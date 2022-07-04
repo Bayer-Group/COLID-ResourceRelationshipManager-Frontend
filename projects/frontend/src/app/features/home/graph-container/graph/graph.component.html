@@ -1,0 +1,108 @@
+<section id="graphContainer" *ngIf="graphProperties$|async; let graphProperties">
+  <svg #svg id="graphSvgElement" [attr.width]="options.width" [attr.height]="options.height"
+    [class.node-linking-mode]="linkingModeEnabled">
+    <rect width="100%" height="100%" fill="#f4f5f6"></rect>
+    <defs>
+      <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+        <polygon points="0 0 10 3.5 0 7" />
+      </marker>
+    </defs>
+    <g [attr.transform]="viewShift">
+      <g [zoomableOf]="{nativeElement:svg}">
+        <g [linkVisual]="link" [linkVisual2]="link" class="nodeLink" (contextmenu)="onContextMenu($event, link)"
+          [showConnectionLinkName]="graphProperties.showConnectionNames" *ngFor="let link of _links"></g>
+
+        <g [nodeVisual]="node" [showLongResourceName]="graphProperties.showLongNames"
+          (contextmenu)="onNodeContextMenu($event, node)" *ngFor="let node of _nodes" [draggableNode]="node"
+          [draggableInGraph]="graph" [class.node-linking-mode]="linkingModeEnabled"></g>
+      </g>
+    </g>
+  </svg>
+
+  <div #linkMenuTrigger="matMenuTrigger" style="visibility: hidden; position: fixed"
+    [style.left]="linkContextMenuPosition.x" [style.top]="linkContextMenuPosition.y" [matMenuTriggerFor]="contextMenu">
+  </div>
+  <div #nodeMenuTrigger="matMenuTrigger" style="visibility: hidden; position: fixed;"
+    [style.left]="nodeContextMenuPosition.x" [style.top]="nodeContextMenuPosition.y"
+    [matMenuTriggerFor]="nodeContextMenu">
+  </div>
+
+
+  <mat-menu class="context-menu" #contextMenu="matMenu" backdropClass="menu" [overlapTrigger]="false">
+    <ng-template matMenuContent let-item="item">
+      <button class="context-menu" mat-menu-item (click)="deleteLink(item)">Delete</button>
+    </ng-template>
+  </mat-menu>
+
+
+  <mat-menu class="context-menu" #nodeContextMenu="matMenu" backdropClass="menu" [overlapTrigger]="false">
+    <ng-template matMenuContent let-item="item">
+      <button class="context-menu" mat-menu-item (click)="expandNodes(item)">Expand linked nodes</button>
+      <button class="context-menu" mat-menu-item (click)="addLink(item)">Link Resource</button>
+      <button class="context-menu" mat-menu-item (click)="hideNode(item)">Hide Resource</button>
+      <button class="context-menu" mat-menu-item [matMenuTriggerFor]="nodeLinks"
+        [matMenuTriggerData]="{'item': item}">Links...</button>
+      <button class="context-menu" mat-menu-item [matMenuTriggerFor]="resourceMaps"
+        [matMenuTriggerData]="{'item': item}">Maps...</button>
+
+      <mat-menu class="context-menu" #nodeLinks="matMenu" backdropClass="menu" [overlapTrigger]="false">
+        <ng-template matMenuContent let-item="item">
+          <button class="context-menu menu-header" mat-menu-item disabled>Incoming links</button>
+          <!-- <button mat-menu-item (click)="testValue(item)">Test</button> -->
+          <ng-container *ngIf="getIncomingLinks(item).length > 0; else incomingEmpty">
+            <ng-container *ngFor="let link of getIncomingLinks(item)">
+              <button class="context-menu" mat-menu-item (click)="loadIncoming(link)">
+                <mat-icon class="link-icon" *ngIf="link.isRendered">remove_red_eye</mat-icon>
+                <span>{{link.sourceName}}</span>
+              </button>
+            </ng-container>
+
+          </ng-container>
+          <ng-template #incomingEmpty>
+            <button class="context-menu no-items" mat-menu-item disabled>No incoming links</button>
+          </ng-template>
+
+          <button class="context-menu menu-header" mat-menu-item disabled>Outgoing links</button>
+          <ng-container *ngIf="getOutgoingLinks(item).length > 0; else outgoingEmpty">
+            <ng-container *ngFor="let link of getOutgoingLinks(item)">
+              <button class="context-menu" mat-menu-item (click)="loadOutgoing(link)">
+                <mat-icon class="link-icon" *ngIf="link.isRendered">remove_red_eye</mat-icon>
+                <span>{{link.targetName}}</span>
+              </button>
+            </ng-container>
+          </ng-container>
+
+          <ng-template #outgoingEmpty>
+            <button class="context-menu no-items" mat-menu-item disabled>No outgoing links</button>
+          </ng-template>
+        </ng-template>
+      </mat-menu>
+
+      <mat-menu class="context-menu" #resourceMaps="matMenu" backdropClass="menu" [overlapTrigger]="false">
+        <ng-template matMenuContent let-item="item">
+          <ng-container *ngIf="overlapMaps.length > 0; else mapsEmpty">
+            <button class="context-menu menu-header" mat-menu-item disabled>Maps containing resource</button>
+            <ng-container *ngFor="let map of overlapMaps">
+              <button class="context-menu" mat-menu-item>
+                <button class="context-menu" mat-menu-item [matMenuTriggerFor]="mapOptions"
+                  [matMenuTriggerData]="{'item': map}">{{map.name}}</button>
+              </button>
+            </ng-container>
+          </ng-container>
+        </ng-template>
+      </mat-menu>
+
+      <mat-menu class="context-menu" #mapOptions="matMenu" backdropClass="menu" [overlapTrigger]="false">
+        <ng-template matMenuContent let-item="item">
+          <button class="context-menu menu-header" mat-menu-item disabled>Options for map {{item.name}}</button>
+          <button class="context-menu" mat-menu-item (click)="loadSecondMap(item)">Add map to current map</button>
+          <button class="context-menu" mat-menu-item (click)="loadNewMap(item)">Load this map</button>
+        </ng-template>
+      </mat-menu>
+
+      <ng-template #mapsEmpty>
+        <button class="context-menu no-items" mat-menu-item disabled>No maps containing this resource</button>
+      </ng-template>
+    </ng-template>
+  </mat-menu>
+</section>

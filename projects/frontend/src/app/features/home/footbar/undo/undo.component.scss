@@ -1,0 +1,54 @@
+.undo {
+    height: 100%;
+    background: white;
+    position: absolute;
+    width: 50%;
+    left: 0;
+    display: inline-block;
+    color: #465053;
+}
+
+.undo-label {
+    font-size: 12px;
+    color: #465053;
+    letter-spacing: 0;
+    line-height: 22px;    
+    margin-left: 60px;
+    margin-top: 16px;
+    vertical-align: middle;
+    display: inline-block;
+    border: none;
+    outline: none;
+    height: 100%;
+}
+.undo-item {
+    font-size: 12px;
+    color: #465053;
+    letter-spacing: 0;
+    line-height: 22px;
+    margin-left: 5px;
+    margin-top: 12px;
+    vertical-align: middle;
+    display: inline-block;
+    border: none;
+    outline: none;
+    height: 100%;
+}
+
+.step{
+    width: 48px;
+    height: 4px;
+    background: #00354f;
+    margin-left: 10px;
+    border: none;
+    outline: none;
+}
+
+.selected {
+    background-color: #00AAE5;
+    border: none;
+}
+
+.label{
+    height: 60px !important;
+}

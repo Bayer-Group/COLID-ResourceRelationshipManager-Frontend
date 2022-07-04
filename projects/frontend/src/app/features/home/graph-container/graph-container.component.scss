@@ -1,0 +1,59 @@
+.node-linking-mode{
+    cursor:grab;
+  }
+
+.linking-mode-indicator{
+  position: absolute;
+  top: 20px;
+  right: 25px;
+  width: 605px;
+  
+}
+
+.linking-count {
+  float:right;
+  font-weight: bold;
+}
+
+.linking-mode-indicator-text {
+  display: inline-block;
+  width: 480px;
+  background-color: white;
+  padding: 14px;
+  padding-left: 24px;
+  font-size: 15px;
+  border-radius: 4px;
+  box-shadow: rgb(0 0 0 / 20%) 0px 3px 1px -2px;
+}
+
+.link-history-persistence {
+  position: absolute;
+  right: 20px;
+  width: 600px;
+  padding:10px;
+}
+
+.link-accordion-container {
+  width: 518px;
+  display: inline-block;
+}
+
+.link-history-persistence:not(.linking-mode-enabled){
+  top: 20px;
+}
+
+.link-history-persistence.linking-mode-enabled{
+  top: 70px;
+}
+
+.link-save-button {
+  vertical-align: top;
+  right: -5px;
+  height: 47px;
+  width: 74px;
+}
+
+.cancel-linking{
+  margin-left: 5px;
+  height: 47px;
+}

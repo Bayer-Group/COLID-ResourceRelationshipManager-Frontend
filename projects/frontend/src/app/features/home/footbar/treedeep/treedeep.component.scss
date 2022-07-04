@@ -1,0 +1,100 @@
+.treedeep {
+    height: 100%;
+    background: white;
+    position: absolute;
+    width: 50%;
+    right: 0;    
+    padding-right: 60px;
+}
+
+.treedeep-item {
+    font-size: 12px;
+    color: #465053;
+    letter-spacing: 0;
+    line-height: 22px;
+    margin-right: 22px;
+    margin-top: 19px;
+    vertical-align: middle;
+    display: inline-block;
+    border: none;
+    outline: none;
+    float: right;
+    height: 100%;
+}
+
+.textButton{   
+    min-width: 25px;
+    height: 25px;
+    line-height: 25px;
+    color: #00AAE5; 
+    border: none;
+    background: none;
+    font-weight: 600;
+    outline: none;
+}
+
+.textButton:focus {
+    border: none;
+    outline: none;
+}
+
+#vehicalLine{
+    height: 50%;
+    color: #DCDFE1;
+    border-left: thin solid;
+    margin-top: 12px;
+}
+
+.stepper__input {
+    display: flex;
+    border: none;
+    outline: none;
+}
+
+.icon_push_pin{
+    height: 15px;
+    margin-right: 4px;
+    color: #00AAE5; 
+}
+
+#stepper_treedeep{    
+    width: 60px;
+}
+
+#stepper_zoom{    
+    width: 100px;
+}
+
+.stepper__input .stepper-input-field {
+    color: #000;
+    font-size: 12px;
+    font-weight: bold;
+    padding: 0;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    height: 25px;
+    line-height: 25px;
+    border: none;
+    text-align: center;
+    -webkit-box-flex: 1;
+    -ms-flex-positive: 1;
+    flex-grow: 1;
+}
+
+.stepper__input button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    cursor: pointer;
+    min-width: 25px;
+    height: 25px;
+    line-height: 25px;
+    color: #00AAE5;    
+    background: #fff;
+    user-select: none;
+    border: none;
+    outline: none;
+}

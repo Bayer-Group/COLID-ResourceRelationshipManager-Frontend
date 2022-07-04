@@ -1,0 +1,27 @@
+@import "../../dropdownmenu.scss";
+
+.navbar-account-item {
+    margin-right: 60px;
+    font-size: 16px;
+    color: #ffffff;
+    letter-spacing: 0;
+    line-height: 22px;
+    padding-top: 19px;
+    vertical-align: top;
+    display: inline-block;
+    float: right;    
+    background-color: #00354f;
+    border: none;
+    outline: none;
+}
+
+/* Material-Icon: account_circle-24px */
+
+.navbar-account-logo {
+    width: 32px;
+    height: 32px;
+    color: #ffffff;
+    padding-top: 16.67px;
+    display: inline-block;
+    float: right;
+}

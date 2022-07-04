@@ -1,0 +1,50 @@
+<graph></graph>
+<div *ngIf="linkingModeEnabled" class="linking-mode-indicator">
+  <span class="linking-mode-indicator-text">
+    Linking mode enabled. Click on two nodes which should be linked. 
+    <span class="linking-count">{{linkingNodesSelected}}/2</span>
+  </span>
+  <button mat-raised-button class="cancel-linking" (click)="cancelLinking()">Cancel</button>
+</div>
+<div *ngIf="linkHistory.length > 0" class="link-history-persistence" [class.linking-mode-enabled]="linkingModeEnabled">
+  <div class="link-accordion-container">
+    <mat-accordion>
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            Publish modified links
+          </mat-panel-title>
+          <mat-panel-description>
+            Click here for details
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+
+        <mat-selection-list [(ngModel)]="selectedHistory">
+          <mat-list-option *ngFor="let historyItem of linkHistory" [value]="historyItem">
+            <div [matTooltip]="historyItem.source.name + ' ' + historyItem.linkType.name + ' ' + historyItem.target.name" style="display: flex; justify-content: space-between; align-items: center;">
+              <div style="display: flex; align-items: center; min-width: 0;">
+                <div style="display:flex; flex-direction: column; min-width: 0;">
+                  <div mat-line><b>{{historyItem.source.name}}</b> {{historyItem.linkType.name}}
+                    <b>{{historyItem.target.name}}</b>
+                  </div>
+                  <div mat-line>Action: {{historyItem.action}}</div>
+                </div>
+              </div>
+              <div>
+                <button (click)="deleteHistoryEntry($event, historyItem)" mat-icon-button>
+                  <mat-icon>delete</mat-icon>
+                </button>
+              </div>
+            </div>
+            
+
+
+          </mat-list-option>
+        </mat-selection-list>
+
+      </mat-expansion-panel>
+    </mat-accordion>
+  </div>
+
+  <button mat-raised-button class="link-save-button" (click)="save()">Save</button>
+</div>

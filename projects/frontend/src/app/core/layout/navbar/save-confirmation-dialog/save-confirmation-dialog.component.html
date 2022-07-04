@@ -1,0 +1,10 @@
+<h2 mat-dialog-title>Unsaved link changes</h2>
+<mat-dialog-content>
+    <p>
+        You recently edited some links between resources without saving them. To continue saving the map, please save the link changes or revert the changes.
+    </p>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+    <button mat-button (click)="cancel()">Cancel</button>
+    <button mat-button (click)="discard()">Discard link changes & save map</button>
+</mat-dialog-actions>

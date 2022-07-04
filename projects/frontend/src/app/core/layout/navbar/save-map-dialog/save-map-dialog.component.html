@@ -1,0 +1,19 @@
+<h2 mat-dialog-title>Enter a name for your map</h2>
+<mat-dialog-content>
+    
+        <mat-form-field appearance="fill">
+            <mat-label>Map name</mat-label>
+            <input matInput type="text" [(ngModel)]="name"/>
+        </mat-form-field>
+   
+        
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+    <button mat-button (click)="ok()">
+    <ng-container *ngIf="oldName == ''">
+        Save
+    </ng-container>
+    <ng-container *ngIf="oldName != ''">
+        Save as
+    </ng-container>
+</button>

@@ -1,0 +1,10 @@
+<div class="navbar">
+  <img class="logo" height="29" src="assets/BAG_COLID-Visual_white_lh.svg" (click)="newMap()" />
+  <span *ngIf="!environmentLabel" class="rrm-title">Resource Relationship Manager (BETA)</span>
+  <span *ngIf="environmentLabel" class="rrm-title">Resource Relationship Manager (BETA) {{environmentLabel}}</span>
+  <colid-map></colid-map>
+  <colid-view></colid-view>
+  <colid-resource></colid-resource>
+  <colid-linking></colid-linking>
+  <colid-authentication></colid-authentication>
+</div>

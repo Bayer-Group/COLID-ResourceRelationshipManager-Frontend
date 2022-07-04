@@ -1,0 +1,17 @@
+<div class="dialog-header">
+  <h2 class="header">{{data.header}}</h2>
+</div>
+<div class="dialog-body">
+  <div class="row">
+    <div class="col-12 text-center">
+      <p innerHTML="{{data.body}}">
+      </p>
+    </div>
+  </div>
+</div>
+<div class="dialog-footer">
+  <div class="footer-buttons">
+    <button mat-raised-button color="primary" id="btn-cancel" class="dialog-btn" mat-dialog-close>Cancel</button>
+    <button mat-raised-button color="accent" id="btn-continue" class="dialog-btn" [mat-dialog-close]="true">Continue</button>
+  </div>
+</div>

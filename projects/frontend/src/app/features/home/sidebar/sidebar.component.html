@@ -1,0 +1,39 @@
+<div class="sidebarHalf" id="siderbarComponent">
+    <div class="sidebar_button">
+        <button id="sidebarToogle" (click)="toggleSidebar()">
+            <mat-icon id="icon_sidebarToogle">{{toogleIcon}}</mat-icon>
+        </button>
+    </div>
+    <div class="sidebar_header">
+        <div class="header">
+            <mat-icon id="icon_header">arrow_right</mat-icon>
+            <div id="header_label">Fundamental Model</div>
+            <button id="btn_editResource" (click)="editResource()">
+                Edit Resource
+                <mat-icon id="icon_sidebarEditResource" inline="true">open_in_new</mat-icon>
+            </button>
+        </div>
+    </div>
+    <div class="sidebar_content">
+        <div class="sidebar_menu">
+            <button id="btn_menu_details" class="btn_menu" [class.selected_menu_item]="SelectedMenuItem === 'details'"
+                (click)="switchTab('details');">Details</button>
+            <button id="btn_menu_schema" class="btn_menu" [class.selected_menu_item]="SelectedMenuItem === 'schema'"
+                (click)="switchTab('schema');">Schema</button>
+            <button id="btn_menu_lineage" class="btn_menu" [class.selected_menu_item]="SelectedMenuItem === 'lineage'"
+                (click)="switchTab('lineage');">Lineage</button>
+        </div>
+        <div class="tab_item" [class.selected_tab]="SelectedTab === 'details'">
+            <colid-details></colid-details>
+        </div>
+        <div class="tab_item" [class.selected_tab]="SelectedTab === 'schema'">
+            <colid-schema></colid-schema>
+        </div>
+        <div class="tab_item" [class.selected_tab]="SelectedTab === 'lineage'">
+            <colid-lineage></colid-lineage>
+        </div>
+    </div>
+    <button class="btn_close" id="btn_sidebarClose" (click)="closeSidebar()">
+        <mat-icon>close</mat-icon>
+    </button>
+</div>

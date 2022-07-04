@@ -1,0 +1,9 @@
+.arrow {
+    stroke-width: 0.25;
+    stroke: darkgrey;
+    fill:darkgrey;
+}
+
+.link2{
+    cursor: pointer;
+}

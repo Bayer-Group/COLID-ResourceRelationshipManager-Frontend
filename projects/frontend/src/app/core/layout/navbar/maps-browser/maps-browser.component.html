@@ -1,0 +1,58 @@
+<div class="content-container">
+  <h2 mat-dialog-title>Browse all maps</h2>
+  <div #infiniteScroller class="table-container" infiniteScroll [infiniteScrollDistance]="1" [infiniteScrollThrottle]="50" [scrollWindow]="false"
+  (scrolled)="onScrolled($event)" (scroll)="onScroll($event)">
+    <mat-progress-bar mode="indeterminate" *ngIf="loading"></mat-progress-bar>
+
+    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+      <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef id="header-name">
+          <div *ngIf="!nameHeaderClicked" class="label-header" (click)="nameHeaderClicked=true" [matTooltip]="'filter by name'">Name</div>
+          <div *ngIf="nameHeaderClicked" class="label-header-form">
+            <mat-form-field appearance="standard" style="border-top:0px; padding: 0px;">
+              <mat-icon style="float:left; height: 10px; transform: scale(0.6);">search</mat-icon>
+              <input style="float:left; width:30%" matInput (keyup)="applyFilter($event)" #input>
+            </mat-form-field>
+          </div>
+          <div [class]="!nameHeaderClicked ? 'empty-header' : 'empty-header-form'" (click)="changeSorting('name')"
+            (mouseover)="hoveredKey='name'" (mouseout)="hoveredKey=''">
+            <mat-icon [style.display]="canDisplayIcon('name') ? 'block' : 'none'" class="sorting-icon">
+              {{getSortIconCode()}}</mat-icon>
+          </div>
+        </th>
+        <td mat-cell *matCellDef="let element">{{element.name}}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="date">
+        <th mat-header-cell *matHeaderCellDef id="header-date">
+          <div>
+            <div class="label-header">Date</div>
+            <div class="empty-header" (click)="changeSorting('modifiedAt')" (mouseover)="hoveredKey='modifiedAt'"
+              (mouseout)="hoveredKey=''">
+              <mat-icon [style.display]="canDisplayIcon('modifiedAt') ? 'block' : 'none'" class="sorting-icon">
+                {{getSortIconCode()}}</mat-icon>
+            </div>
+          </div>
+        </th>
+        <td mat-cell *matCellDef="let element">{{element.modifiedAt | date : 'dd.MM.yyyy'}}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="creator">
+        <th mat-header-cell *matHeaderCellDef>
+          <div>
+            <div class="label-header">Created by</div>
+            <div class="empty-header" (click)="changeSorting('modifiedBy')" (mouseover)="hoveredKey='modifiedBy'"
+              (mouseout)="hoveredKey=''">
+              <mat-icon [style.display]="canDisplayIcon('modifiedBy') ? 'block' : 'none'" class="sorting-icon">
+                {{getSortIconCode()}}</mat-icon>
+            </div>
+          </div>
+        </th>
+        <td mat-cell *matCellDef="let element">{{element.modifiedBy}}</td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="['name', 'date', 'creator']; sticky: true"></tr>
+      <tr mat-row (click)="!data.secondMap ? loadMap(row) : loadSecondMap(row)" *matRowDef="let row; columns: ['name', 'date', 'creator'];"></tr>
+    </table>
+  </div>
+</div>

@@ -1,0 +1,30 @@
+<h2 mat-dialog-title>Select a relationship</h2>
+<mat-dialog-content>
+    <div>Below table shows all possible links between the two selected resources. Click on one entry to save it.</div>
+    <table mat-table [dataSource]="linkTypes">
+        <ng-container matColumnDef="startNode">
+            <th mat-header-cell *matHeaderCellDef>Start Node</th>
+            <td mat-cell *matCellDef="let element">{{element.source.name}}</td>
+        </ng-container>
+    
+        <ng-container matColumnDef="linkType">
+            <th mat-header-cell *matHeaderCellDef>Link Type</th>
+            <td mat-cell *matCellDef="let element">{{element.linkType.name}}</td>
+        </ng-container>
+    
+        <ng-container matColumnDef="endNode">
+            <th mat-header-cell *matHeaderCellDef>End Node</th>
+            <td mat-cell *matCellDef="let element">{{element.target.name}}</td>
+        </ng-container>
+    
+        <tr mat-header-row *matHeaderRowDef="displayColumns"></tr>
+        <tr mat-row class="link-row" (click)="createLink(element)" *matRowDef="let element; columns: displayColumns"></tr>
+    </table>
+    <ng-container *ngIf="!loading && linkTypes.length == 0">
+        <div>The two selected resources can not be linked.</div>
+    </ng-container>
+    <mat-progress-bar *ngIf="loading" mode="indeterminate"></mat-progress-bar>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+    <button mat-button (click)="cancel()">Cancel</button>
+</mat-dialog-actions>

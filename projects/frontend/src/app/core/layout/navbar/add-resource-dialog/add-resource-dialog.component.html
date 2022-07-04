@@ -1,0 +1,20 @@
+<div>
+  <h2 style="padding: 10px;" mat-dialog-title>Add Resource</h2>
+  <div>
+    <mat-dialog-content>
+      <iframe id="add-resource" #iframe width="1850" height="800" [src]="dmpUrl + filterView | urlsafe"
+        style="border:none;"></iframe>
+
+    </mat-dialog-content>
+  </div>
+
+  <mat-dialog-actions align="end" class="button">
+    <button mat-button mat-dialog-close>
+      Cancel
+    </button>
+    <button mat-button mat-flat-button color="primary" (click)="ongetPidUri($event)">
+      Add Resources
+    </button>
+
+  </mat-dialog-actions>
+</div>
