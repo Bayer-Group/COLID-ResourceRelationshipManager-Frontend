@@ -1,0 +1,347 @@
+<mat-accordion>
+  <div style="display: flex;">
+    <div >
+      <input style="margin-top: 37px;" type="checkbox" (change)="checkboxChanged(this,$event)">
+    </div>
+    <div style="flex:1">
+      <mat-expansion-panel
+        [expanded]="expanded"
+        [hideToggle]="collapsible"
+        [disabled]="!collapsible"
+        (afterCollapse)="onResultClicked(expanded)"
+        (afterExpand)="onResultClicked(expanded)"
+        style="box-shadow: none;"
+      >
+        <mat-expansion-panel-header  style="padding-top: 2rem;">
+          <mat-panel-title> 
+            <div>
+              <div class="result-header h4 align-items-center mr-0">
+                <!--Icon to do: can compare to node-visualcomponent-->
+                <ds-icon
+                  class="icon-32"
+                  [icon]="resourceType[0]"
+                  [iconType]="S3"
+                  [tooltipDisabled]="false"
+                  [delay]="300"
+                  
+                >
+                </ds-icon>
+               <b> {{ label }}</b>
+              </div>
+              <span *ngIf="developmentMode">Score: {{ score }}</span>
+              <br />
+              <span
+                class="result-description"
+                [class.line-clamp]="!expanded"
+                [innerHTML]="definitionHighlight"
+              ></span>
+            </div>
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        <mat-tab-group
+          mat-align-tabs="bottom"
+          [id]="index"
+          [selectedIndex]="selectedIndex"
+          (selectedTabChange)="GetSchemeUI($event, details)"
+        >
+          <mat-tab label="Resource Detail" [active]="true">
+            <ng-template matTabContent>
+              <div class="details-container">
+                <!-- <mat-divider class="my-1"></mat-divider>  -->
+
+                <div
+                  class="container m-0"
+                  *ngIf="details && details.length; else empty"
+                >
+                  <div class="row pb-1" *ngFor="let detail of details">
+                    <div
+                      class="col-12"
+                      *ngIf="
+                        (detail.nested &&
+                          detail.nested.length &&
+                          detail.key != distributionKey) ||
+                        (detail.nestedInbound &&
+                          detail.nestedInbound.length &&
+                          detail.key != distributionKey)
+                      "
+                    >
+                      <mat-accordion>
+                        <mat-expansion-panel
+                          id="{{ label + detail.hasPID }}"
+                          (opened)="toggleShowingNested(detail.key)"
+                          (closed)="toggleShowingNested(detail.key)"
+                        >
+                          <mat-expansion-panel-header style="padding: 8px 24px">
+                            <mat-panel-title>
+                              <span class="font-weight-bold text-muted">
+                                {{ detail.label }}
+                                <span
+                                  class="badge badge-pill badge-light"
+                                  style="font-size: 95%; font-weight: normal"
+                                >
+                                  {{
+                                    detail.nested.length +
+                                      detail.nestedInbound.length
+                                  }}
+                                </span>
+                              </span>
+                            </mat-panel-title>
+                            <mat-panel-description class="text-muted">
+                              {{
+                                expandedNested[detail.key]
+                                  ? "Show less"
+                                  : "Show more"
+                              }}
+                            </mat-panel-description>
+                          </mat-expansion-panel-header>
+                          <div class="row">
+                            <div class="col-12">
+                              <ng-container [ngSwitch]="detail.key">
+                                <ng-container
+                                  *ngSwitchCase="
+                                    'https://pid.bayer.com/kos/19050/hasAttachment'
+                                  "
+                                >
+                                  <div class="d-flex justify-content-start">
+                                    <ng-container
+                                      *ngFor="
+                                        let attachment of detail.nested;
+                                        let i = index
+                                      "
+                                    >
+                                      <app-search-result-attachment
+                                        [index]="i"
+                                        [resource]="details"
+                                        [attachment]="attachment"
+                                        [allAttachments]="detail.nested"
+                                      >
+                                      </app-search-result-attachment>
+                                    </ng-container>
+                                  </div>
+                                </ng-container>
+
+                                <ng-container *ngSwitchDefault>
+                                  <table
+                                    class="result-table"
+                                    *ngFor="let nestedEntity of detail.nested"
+                                  >
+                                    <tr *ngFor="let nestedDetail in nestedEntity">
+                                      <td>
+                                        <span
+                                          class="small text-muted text-uppercase lead"
+                                          >{{ nestedDetail.label }}</span
+                                        >
+                                      </td>
+                                      <td>
+                                        <ng-container
+                                          [ngSwitch]="nestedDetail.inputType"
+                                        >
+                                          <span *ngSwitchCase="InputType.Date">
+                                            <ng-container
+                                              *ngIf="nestedDetail.value != null"
+                                            >
+                                              {{
+                                                nestedDetail.value
+                                                  | date: "yyyy-MM-dd hh:mm"
+                                              }}</ng-container
+                                            >
+                                          </span>
+                                          <span
+                                            *ngSwitchDefault
+                                            [innerHTML]="nestedDetail.value"
+                                          ></span>
+                                        </ng-container>
+                                      </td>
+                                    </tr>
+                                  </table>
+                                </ng-container>
+                              </ng-container>
+                            </div>
+                          </div>
+                        </mat-expansion-panel>
+                      </mat-accordion>
+                    </div>
+                    <div
+                      class="col-3"
+                      *ngIf="
+                        (!detail.nested || detail.nested.length === 0) &&
+                        (!detail.nestedInbound || detail.nestedInbound.length === 0)
+                      "
+                    >
+                      <span class="small text-muted text-uppercase lead">{{
+                        detail.label
+                      }}</span>
+                    </div>
+                    <div
+                      class="col-9"
+                      *ngIf="!detail.nested || detail.nested.length === 0"
+                    >
+                      <ng-container [ngSwitch]="detail.inputType">
+                        <a
+                          *ngSwitchCase="InputType.Link"
+                          [href]="detail.valueForHref[0]"
+                          (click)="onLinkClicked(detail, $event)"
+                        >
+                          <span [innerHTML]="detail.value"></span>
+                        </a>
+
+                        <ng-container *ngSwitchCase="InputType.HTML">
+                          <span innerHTML="{{ detail.value  | join  }}"></span> <!-- deleted  | join-->
+                        </ng-container>
+
+                        <span *ngSwitchCase="InputType.Date">
+                          <ng-container *ngIf="detail.value !=null"
+                            >{{ detail.value   }} <!-- this was inside before < >{{ detail.value | date: "yyyy-MM-dd hh:mm" }}
+                            -->  
+                          </ng-container>
+                        </span>
+                        <ng-container *ngSwitchCase="InputType.Version">
+                          <ng-container *ngFor="let previous of versions?.inbound">
+                            <a
+                              [href]="
+                                previous.value[constants.Metadata.HasPidUri].value
+                              "
+                              (click)="
+                                onVersionLinkClicked(detail, previous, $event)
+                              "
+                              class="badge badge-light"
+                              >{{
+                                previous.value[
+                                  "https://pid.bayer.com/kos/19050/hasVersion"
+                                ].value
+                              }}</a
+                            >
+                            <span class="mx-1">-</span>
+                          </ng-container>
+                          <span class="badge badge-primary">{{
+                            detail?.value
+                          }}</span>
+                          <ng-container *ngFor="let next of versions?.outbound">
+                            <span class="mx-1">-</span>
+                            <a
+                              [href]="
+                                next.value[constants.Metadata.HasPidUri].value
+                              "
+                              (click)="onVersionLinkClicked(detail, next, $event)"
+                              class="badge badge-light"
+                              >{{
+                                next.value[
+                                  "https://pid.bayer.com/kos/19050/hasVersion"
+                                ].value
+                              }}</a
+                            >
+                          </ng-container>
+                        </ng-container>
+                      </ng-container>
+                    </div>
+                  </div>
+                </div>
+                <ng-template #empty> No metadata for result! </ng-template>
+              </div>
+            </ng-template>
+          </mat-tab>
+          <mat-tab class="schemeTab" label="Schema" *ngIf="showSchema">
+            <div class="container">
+              <ng-template matTabContent>
+                <div
+                  class="container m-0"
+                  [id]="index"
+                  *ngIf="details && details.length; else empty"
+                >
+                  <app-scheme-ui
+                    [schemeUiDetail]="schemeUiDetail"
+                    [metadata]="metadata"
+                    [loading]="loading$"
+                  >
+                  </app-scheme-ui>
+                </div>
+
+                <ng-template #empty> No metadata for result! </ng-template>
+              </ng-template>
+            </div>
+          </mat-tab>
+          <mat-tab
+            class="schemeTab"
+            label="Linked Resources"
+            *ngIf="showLinkedResources"
+          >
+            <div class="container">
+              <ng-template matTabContent>
+                <div class="container m-0" [id]="index">
+                  <ng-container
+                    *ngFor="
+                      let linkType of linkedResourceData.nested;
+                      let i = index
+                    "
+                  >
+                    <app-search-result-link-type
+                      [resource]="details"
+                      [linkType]="linkType.value"
+                      [edge]="linkType.edge"
+                      [lastElement]="linkedResourceData.nested.length === i + 1"
+                      [metadata]="metadata"
+                    >
+                    </app-search-result-link-type>
+                  </ng-container>
+                  <ng-container
+                    *ngFor="
+                      let linkType of linkedResourceData.nestedInbound;
+                      let i = index
+                    "
+                  >
+                    <app-search-result-link-type
+                      [resource]="details"
+                      [linkType]="linkType.value"
+                      [edge]="linkType.edge"
+                      [inbound]="true"
+                      [lastElement]="linkedResourceData.nested.length === i + 1"
+                      [metadata]="metadata"
+                    >
+                    </app-search-result-link-type>
+                  </ng-container>
+                </div>
+
+                <ng-template #empty> No metadata for result! </ng-template>
+              </ng-template>
+            </div>
+          </mat-tab>
+          <mat-tab
+            class="schemeTab"
+            label="Distribution Endpoint"
+            *ngIf="showDistribution"
+          >
+            <div class="container">
+              <ng-template matTabContent>
+                <div class="container m-0" [id]="index">
+                  <ng-container
+                    *ngFor="
+                      let distributionEndpoint of distributionData;
+                      let i = index
+                    "
+                  >
+                    <app-distribution-endpoint
+                      [resource]="details"
+                      [endpoint]="distributionEndpoint.value"
+                      [baseUriPointsAt]="subjectPidUriMap.get(baseUriPointsAt)"
+                      [lastElement]="distributionData.length === i + 1"
+                      [metadata]="
+                        GetMetadataOfDistributionEndpoint(
+                          distributionEndpoint.value
+                        )
+                      "
+                    >
+                    </app-distribution-endpoint>
+                  </ng-container>
+                </div>
+
+                <ng-template #empty> No metadata for result! </ng-template>
+              </ng-template>
+            </div>
+          </mat-tab>
+        </mat-tab-group>
+      </mat-expansion-panel>
+    </div>
+  </div>
+</mat-accordion>
+
+<div class="result" [ngClass]="{ selected: expanded }"></div>

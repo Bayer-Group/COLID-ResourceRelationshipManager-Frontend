@@ -16,8 +16,6 @@ import {
   MSAL_INSTANCE,
   MSAL_GUARD_CONFIG,
   MSAL_INTERCEPTOR_CONFIG,
-  MsalGuard,
-  MsalBroadcastService
 } from '@azure/msal-angular';
 import { environment } from 'projects/frontend/src/environments/environment';
 import { IDENT_PROV } from '../../shared/constants';
@@ -27,7 +25,7 @@ export const isIE = window.navigator.userAgent.indexOf('MSIE ') > -1 || window.n
 
 
 export function loggerCallback(logLevel: LogLevel, message: string) {
-  console.log(message);
+  //console.log(message);
 }
 
 export function MSALInstanceFactory(): IPublicClientApplication {

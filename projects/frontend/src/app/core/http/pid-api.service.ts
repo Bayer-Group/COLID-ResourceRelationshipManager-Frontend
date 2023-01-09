@@ -8,7 +8,7 @@ import { SchemaDto } from "../../shared/models/dto/table-schema-dto";
     providedIn: 'root'
 })
 export class PidApiService {
-    private readonly baseUrl = environment.pidApi;
+    private readonly baseUrl = environment.colidApiUrl;
 
     constructor(
         private httpClient: HttpClient

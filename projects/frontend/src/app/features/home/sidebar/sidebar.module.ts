@@ -16,4 +16,4 @@ import { SharedModule } from '../../../shared/shared.module';
   imports: [CommonModule, SharedModule],
   exports: [SidebarComponent]
 })
-export class SidebarModule {}
+export class SidebarModule { }

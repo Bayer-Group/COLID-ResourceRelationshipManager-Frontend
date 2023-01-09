@@ -62,12 +62,12 @@
                 {
                   "type": "initial",
                   "maximumWarning": "2mb",
-                  "maximumError": "10mb"
+                  "maximumError": "15mb"
                 },
                 {
                   "type": "anyComponentStyle",
-                  "maximumWarning": "6kb",
-                  "maximumError": "10kb"
+                  "maximumWarning": "12kb",
+                  "maximumError": "20kb"
                 }
               ]
             },
@@ -75,9 +75,9 @@
               "fileReplacements": [
                 {
                   "replace": "projects/frontend/src/environments/environment.ts",
-                  "with": "projects/frontend/src/environments/environment.release.ts" 
+                  "with": "projects/frontend/src/environments/environment.release.ts"
                 }
-              ], 
+              ],
               "optimization": true,
               "outputHashing": "all",
               "sourceMap": false,
@@ -93,8 +93,8 @@
                 },
                 {
                   "type": "anyComponentStyle",
-                  "maximumWarning": "6kb",
-                  "maximumError": "10kb"
+                  "maximumWarning": "12kb",
+                  "maximumError": "20kb"
                 }
               ]
             },
@@ -114,12 +114,12 @@
                 {
                   "type": "initial",
                   "maximumWarning": "2mb",
-                  "maximumError": "10mb"
+                  "maximumError": "15mb"
                 },
                 {
                   "type": "anyComponentStyle",
-                  "maximumWarning": "6kb",
-                  "maximumError": "10kb"
+                  "maximumWarning": "12kb",
+                  "maximumError": "20kb"
                 }
               ]
             },
@@ -127,7 +127,7 @@
               "budgets": [
                 {
                   "type": "anyComponentStyle",
-                  "maximumWarning": "6kb"
+                  "maximumWarning": "12kb"
                 }
               ],
               "fileReplacements": [
@@ -209,6 +209,5 @@
         }
       }
     }
-  },
-  "defaultProject": "frontend"
+  }
 }

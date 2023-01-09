@@ -1,29 +1,23 @@
-import { resultMemoize, Store } from '@ngrx/store';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ResourceRelationshipManagerService } from '../../../http/resource-relationship-manager.service';
-import { GraphState } from 'projects/frontend/src/app/state/store-items';
-import * as mapDataActions from '../../../../state/map-data/map-data.actions';
-import * as graphDataActions from '../../../../state/graph-data/graph-data.actions';
-import * as savingTriggerActions from '../../../../state/saving-trigger/saving-trigger.actions';
-import * as graphLinkingActions from '../../../../state/graph-linking/graph-linking.actions';
 import { AuthService } from 'projects/frontend/src/app/modules/authentication/services/auth.service';
 import { tap } from 'rxjs/operators';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { SaveMapDialogComponent } from '../save-map-dialog/save-map-dialog.component';
-import { GraphMapDTO } from 'projects/frontend/src/app/shared/models/graph-map';
-import { Observable } from 'rxjs';
-import { GraphMapData } from 'projects/frontend/src/app/state/map-data/map-data.model';
-import { Link, Node } from '../../../d3';
+import { Observable, Subscription } from 'rxjs';
 import { GraphMapMetadata } from 'projects/frontend/src/app/shared/models/graph-map-metadata';
-import { GraphLinkingData } from 'projects/frontend/src/app/state/graph-linking/graph-linking.model';
 import { LinkEditHistory } from 'projects/frontend/src/app/shared/models/link-editing-history';
 import { SaveConfirmationDialogComponent } from '../save-confirmation-dialog/save-confirmation-dialog.component';
-import { color } from 'd3';
 import { MapsBrowserComponent } from '../maps-browser/maps-browser.component';
 import { GraphMapInfo } from 'projects/frontend/src/app/shared/models/graph-map-info';
 import { MatSnackBar } from '@angular/material/snack-bar'
 import { NotificationService } from 'projects/frontend/src/app/shared/services/notification.service';
 import { ConfirmationDialogComponent } from 'projects/frontend/src/app/shared/components/confirmation-dialog/confirmation-dialog.component';
+import { Select, Store } from '@ngxs/store';
+import { GraphMapData, LoadMap, LoadOwnMaps, MapDataState, SetCurrentId, SetCurrentModifiedBy, SetCurrentName, SetDescription, SetIsOwner } from 'projects/frontend/src/app/state/map-data.state';
+import { ResetAll } from 'projects/frontend/src/app/state/graph-data.state';
+import { GraphLinkingData, GraphLinkingDataState, RemoveFromHistory, ResetLinkEditHistory, ResetLinking } from 'projects/frontend/src/app/state/graph-linking.state';
+import { SetSaveAsNew, StartSavingMap } from 'projects/frontend/src/app/state/saving-trigger.state';
 declare const saveSvgAsPng: any;
 
 @Component({
@@ -31,39 +25,37 @@ declare const saveSvgAsPng: any;
   templateUrl: './map.component.html',
   styleUrls: ['./map.component.scss']
 })
-export class MapComponent implements OnInit {
+export class MapComponent implements OnInit, OnDestroy {
 
   maps: GraphMapInfo[] = [];
   loadingOwnMaps: boolean = true;
   currentMap: GraphMapMetadata = {
     graphMapId: "",
     name: "",
+    description: "",
     modifiedBy: ""
   };
   linkEditHistory: LinkEditHistory[] = [];
-  mapsStore$: Observable<GraphMapData>;
-  graphLinking$: Observable<GraphLinkingData>;
+  @Select(MapDataState.getMapDataState) mapsStore$: Observable<GraphMapData>;
+  @Select(GraphLinkingDataState.getGraphLinkingState) graphLinking$: Observable<GraphLinkingData>;
   userIsOwner: boolean = false
-
+  masterSub: Subscription = new Subscription();
 
   constructor(
-    private store: Store<GraphState>,
+    private store: Store,
     private resourceRelationshipManagerApiService: ResourceRelationshipManagerService,
     private dialog: MatDialog,
     private snackBar: MatSnackBar,
     private authService: AuthService,
     private notificationService: NotificationService
-  ) {
-    this.mapsStore$ = this.store.select('mapData');
-    this.graphLinking$ = this.store.select('graphLinking');
-  }
+  ) { }
 
   /**
    * Initialize the component and listen for data changes of data required for the menu actions
    */
   ngOnInit() {
     //react to changes regarding the map in the store and write them into the local var
-    this.mapsStore$.pipe(
+    this.masterSub.add(this.mapsStore$.pipe(
       tap(
         maps => {
           this.maps = maps.ownMaps;
@@ -72,28 +64,33 @@ export class MapComponent implements OnInit {
           this.userIsOwner = maps.isOwner
         }
       )
-    ).subscribe();
+    ).subscribe());
 
     //always store the links which are not persisted yet locally
-    this.graphLinking$.pipe(
+    this.masterSub.add(this.graphLinking$.pipe(
       tap(
         gl => {
           this.linkEditHistory = gl.linkEditHistory;
         }
       )
-    ).subscribe();
+    ).subscribe());
+  }
+
+  ngOnDestroy(): void {
+    this.masterSub.unsubscribe();
   }
 
   /**
    * empty the current map and start a new one
    */
   newMap() {
-    this.store.dispatch(mapDataActions.SetCurrentId({ id: "" }));
-    this.store.dispatch(mapDataActions.SetCurrentName({ name: "" }));
-    this.store.dispatch(mapDataActions.SetCurrentModifiedBy({ modifiedBy: "" }));
-    this.store.dispatch(graphDataActions.ResetAll());
-    this.store.dispatch(graphLinkingActions.ResetLinking());
-    this.store.dispatch(graphLinkingActions.ResetLinkEditHistory());
+    this.store.dispatch(new SetCurrentId(""));
+    this.store.dispatch(new SetCurrentName(""));
+    this.store.dispatch(new SetDescription(""));
+    this.store.dispatch(new SetCurrentModifiedBy(""));
+    this.store.dispatch(new ResetAll());
+    this.store.dispatch(new ResetLinking());
+    this.store.dispatch(new ResetLinkEditHistory());
   }
 
   /**
@@ -101,11 +98,11 @@ export class MapComponent implements OnInit {
    * @param map ID of the map to load
    */
   loadMap(map: string) {
-    this.store.dispatch(mapDataActions.LoadMap({ mapId: map }));
-    if (this.maps.some(maps => maps.graphMapId === map)) {
-      this.store.dispatch(mapDataActions.setIsOwner({ isOwner: true }))
+    this.store.dispatch(new LoadMap(map));
+    if (this.maps.some(maps => maps.id === map)) {
+      this.store.dispatch(new SetIsOwner(true))
     } else {
-      this.store.dispatch(mapDataActions.setIsOwner({ isOwner: false }))
+      this.store.dispatch(new SetIsOwner(false))
     }
   }
 
@@ -120,18 +117,19 @@ export class MapComponent implements OnInit {
    * Handle saving workflow
    */
   saveAs() {
-    this.openNamingDialog();
+    this.openSaveAsDialog()
   }
 
-  private saveMap(mapName: string, isNewMap: boolean) {
+  private saveMap(mapName: string, mapDescription: string, isNewMap: boolean) {
     if (mapName != null && mapName != '') {
-      this.store.dispatch(mapDataActions.SetCurrentName({ name: mapName }));
-      this.store.dispatch(savingTriggerActions.SetSaveAsNew({ asNew: isNewMap }));
-      this.store.dispatch(savingTriggerActions.StartSavingMap({ asNew: isNewMap }));
+      this.store.dispatch(new SetCurrentName(mapName));
+      this.store.dispatch(new SetDescription(mapDescription));
+      this.store.dispatch(new SetSaveAsNew(isNewMap));
+      this.store.dispatch(new StartSavingMap(isNewMap));
     }
     else {
       //save As
-      this.openNamingDialog();
+      this.openSaveAsDialog();
     }
   }
   save() {
@@ -151,16 +149,15 @@ export class MapComponent implements OnInit {
 
           //undo all unpersisted links
           linkEditHistorySnapshot.forEach(le => {
-            this.store.dispatch(graphLinkingActions.RemoveFromHistory({ item: le }));
+            this.store.dispatch(new RemoveFromHistory(le));
           });
 
           this.openNamingDialog();
         }
       });
     } else {
-      //this.openNamingDialog();
-      //save existing map
-      this.saveMap(this.currentMap.name, false);
+      //save existing map with popup after clicking save button.
+      this.openNamingDialog();
     }
   }
 
@@ -170,25 +167,51 @@ export class MapComponent implements OnInit {
   openNamingDialog() {
     //open dialog to confirm saving
     let dialogRef: MatDialogRef<SaveMapDialogComponent> = this.dialog.open(SaveMapDialogComponent, {
-      height: '200',
-      width: '500px',
+      height: '402px',
+      width: '800px',
       disableClose: true,
       data: {
-        name: this.currentMap.name
+        name: this.currentMap.name,
+        description: this.currentMap.description,
+        id: this.currentMap.graphMapId//Pass Id 
       }
     });
 
-    dialogRef.afterClosed().subscribe((result: { name: string, saveAsNew: boolean }) => {
+    dialogRef.afterClosed().subscribe((result: { name: string, description: string, saveAsNew: boolean }) => {
       if (result) {
-        this.saveMap(result.name, result.saveAsNew);
+        this.saveMap(result.name, result.description, result.saveAsNew);
+      }
+    });
+  }
+
+  /**
+   * opens the SaveAs dialog where a user can Create New map saving
+   * PID1744
+   */
+  openSaveAsDialog() {
+    //open dialog to confirm saving
+    let dialogRef: MatDialogRef<SaveMapDialogComponent> = this.dialog.open(SaveMapDialogComponent, {
+      height: '402px',
+      width: '800px',
+      disableClose: true,
+      data: {
+        name: this.currentMap.name,
+        description: this.currentMap.description,
+        isSaveAs: true
+      }
+    });
+
+    dialogRef.afterClosed().subscribe((result: { name: string, description: string, saveAsNew: boolean }) => {
+      if (result) {
+        this.saveMap(result.name, result.description, true);
       }
     });
   }
 
   allMaps() {
     let dialogRef: MatDialogRef<MapsBrowserComponent> = this.dialog.open(MapsBrowserComponent, {
-      height: '561px',
-      width: '777px',
+      height: 'auto',//'661px',
+      width: 'auto',
       data: {
         secondMap: false
       }
@@ -202,13 +225,13 @@ export class MapComponent implements OnInit {
   }
 
   cancelLinking() {
-    this.store.dispatch(graphLinkingActions.ResetLinking());
+    this.store.dispatch(new ResetLinking());
   }
 
   extraMap() {
     let dialogRef: MatDialogRef<MapsBrowserComponent> = this.dialog.open(MapsBrowserComponent, {
-      height: '561px',
-      width: '777px',
+      height: 'auto',
+      width: 'auto',
       data: {
         secondMap: true
       }
@@ -235,7 +258,7 @@ export class MapComponent implements OnInit {
               this.authService.currentEmail$.subscribe(
                 email => {
                   if (email) {
-                    this.store.dispatch(mapDataActions.LoadOwnMaps({ email: email }));
+                    this.store.dispatch(new LoadOwnMaps(email));
                   }
                 }
               )
@@ -244,7 +267,7 @@ export class MapComponent implements OnInit {
             this.snackBar.open("Deleted!", 'Dismiss', { duration: 3000 })
           },
             err => {
-              this.notificationService.notification$.next("Something went wrong while deleting the map")
+              this.notificationService.notification$.next("Something went wrong while deleting the map");
             });
         }
       });

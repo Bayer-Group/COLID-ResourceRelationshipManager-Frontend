@@ -4,13 +4,10 @@
   (click)="cancelLinking()">Filter View</button>
 
 <mat-menu #view="matMenu">
-  <button mat-menu-item disabled>Align by Grid</button>
-  <button mat-menu-item disabled>Grid Settings...</button>
-  <hr />
   <p class="menuTitle">Show</p>
   <button (click)="toggleFilterView()" mat-menu-item>
-    <ng-container *ngIf="!isFilterViewSelected">Filter map view</ng-container>
-    <ng-container *ngIf="isFilterViewSelected">Normal map view</ng-container>
+    <ng-container *ngIf="!isFilterViewSelected">Hide schema resources</ng-container>
+    <ng-container *ngIf="isFilterViewSelected">Show schema resources</ng-container>
   </button>
   <button (click)="toggleResourceName()" mat-menu-item>
     <ng-container *ngIf="!isLongNameSelected">Long Resource Names</ng-container>
@@ -20,11 +17,11 @@
     <ng-container *ngIf="!isLinkNameSelected">Connection Names</ng-container>
     <ng-container *ngIf="isLinkNameSelected">No Connection Names</ng-container>
   </button>
-  <hr />
+  <!-- <hr />
   <p class="menuTitle">Advanced View Settings</p>
   <button mat-menu-item [matMenuTriggerFor]="myColor" disabled>Color</button>
   <button mat-menu-item disabled>High-Contrast-Mode</button>
-  <button mat-menu-item [matMenuTriggerFor]="myFontSize" disabled>Font Size</button>
+  <button mat-menu-item [matMenuTriggerFor]="myFontSize" disabled>Font Size</button> -->
 
   <mat-menu #myColor="matMenu">
     <button mat-menu-item disabled>White</button>

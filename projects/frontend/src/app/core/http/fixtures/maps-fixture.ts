@@ -2,19 +2,27 @@ export const userMaps = [
   {
     "graphMapId": "08d9872d-9399-474d-82ab-337bd33f1d83",
     "name": "Test 3",
-    "id": "",
+    "description": "Description 3",
+    "nodeCount": 3,
+    "id": "08d9872d-9399-474d-82ab-337bd33f1d83",
     "modifiedBy": "ganesh.ghadge.ext@bayer.com",
     "modifiedAt": "2021-10-04T11:53:26.921876"
   },
   {
     "graphMapId": "08d9872c-86d9-4f99-892c-8e94f40e08a3",
-    "name": "Test2",
+    "name": "Test 2",
+    "description": "Description 2",
+    "nodeCount": 2,
+    "id": "08d9872c-86d9-4f99-892c-8e94f40e08a3",
     "modifiedBy": "ganesh.ghadge.ext@bayer.com",
     "modifiedAt": "2021-10-04T11:45:56.037608"
   },
   {
     "graphMapId": "08d9872a-c1c4-481b-8e92-ec2a77671530",
-    "name": "Test1",
+    "name": "Test 1",
+    "description": "Description 1",
+    "nodeCount": 3,
+    "id": "08d9872a-c1c4-481b-8e92-ec2a77671530",
     "modifiedBy": "ganesh.ghadge.ext@bayer.com",
     "modifiedAt": "2021-10-04T11:33:15.888771"
   },
@@ -24,104 +32,144 @@ export const allMaps = [
   {
     "graphMapId": "08d9872d-9399-474d-82ab-337bd33f1d0",
     "name": "Test 4",
-    "id": "",
+    "description": "Description 4",
+    "nodeCount": 4,
+    "id": "08d9872d-9399-474d-82ab-337bd33f1d0",
     "modifiedBy": "ganesh.ghadge.ext@bayer.com",
     "modifiedAt": "2021-10-08T11:53:26.921876"
   },
   {
     "graphMapId": "08d9872d-9399-474d-82ab-337bd33f1d83",
     "name": "Test 3",
-    "id": "",
+    "description": "Description 3",
+    "nodeCount": 3,
+    "id": "08d9872d-9399-474d-82ab-337bd33f1d83",
     "modifiedBy": "ganesh.ghadge.ext@bayer.com",
     "modifiedAt": "2021-10-04T11:53:26.921876"
   },
   {
     "graphMapId": "08d9872c-86d9-4f99-892c-8e94f40e08a3",
-    "name": "Test2",
+    "name": "Test 2",
+    "description": "Description 2",
+    "nodeCount": 2,
+    "id": "08d9872d-9399-474d-82ab-337bd33f1d83",
     "modifiedBy": "ganesh.ghadge.ext@bayer.com",
     "modifiedAt": "2021-10-04T11:45:56.037608"
   },
   {
     "graphMapId": "08d9872a-c1c4-481b-8e92-ec2a77671530",
-    "name": "Test1",
+    "name": "Test 1",
+    "description": "Description 1",
+    "nodeCount": 4,
+    "id": "08d9872d-9399-474d-82ab-337bd33f1d83",
     "modifiedBy": "cristian.raileanu.ext@bayer.com",
     "modifiedAt": "2021-10-04T11:33:15.888771"
   },
   {
     "graphMapId": "08d9872d-9399-474d-82ab-337bd33f1d0",
-    "name": "Test5",
-    "id": "",
+    "name": "Test 5",
+    "description": "Description 5",
+    "nodeCount": 5,
+    "id": "08d9872d-9399-474d-82ab-337bd33f1d83",
     "modifiedBy": "ganesh.ghadge.ext@bayer.com",
     "modifiedAt": "2021-10-08T11:53:26.921876"
   },
   {
     "graphMapId": "08d9872d-9399-474d-82ab-337bd33f1d83",
-    "name": "Test6",
-    "id": "",
+    "name": "Test 6",
+    "description": "Description 6",
+    "nodeCount": 6,
+    "id": "08d9872d-9399-474d-82ab-337bd33f1d83",
     "modifiedBy": "ganesh.ghadge.ext@bayer.com",
     "modifiedAt": "2021-10-04T11:53:26.921876"
   },
   {
     "graphMapId": "08d9872c-86d9-4f99-892c-8e94f40e08a3",
-    "name": "Test7",
+    "name": "Test 7",
+    "description": "Description 7",
+    "nodeCount": 7,
+    "id": "08d9872d-9399-474d-82ab-337bd33f1d83",
     "modifiedBy": "ganesh.ghadge.ext@bayer.com",
     "modifiedAt": "2021-10-04T11:45:56.037608"
   },
   {
     "graphMapId": "08d9872a-c1c4-481b-8e92-ec2a77671530",
-    "name": "Test8",
+    "name": "Test 8",
+    "description": "Description 8",
+    "nodeCount": 8,
+    "id": "08d9872d-9399-474d-82ab-337bd33f1d83",
     "modifiedBy": "cristian.raileanu.ext@bayer.com",
     "modifiedAt": "2021-10-04T11:33:15.888771"
   },
   {
     "graphMapId": "08d9872d-9399-474d-82ab-337bd33f1d0",
-    "name": "Test9",
-    "id": "",
+    "name": "Test 9",
+    "description": "Description 9",
+    "nodeCount": 9,
+    "id": "08d9872d-9399-474d-82ab-337bd33f1d83",
     "modifiedBy": "ganesh.ghadge.ext@bayer.com",
     "modifiedAt": "2021-10-08T11:53:26.921876"
   },
   {
     "graphMapId": "08d9872d-9399-474d-82ab-337bd33f1d83",
-    "name": "Test10",
-    "id": "",
+    "name": "Test 10",
+    "description": "Description 10",
+    "nodeCount": 10,
+    "id": "08d9872d-9399-474d-82ab-337bd33f1d83",
     "modifiedBy": "ganesh.ghadge.ext@bayer.com",
     "modifiedAt": "2021-10-04T11:53:26.921876"
   },
   {
     "graphMapId": "08d9872c-86d9-4f99-892c-8e94f40e08a3",
-    "name": "Test11",
+    "name": "Test 11",
+    "description": "Description 11",
+    "nodeCount": 11,
+    "id": "08d9872d-9399-474d-82ab-337bd33f1d83",
     "modifiedBy": "ganesh.ghadge.ext@bayer.com",
     "modifiedAt": "2021-10-04T11:45:56.037608"
   },
   {
     "graphMapId": "08d9872a-c1c4-481b-8e92-ec2a77671530",
-    "name": "Test12",
+    "name": "Test 12",
+    "description": "Description 12",
+    "nodeCount": 12,
+    "id": "08d9872d-9399-474d-82ab-337bd33f1d83",
     "modifiedBy": "cristian.raileanu.ext@bayer.com",
     "modifiedAt": "2021-10-04T11:33:15.888771"
   },
   {
     "graphMapId": "08d9872d-9399-474d-82ab-337bd33f1d0",
-    "name": "Test13",
-    "id": "",
+    "name": "Test 13",
+    "description": "Description 13",
+    "nodeCount": 4,
+    "id": "08d9872d-9399-474d-82ab-337bd33f1d83",
     "modifiedBy": "ganesh.ghadge.ext@bayer.com",
     "modifiedAt": "2021-10-08T11:53:26.921876"
   },
   {
     "graphMapId": "08d9872d-9399-474d-82ab-337bd33f1d83",
-    "name": "Test14",
-    "id": "",
+    "name": "Test 14",
+    "description": "Description 14",
+    "nodeCount": 4,
+    "id": "08d9872d-9399-474d-82ab-337bd33f1d83",
     "modifiedBy": "ganesh.ghadge.ext@bayer.com",
     "modifiedAt": "2021-10-04T11:53:26.921876"
   },
   {
     "graphMapId": "08d9872c-86d9-4f99-892c-8e94f40e08a3",
-    "name": "Test15",
+    "name": "Test 15",
+    "description": "Description 15",
+    "nodeCount": 15,
+    "id": "08d9872d-9399-474d-82ab-337bd33f1d83",
     "modifiedBy": "ganesh.ghadge.ext@bayer.com",
     "modifiedAt": "2021-10-04T11:45:56.037608"
   },
   {
     "graphMapId": "08d9872a-c1c4-481b-8e92-ec2a77671530",
-    "name": "Test16",
+    "name": "Test 16",
+    "description": "Description 16",
+    "nodeCount": 16,
+    "id": "08d9872d-9399-474d-82ab-337bd33f1d83",
     "modifiedBy": "cristian.raileanu.ext@bayer.com",
     "modifiedAt": "2021-10-04T11:33:15.888771"
   },

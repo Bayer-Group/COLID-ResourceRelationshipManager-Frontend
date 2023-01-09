@@ -6,7 +6,6 @@ import { MainLayoutComponent } from './layout/main-layout/main-layout.component'
 import { RouterModule } from '@angular/router';
 import { NavbarModule } from './layout/navbar/navbar.module';
 import { SharedModule } from '../shared/shared.module';
-import { UrlSafePipe } from '../shared/pipes/urlsafe.pipe';
 import { SupportFeedbackBarComponent } from '../features/home/support-feedback-bar/support-feedback-bar.component';
 
 @NgModule({

@@ -10,13 +10,19 @@ export class SaveMapDialogComponent implements OnInit {
 
   name: string = "";
   oldName: string = "";
+  description: string = "";
+  id: string = "";
+  isSaveAs: boolean = false;
 
   constructor(
     public dialogRef: MatDialogRef<SaveMapDialogComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: { name: string }
+    @Inject(MAT_DIALOG_DATA) public data: { name: string, description: string, id: string, isSaveAs: boolean }
   ) {
     this.name = data.name;
     this.oldName = data.name;
+    this.description = data.description;
+    this.id = data.id;
+    this.isSaveAs = data.isSaveAs;
   }
 
   ngOnInit(): void {
@@ -24,7 +30,7 @@ export class SaveMapDialogComponent implements OnInit {
   };
 
   ok() {
-    this.dialogRef.close({ name: this.name, saveAsNew: (this.oldName != this.name) });
+    this.dialogRef.close({ name: this.name, description: this.description, saveAsNew: (this.id == "") });
   }
 
   cancel() {

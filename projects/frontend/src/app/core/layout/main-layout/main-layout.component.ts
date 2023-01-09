@@ -1,11 +1,11 @@
 import { Component } from '@angular/core';
-import { Store } from '@ngrx/store';
 import { environment } from 'projects/frontend/src/environments/environment';
 import { Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
-import { GraphProperties } from '../../../state/graph-visualisation/graph-visualisation.model';
-import { GraphState } from '../../../state/store-items';
-import * as graphVisualisationActions from '../../../state/graph-visualisation/graph-visualisation.actions';
+import { MatDialog } from '@angular/material/dialog';
+import { SearchFilterDialogComponent } from '../../../shared/search-filter-dialog/search-filter-dialog.component';
+import { GraphProperties, GraphVisualisationState, HideDetailSidebar } from '../../../state/graph-visualisation.state';
+import { Select, Store } from '@ngxs/store';
 
 @Component({
   selector: 'colid-main-layout',
@@ -13,15 +13,14 @@ import * as graphVisualisationActions from '../../../state/graph-visualisation/g
   styleUrls: ['./main-layout.component.scss']
 })
 export class MainLayoutComponent {
-  graphProperties$: Observable<GraphProperties>;
+  @Select(GraphVisualisationState.getGraphVisualisationState) graphProperties$: Observable<GraphProperties>;
   pidUri: string = "";
   dmpUrl: string = "";
   openDrawer: boolean = false;
   loadingResources: boolean = false;
 
-  constructor(private store: Store<GraphState>) {
+  constructor(private store: Store, private matDialog: MatDialog) {
     this.dmpUrl = environment.dmpUrl + "/resource-detail?sourceDialog=detailView"
-    this.graphProperties$ = this.store.select('graphVisualisation');
     this.graphProperties$.pipe(
       tap(
         gp => {
@@ -45,7 +44,18 @@ export class MainLayoutComponent {
   }
 
   hideSidebar() {
-    this.store.dispatch(graphVisualisationActions.HideDetailSidebar());
+    this.store.dispatch(new HideDetailSidebar());
+  }
+
+  gotoSearch() {
+
+  }
+  openModal() {
+    this.matDialog.open(SearchFilterDialogComponent, {
+      "width": '600px',
+      "height": '500px',
+      //"autoFocus": false
+    });
   }
 }
 

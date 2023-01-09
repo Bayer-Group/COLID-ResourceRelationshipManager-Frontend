@@ -1,11 +1,10 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
-import { Store } from '@ngrx/store';
-import { GraphState } from '../../../state/store-items';
-import * as graphVisualisationActions from '../../../state/graph-visualisation/graph-visualisation.actions';
-import * as mapDataActions from '../../../state/map-data/map-data.actions';
-import * as graphDataActions from '../../../state/graph-data/graph-data.actions';
-import * as graphLinkingActions from '../../../state/graph-linking/graph-linking.actions';
+import { Component, OnInit } from '@angular/core';
 import { environment } from 'projects/frontend/src/environments/environment';
+import { Store } from '@ngxs/store';
+import { ResetAll } from '../../../state/graph-data.state';
+import { ResetLinking } from '../../../state/graph-linking.state';
+import { ToggleDetailSidebar } from '../../../state/graph-visualisation.state';
+import { SetCurrentId, SetCurrentModifiedBy, SetCurrentName, SetDescription } from '../../../state/map-data.state';
 
 @Component({
   selector: 'colid-navbar',
@@ -14,28 +13,25 @@ import { environment } from 'projects/frontend/src/environments/environment';
 })
 
 export class NavbarComponent implements OnInit {
-  environmentLabel: string = ""
+  versionNumber = environment.versionNumber;
+  environmentLabel = environment.environment == 'Prod' ? "" : environment.environment;
 
-  constructor(private store: Store<GraphState>) {
+  constructor(private store: Store) { }
 
-  }
-  ngOnInit() {
-    if (environment.environment == "development") {
-      this.environmentLabel = "(DEV)"
-    } else if (environment.environment == "qa") {
-      this.environmentLabel = "QA"
-    }
-  }
+  ngOnInit() { }
 
   newMap() {
 
-    this.store.dispatch(mapDataActions.SetCurrentId({ id: "" }));
-    this.store.dispatch(mapDataActions.SetCurrentName({ name: "" }));
-    this.store.dispatch(mapDataActions.SetCurrentModifiedBy({ modifiedBy: "" }));
-    this.store.dispatch(graphDataActions.ResetAll());
-    this.store.dispatch(graphLinkingActions.ResetLinking());
+    this.store.dispatch(new SetCurrentId(""));
+    this.store.dispatch(new SetCurrentName(""));
+    this.store.dispatch(new SetDescription(""));
+    this.store.dispatch(new SetCurrentModifiedBy(""));
+    this.store.dispatch(new ResetAll());
+    this.store.dispatch(new ResetLinking());
   }
+
   toggleSidebar() {
-    this.store.dispatch(graphVisualisationActions.ToggleDetailSidebar());
+    this.store.dispatch(new ToggleDetailSidebar());
   }
+
 }

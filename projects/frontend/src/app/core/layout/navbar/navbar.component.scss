@@ -1,28 +1,32 @@
-.navbar-item {
-  font-size: 16px;
-  color: #ffffff;
-  background-color: #00354f;
-  letter-spacing: 0;
-  line-height: 22px;
-  margin-right: 24px;
-  margin-top: 19px;
-  vertical-align: top;
-  display: inline-block;
-  border: none;
-  outline: none;
-}
+// .navbar-item {
+//   font-size: 16px;
+//   color: #ffffff;
+//   background-color: #00354f;
+//   letter-spacing: 0;
+//   line-height: 22px;
+//   margin-right: 24px;
+//   margin-top: 19px;
+//   vertical-align: top;
+//   display: inline-block;
+//   border: none;
+//   outline: none;
+// }
 
 .navbar {
   width: auto;
   height: 60px;
   background: #00354f;
+  padding: 0px 1rem;
+  display: flex; 
+  justify-content: space-between
+  // text-align-last: justify;
 }
 
 .logo {
-  margin-left: 60px;
+  margin-left: 20px;
   margin-right: 10px;
   height: 29px;
-  padding-top: 14px;
+  //padding-top: 14px;
 }
 
 .rrm-title {

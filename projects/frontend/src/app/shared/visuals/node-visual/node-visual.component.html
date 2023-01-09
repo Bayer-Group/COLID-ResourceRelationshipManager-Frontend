@@ -1,24 +1,30 @@
-<svg:g [class.selected]="node.selected" [attr.transform]="'translate(' + node.x + ',' + node.y + ')'"
-  (click)="nodeClicked($event)" (dblclick)="openDetails()" [class.node-linking-mode]="linkingModeEnabled"
+<svg:g [class.selected]="node.selected" class="node-cursor" [attr.transform]="'translate(' + node.x + ',' + node.y + ')'"
+  (click)="nodeClicked($event)" [attr.id]="node.id" (dblclick)="openDetails()" [class.ctrl-pressed]="ctrlPressed" [class.node-linking-mode]="linkingModeEnabled"
   *ngIf="displayNode">
   <svg:rect [attr.width]="width" [attr.height]="height" class="node" [class.node-linking-selected]="inLinkingSelection"
-    [attr.fill]="nodeBackgroundColor" x="0" y="0" [attr.r]="node.r" [attr.id]="node.id">
+    [attr.fill]="nodeBackgroundColor" x="0" y="0">
 
   </svg:rect>
   <ng-container *ngIf="node.linkCount > 0">
-    <svg:circle [attr.cx]="width / 2" [attr.cy]="0" r="8" stroke="#f4f5f6" fill="#00354f" stroke-width="1">
+    <svg:circle [attr.cx]="180"  [attr.cy]="0" r="14" stroke="#f4f5f6" fill="#00354f" stroke-width="1">
 
     </svg:circle>
-    <svg:text [attr.x]="width / 2" y="4" text-anchor="middle" font-size="10px" fill="white">{{node.linkCount}}
+    <svg:text [attr.x]=" 180" y="4" text-anchor="middle" font-size="12px" fill="white">{{node.linkCount}}
     </svg:text>
   </ng-container>
 
   <foreignObject class="icon-resource-type" x="5" y="8" width="24" height="24">
-    <ds-icon class="icon-32" [icon]="node.resourceType" [iconType]="S3" [tooltipDisabled]="false" [delay]="300">
+    <ds-icon 
+      class="icon-32" 
+      [iconType]="S3" 
+      [tooltipDisabled]="false" 
+      [delay]="300"
+      [icon]="node.resourceTypeId"
+      > <!-- node.resourcetypeId:http://pid.bayer.com/kos/19014--> 
     </ds-icon>
   </foreignObject>
 
-  <foreignObject class="node-name" text-anchor="start" x="35" y="0" width="145" height="40">
+  <foreignObject class="node-name node-cursor" [class.ctrl-pressed]="ctrlPressed" text-anchor="start" x="35" y="0" width="145" height="40">
     <div xmlns="http://www.w3.org/1999/xhtml" [matTooltip]="node.name">
       <p *ngIf="showLongResourceName" class="node-name-text">
         {{node.name}}
@@ -30,8 +36,7 @@
   </foreignObject>
 
   <svg:rect *ngIf="filterInfo.isFiltered" [attr.width]="width" [attr.height]="filterInfo.filterCount * 30" class="node"
-    [class.node-linking-selected]="inLinkingSelection" [attr.fill]="nodeBackgroundColor" x="0" y="40" [attr.r]="node.r"
-    [attr.id]="node.id">
+    [class.node-linking-selected]="inLinkingSelection" [attr.fill]="nodeBackgroundColor" x="0" y="40">
   </svg:rect>
 
   <foreignObject *ngIf="filterInfo.isFiltered" class="filterInfoContainer" text-anchor="start" x="0" y="40" width="225"

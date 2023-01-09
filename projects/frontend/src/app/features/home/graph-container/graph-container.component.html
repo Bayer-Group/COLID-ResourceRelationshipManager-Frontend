@@ -30,21 +30,24 @@
                   <div mat-line>Action: {{historyItem.action}}</div>
                 </div>
               </div>
-              <div>
+              <div> 
                 <button (click)="deleteHistoryEntry($event, historyItem)" mat-icon-button>
                   <mat-icon>delete</mat-icon>
                 </button>
               </div>
             </div>
-            
-
 
           </mat-list-option>
         </mat-selection-list>
 
-      </mat-expansion-panel>
+      </mat-expansion-panel>  
     </mat-accordion>
   </div>
+  <div>
+ <button mat-raised-button class="link-save-button" style="margin-right: 10px;" (click)="save()">Save</button>
+  <button mat-raised-button class="cancel-linking" (click)="cancelSelection(linkHistory)">Cancel</button>
 
-  <button mat-raised-button class="link-save-button" (click)="save()">Save</button>
+  </div>
+
+  
 </div>

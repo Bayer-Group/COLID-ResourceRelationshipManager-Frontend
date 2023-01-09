@@ -118,10 +118,10 @@ export class AzureIdentityProvider implements IdentityProvider {
     if (this.currentStatus == InteractionStatus.None) {
       if (window.self !== window.top) {
         setTimeout(async () => {
-          await this.msalService.loginPopup();
+          await this.msalService.loginRedirect();
         }, 5000)
       } else {
-        await this.msalService.loginPopup();
+        await this.msalService.loginRedirect();
       }
     }
   }

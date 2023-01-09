@@ -1,9 +1,8 @@
-import APP_CONFIG from '../../../app.config';
 import { ResourceLinkDto } from '../../../shared/models/resource-dto';
 import { Link } from './link';
 
+//TODO EUCAV: Delete this and replace with simpler logic
 export class NodeSaveDto implements d3.SimulationNodeDatum {
-  index?: number;
   x?: number;
   y?: number;
   vx?: number;
@@ -43,40 +42,34 @@ export class Node implements d3.SimulationNodeDatum {
   width: number = 0;
   height: number = 0;
 
-  id: string;
+  id: string; //this should be PID URI
   links: Link[] = [];
-  linkCount: number = 0;
-  resourceIdentifier: string = "";
   shortName: string = "";
   name: string = "";
-  status: string = "";
-  resourceType: string = "";
-  mapNodeId: string | null = "";
-  pidUri: string | null = "";
+  resourceType: any;
+
   selected: boolean = false;
+
+  filterModeEnabled: boolean = false;
+  filterOutTypes: string[] = ["https://pid.bayer.com/kos/19050/444586", "https://pid.bayer.com/kos/19050/444582"]
 
   constructor(id: any) {
     this.id = id;
   }
 
-  normal = () => {
-    return Math.sqrt(this.linkCount / APP_CONFIG.N);
+  get linkCount(): number {
+    if (this.filterModeEnabled) {
+      return this.links.filter(l => !l.display && !l.isRendered && !(this.filterOutTypes.includes(l.source.resourceTypeId) || this.filterOutTypes.includes(l.target.resourceTypeId))).length;
+    } else {
+      return this.links.filter(l => l.display && !l.isRendered).length;
+    }
   }
 
-  get r() {
-    return 50 * this.normal() + 10;
+  get resourceTypeId(): string {
+    return this.resourceType.key;
   }
 
-  get fontSize() {
-    return (30 * this.normal() + 10) + 'px';
-  }
-
-  get color() {
-    let index = Math.floor(APP_CONFIG.SPECTRUM.length * this.normal());
-    return APP_CONFIG.SPECTRUM[index];
-  }
-
-  set color(rectColor: string) {
-    this.color = rectColor;
+  get resourceTypeName(): string {
+    return this.resourceType.value;
   }
 }

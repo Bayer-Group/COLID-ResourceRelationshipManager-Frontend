@@ -1,15 +1,13 @@
 import { AfterViewInit, Component } from '@angular/core';
 import { Link, Node } from '../../../core/d3';
-import { Store } from '@ngrx/store';
-import { GraphState } from '../../../state/store-items';
 import { Observable } from 'rxjs';
-import { GraphLinkingData } from '../../../state/graph-linking/graph-linking.model';
 import { LinkEditHistory, LinkEditHistoryDto, LinkHistoryAction } from '../../../shared/models/link-editing-history';
 import { tap } from 'rxjs/operators';
-import * as graphLinkingActions from '../../../state/graph-linking/graph-linking.actions';
-import * as graphDataActions from '../../../state/graph-data/graph-data.actions';
-import * as graphVisualisationActions from '../../../state/graph-visualisation/graph-visualisation.actions';
 import { ResourceRelationshipManagerService } from '../../../core/http/resource-relationship-manager.service';
+import { Select, Store } from '@ngxs/store';
+import { AddLinks, RemoveLinks } from '../../../state/graph-data.state';
+import { ClearHistory, DisableLinkingMode, GraphLinkingData, GraphLinkingDataState, RemoveFromHistory, ResetLinkEditHistory, ResetLinking } from '../../../state/graph-linking.state';
+import { EndLoading, StartLoading } from '../../../state/graph-visualisation.state';
 
 @Component({
   selector: 'colid-graph-container',
@@ -19,20 +17,17 @@ import { ResourceRelationshipManagerService } from '../../../core/http/resource-
 export class GraphContainerComponent implements AfterViewInit {
   nodes: Node[] = [];
   links: Link[] = [];
-  linkingProperties$: Observable<GraphLinkingData>;
+  @Select(GraphLinkingDataState.getGraphLinkingState) linkingProperties$: Observable<GraphLinkingData>;
 
   linkingModeEnabled: boolean = false;
   linkingNodesSelected: number = 0;
   linkHistory: LinkEditHistory[] = [];
   selectedHistory: LinkEditHistory[] = [];
-
   constructor(
-    private store: Store<GraphState>,
+    private store: Store,
     private service: ResourceRelationshipManagerService
-  ) {
-    this.linkingProperties$ = this.store.select('graphLinking');
+  ) { }
 
-  }
   ngAfterViewInit(): void {
     this.linkingProperties$.pipe(
       tap(
@@ -44,17 +39,11 @@ export class GraphContainerComponent implements AfterViewInit {
         }
       )
     ).subscribe();
-    window.addEventListener("message", this.receiveMessage.bind(this), false);
+    //window.addEventListener("message", this.receiveMessage.bind(this), false);
   }
 
   //  Listen for filter message from iFrame
-  receiveMessage(event: any) {
-    const message = event.data.message;
-    const uris = event.data.value
-    if (message == "selectedPidURIs") {
-      this.store.dispatch(graphVisualisationActions.setFilter({ pidUris: uris }))
-    }
-  }
+
 
   save() {
     let linkEditHistoryDto: LinkEditHistoryDto[] = [];
@@ -66,20 +55,21 @@ export class GraphContainerComponent implements AfterViewInit {
         targetUri: sh.target.uri
       });
     });
-    this.store.dispatch(graphVisualisationActions.StartLoading());
+    this.store.dispatch(new StartLoading());
     this.service.saveLinks(linkEditHistoryDto).subscribe(
       res => {
-        this.store.dispatch(graphLinkingActions.ResetLinkEditHistory());
+        this.store.dispatch(new ResetLinkEditHistory());
         this.selectedHistory.forEach(sh => {
-          this.store.dispatch(graphLinkingActions.RemoveFromHistory({ item: sh }));
+          this.store.dispatch(new RemoveFromHistory(sh));
         })
-        this.store.dispatch(graphVisualisationActions.EndLoading());
+        this.store.dispatch(new EndLoading());
       }
     );
   }
 
+
   cancelLinking() {
-    this.store.dispatch(graphLinkingActions.ResetLinking());
+    this.store.dispatch(new ResetLinking());
   }
 
   deleteHistoryEntry(event: any, item: LinkEditHistory) {
@@ -88,12 +78,19 @@ export class GraphContainerComponent implements AfterViewInit {
     if (item.action == LinkHistoryAction.Delete) {
       //the action in the history was delete, so to undo it the link has to be added again
 
-      this.store.dispatch(graphDataActions.AddLinks({ links: [link] }));
+      this.store.dispatch(new AddLinks([link]));
     }
     if (item.action == LinkHistoryAction.Add) {
-      this.store.dispatch(graphDataActions.RemoveLinks({ links: [link] }));
+      this.store.dispatch(new RemoveLinks([link]));
     }
 
-    this.store.dispatch(graphLinkingActions.RemoveFromHistory({ item: item }));
+    this.store.dispatch(new RemoveFromHistory(item));
+  }
+
+  cancelSelection(linkHistory) {
+    const linksToRemove = linkHistory.map(item => new Link(item.source.uri, item.target.uri, item.linkType));
+    this.store.dispatch(new RemoveLinks(linksToRemove));
+    this.store.dispatch(new ClearHistory());
+    this.store.dispatch(new DisableLinkingMode());
   }
 }

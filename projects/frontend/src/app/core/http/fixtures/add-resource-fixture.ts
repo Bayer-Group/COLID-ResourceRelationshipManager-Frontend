@@ -1,1566 +1,508 @@
 export const addRecourceFixture = [
   {
-    "resourceIdentifier": "https://pid.bayer.com/6677ceef-cc42-4302-af11-e2cedc1c17ff/",
-    "resourceType": "http://pid.bayer.com/kos/19014/Ontology",
-    "name": "PID Ontology 4 (PID Metadata Ontology 4)",
-    "pidUri": "https://pid.bayer.com/6677ceef-cc42-4302-af11-e2cedc1c17ff/",
-    "links": [
-      {
-        "mapLinkInfoId": "00000000-0000-0000-0000-000000000000",
-        "type": {
-          "nameValuePairId": "00000000-0000-0000-0000-000000000000",
-          "name": "Includes Ontology",
-          "value": "https://pid.bayer.com/kos/19050/includesOntology"
-        },
-        "status": {
-          "key": "https://pid.bayer.com/kos/19050/Created",
-          "value": "Created"
-        },
-        "startNode": {
-          "nameValuePairId": "00000000-0000-0000-0000-000000000000",
-          "name": "PID Ontology 4 (PID Metadata Ontology 4)",
-          "value": "https://pid.bayer.com/6677ceef-cc42-4302-af11-e2cedc1c17ff/"
-        },
-        "endNode": {
-          "nameValuePairId": "00000000-0000-0000-0000-000000000000",
-          "name": "Enterprise Core Ontology 1.0",
-          "value": "https://pid.bayer.com/0039ee80-6e1e-452b-b470-b28ae1f238a3"
-        }
-      },
-      {
-        "mapLinkInfoId": "00000000-0000-0000-0000-000000000000",
-        "type": {
-          "nameValuePairId": "00000000-0000-0000-0000-000000000000",
-          "name": "Includes Ontology",
-          "value": "https://pid.bayer.com/kos/19050/includesOntology"
-        },
-        "status": {
-          "key": "https://pid.bayer.com/kos/19050/Created",
-          "value": "Created"
-        },
-        "startNode": {
-          "nameValuePairId": "00000000-0000-0000-0000-000000000000",
-          "name": "PID Ontology Technical 4",
-          "value": "https://pid.bayer.com/ae207c8d-4317-41e2-bbd6-107743f62421/"
-        },
-        "endNode": {
-          "nameValuePairId": "00000000-0000-0000-0000-000000000000",
-          "name": "PID Ontology 4 (PID Metadata Ontology 4)",
-          "value": "https://pid.bayer.com/6677ceef-cc42-4302-af11-e2cedc1c17ff/"
-        }
-      },
-      {
-        "mapLinkInfoId": "00000000-0000-0000-0000-000000000000",
-        "type": {
-          "nameValuePairId": "00000000-0000-0000-0000-000000000000",
-          "name": "Is Schema Of Dataset",
-          "value": "https://pid.bayer.com/kos/19050/isSchemaOfDataset"
-        },
-        "status": {
-          "key": "https://pid.bayer.com/kos/19050/Created",
-          "value": "Created"
-        },
-        "startNode": {
-          "nameValuePairId": "00000000-0000-0000-0000-000000000000",
-          "name": "PID Ontology 4 (PID Metadata Ontology 4)",
-          "value": "https://pid.bayer.com/6677ceef-cc42-4302-af11-e2cedc1c17ff/"
-        },
-        "endNode": {
-          "nameValuePairId": "00000000-0000-0000-0000-000000000000",
-          "name": "COLID Corporate Linked Data Catalog content",
-          "value": "https://pid.bayer.com/06062e21-7f97-475f-8763-cac54d6fc1ee/"
-        }
-      }
-    ],
-    "versions": [
-      {
-        "id": "https://pid.bayer.com/kos/19050#4553090c-3ffe-4787-b1c1-3d48f1f7761c",
-        "version": "1",
-        "pidUri": "https://pid.bayer.com/5b288873-b914-40c4-94c5-e51a95226a3c/",
-        "baseUri": "https://pid.bayer.com/kos/19050/"
-      },
-      {
-        "id": "https://pid.bayer.com/kos/19050#a9b92fcb-3238-4c5e-84fc-bc5612fab43c",
-        "version": "2",
-        "pidUri": "https://pid.bayer.com/a1d9b9ce-a4c4-48ab-a01c-9ac96c08789e/",
-        "baseUri": "https://pid.bayer.com/kos/19050/"
-      },
-      {
-        "id": "https://pid.bayer.com/kos/19050#6ebef1bc-1bd5-4b33-be49-a6736c6f869c",
-        "version": "3",
-        "pidUri": "https://pid.bayer.com/6034b2cb-b9e3-4c34-ab7c-72031fd387f2/",
-        "baseUri": "https://pid.bayer.com/kos/19050/"
-      },
-      {
-        "id": "https://pid.bayer.com/kos/19050#fa52b933-25d7-4806-8e72-06113563576b",
-        "version": "4",
-        "pidUri": "https://pid.bayer.com/6677ceef-cc42-4302-af11-e2cedc1c17ff/",
-        "baseUri": "https://pid.bayer.com/kos/19050/"
-      },
-      {
-        "id": "https://pid.bayer.com/kos/19050#20b1eed4-ff55-40a7-98e5-3e9d5d417275",
-        "version": "10",
-        "pidUri": "https://pid.bayer.com/ce64b358-fa6d-4001-9ac3-69fdc86cc180/",
-        "baseUri": "https://pid.bayer.com/kos/19050/"
-      }
-    ],
-    "previousVersion": {
-      "id": "https://pid.bayer.com/kos/19050#6ebef1bc-1bd5-4b33-be49-a6736c6f869c",
-      "version": "3",
-      "pidUri": "https://pid.bayer.com/6034b2cb-b9e3-4c34-ab7c-72031fd387f2/",
-      "baseUri": "https://pid.bayer.com/kos/19050/"
+    "id": "https://dev-pid.bayer.com/00d17c57-416f-4f30-9f23-c2a30012f9b8/",
+    "shortName": "pur",
+    "name": "purch_ord_line",
+    "resourceType": {
+      "key": "https://pid.bayer.com/kos/19050/444586",
+      "value": "Table"
     },
-    "laterVersion": {
-      "id": "https://pid.bayer.com/kos/19050#20b1eed4-ff55-40a7-98e5-3e9d5d417275",
-      "version": "10",
-      "pidUri": "https://pid.bayer.com/ce64b358-fa6d-4001-9ac3-69fdc86cc180/",
-      "baseUri": "https://pid.bayer.com/kos/19050/"
-    }
-  },
-  {
-    "resourceIdentifier": "https://pid.bayer.com/19899076-04d0-4fba-b0c4-a207675c2c80/",
-    "resourceType": "http://pid.bayer.com/kos/19014/Ontology",
-    "name": "PID Ontology 8 (COLID Metadata Ontology 8)",
-    "pidUri": "https://pid.bayer.com/19899076-04d0-4fba-b0c4-a207675c2c80/",
     "links": [
       {
-        "mapLinkInfoId": "00000000-0000-0000-0000-000000000000",
-        "type": {
-          "nameValuePairId": "00000000-0000-0000-0000-000000000000",
-          "name": "Includes Ontology",
-          "value": "https://pid.bayer.com/kos/19050/includesOntology"
+        "source": "https://dev-pid.bayer.com/00d17c57-416f-4f30-9f23-c2a30012f9b8/",
+        "target": "https://dev-pid.bayer.com/02e581d4-f6b0-4f7c-8635-c5c90624bbb2/",
+        "linkType": {
+          "key": "https://pid.bayer.com/kos/19050/GenericDataset",
+          "value": "Generic Dataset"
         },
-        "status": {
-          "key": "https://pid.bayer.com/kos/19050/Created",
-          "value": "Created"
-        },
-        "startNode": {
-          "nameValuePairId": "00000000-0000-0000-0000-000000000000",
-          "name": "PID Ontology 8 (COLID Metadata Ontology 8)",
-          "value": "https://pid.bayer.com/19899076-04d0-4fba-b0c4-a207675c2c80/"
-        },
-        "endNode": {
-          "nameValuePairId": "00000000-0000-0000-0000-000000000000",
-          "name": "Enterprise Core Ontology 1.0",
-          "value": "https://pid.bayer.com/0039ee80-6e1e-452b-b470-b28ae1f238a3"
-        }
+        "outbound": true,
+        "isVersionLink": false
       },
       {
-        "mapLinkInfoId": "00000000-0000-0000-0000-000000000000",
-        "type": {
-          "nameValuePairId": "00000000-0000-0000-0000-000000000000",
-          "name": "Includes Ontology",
-          "value": "https://pid.bayer.com/kos/19050/includesOntology"
+        "source": "https://dev-pid.bayer.com/00d17c57-416f-4f30-9f23-c2a30012f9b8/",
+        "target": "https://dev-pid.bayer.com/73a10e57-59eb-4475-ab3c-b51248d06f9a/",
+        "linkType": {
+          "key": "https://pid.bayer.com/kos/19050/CropScienceDataset",
+          "value": "Crop Science Dataset"
         },
-        "status": {
-          "key": "https://pid.bayer.com/kos/19050/Created",
-          "value": "Created"
-        },
-        "startNode": {
-          "nameValuePairId": "00000000-0000-0000-0000-000000000000",
-          "name": "RWD Metadata Ontology 3",
-          "value": "https://pid.bayer.com/3639ebfd-bbc7-4438-a445-3eb42a1b2f2f/"
-        },
-        "endNode": {
-          "nameValuePairId": "00000000-0000-0000-0000-000000000000",
-          "name": "PID Ontology 8 (COLID Metadata Ontology 8)",
-          "value": "https://pid.bayer.com/19899076-04d0-4fba-b0c4-a207675c2c80/"
-        }
+        "outbound": true,
+        "isVersionLink": false
       },
       {
-        "mapLinkInfoId": "00000000-0000-0000-0000-000000000000",
-        "type": {
-          "nameValuePairId": "00000000-0000-0000-0000-000000000000",
-          "name": "Includes Ontology",
-          "value": "https://pid.bayer.com/kos/19050/includesOntology"
+        "source": "https://dev-pid.bayer.com/00d17c57-416f-4f30-9f23-c2a30012f9b8/",
+        "target": "https://dev-pid.bayer.com/9f250072-c5f9-4afd-b83e-22e75a62837c/",
+        "linkType": {
+          "key": "https://pid.bayer.com/kos/19050/444582",
+          "value": "Column"
         },
-        "status": {
-          "key": "https://pid.bayer.com/kos/19050/Created",
-          "value": "Created"
-        },
-        "startNode": {
-          "nameValuePairId": "00000000-0000-0000-0000-000000000000",
-          "name": "RWD Metadata Ontology 2",
-          "value": "https://pid.bayer.com/b1ea970d-a919-4667-985e-f33e5accf43a/"
-        },
-        "endNode": {
-          "nameValuePairId": "00000000-0000-0000-0000-000000000000",
-          "name": "PID Ontology 8 (COLID Metadata Ontology 8)",
-          "value": "https://pid.bayer.com/19899076-04d0-4fba-b0c4-a207675c2c80/"
-        }
+        "outbound": false,
+        "isVersionLink": false
       },
       {
-        "mapLinkInfoId": "00000000-0000-0000-0000-000000000000",
-        "type": {
-          "nameValuePairId": "00000000-0000-0000-0000-000000000000",
-          "name": "Is Schema Of Dataset",
-          "value": "https://pid.bayer.com/kos/19050/isSchemaOfDataset"
+        "source": "https://dev-pid.bayer.com/00d17c57-416f-4f30-9f23-c2a30012f9b8/",
+        "target": "https://dev-pid.bayer.com/cfc96354-b5d2-4f77-bb00-c684fcdd01ec/",
+        "linkType": {
+          "key": "https://pid.bayer.com/kos/19050/444582",
+          "value": "Column"
         },
-        "status": {
-          "key": "https://pid.bayer.com/kos/19050/Created",
-          "value": "Created"
+        "outbound": false,
+        "isVersionLink": false
+      },
+      {
+        "source": "https://dev-pid.bayer.com/00d17c57-416f-4f30-9f23-c2a30012f9b8/",
+        "target": "https://dev-pid.bayer.com/9db0313d-96d2-41e6-b9f4-003b10112d77/",
+        "linkType": {
+          "key": "https://pid.bayer.com/kos/19050/444582",
+          "value": "Column"
         },
-        "startNode": {
-          "nameValuePairId": "00000000-0000-0000-0000-000000000000",
-          "name": "PID Ontology 8 (COLID Metadata Ontology 8)",
-          "value": "https://pid.bayer.com/19899076-04d0-4fba-b0c4-a207675c2c80/"
+        "outbound": false,
+        "isVersionLink": false
+      },
+      {
+        "source": "https://dev-pid.bayer.com/00d17c57-416f-4f30-9f23-c2a30012f9b8/",
+        "target": "https://dev-pid.bayer.com/7b510be4-dcfb-4051-87cf-9271c1844ebd/",
+        "linkType": {
+          "key": "https://pid.bayer.com/kos/19050/444582",
+          "value": "Column"
         },
-        "endNode": {
-          "nameValuePairId": "00000000-0000-0000-0000-000000000000",
-          "name": "COLID Corporate Linked Data Catalog content",
-          "value": "https://pid.bayer.com/06062e21-7f97-475f-8763-cac54d6fc1ee/"
-        }
+        "outbound": false,
+        "isVersionLink": false
+      },
+      {
+        "source": "https://dev-pid.bayer.com/00d17c57-416f-4f30-9f23-c2a30012f9b8/",
+        "target": "https://dev-pid.bayer.com/dbdbaa60-2c2d-4cf0-906c-0c940e0db391/",
+        "linkType": {
+          "key": "https://pid.bayer.com/kos/19050/444582",
+          "value": "Column"
+        },
+        "outbound": false,
+        "isVersionLink": false
+      },
+      {
+        "source": "https://dev-pid.bayer.com/00d17c57-416f-4f30-9f23-c2a30012f9b8/",
+        "target": "https://dev-pid.bayer.com/3fdbdc3b-e87c-42bc-8de4-104392ca29f1/",
+        "linkType": {
+          "key": "https://pid.bayer.com/kos/19050/444582",
+          "value": "Column"
+        },
+        "outbound": false,
+        "isVersionLink": false
+      },
+      {
+        "source": "https://dev-pid.bayer.com/00d17c57-416f-4f30-9f23-c2a30012f9b8/",
+        "target": "https://dev-pid.bayer.com/615d65ac-4e69-409b-8f84-e6d9b96226e1/",
+        "linkType": {
+          "key": "https://pid.bayer.com/kos/19050/444582",
+          "value": "Column"
+        },
+        "outbound": false,
+        "isVersionLink": false
+      },
+      {
+        "source": "https://dev-pid.bayer.com/00d17c57-416f-4f30-9f23-c2a30012f9b8/",
+        "target": "https://dev-pid.bayer.com/4d987503-7158-4a44-b595-8139d68cc81f/",
+        "linkType": {
+          "key": "https://pid.bayer.com/kos/19050/444582",
+          "value": "Column"
+        },
+        "outbound": false,
+        "isVersionLink": false
+      },
+      {
+        "source": "https://dev-pid.bayer.com/00d17c57-416f-4f30-9f23-c2a30012f9b8/",
+        "target": "https://dev-pid.bayer.com/c2b8b625-e7d8-4d27-8830-4b5dd532c516/",
+        "linkType": {
+          "key": "https://pid.bayer.com/kos/19050/444582",
+          "value": "Column"
+        },
+        "outbound": false,
+        "isVersionLink": false
+      },
+      {
+        "source": "https://dev-pid.bayer.com/00d17c57-416f-4f30-9f23-c2a30012f9b8/",
+        "target": "https://dev-pid.bayer.com/a2eaabda-f8fd-4b33-bff3-36a25e2149ff/",
+        "linkType": {
+          "key": "https://pid.bayer.com/kos/19050/444582",
+          "value": "Column"
+        },
+        "outbound": false,
+        "isVersionLink": false
+      },
+      {
+        "source": "https://dev-pid.bayer.com/00d17c57-416f-4f30-9f23-c2a30012f9b8/",
+        "target": "https://dev-pid.bayer.com/f8928ccb-b270-4041-bd57-fb5aee8d68e3/",
+        "linkType": {
+          "key": "https://pid.bayer.com/kos/19050/444582",
+          "value": "Column"
+        },
+        "outbound": false,
+        "isVersionLink": false
+      },
+      {
+        "source": "https://dev-pid.bayer.com/00d17c57-416f-4f30-9f23-c2a30012f9b8/",
+        "target": "https://dev-pid.bayer.com/443d5bef-cb62-48af-8536-24f726cdd2d2/",
+        "linkType": {
+          "key": "https://pid.bayer.com/kos/19050/444582",
+          "value": "Column"
+        },
+        "outbound": false,
+        "isVersionLink": false
+      },
+      {
+        "source": "https://dev-pid.bayer.com/00d17c57-416f-4f30-9f23-c2a30012f9b8/",
+        "target": "https://dev-pid.bayer.com/251e08bc-b2f0-487c-97d4-11b52a6f92b9/",
+        "linkType": {
+          "key": "https://pid.bayer.com/kos/19050/444582",
+          "value": "Column"
+        },
+        "outbound": false,
+        "isVersionLink": false
+      },
+      {
+        "source": "https://dev-pid.bayer.com/00d17c57-416f-4f30-9f23-c2a30012f9b8/",
+        "target": "https://dev-pid.bayer.com/e2c2ad59-c510-429b-beff-b1614c200604/",
+        "linkType": {
+          "key": "https://pid.bayer.com/kos/19050/444582",
+          "value": "Column"
+        },
+        "outbound": false,
+        "isVersionLink": false
+      },
+      {
+        "source": "https://dev-pid.bayer.com/00d17c57-416f-4f30-9f23-c2a30012f9b8/",
+        "target": "https://dev-pid.bayer.com/57e74723-df4d-494e-86d0-ef081c314d8a/",
+        "linkType": {
+          "key": "https://pid.bayer.com/kos/19050/444582",
+          "value": "Column"
+        },
+        "outbound": false,
+        "isVersionLink": false
+      },
+      {
+        "source": "https://dev-pid.bayer.com/00d17c57-416f-4f30-9f23-c2a30012f9b8/",
+        "target": "https://dev-pid.bayer.com/30176769-c7ef-4613-9c59-9c30dbca4f10/",
+        "linkType": {
+          "key": "https://pid.bayer.com/kos/19050/444582",
+          "value": "Column"
+        },
+        "outbound": false,
+        "isVersionLink": false
+      },
+      {
+        "source": "https://dev-pid.bayer.com/00d17c57-416f-4f30-9f23-c2a30012f9b8/",
+        "target": "https://dev-pid.bayer.com/532299f0-e2a9-4d17-a193-b44b07fb8651/",
+        "linkType": {
+          "key": "https://pid.bayer.com/kos/19050/444582",
+          "value": "Column"
+        },
+        "outbound": false,
+        "isVersionLink": false
+      },
+      {
+        "source": "https://dev-pid.bayer.com/00d17c57-416f-4f30-9f23-c2a30012f9b8/",
+        "target": "https://dev-pid.bayer.com/db917724-4e99-4a04-ab45-394942cf08e3/",
+        "linkType": {
+          "key": "https://pid.bayer.com/kos/19050/444582",
+          "value": "Column"
+        },
+        "outbound": false,
+        "isVersionLink": false
+      },
+      {
+        "source": "https://dev-pid.bayer.com/00d17c57-416f-4f30-9f23-c2a30012f9b8/",
+        "target": "https://dev-pid.bayer.com/16c13cbe-c9e6-45ba-be21-4290054e17e1/",
+        "linkType": {
+          "key": "https://pid.bayer.com/kos/19050/444582",
+          "value": "Column"
+        },
+        "outbound": false,
+        "isVersionLink": false
+      },
+      {
+        "source": "https://dev-pid.bayer.com/00d17c57-416f-4f30-9f23-c2a30012f9b8/",
+        "target": "https://dev-pid.bayer.com/f745e16f-e733-4f28-94e2-4c131fc3137b/",
+        "linkType": {
+          "key": "https://pid.bayer.com/kos/19050/444582",
+          "value": "Column"
+        },
+        "outbound": false,
+        "isVersionLink": false
+      },
+      {
+        "source": "https://dev-pid.bayer.com/00d17c57-416f-4f30-9f23-c2a30012f9b8/",
+        "target": "https://dev-pid.bayer.com/c4db21f5-884e-4e90-b64a-c339d8e00085/",
+        "linkType": {
+          "key": "https://pid.bayer.com/kos/19050/444582",
+          "value": "Column"
+        },
+        "outbound": false,
+        "isVersionLink": false
+      },
+      {
+        "source": "https://dev-pid.bayer.com/00d17c57-416f-4f30-9f23-c2a30012f9b8/",
+        "target": "https://dev-pid.bayer.com/73baec1c-9073-4da7-a342-0935f9ed9400/",
+        "linkType": {
+          "key": "https://pid.bayer.com/kos/19050/444582",
+          "value": "Column"
+        },
+        "outbound": false,
+        "isVersionLink": false
+      },
+      {
+        "source": "https://dev-pid.bayer.com/00d17c57-416f-4f30-9f23-c2a30012f9b8/",
+        "target": "https://dev-pid.bayer.com/59deacc5-215a-42cd-9f1c-10c7b34f9487/",
+        "linkType": {
+          "key": "https://pid.bayer.com/kos/19050/444582",
+          "value": "Column"
+        },
+        "outbound": false,
+        "isVersionLink": false
+      },
+      {
+        "source": "https://dev-pid.bayer.com/00d17c57-416f-4f30-9f23-c2a30012f9b8/",
+        "target": "https://dev-pid.bayer.com/e9be32df-2257-4e38-a276-e4df8ea9ea27/",
+        "linkType": {
+          "key": "https://pid.bayer.com/kos/19050/444582",
+          "value": "Column"
+        },
+        "outbound": false,
+        "isVersionLink": false
+      },
+      {
+        "source": "https://dev-pid.bayer.com/00d17c57-416f-4f30-9f23-c2a30012f9b8/",
+        "target": "https://dev-pid.bayer.com/8aa30178-56d2-44ee-b75e-b220d1f442ad/",
+        "linkType": {
+          "key": "https://pid.bayer.com/kos/19050/444582",
+          "value": "Column"
+        },
+        "outbound": false,
+        "isVersionLink": false
+      },
+      {
+        "source": "https://dev-pid.bayer.com/00d17c57-416f-4f30-9f23-c2a30012f9b8/",
+        "target": "https://dev-pid.bayer.com/64bdae2f-d89b-4510-b443-550a377960b3/",
+        "linkType": {
+          "key": "https://pid.bayer.com/kos/19050/444582",
+          "value": "Column"
+        },
+        "outbound": false,
+        "isVersionLink": false
+      },
+      {
+        "source": "https://dev-pid.bayer.com/00d17c57-416f-4f30-9f23-c2a30012f9b8/",
+        "target": "https://dev-pid.bayer.com/b2e51e3d-cb6c-4bff-b98d-fb49b6700cc5/",
+        "linkType": {
+          "key": "https://pid.bayer.com/kos/19050/444582",
+          "value": "Column"
+        },
+        "outbound": false,
+        "isVersionLink": false
+      },
+      {
+        "source": "https://dev-pid.bayer.com/00d17c57-416f-4f30-9f23-c2a30012f9b8/",
+        "target": "https://dev-pid.bayer.com/8e366612-2bce-455f-8d74-7f697755d777/",
+        "linkType": {
+          "key": "https://pid.bayer.com/kos/19050/444582",
+          "value": "Column"
+        },
+        "outbound": false,
+        "isVersionLink": false
+      },
+      {
+        "source": "https://dev-pid.bayer.com/00d17c57-416f-4f30-9f23-c2a30012f9b8/",
+        "target": "https://dev-pid.bayer.com/4916b95f-c5a1-43c2-8d75-2c01b7a0e780/",
+        "linkType": {
+          "key": "https://pid.bayer.com/kos/19050/444582",
+          "value": "Column"
+        },
+        "outbound": false,
+        "isVersionLink": false
+      },
+      {
+        "source": "https://dev-pid.bayer.com/00d17c57-416f-4f30-9f23-c2a30012f9b8/",
+        "target": "https://dev-pid.bayer.com/c500a86b-5442-4aad-8d2f-a450a58f5c00/",
+        "linkType": {
+          "key": "https://pid.bayer.com/kos/19050/444582",
+          "value": "Column"
+        },
+        "outbound": false,
+        "isVersionLink": false
+      },
+      {
+        "source": "https://dev-pid.bayer.com/00d17c57-416f-4f30-9f23-c2a30012f9b8/",
+        "target": "https://dev-pid.bayer.com/b3eb6e52-455a-4f9b-80f8-96a7c6da5533/",
+        "linkType": {
+          "key": "https://pid.bayer.com/kos/19050/444582",
+          "value": "Column"
+        },
+        "outbound": false,
+        "isVersionLink": false
+      },
+      {
+        "source": "https://dev-pid.bayer.com/00d17c57-416f-4f30-9f23-c2a30012f9b8/",
+        "target": "https://dev-pid.bayer.com/54abe137-5f02-4cbe-aa52-f998a71a6197/",
+        "linkType": {
+          "key": "https://pid.bayer.com/kos/19050/444582",
+          "value": "Column"
+        },
+        "outbound": false,
+        "isVersionLink": false
+      },
+      {
+        "source": "https://dev-pid.bayer.com/00d17c57-416f-4f30-9f23-c2a30012f9b8/",
+        "target": "https://dev-pid.bayer.com/98548745-d8a2-426a-9ed5-c5b9b3961fbc/",
+        "linkType": {
+          "key": "https://pid.bayer.com/kos/19050/444582",
+          "value": "Column"
+        },
+        "outbound": false,
+        "isVersionLink": false
+      },
+      {
+        "source": "https://dev-pid.bayer.com/00d17c57-416f-4f30-9f23-c2a30012f9b8/",
+        "target": "https://dev-pid.bayer.com/63084011-9b1f-47db-aec9-e50e362fb55d/",
+        "linkType": {
+          "key": "https://pid.bayer.com/kos/19050/444582",
+          "value": "Column"
+        },
+        "outbound": false,
+        "isVersionLink": false
+      },
+      {
+        "source": "https://dev-pid.bayer.com/00d17c57-416f-4f30-9f23-c2a30012f9b8/",
+        "target": "https://dev-pid.bayer.com/82f3f2ab-af8c-4c1d-a0ba-a65b901b71e5/",
+        "linkType": {
+          "key": "https://pid.bayer.com/kos/19050/444582",
+          "value": "Column"
+        },
+        "outbound": false,
+        "isVersionLink": false
+      },
+      {
+        "source": "https://dev-pid.bayer.com/00d17c57-416f-4f30-9f23-c2a30012f9b8/",
+        "target": "https://dev-pid.bayer.com/44e5e36c-2185-4ba5-b91d-426017a939df/",
+        "linkType": {
+          "key": "https://pid.bayer.com/kos/19050/444582",
+          "value": "Column"
+        },
+        "outbound": false,
+        "isVersionLink": false
+      },
+      {
+        "source": "https://dev-pid.bayer.com/00d17c57-416f-4f30-9f23-c2a30012f9b8/",
+        "target": "https://dev-pid.bayer.com/dd9ab762-a8b6-497c-8015-827e8c6ff8f2/",
+        "linkType": {
+          "key": "https://pid.bayer.com/kos/19050/444582",
+          "value": "Column"
+        },
+        "outbound": false,
+        "isVersionLink": false
+      },
+      {
+        "source": "https://dev-pid.bayer.com/00d17c57-416f-4f30-9f23-c2a30012f9b8/",
+        "target": "https://dev-pid.bayer.com/5f829a3c-f8a2-4371-b265-9762db3d52d1/",
+        "linkType": {
+          "key": "https://pid.bayer.com/kos/19050/444582",
+          "value": "Column"
+        },
+        "outbound": false,
+        "isVersionLink": false
+      },
+      {
+        "source": "https://dev-pid.bayer.com/00d17c57-416f-4f30-9f23-c2a30012f9b8/",
+        "target": "https://dev-pid.bayer.com/9c37444b-ca19-4497-a260-865646cce042/",
+        "linkType": {
+          "key": "https://pid.bayer.com/kos/19050/444582",
+          "value": "Column"
+        },
+        "outbound": false,
+        "isVersionLink": false
+      },
+      {
+        "source": "https://dev-pid.bayer.com/00d17c57-416f-4f30-9f23-c2a30012f9b8/",
+        "target": "https://dev-pid.bayer.com/5ba88a55-fb43-47ba-8fa2-b48e91112cd9/",
+        "linkType": {
+          "key": "https://pid.bayer.com/kos/19050/444582",
+          "value": "Column"
+        },
+        "outbound": false,
+        "isVersionLink": false
+      },
+      {
+        "source": "https://dev-pid.bayer.com/00d17c57-416f-4f30-9f23-c2a30012f9b8/",
+        "target": "https://dev-pid.bayer.com/e35e0df8-5ab7-437a-8100-5e6252a060fc/",
+        "linkType": {
+          "key": "https://pid.bayer.com/kos/19050/444582",
+          "value": "Column"
+        },
+        "outbound": false,
+        "isVersionLink": false
+      },
+      {
+        "source": "https://dev-pid.bayer.com/00d17c57-416f-4f30-9f23-c2a30012f9b8/",
+        "target": "https://dev-pid.bayer.com/bc60bd58-9569-48f9-bdae-ef0cc6305245/",
+        "linkType": {
+          "key": "https://pid.bayer.com/kos/19050/444582",
+          "value": "Column"
+        },
+        "outbound": false,
+        "isVersionLink": false
+      },
+      {
+        "source": "https://dev-pid.bayer.com/00d17c57-416f-4f30-9f23-c2a30012f9b8/",
+        "target": "https://dev-pid.bayer.com/2cab0b02-686a-4d96-9460-d6f89da11974/",
+        "linkType": {
+          "key": "https://pid.bayer.com/kos/19050/444582",
+          "value": "Column"
+        },
+        "outbound": false,
+        "isVersionLink": false
+      },
+      {
+        "source": "https://dev-pid.bayer.com/00d17c57-416f-4f30-9f23-c2a30012f9b8/",
+        "target": "https://dev-pid.bayer.com/7c2f0585-e4d2-4689-a5e2-d8c60be0799c/",
+        "linkType": {
+          "key": "https://pid.bayer.com/kos/19050/444582",
+          "value": "Column"
+        },
+        "outbound": false,
+        "isVersionLink": false
       }
     ],
-    "versions": [
-      {
-        "id": "https://pid.bayer.com/kos/19050#504a6995-0516-4cb8-9b24-c2472f858519",
-        "version": "6.5",
-        "pidUri": "https://pid.bayer.com/4ee0be1e-3f1f-4e3f-9424-72a8fb021be1/",
-        "baseUri": "https://pid.bayer.com/kos/19050/"
-      },
-      {
-        "id": "https://pid.bayer.com/kos/19050#2d9378a7-f2ea-4dd0-a4e9-7533dcae42bd",
-        "version": "5",
-        "pidUri": "https://pid.bayer.com/e8fa556b-5da0-46bf-8763-4a68dc905f2b/",
-        "baseUri": "https://pid.bayer.com/kos/19050/"
-      },
-      {
-        "id": "https://pid.bayer.com/kos/19050#be0a7a07-6c5c-43f3-bb81-cd08fc1b3172",
-        "version": "6",
-        "pidUri": "https://pid.bayer.com/cd2f504e-7ab7-4453-8cab-01c68ff6af18/",
-        "baseUri": "https://pid.bayer.com/kos/19050/"
-      },
-      {
-        "id": "https://pid.bayer.com/kos/19050#58706f82-30b0-4100-89e5-6fbae841d59d",
-        "version": "7",
-        "pidUri": "https://pid.bayer.com/ea64f1ad-a7ce-427b-93ad-f9bf776f1234/",
-        "baseUri": "https://pid.bayer.com/kos/19050/"
-      },
-      {
-        "id": "https://pid.bayer.com/kos/19050#1e084ff3-5acc-418d-93e1-5cc60a5e600e",
-        "version": "8",
-        "pidUri": "https://pid.bayer.com/19899076-04d0-4fba-b0c4-a207675c2c80/",
-        "baseUri": "https://pid.bayer.com/kos/19050/"
-      },
-      {
-        "id": "https://pid.bayer.com/kos/19050#0e2774ae-3d4a-46e4-91a3-46fa0aae25dc",
-        "version": "9",
-        "pidUri": "https://pid.bayer.com/c258edc4-ffff-4023-9430-f3dd9871b796/",
-        "baseUri": "https://pid.bayer.com/kos/19050/"
-      }
-    ],
-    "previousVersion": {
-      "id": "https://pid.bayer.com/kos/19050#58706f82-30b0-4100-89e5-6fbae841d59d",
-      "version": "7",
-      "pidUri": "https://pid.bayer.com/ea64f1ad-a7ce-427b-93ad-f9bf776f1234/",
-      "baseUri": "https://pid.bayer.com/kos/19050/"
+    "fx": 5,
+    "fy": 6
+  },
+  {
+    "id": "https://dev-pid.bayer.com/02e581d4-f6b0-4f7c-8635-c5c90624bbb2/",
+    "shortName": "ZZZ-tes-QA2",
+    "name": "ZZZ test QA2",
+    "resourceType": {
+      "key": "https://pid.bayer.com/kos/19050/GenericDataset",
+      "value": "Generic Dataset"
     },
-    "laterVersion": {
-      "id": "https://pid.bayer.com/kos/19050#0e2774ae-3d4a-46e4-91a3-46fa0aae25dc",
-      "version": "9",
-      "pidUri": "https://pid.bayer.com/c258edc4-ffff-4023-9430-f3dd9871b796/",
-      "baseUri": "https://pid.bayer.com/kos/19050/"
-    }
-  },
-  {
-    "resourceIdentifier": "https://pid.bayer.com/cd2f504e-7ab7-4453-8cab-01c68ff6af18/",
-    "resourceType": "http://pid.bayer.com/kos/19014/Ontology",
-    "name": "PID Ontology 6 (COLID Metadata Ontology 6)",
-    "pidUri": "https://pid.bayer.com/cd2f504e-7ab7-4453-8cab-01c68ff6af18/",
     "links": [
       {
-        "mapLinkInfoId": "00000000-0000-0000-0000-000000000000",
-        "type": {
-          "nameValuePairId": "00000000-0000-0000-0000-000000000000",
-          "name": "Includes Ontology",
-          "value": "https://pid.bayer.com/kos/19050/includesOntology"
+        "source": "https://dev-pid.bayer.com/02e581d4-f6b0-4f7c-8635-c5c90624bbb2/",
+        "target": "https://dev-pid.bayer.com/00d17c57-416f-4f30-9f23-c2a30012f9b8/",
+        "linkType": {
+          "key": "https://pid.bayer.com/kos/19050/444586",
+          "value": "Table"
         },
-        "status": {
-          "key": "https://pid.bayer.com/kos/19050/Created",
-          "value": "Created"
-        },
-        "startNode": {
-          "nameValuePairId": "00000000-0000-0000-0000-000000000000",
-          "name": "PID Ontology 6 (COLID Metadata Ontology 6)",
-          "value": "https://pid.bayer.com/cd2f504e-7ab7-4453-8cab-01c68ff6af18/"
-        },
-        "endNode": {
-          "nameValuePairId": "00000000-0000-0000-0000-000000000000",
-          "name": "Enterprise Core Ontology 1.0",
-          "value": "https://pid.bayer.com/0039ee80-6e1e-452b-b470-b28ae1f238a3"
-        }
+        "outbound": false,
+        "isVersionLink": false
       },
       {
-        "mapLinkInfoId": "00000000-0000-0000-0000-000000000000",
-        "type": {
-          "nameValuePairId": "00000000-0000-0000-0000-000000000000",
-          "name": "Includes Ontology",
-          "value": "https://pid.bayer.com/kos/19050/includesOntology"
+        "source": "https://dev-pid.bayer.com/02e581d4-f6b0-4f7c-8635-c5c90624bbb2/",
+        "target": "https://dev-pid.bayer.com/408d096e-06de-4997-8d3a-77d12cef502f/",
+        "linkType": {
+          "key": "https://pid.bayer.com/kos/19050/GenericDataset",
+          "value": "Generic Dataset"
         },
-        "status": {
-          "key": "https://pid.bayer.com/kos/19050/Created",
-          "value": "Created"
-        },
-        "startNode": {
-          "nameValuePairId": "00000000-0000-0000-0000-000000000000",
-          "name": "PID Ontology Technical 6",
-          "value": "https://pid.bayer.com/ec3c39c3-90f2-40d9-a990-1d1e1c4267fa/"
-        },
-        "endNode": {
-          "nameValuePairId": "00000000-0000-0000-0000-000000000000",
-          "name": "PID Ontology 6 (COLID Metadata Ontology 6)",
-          "value": "https://pid.bayer.com/cd2f504e-7ab7-4453-8cab-01c68ff6af18/"
-        }
-      },
-      {
-        "mapLinkInfoId": "00000000-0000-0000-0000-000000000000",
-        "type": {
-          "nameValuePairId": "00000000-0000-0000-0000-000000000000",
-          "name": "Includes Ontology",
-          "value": "https://pid.bayer.com/kos/19050/includesOntology"
-        },
-        "status": {
-          "key": "https://pid.bayer.com/kos/19050/Created",
-          "value": "Created"
-        },
-        "startNode": {
-          "nameValuePairId": "00000000-0000-0000-0000-000000000000",
-          "name": "PID Ontology Shacled 6.5",
-          "value": "https://pid.bayer.com/1c7c93e1-6674-4ea3-b8e9-eb8e65d87542/"
-        },
-        "endNode": {
-          "nameValuePairId": "00000000-0000-0000-0000-000000000000",
-          "name": "PID Ontology 6 (COLID Metadata Ontology 6)",
-          "value": "https://pid.bayer.com/cd2f504e-7ab7-4453-8cab-01c68ff6af18/"
-        }
-      },
-      {
-        "mapLinkInfoId": "00000000-0000-0000-0000-000000000000",
-        "type": {
-          "nameValuePairId": "00000000-0000-0000-0000-000000000000",
-          "name": "Includes Ontology",
-          "value": "https://pid.bayer.com/kos/19050/includesOntology"
-        },
-        "status": {
-          "key": "https://pid.bayer.com/kos/19050/Created",
-          "value": "Created"
-        },
-        "startNode": {
-          "nameValuePairId": "00000000-0000-0000-0000-000000000000",
-          "name": "PID Ontology Shacled 6",
-          "value": "https://pid.bayer.com/f66f501c-56ad-40b0-b670-8f3d1fdf5369/"
-        },
-        "endNode": {
-          "nameValuePairId": "00000000-0000-0000-0000-000000000000",
-          "name": "PID Ontology 6 (COLID Metadata Ontology 6)",
-          "value": "https://pid.bayer.com/cd2f504e-7ab7-4453-8cab-01c68ff6af18/"
-        }
-      },
-      {
-        "mapLinkInfoId": "00000000-0000-0000-0000-000000000000",
-        "type": {
-          "nameValuePairId": "00000000-0000-0000-0000-000000000000",
-          "name": "Is Schema Of Dataset",
-          "value": "https://pid.bayer.com/kos/19050/isSchemaOfDataset"
-        },
-        "status": {
-          "key": "https://pid.bayer.com/kos/19050/Created",
-          "value": "Created"
-        },
-        "startNode": {
-          "nameValuePairId": "00000000-0000-0000-0000-000000000000",
-          "name": "PID Ontology 6 (COLID Metadata Ontology 6)",
-          "value": "https://pid.bayer.com/cd2f504e-7ab7-4453-8cab-01c68ff6af18/"
-        },
-        "endNode": {
-          "nameValuePairId": "00000000-0000-0000-0000-000000000000",
-          "name": "COLID Corporate Linked Data Catalog content",
-          "value": "https://pid.bayer.com/06062e21-7f97-475f-8763-cac54d6fc1ee/"
-        }
+        "outbound": false,
+        "isVersionLink": false
       }
     ],
-    "versions": [
-      {
-        "id": "https://pid.bayer.com/kos/19050#504a6995-0516-4cb8-9b24-c2472f858519",
-        "version": "6.5",
-        "pidUri": "https://pid.bayer.com/4ee0be1e-3f1f-4e3f-9424-72a8fb021be1/",
-        "baseUri": "https://pid.bayer.com/kos/19050/"
-      },
-      {
-        "id": "https://pid.bayer.com/kos/19050#2d9378a7-f2ea-4dd0-a4e9-7533dcae42bd",
-        "version": "5",
-        "pidUri": "https://pid.bayer.com/e8fa556b-5da0-46bf-8763-4a68dc905f2b/",
-        "baseUri": "https://pid.bayer.com/kos/19050/"
-      },
-      {
-        "id": "https://pid.bayer.com/kos/19050#be0a7a07-6c5c-43f3-bb81-cd08fc1b3172",
-        "version": "6",
-        "pidUri": "https://pid.bayer.com/cd2f504e-7ab7-4453-8cab-01c68ff6af18/",
-        "baseUri": "https://pid.bayer.com/kos/19050/"
-      },
-      {
-        "id": "https://pid.bayer.com/kos/19050#58706f82-30b0-4100-89e5-6fbae841d59d",
-        "version": "7",
-        "pidUri": "https://pid.bayer.com/ea64f1ad-a7ce-427b-93ad-f9bf776f1234/",
-        "baseUri": "https://pid.bayer.com/kos/19050/"
-      },
-      {
-        "id": "https://pid.bayer.com/kos/19050#1e084ff3-5acc-418d-93e1-5cc60a5e600e",
-        "version": "8",
-        "pidUri": "https://pid.bayer.com/19899076-04d0-4fba-b0c4-a207675c2c80/",
-        "baseUri": "https://pid.bayer.com/kos/19050/"
-      },
-      {
-        "id": "https://pid.bayer.com/kos/19050#0e2774ae-3d4a-46e4-91a3-46fa0aae25dc",
-        "version": "9",
-        "pidUri": "https://pid.bayer.com/c258edc4-ffff-4023-9430-f3dd9871b796/",
-        "baseUri": "https://pid.bayer.com/kos/19050/"
-      }
-    ],
-    "previousVersion": {
-      "id": "https://pid.bayer.com/kos/19050#2d9378a7-f2ea-4dd0-a4e9-7533dcae42bd",
-      "version": "5",
-      "pidUri": "https://pid.bayer.com/e8fa556b-5da0-46bf-8763-4a68dc905f2b/",
-      "baseUri": "https://pid.bayer.com/kos/19050/"
-    },
-    "laterVersion": {
-      "id": "https://pid.bayer.com/kos/19050#58706f82-30b0-4100-89e5-6fbae841d59d",
-      "version": "7",
-      "pidUri": "https://pid.bayer.com/ea64f1ad-a7ce-427b-93ad-f9bf776f1234/",
-      "baseUri": "https://pid.bayer.com/kos/19050/"
-    }
-  },
-  {
-    "resourceIdentifier": "https://pid.bayer.com/ea64f1ad-a7ce-427b-93ad-f9bf776f1234/",
-    "resourceType": "http://pid.bayer.com/kos/19014/Ontology",
-    "name": "PID Ontology 7 (COLID Metadata Ontology 7)",
-    "pidUri": "https://pid.bayer.com/ea64f1ad-a7ce-427b-93ad-f9bf776f1234/",
-    "links": [
-      {
-        "mapLinkInfoId": "00000000-0000-0000-0000-000000000000",
-        "type": {
-          "nameValuePairId": "00000000-0000-0000-0000-000000000000",
-          "name": "Includes Ontology",
-          "value": "https://pid.bayer.com/kos/19050/includesOntology"
-        },
-        "status": {
-          "key": "https://pid.bayer.com/kos/19050/Created",
-          "value": "Created"
-        },
-        "startNode": {
-          "nameValuePairId": "00000000-0000-0000-0000-000000000000",
-          "name": "PID Ontology 7 (COLID Metadata Ontology 7)",
-          "value": "https://pid.bayer.com/ea64f1ad-a7ce-427b-93ad-f9bf776f1234/"
-        },
-        "endNode": {
-          "nameValuePairId": "00000000-0000-0000-0000-000000000000",
-          "name": "Enterprise Core Ontology 1.0",
-          "value": "https://pid.bayer.com/0039ee80-6e1e-452b-b470-b28ae1f238a3"
-        }
-      },
-      {
-        "mapLinkInfoId": "00000000-0000-0000-0000-000000000000",
-        "type": {
-          "nameValuePairId": "00000000-0000-0000-0000-000000000000",
-          "name": "Is Schema Of Dataset",
-          "value": "https://pid.bayer.com/kos/19050/isSchemaOfDataset"
-        },
-        "status": {
-          "key": "https://pid.bayer.com/kos/19050/Created",
-          "value": "Created"
-        },
-        "startNode": {
-          "nameValuePairId": "00000000-0000-0000-0000-000000000000",
-          "name": "PID Ontology 7 (COLID Metadata Ontology 7)",
-          "value": "https://pid.bayer.com/ea64f1ad-a7ce-427b-93ad-f9bf776f1234/"
-        },
-        "endNode": {
-          "nameValuePairId": "00000000-0000-0000-0000-000000000000",
-          "name": "COLID Corporate Linked Data Catalog content",
-          "value": "https://pid.bayer.com/06062e21-7f97-475f-8763-cac54d6fc1ee/"
-        }
-      }
-    ],
-    "versions": [
-      {
-        "id": "https://pid.bayer.com/kos/19050#504a6995-0516-4cb8-9b24-c2472f858519",
-        "version": "6.5",
-        "pidUri": "https://pid.bayer.com/4ee0be1e-3f1f-4e3f-9424-72a8fb021be1/",
-        "baseUri": "https://pid.bayer.com/kos/19050/"
-      },
-      {
-        "id": "https://pid.bayer.com/kos/19050#2d9378a7-f2ea-4dd0-a4e9-7533dcae42bd",
-        "version": "5",
-        "pidUri": "https://pid.bayer.com/e8fa556b-5da0-46bf-8763-4a68dc905f2b/",
-        "baseUri": "https://pid.bayer.com/kos/19050/"
-      },
-      {
-        "id": "https://pid.bayer.com/kos/19050#be0a7a07-6c5c-43f3-bb81-cd08fc1b3172",
-        "version": "6",
-        "pidUri": "https://pid.bayer.com/cd2f504e-7ab7-4453-8cab-01c68ff6af18/",
-        "baseUri": "https://pid.bayer.com/kos/19050/"
-      },
-      {
-        "id": "https://pid.bayer.com/kos/19050#58706f82-30b0-4100-89e5-6fbae841d59d",
-        "version": "7",
-        "pidUri": "https://pid.bayer.com/ea64f1ad-a7ce-427b-93ad-f9bf776f1234/",
-        "baseUri": "https://pid.bayer.com/kos/19050/"
-      },
-      {
-        "id": "https://pid.bayer.com/kos/19050#1e084ff3-5acc-418d-93e1-5cc60a5e600e",
-        "version": "8",
-        "pidUri": "https://pid.bayer.com/19899076-04d0-4fba-b0c4-a207675c2c80/",
-        "baseUri": "https://pid.bayer.com/kos/19050/"
-      },
-      {
-        "id": "https://pid.bayer.com/kos/19050#0e2774ae-3d4a-46e4-91a3-46fa0aae25dc",
-        "version": "9",
-        "pidUri": "https://pid.bayer.com/c258edc4-ffff-4023-9430-f3dd9871b796/",
-        "baseUri": "https://pid.bayer.com/kos/19050/"
-      }
-    ],
-    "previousVersion": {
-      "id": "https://pid.bayer.com/kos/19050#be0a7a07-6c5c-43f3-bb81-cd08fc1b3172",
-      "version": "6",
-      "pidUri": "https://pid.bayer.com/cd2f504e-7ab7-4453-8cab-01c68ff6af18/",
-      "baseUri": "https://pid.bayer.com/kos/19050/"
-    },
-    "laterVersion": {
-      "id": "https://pid.bayer.com/kos/19050#1e084ff3-5acc-418d-93e1-5cc60a5e600e",
-      "version": "8",
-      "pidUri": "https://pid.bayer.com/19899076-04d0-4fba-b0c4-a207675c2c80/",
-      "baseUri": "https://pid.bayer.com/kos/19050/"
-    }
-  },
-  {
-    "resourceIdentifier": "https://pid.bayer.com/e8fa556b-5da0-46bf-8763-4a68dc905f2b/",
-    "resourceType": "http://pid.bayer.com/kos/19014/Ontology",
-    "name": "PID Ontology 5 (COLID Metadata Ontology 5)",
-    "pidUri": "https://pid.bayer.com/e8fa556b-5da0-46bf-8763-4a68dc905f2b/",
-    "links": [
-      {
-        "mapLinkInfoId": "00000000-0000-0000-0000-000000000000",
-        "type": {
-          "nameValuePairId": "00000000-0000-0000-0000-000000000000",
-          "name": "Includes Ontology",
-          "value": "https://pid.bayer.com/kos/19050/includesOntology"
-        },
-        "status": {
-          "key": "https://pid.bayer.com/kos/19050/Created",
-          "value": "Created"
-        },
-        "startNode": {
-          "nameValuePairId": "00000000-0000-0000-0000-000000000000",
-          "name": "PID Ontology 5 (COLID Metadata Ontology 5)",
-          "value": "https://pid.bayer.com/e8fa556b-5da0-46bf-8763-4a68dc905f2b/"
-        },
-        "endNode": {
-          "nameValuePairId": "00000000-0000-0000-0000-000000000000",
-          "name": "Enterprise Core Ontology 1.0",
-          "value": "https://pid.bayer.com/0039ee80-6e1e-452b-b470-b28ae1f238a3"
-        }
-      },
-      {
-        "mapLinkInfoId": "00000000-0000-0000-0000-000000000000",
-        "type": {
-          "nameValuePairId": "00000000-0000-0000-0000-000000000000",
-          "name": "Includes Ontology",
-          "value": "https://pid.bayer.com/kos/19050/includesOntology"
-        },
-        "status": {
-          "key": "https://pid.bayer.com/kos/19050/Created",
-          "value": "Created"
-        },
-        "startNode": {
-          "nameValuePairId": "00000000-0000-0000-0000-000000000000",
-          "name": "PID Ontology Technical 5",
-          "value": "https://pid.bayer.com/9a4c2ce2-65e1-4a4d-878e-ee5d919e2caa/"
-        },
-        "endNode": {
-          "nameValuePairId": "00000000-0000-0000-0000-000000000000",
-          "name": "PID Ontology 5 (COLID Metadata Ontology 5)",
-          "value": "https://pid.bayer.com/e8fa556b-5da0-46bf-8763-4a68dc905f2b/"
-        }
-      },
-      {
-        "mapLinkInfoId": "00000000-0000-0000-0000-000000000000",
-        "type": {
-          "nameValuePairId": "00000000-0000-0000-0000-000000000000",
-          "name": "Is Schema Of Dataset",
-          "value": "https://pid.bayer.com/kos/19050/isSchemaOfDataset"
-        },
-        "status": {
-          "key": "https://pid.bayer.com/kos/19050/Created",
-          "value": "Created"
-        },
-        "startNode": {
-          "nameValuePairId": "00000000-0000-0000-0000-000000000000",
-          "name": "PID Ontology 5 (COLID Metadata Ontology 5)",
-          "value": "https://pid.bayer.com/e8fa556b-5da0-46bf-8763-4a68dc905f2b/"
-        },
-        "endNode": {
-          "nameValuePairId": "00000000-0000-0000-0000-000000000000",
-          "name": "COLID Corporate Linked Data Catalog content",
-          "value": "https://pid.bayer.com/06062e21-7f97-475f-8763-cac54d6fc1ee/"
-        }
-      }
-    ],
-    "versions": [
-      {
-        "id": "https://pid.bayer.com/kos/19050#504a6995-0516-4cb8-9b24-c2472f858519",
-        "version": "6.5",
-        "pidUri": "https://pid.bayer.com/4ee0be1e-3f1f-4e3f-9424-72a8fb021be1/",
-        "baseUri": "https://pid.bayer.com/kos/19050/"
-      },
-      {
-        "id": "https://pid.bayer.com/kos/19050#2d9378a7-f2ea-4dd0-a4e9-7533dcae42bd",
-        "version": "5",
-        "pidUri": "https://pid.bayer.com/e8fa556b-5da0-46bf-8763-4a68dc905f2b/",
-        "baseUri": "https://pid.bayer.com/kos/19050/"
-      },
-      {
-        "id": "https://pid.bayer.com/kos/19050#be0a7a07-6c5c-43f3-bb81-cd08fc1b3172",
-        "version": "6",
-        "pidUri": "https://pid.bayer.com/cd2f504e-7ab7-4453-8cab-01c68ff6af18/",
-        "baseUri": "https://pid.bayer.com/kos/19050/"
-      },
-      {
-        "id": "https://pid.bayer.com/kos/19050#58706f82-30b0-4100-89e5-6fbae841d59d",
-        "version": "7",
-        "pidUri": "https://pid.bayer.com/ea64f1ad-a7ce-427b-93ad-f9bf776f1234/",
-        "baseUri": "https://pid.bayer.com/kos/19050/"
-      },
-      {
-        "id": "https://pid.bayer.com/kos/19050#1e084ff3-5acc-418d-93e1-5cc60a5e600e",
-        "version": "8",
-        "pidUri": "https://pid.bayer.com/19899076-04d0-4fba-b0c4-a207675c2c80/",
-        "baseUri": "https://pid.bayer.com/kos/19050/"
-      },
-      {
-        "id": "https://pid.bayer.com/kos/19050#0e2774ae-3d4a-46e4-91a3-46fa0aae25dc",
-        "version": "9",
-        "pidUri": "https://pid.bayer.com/c258edc4-ffff-4023-9430-f3dd9871b796/",
-        "baseUri": "https://pid.bayer.com/kos/19050/"
-      }
-    ],
-    "previousVersion": {
-      "id": "https://pid.bayer.com/kos/19050#504a6995-0516-4cb8-9b24-c2472f858519",
-      "version": "6.5",
-      "pidUri": "https://pid.bayer.com/4ee0be1e-3f1f-4e3f-9424-72a8fb021be1/",
-      "baseUri": "https://pid.bayer.com/kos/19050/"
-    },
-    "laterVersion": {
-      "id": "https://pid.bayer.com/kos/19050#be0a7a07-6c5c-43f3-bb81-cd08fc1b3172",
-      "version": "6",
-      "pidUri": "https://pid.bayer.com/cd2f504e-7ab7-4453-8cab-01c68ff6af18/",
-      "baseUri": "https://pid.bayer.com/kos/19050/"
-    }
-  },
-  {
-    "resourceIdentifier": "https://pid.bayer.com/4ee0be1e-3f1f-4e3f-9424-72a8fb021be1/",
-    "resourceType": "http://pid.bayer.com/kos/19014/Ontology",
-    "name": "PID Ontology 6.5 (COLID Metadata Ontology 6.5)",
-    "pidUri": "",
-    "links": [
-      {
-        "mapLinkInfoId": "00000000-0000-0000-0000-000000000000",
-        "type": {
-          "nameValuePairId": "00000000-0000-0000-0000-000000000000",
-          "name": "Includes Ontology",
-          "value": "https://pid.bayer.com/kos/19050/includesOntology"
-        },
-        "status": {
-          "key": "https://pid.bayer.com/kos/19050/Created",
-          "value": "Created"
-        },
-        "startNode": {
-          "nameValuePairId": "00000000-0000-0000-0000-000000000000",
-          "name": "PID Ontology 6.5 (COLID Metadata Ontology 6.5)",
-          "value": "https://pid.bayer.com/4ee0be1e-3f1f-4e3f-9424-72a8fb021be1/"
-        },
-        "endNode": {
-          "nameValuePairId": "00000000-0000-0000-0000-000000000000",
-          "name": "Enterprise Core Ontology 1.0",
-          "value": "https://pid.bayer.com/0039ee80-6e1e-452b-b470-b28ae1f238a3"
-        }
-      },
-      {
-        "mapLinkInfoId": "00000000-0000-0000-0000-000000000000",
-        "type": {
-          "nameValuePairId": "00000000-0000-0000-0000-000000000000",
-          "name": "Is Schema Of Dataset",
-          "value": "https://pid.bayer.com/kos/19050/isSchemaOfDataset"
-        },
-        "status": {
-          "key": "https://pid.bayer.com/kos/19050/Created",
-          "value": "Created"
-        },
-        "startNode": {
-          "nameValuePairId": "00000000-0000-0000-0000-000000000000",
-          "name": "PID Ontology 6.5 (COLID Metadata Ontology 6.5)",
-          "value": "https://pid.bayer.com/4ee0be1e-3f1f-4e3f-9424-72a8fb021be1/"
-        },
-        "endNode": {
-          "nameValuePairId": "00000000-0000-0000-0000-000000000000",
-          "name": "COLID Corporate Linked Data Catalog content",
-          "value": "https://pid.bayer.com/06062e21-7f97-475f-8763-cac54d6fc1ee/"
-        }
-      }
-    ],
-    "versions": [
-      {
-        "id": "https://pid.bayer.com/kos/19050#504a6995-0516-4cb8-9b24-c2472f858519",
-        "version": "6.5",
-        "pidUri": "https://pid.bayer.com/4ee0be1e-3f1f-4e3f-9424-72a8fb021be1/",
-        "baseUri": "https://pid.bayer.com/kos/19050/"
-      },
-      {
-        "id": "https://pid.bayer.com/kos/19050#2d9378a7-f2ea-4dd0-a4e9-7533dcae42bd",
-        "version": "5",
-        "pidUri": "https://pid.bayer.com/e8fa556b-5da0-46bf-8763-4a68dc905f2b/",
-        "baseUri": "https://pid.bayer.com/kos/19050/"
-      },
-      {
-        "id": "https://pid.bayer.com/kos/19050#be0a7a07-6c5c-43f3-bb81-cd08fc1b3172",
-        "version": "6",
-        "pidUri": "https://pid.bayer.com/cd2f504e-7ab7-4453-8cab-01c68ff6af18/",
-        "baseUri": "https://pid.bayer.com/kos/19050/"
-      },
-      {
-        "id": "https://pid.bayer.com/kos/19050#58706f82-30b0-4100-89e5-6fbae841d59d",
-        "version": "7",
-        "pidUri": "https://pid.bayer.com/ea64f1ad-a7ce-427b-93ad-f9bf776f1234/",
-        "baseUri": "https://pid.bayer.com/kos/19050/"
-      },
-      {
-        "id": "https://pid.bayer.com/kos/19050#1e084ff3-5acc-418d-93e1-5cc60a5e600e",
-        "version": "8",
-        "pidUri": "https://pid.bayer.com/19899076-04d0-4fba-b0c4-a207675c2c80/",
-        "baseUri": "https://pid.bayer.com/kos/19050/"
-      },
-      {
-        "id": "https://pid.bayer.com/kos/19050#0e2774ae-3d4a-46e4-91a3-46fa0aae25dc",
-        "version": "9",
-        "pidUri": "https://pid.bayer.com/c258edc4-ffff-4023-9430-f3dd9871b796/",
-        "baseUri": "https://pid.bayer.com/kos/19050/"
-      }
-    ],
-    "laterVersion": {
-      "id": "https://pid.bayer.com/kos/19050#2d9378a7-f2ea-4dd0-a4e9-7533dcae42bd",
-      "version": "5",
-      "pidUri": "https://pid.bayer.com/e8fa556b-5da0-46bf-8763-4a68dc905f2b/",
-      "baseUri": "https://pid.bayer.com/kos/19050/"
-    }
-  },
-  {
-    "resourceIdentifier": "https://pid.bayer.com/6034b2cb-b9e3-4c34-ab7c-72031fd387f2/",
-    "resourceType": "http://pid.bayer.com/kos/19014/Ontology",
-    "name": "PID Ontology 3 (PID Metadata Ontology Release 3)",
-    "pidUri": "",
-    "links": [
-      {
-        "mapLinkInfoId": "00000000-0000-0000-0000-000000000000",
-        "type": {
-          "nameValuePairId": "00000000-0000-0000-0000-000000000000",
-          "name": "Includes Ontology",
-          "value": "https://pid.bayer.com/kos/19050/includesOntology"
-        },
-        "status": {
-          "key": "https://pid.bayer.com/kos/19050/Created",
-          "value": "Created"
-        },
-        "startNode": {
-          "nameValuePairId": "00000000-0000-0000-0000-000000000000",
-          "name": "PID Ontology 3 (PID Metadata Ontology Release 3)",
-          "value": "https://pid.bayer.com/6034b2cb-b9e3-4c34-ab7c-72031fd387f2/"
-        },
-        "endNode": {
-          "nameValuePairId": "00000000-0000-0000-0000-000000000000",
-          "name": "Enterprise Core Ontology 1.0",
-          "value": "https://pid.bayer.com/0039ee80-6e1e-452b-b470-b28ae1f238a3"
-        }
-      },
-      {
-        "mapLinkInfoId": "00000000-0000-0000-0000-000000000000",
-        "type": {
-          "nameValuePairId": "00000000-0000-0000-0000-000000000000",
-          "name": "Includes Ontology",
-          "value": "https://pid.bayer.com/kos/19050/includesOntology"
-        },
-        "status": {
-          "key": "https://pid.bayer.com/kos/19050/Created",
-          "value": "Created"
-        },
-        "startNode": {
-          "nameValuePairId": "00000000-0000-0000-0000-000000000000",
-          "name": "PID Ontology Technical 3",
-          "value": "https://pid.bayer.com/6f0724e6-4f64-47e7-b6c2-df36ab81440e/"
-        },
-        "endNode": {
-          "nameValuePairId": "00000000-0000-0000-0000-000000000000",
-          "name": "PID Ontology 3 (PID Metadata Ontology Release 3)",
-          "value": "https://pid.bayer.com/6034b2cb-b9e3-4c34-ab7c-72031fd387f2/"
-        }
-      },
-      {
-        "mapLinkInfoId": "00000000-0000-0000-0000-000000000000",
-        "type": {
-          "nameValuePairId": "00000000-0000-0000-0000-000000000000",
-          "name": "Is Schema Of Dataset",
-          "value": "https://pid.bayer.com/kos/19050/isSchemaOfDataset"
-        },
-        "status": {
-          "key": "https://pid.bayer.com/kos/19050/Created",
-          "value": "Created"
-        },
-        "startNode": {
-          "nameValuePairId": "00000000-0000-0000-0000-000000000000",
-          "name": "PID Ontology 3 (PID Metadata Ontology Release 3)",
-          "value": "https://pid.bayer.com/6034b2cb-b9e3-4c34-ab7c-72031fd387f2/"
-        },
-        "endNode": {
-          "nameValuePairId": "00000000-0000-0000-0000-000000000000",
-          "name": "COLID Corporate Linked Data Catalog content",
-          "value": "https://pid.bayer.com/06062e21-7f97-475f-8763-cac54d6fc1ee/"
-        }
-      }
-    ],
-    "versions": [
-      {
-        "id": "https://pid.bayer.com/kos/19050#4553090c-3ffe-4787-b1c1-3d48f1f7761c",
-        "version": "1",
-        "pidUri": "https://pid.bayer.com/5b288873-b914-40c4-94c5-e51a95226a3c/",
-        "baseUri": "https://pid.bayer.com/kos/19050/"
-      },
-      {
-        "id": "https://pid.bayer.com/kos/19050#a9b92fcb-3238-4c5e-84fc-bc5612fab43c",
-        "version": "2",
-        "pidUri": "https://pid.bayer.com/a1d9b9ce-a4c4-48ab-a01c-9ac96c08789e/",
-        "baseUri": "https://pid.bayer.com/kos/19050/"
-      },
-      {
-        "id": "https://pid.bayer.com/kos/19050#6ebef1bc-1bd5-4b33-be49-a6736c6f869c",
-        "version": "3",
-        "pidUri": "https://pid.bayer.com/6034b2cb-b9e3-4c34-ab7c-72031fd387f2/",
-        "baseUri": "https://pid.bayer.com/kos/19050/"
-      },
-      {
-        "id": "https://pid.bayer.com/kos/19050#fa52b933-25d7-4806-8e72-06113563576b",
-        "version": "4",
-        "pidUri": "https://pid.bayer.com/6677ceef-cc42-4302-af11-e2cedc1c17ff/",
-        "baseUri": "https://pid.bayer.com/kos/19050/"
-      },
-      {
-        "id": "https://pid.bayer.com/kos/19050#20b1eed4-ff55-40a7-98e5-3e9d5d417275",
-        "version": "10",
-        "pidUri": "https://pid.bayer.com/ce64b358-fa6d-4001-9ac3-69fdc86cc180/",
-        "baseUri": "https://pid.bayer.com/kos/19050/"
-      }
-    ],
-    "previousVersion": {
-      "id": "https://pid.bayer.com/kos/19050#a9b92fcb-3238-4c5e-84fc-bc5612fab43c",
-      "version": "2",
-      "pidUri": "https://pid.bayer.com/a1d9b9ce-a4c4-48ab-a01c-9ac96c08789e/",
-      "baseUri": "https://pid.bayer.com/kos/19050/"
-    },
-    "laterVersion": {
-      "id": "https://pid.bayer.com/kos/19050#fa52b933-25d7-4806-8e72-06113563576b",
-      "version": "4",
-      "pidUri": "https://pid.bayer.com/6677ceef-cc42-4302-af11-e2cedc1c17ff/",
-      "baseUri": "https://pid.bayer.com/kos/19050/"
-    }
-  },
-  {
-    "resourceIdentifier": "https://pid.bayer.com/c258edc4-ffff-4023-9430-f3dd9871b796/",
-    "resourceType": "http://pid.bayer.com/kos/19014/Ontology",
-    "name": "PID Ontology 9 (COLID Metadata Ontology 9)",
-    "pidUri": "",
-    "links": [
-      {
-        "mapLinkInfoId": "00000000-0000-0000-0000-000000000000",
-        "type": {
-          "nameValuePairId": "00000000-0000-0000-0000-000000000000",
-          "name": "Includes Ontology",
-          "value": "https://pid.bayer.com/kos/19050/includesOntology"
-        },
-        "status": {
-          "key": "https://pid.bayer.com/kos/19050/Created",
-          "value": "Created"
-        },
-        "startNode": {
-          "nameValuePairId": "00000000-0000-0000-0000-000000000000",
-          "name": "PID Ontology 9 (COLID Metadata Ontology 9)",
-          "value": "https://pid.bayer.com/c258edc4-ffff-4023-9430-f3dd9871b796/"
-        },
-        "endNode": {
-          "nameValuePairId": "00000000-0000-0000-0000-000000000000",
-          "name": "Enterprise Core Ontology 1.0",
-          "value": "https://pid.bayer.com/0039ee80-6e1e-452b-b470-b28ae1f238a3"
-        }
-      },
-      {
-        "mapLinkInfoId": "00000000-0000-0000-0000-000000000000",
-        "type": {
-          "nameValuePairId": "00000000-0000-0000-0000-000000000000",
-          "name": "Includes Ontology",
-          "value": "https://pid.bayer.com/kos/19050/includesOntology"
-        },
-        "status": {
-          "key": "https://pid.bayer.com/kos/19050/Created",
-          "value": "Created"
-        },
-        "startNode": {
-          "nameValuePairId": "00000000-0000-0000-0000-000000000000",
-          "name": "RWD Metadata Ontology 5",
-          "value": "https://pid.bayer.com/1bbe954b-7626-4cc4-a98a-60e5e57bd207/"
-        },
-        "endNode": {
-          "nameValuePairId": "00000000-0000-0000-0000-000000000000",
-          "name": "PID Ontology 9 (COLID Metadata Ontology 9)",
-          "value": "https://pid.bayer.com/c258edc4-ffff-4023-9430-f3dd9871b796/"
-        }
-      },
-      {
-        "mapLinkInfoId": "00000000-0000-0000-0000-000000000000",
-        "type": {
-          "nameValuePairId": "00000000-0000-0000-0000-000000000000",
-          "name": "Includes Ontology",
-          "value": "https://pid.bayer.com/kos/19050/includesOntology"
-        },
-        "status": {
-          "key": "https://pid.bayer.com/kos/19050/Created",
-          "value": "Created"
-        },
-        "startNode": {
-          "nameValuePairId": "00000000-0000-0000-0000-000000000000",
-          "name": "RWD Metadata Ontology 4",
-          "value": "https://pid.bayer.com/b4bf818e-53ef-4e1d-9d52-ade84cd7d398/"
-        },
-        "endNode": {
-          "nameValuePairId": "00000000-0000-0000-0000-000000000000",
-          "name": "PID Ontology 9 (COLID Metadata Ontology 9)",
-          "value": "https://pid.bayer.com/c258edc4-ffff-4023-9430-f3dd9871b796/"
-        }
-      },
-      {
-        "mapLinkInfoId": "00000000-0000-0000-0000-000000000000",
-        "type": {
-          "nameValuePairId": "00000000-0000-0000-0000-000000000000",
-          "name": "Is Schema Of Dataset",
-          "value": "https://pid.bayer.com/kos/19050/isSchemaOfDataset"
-        },
-        "status": {
-          "key": "https://pid.bayer.com/kos/19050/Created",
-          "value": "Created"
-        },
-        "startNode": {
-          "nameValuePairId": "00000000-0000-0000-0000-000000000000",
-          "name": "PID Ontology 9 (COLID Metadata Ontology 9)",
-          "value": "https://pid.bayer.com/c258edc4-ffff-4023-9430-f3dd9871b796/"
-        },
-        "endNode": {
-          "nameValuePairId": "00000000-0000-0000-0000-000000000000",
-          "name": "COLID Corporate Linked Data Catalog content",
-          "value": "https://pid.bayer.com/06062e21-7f97-475f-8763-cac54d6fc1ee/"
-        }
-      }
-    ],
-    "versions": [
-      {
-        "id": "https://pid.bayer.com/kos/19050#504a6995-0516-4cb8-9b24-c2472f858519",
-        "version": "6.5",
-        "pidUri": "https://pid.bayer.com/4ee0be1e-3f1f-4e3f-9424-72a8fb021be1/",
-        "baseUri": "https://pid.bayer.com/kos/19050/"
-      },
-      {
-        "id": "https://pid.bayer.com/kos/19050#2d9378a7-f2ea-4dd0-a4e9-7533dcae42bd",
-        "version": "5",
-        "pidUri": "https://pid.bayer.com/e8fa556b-5da0-46bf-8763-4a68dc905f2b/",
-        "baseUri": "https://pid.bayer.com/kos/19050/"
-      },
-      {
-        "id": "https://pid.bayer.com/kos/19050#be0a7a07-6c5c-43f3-bb81-cd08fc1b3172",
-        "version": "6",
-        "pidUri": "https://pid.bayer.com/cd2f504e-7ab7-4453-8cab-01c68ff6af18/",
-        "baseUri": "https://pid.bayer.com/kos/19050/"
-      },
-      {
-        "id": "https://pid.bayer.com/kos/19050#58706f82-30b0-4100-89e5-6fbae841d59d",
-        "version": "7",
-        "pidUri": "https://pid.bayer.com/ea64f1ad-a7ce-427b-93ad-f9bf776f1234/",
-        "baseUri": "https://pid.bayer.com/kos/19050/"
-      },
-      {
-        "id": "https://pid.bayer.com/kos/19050#1e084ff3-5acc-418d-93e1-5cc60a5e600e",
-        "version": "8",
-        "pidUri": "https://pid.bayer.com/19899076-04d0-4fba-b0c4-a207675c2c80/",
-        "baseUri": "https://pid.bayer.com/kos/19050/"
-      },
-      {
-        "id": "https://pid.bayer.com/kos/19050#0e2774ae-3d4a-46e4-91a3-46fa0aae25dc",
-        "version": "9",
-        "pidUri": "https://pid.bayer.com/c258edc4-ffff-4023-9430-f3dd9871b796/",
-        "baseUri": "https://pid.bayer.com/kos/19050/"
-      }
-    ],
-    "previousVersion": {
-      "id": "https://pid.bayer.com/kos/19050#1e084ff3-5acc-418d-93e1-5cc60a5e600e",
-      "version": "8",
-      "pidUri": "https://pid.bayer.com/19899076-04d0-4fba-b0c4-a207675c2c80/",
-      "baseUri": "https://pid.bayer.com/kos/19050/"
-    }
-  },
-  {
-    "resourceIdentifier": "https://pid.bayer.com/ce64b358-fa6d-4001-9ac3-69fdc86cc180/",
-    "resourceType": "http://pid.bayer.com/kos/19014/Ontology",
-    "name": "PID Ontology 10 (COLID Metadata Ontology 10)",
-    "pidUri": "",
-    "links": [
-      {
-        "mapLinkInfoId": "00000000-0000-0000-0000-000000000000",
-        "type": {
-          "nameValuePairId": "00000000-0000-0000-0000-000000000000",
-          "name": "Includes Ontology",
-          "value": "https://pid.bayer.com/kos/19050/includesOntology"
-        },
-        "status": {
-          "key": "https://pid.bayer.com/kos/19050/Created",
-          "value": "Created"
-        },
-        "startNode": {
-          "nameValuePairId": "00000000-0000-0000-0000-000000000000",
-          "name": "PID Ontology 10 (COLID Metadata Ontology 10)",
-          "value": "https://pid.bayer.com/ce64b358-fa6d-4001-9ac3-69fdc86cc180/"
-        },
-        "endNode": {
-          "nameValuePairId": "00000000-0000-0000-0000-000000000000",
-          "name": "Enterprise Core Ontology 1.0",
-          "value": "https://pid.bayer.com/0039ee80-6e1e-452b-b470-b28ae1f238a3"
-        }
-      },
-      {
-        "mapLinkInfoId": "00000000-0000-0000-0000-000000000000",
-        "type": {
-          "nameValuePairId": "00000000-0000-0000-0000-000000000000",
-          "name": "Is Schema Of Dataset",
-          "value": "https://pid.bayer.com/kos/19050/isSchemaOfDataset"
-        },
-        "status": {
-          "key": "https://pid.bayer.com/kos/19050/Created",
-          "value": "Created"
-        },
-        "startNode": {
-          "nameValuePairId": "00000000-0000-0000-0000-000000000000",
-          "name": "PID Ontology 10 (COLID Metadata Ontology 10)",
-          "value": "https://pid.bayer.com/ce64b358-fa6d-4001-9ac3-69fdc86cc180/"
-        },
-        "endNode": {
-          "nameValuePairId": "00000000-0000-0000-0000-000000000000",
-          "name": "COLID Corporate Linked Data Catalog content",
-          "value": "https://pid.bayer.com/06062e21-7f97-475f-8763-cac54d6fc1ee/"
-        }
-      }
-    ],
-    "versions": [
-      {
-        "id": "https://pid.bayer.com/kos/19050#4553090c-3ffe-4787-b1c1-3d48f1f7761c",
-        "version": "1",
-        "pidUri": "https://pid.bayer.com/5b288873-b914-40c4-94c5-e51a95226a3c/",
-        "baseUri": "https://pid.bayer.com/kos/19050/"
-      },
-      {
-        "id": "https://pid.bayer.com/kos/19050#a9b92fcb-3238-4c5e-84fc-bc5612fab43c",
-        "version": "2",
-        "pidUri": "https://pid.bayer.com/a1d9b9ce-a4c4-48ab-a01c-9ac96c08789e/",
-        "baseUri": "https://pid.bayer.com/kos/19050/"
-      },
-      {
-        "id": "https://pid.bayer.com/kos/19050#6ebef1bc-1bd5-4b33-be49-a6736c6f869c",
-        "version": "3",
-        "pidUri": "https://pid.bayer.com/6034b2cb-b9e3-4c34-ab7c-72031fd387f2/",
-        "baseUri": "https://pid.bayer.com/kos/19050/"
-      },
-      {
-        "id": "https://pid.bayer.com/kos/19050#fa52b933-25d7-4806-8e72-06113563576b",
-        "version": "4",
-        "pidUri": "https://pid.bayer.com/6677ceef-cc42-4302-af11-e2cedc1c17ff/",
-        "baseUri": "https://pid.bayer.com/kos/19050/"
-      },
-      {
-        "id": "https://pid.bayer.com/kos/19050#20b1eed4-ff55-40a7-98e5-3e9d5d417275",
-        "version": "10",
-        "pidUri": "https://pid.bayer.com/ce64b358-fa6d-4001-9ac3-69fdc86cc180/",
-        "baseUri": "https://pid.bayer.com/kos/19050/"
-      }
-    ],
-    "previousVersion": {
-      "id": "https://pid.bayer.com/kos/19050#fa52b933-25d7-4806-8e72-06113563576b",
-      "version": "4",
-      "pidUri": "https://pid.bayer.com/6677ceef-cc42-4302-af11-e2cedc1c17ff/",
-      "baseUri": "https://pid.bayer.com/kos/19050/"
-    }
-  },
-  {
-    "resourceIdentifier": "https://pid.bayer.com/5b288873-b914-40c4-94c5-e51a95226a3c/",
-    "resourceType": "http://pid.bayer.com/kos/19014/Ontology",
-    "name": "PID Ontology 1 (aka PID Metadata Ontology)",
-    "pidUri": "",
-    "links": [
-      {
-        "mapLinkInfoId": "00000000-0000-0000-0000-000000000000",
-        "type": {
-          "nameValuePairId": "00000000-0000-0000-0000-000000000000",
-          "name": "Includes Ontology",
-          "value": "https://pid.bayer.com/kos/19050/includesOntology"
-        },
-        "status": {
-          "key": "https://pid.bayer.com/kos/19050/Created",
-          "value": "Created"
-        },
-        "startNode": {
-          "nameValuePairId": "00000000-0000-0000-0000-000000000000",
-          "name": "PID Ontology 1 (aka PID Metadata Ontology)",
-          "value": "https://pid.bayer.com/5b288873-b914-40c4-94c5-e51a95226a3c/"
-        },
-        "endNode": {
-          "nameValuePairId": "00000000-0000-0000-0000-000000000000",
-          "name": "Enterprise Core Ontology 1.0",
-          "value": "https://pid.bayer.com/0039ee80-6e1e-452b-b470-b28ae1f238a3"
-        }
-      },
-      {
-        "mapLinkInfoId": "00000000-0000-0000-0000-000000000000",
-        "type": {
-          "nameValuePairId": "00000000-0000-0000-0000-000000000000",
-          "name": "Includes Ontology",
-          "value": "https://pid.bayer.com/kos/19050/includesOntology"
-        },
-        "status": {
-          "key": "https://pid.bayer.com/kos/19050/Created",
-          "value": "Created"
-        },
-        "startNode": {
-          "nameValuePairId": "00000000-0000-0000-0000-000000000000",
-          "name": "PID Ontology Technical 1",
-          "value": "https://pid.bayer.com/752ea31b-eb54-47f4-9763-8eacf0fc6411/"
-        },
-        "endNode": {
-          "nameValuePairId": "00000000-0000-0000-0000-000000000000",
-          "name": "PID Ontology 1 (aka PID Metadata Ontology)",
-          "value": "https://pid.bayer.com/5b288873-b914-40c4-94c5-e51a95226a3c/"
-        }
-      }
-    ],
-    "versions": [
-      {
-        "id": "https://pid.bayer.com/kos/19050#4553090c-3ffe-4787-b1c1-3d48f1f7761c",
-        "version": "1",
-        "pidUri": "https://pid.bayer.com/5b288873-b914-40c4-94c5-e51a95226a3c/",
-        "baseUri": "https://pid.bayer.com/kos/19050/"
-      },
-      {
-        "id": "https://pid.bayer.com/kos/19050#a9b92fcb-3238-4c5e-84fc-bc5612fab43c",
-        "version": "2",
-        "pidUri": "https://pid.bayer.com/a1d9b9ce-a4c4-48ab-a01c-9ac96c08789e/",
-        "baseUri": "https://pid.bayer.com/kos/19050/"
-      },
-      {
-        "id": "https://pid.bayer.com/kos/19050#6ebef1bc-1bd5-4b33-be49-a6736c6f869c",
-        "version": "3",
-        "pidUri": "https://pid.bayer.com/6034b2cb-b9e3-4c34-ab7c-72031fd387f2/",
-        "baseUri": "https://pid.bayer.com/kos/19050/"
-      },
-      {
-        "id": "https://pid.bayer.com/kos/19050#fa52b933-25d7-4806-8e72-06113563576b",
-        "version": "4",
-        "pidUri": "https://pid.bayer.com/6677ceef-cc42-4302-af11-e2cedc1c17ff/",
-        "baseUri": "https://pid.bayer.com/kos/19050/"
-      },
-      {
-        "id": "https://pid.bayer.com/kos/19050#20b1eed4-ff55-40a7-98e5-3e9d5d417275",
-        "version": "10",
-        "pidUri": "https://pid.bayer.com/ce64b358-fa6d-4001-9ac3-69fdc86cc180/",
-        "baseUri": "https://pid.bayer.com/kos/19050/"
-      }
-    ],
-    "laterVersion": {
-      "id": "https://pid.bayer.com/kos/19050#a9b92fcb-3238-4c5e-84fc-bc5612fab43c",
-      "version": "2",
-      "pidUri": "https://pid.bayer.com/a1d9b9ce-a4c4-48ab-a01c-9ac96c08789e/",
-      "baseUri": "https://pid.bayer.com/kos/19050/"
-    }
-  },
-  {
-    "resourceIdentifier": "https://pid.bayer.com/a1d9b9ce-a4c4-48ab-a01c-9ac96c08789e/",
-    "resourceType": "http://pid.bayer.com/kos/19014/Ontology",
-    "name": "PID Ontology 2 (PID Metadata Ontology Release 2)",
-    "pidUri": "",
-    "links": [
-      {
-        "mapLinkInfoId": "00000000-0000-0000-0000-000000000000",
-        "type": {
-          "nameValuePairId": "00000000-0000-0000-0000-000000000000",
-          "name": "Includes Ontology",
-          "value": "https://pid.bayer.com/kos/19050/includesOntology"
-        },
-        "status": {
-          "key": "https://pid.bayer.com/kos/19050/Created",
-          "value": "Created"
-        },
-        "startNode": {
-          "nameValuePairId": "00000000-0000-0000-0000-000000000000",
-          "name": "PID Ontology 2 (PID Metadata Ontology Release 2)",
-          "value": "https://pid.bayer.com/a1d9b9ce-a4c4-48ab-a01c-9ac96c08789e/"
-        },
-        "endNode": {
-          "nameValuePairId": "00000000-0000-0000-0000-000000000000",
-          "name": "Enterprise Core Ontology 1.0",
-          "value": "https://pid.bayer.com/0039ee80-6e1e-452b-b470-b28ae1f238a3"
-        }
-      },
-      {
-        "mapLinkInfoId": "00000000-0000-0000-0000-000000000000",
-        "type": {
-          "nameValuePairId": "00000000-0000-0000-0000-000000000000",
-          "name": "Includes Ontology",
-          "value": "https://pid.bayer.com/kos/19050/includesOntology"
-        },
-        "status": {
-          "key": "https://pid.bayer.com/kos/19050/Created",
-          "value": "Created"
-        },
-        "startNode": {
-          "nameValuePairId": "00000000-0000-0000-0000-000000000000",
-          "name": "PID Ontology Technical 2",
-          "value": "https://pid.bayer.com/d3c3d4b4-a130-4256-832c-041d4c896cc6/"
-        },
-        "endNode": {
-          "nameValuePairId": "00000000-0000-0000-0000-000000000000",
-          "name": "PID Ontology 2 (PID Metadata Ontology Release 2)",
-          "value": "https://pid.bayer.com/a1d9b9ce-a4c4-48ab-a01c-9ac96c08789e/"
-        }
-      }
-    ],
-    "versions": [
-      {
-        "id": "https://pid.bayer.com/kos/19050#4553090c-3ffe-4787-b1c1-3d48f1f7761c",
-        "version": "1",
-        "pidUri": "https://pid.bayer.com/5b288873-b914-40c4-94c5-e51a95226a3c/",
-        "baseUri": "https://pid.bayer.com/kos/19050/"
-      },
-      {
-        "id": "https://pid.bayer.com/kos/19050#a9b92fcb-3238-4c5e-84fc-bc5612fab43c",
-        "version": "2",
-        "pidUri": "https://pid.bayer.com/a1d9b9ce-a4c4-48ab-a01c-9ac96c08789e/",
-        "baseUri": "https://pid.bayer.com/kos/19050/"
-      },
-      {
-        "id": "https://pid.bayer.com/kos/19050#6ebef1bc-1bd5-4b33-be49-a6736c6f869c",
-        "version": "3",
-        "pidUri": "https://pid.bayer.com/6034b2cb-b9e3-4c34-ab7c-72031fd387f2/",
-        "baseUri": "https://pid.bayer.com/kos/19050/"
-      },
-      {
-        "id": "https://pid.bayer.com/kos/19050#fa52b933-25d7-4806-8e72-06113563576b",
-        "version": "4",
-        "pidUri": "https://pid.bayer.com/6677ceef-cc42-4302-af11-e2cedc1c17ff/",
-        "baseUri": "https://pid.bayer.com/kos/19050/"
-      },
-      {
-        "id": "https://pid.bayer.com/kos/19050#20b1eed4-ff55-40a7-98e5-3e9d5d417275",
-        "version": "10",
-        "pidUri": "https://pid.bayer.com/ce64b358-fa6d-4001-9ac3-69fdc86cc180/",
-        "baseUri": "https://pid.bayer.com/kos/19050/"
-      }
-    ],
-    "previousVersion": {
-      "id": "https://pid.bayer.com/kos/19050#4553090c-3ffe-4787-b1c1-3d48f1f7761c",
-      "version": "1",
-      "pidUri": "https://pid.bayer.com/5b288873-b914-40c4-94c5-e51a95226a3c/",
-      "baseUri": "https://pid.bayer.com/kos/19050/"
-    },
-    "laterVersion": {
-      "id": "https://pid.bayer.com/kos/19050#6ebef1bc-1bd5-4b33-be49-a6736c6f869c",
-      "version": "3",
-      "pidUri": "https://pid.bayer.com/6034b2cb-b9e3-4c34-ab7c-72031fd387f2/",
-      "baseUri": "https://pid.bayer.com/kos/19050/"
-    }
-  },
-  {
-    "resourceIdentifier": "https://pid.bayer.com/0039ee80-6e1e-452b-b470-b28ae1f238a3",
-    "resourceType": "http://pid.bayer.com/kos/19014/Ontology",
-    "name": "Enterprise Core Ontology 1.0",
-    "pidUri": "",
-    "links": [
-      {
-        "mapLinkInfoId": "00000000-0000-0000-0000-000000000000",
-        "type": {
-          "nameValuePairId": "00000000-0000-0000-0000-000000000000",
-          "name": "Includes Ontology",
-          "value": "https://pid.bayer.com/kos/19050/includesOntology"
-        },
-        "status": {
-          "key": "https://pid.bayer.com/kos/19050/Created",
-          "value": "Created"
-        },
-        "startNode": {
-          "nameValuePairId": "00000000-0000-0000-0000-000000000000",
-          "name": "PID Ontology 4 (PID Metadata Ontology 4)",
-          "value": "https://pid.bayer.com/6677ceef-cc42-4302-af11-e2cedc1c17ff/"
-        },
-        "endNode": {
-          "nameValuePairId": "00000000-0000-0000-0000-000000000000",
-          "name": "Enterprise Core Ontology 1.0",
-          "value": "https://pid.bayer.com/0039ee80-6e1e-452b-b470-b28ae1f238a3"
-        }
-      },
-      {
-        "mapLinkInfoId": "00000000-0000-0000-0000-000000000000",
-        "type": {
-          "nameValuePairId": "00000000-0000-0000-0000-000000000000",
-          "name": "Includes Ontology",
-          "value": "https://pid.bayer.com/kos/19050/includesOntology"
-        },
-        "status": {
-          "key": "https://pid.bayer.com/kos/19050/Created",
-          "value": "Created"
-        },
-        "startNode": {
-          "nameValuePairId": "00000000-0000-0000-0000-000000000000",
-          "name": "PID Ontology 8 (COLID Metadata Ontology 8)",
-          "value": "https://pid.bayer.com/19899076-04d0-4fba-b0c4-a207675c2c80/"
-        },
-        "endNode": {
-          "nameValuePairId": "00000000-0000-0000-0000-000000000000",
-          "name": "Enterprise Core Ontology 1.0",
-          "value": "https://pid.bayer.com/0039ee80-6e1e-452b-b470-b28ae1f238a3"
-        }
-      },
-      {
-        "mapLinkInfoId": "00000000-0000-0000-0000-000000000000",
-        "type": {
-          "nameValuePairId": "00000000-0000-0000-0000-000000000000",
-          "name": "Includes Ontology",
-          "value": "https://pid.bayer.com/kos/19050/includesOntology"
-        },
-        "status": {
-          "key": "https://pid.bayer.com/kos/19050/Created",
-          "value": "Created"
-        },
-        "startNode": {
-          "nameValuePairId": "00000000-0000-0000-0000-000000000000",
-          "name": "PID Ontology 6 (COLID Metadata Ontology 6)",
-          "value": "https://pid.bayer.com/cd2f504e-7ab7-4453-8cab-01c68ff6af18/"
-        },
-        "endNode": {
-          "nameValuePairId": "00000000-0000-0000-0000-000000000000",
-          "name": "Enterprise Core Ontology 1.0",
-          "value": "https://pid.bayer.com/0039ee80-6e1e-452b-b470-b28ae1f238a3"
-        }
-      },
-      {
-        "mapLinkInfoId": "00000000-0000-0000-0000-000000000000",
-        "type": {
-          "nameValuePairId": "00000000-0000-0000-0000-000000000000",
-          "name": "Includes Ontology",
-          "value": "https://pid.bayer.com/kos/19050/includesOntology"
-        },
-        "status": {
-          "key": "https://pid.bayer.com/kos/19050/Created",
-          "value": "Created"
-        },
-        "startNode": {
-          "nameValuePairId": "00000000-0000-0000-0000-000000000000",
-          "name": "PID Ontology 7 (COLID Metadata Ontology 7)",
-          "value": "https://pid.bayer.com/ea64f1ad-a7ce-427b-93ad-f9bf776f1234/"
-        },
-        "endNode": {
-          "nameValuePairId": "00000000-0000-0000-0000-000000000000",
-          "name": "Enterprise Core Ontology 1.0",
-          "value": "https://pid.bayer.com/0039ee80-6e1e-452b-b470-b28ae1f238a3"
-        }
-      },
-      {
-        "mapLinkInfoId": "00000000-0000-0000-0000-000000000000",
-        "type": {
-          "nameValuePairId": "00000000-0000-0000-0000-000000000000",
-          "name": "Includes Ontology",
-          "value": "https://pid.bayer.com/kos/19050/includesOntology"
-        },
-        "status": {
-          "key": "https://pid.bayer.com/kos/19050/Created",
-          "value": "Created"
-        },
-        "startNode": {
-          "nameValuePairId": "00000000-0000-0000-0000-000000000000",
-          "name": "PID Ontology 5 (COLID Metadata Ontology 5)",
-          "value": "https://pid.bayer.com/e8fa556b-5da0-46bf-8763-4a68dc905f2b/"
-        },
-        "endNode": {
-          "nameValuePairId": "00000000-0000-0000-0000-000000000000",
-          "name": "Enterprise Core Ontology 1.0",
-          "value": "https://pid.bayer.com/0039ee80-6e1e-452b-b470-b28ae1f238a3"
-        }
-      },
-      {
-        "mapLinkInfoId": "00000000-0000-0000-0000-000000000000",
-        "type": {
-          "nameValuePairId": "00000000-0000-0000-0000-000000000000",
-          "name": "Includes Ontology",
-          "value": "https://pid.bayer.com/kos/19050/includesOntology"
-        },
-        "status": {
-          "key": "https://pid.bayer.com/kos/19050/Created",
-          "value": "Created"
-        },
-        "startNode": {
-          "nameValuePairId": "00000000-0000-0000-0000-000000000000",
-          "name": "PID Ontology 6.5 (COLID Metadata Ontology 6.5)",
-          "value": "https://pid.bayer.com/4ee0be1e-3f1f-4e3f-9424-72a8fb021be1/"
-        },
-        "endNode": {
-          "nameValuePairId": "00000000-0000-0000-0000-000000000000",
-          "name": "Enterprise Core Ontology 1.0",
-          "value": "https://pid.bayer.com/0039ee80-6e1e-452b-b470-b28ae1f238a3"
-        }
-      },
-      {
-        "mapLinkInfoId": "00000000-0000-0000-0000-000000000000",
-        "type": {
-          "nameValuePairId": "00000000-0000-0000-0000-000000000000",
-          "name": "Includes Ontology",
-          "value": "https://pid.bayer.com/kos/19050/includesOntology"
-        },
-        "status": {
-          "key": "https://pid.bayer.com/kos/19050/Created",
-          "value": "Created"
-        },
-        "startNode": {
-          "nameValuePairId": "00000000-0000-0000-0000-000000000000",
-          "name": "PID Ontology 3 (PID Metadata Ontology Release 3)",
-          "value": "https://pid.bayer.com/6034b2cb-b9e3-4c34-ab7c-72031fd387f2/"
-        },
-        "endNode": {
-          "nameValuePairId": "00000000-0000-0000-0000-000000000000",
-          "name": "Enterprise Core Ontology 1.0",
-          "value": "https://pid.bayer.com/0039ee80-6e1e-452b-b470-b28ae1f238a3"
-        }
-      },
-      {
-        "mapLinkInfoId": "00000000-0000-0000-0000-000000000000",
-        "type": {
-          "nameValuePairId": "00000000-0000-0000-0000-000000000000",
-          "name": "Includes Ontology",
-          "value": "https://pid.bayer.com/kos/19050/includesOntology"
-        },
-        "status": {
-          "key": "https://pid.bayer.com/kos/19050/Created",
-          "value": "Created"
-        },
-        "startNode": {
-          "nameValuePairId": "00000000-0000-0000-0000-000000000000",
-          "name": "PID Ontology 9 (COLID Metadata Ontology 9)",
-          "value": "https://pid.bayer.com/c258edc4-ffff-4023-9430-f3dd9871b796/"
-        },
-        "endNode": {
-          "nameValuePairId": "00000000-0000-0000-0000-000000000000",
-          "name": "Enterprise Core Ontology 1.0",
-          "value": "https://pid.bayer.com/0039ee80-6e1e-452b-b470-b28ae1f238a3"
-        }
-      },
-      {
-        "mapLinkInfoId": "00000000-0000-0000-0000-000000000000",
-        "type": {
-          "nameValuePairId": "00000000-0000-0000-0000-000000000000",
-          "name": "Includes Ontology",
-          "value": "https://pid.bayer.com/kos/19050/includesOntology"
-        },
-        "status": {
-          "key": "https://pid.bayer.com/kos/19050/Created",
-          "value": "Created"
-        },
-        "startNode": {
-          "nameValuePairId": "00000000-0000-0000-0000-000000000000",
-          "name": "PID Ontology 10 (COLID Metadata Ontology 10)",
-          "value": "https://pid.bayer.com/ce64b358-fa6d-4001-9ac3-69fdc86cc180/"
-        },
-        "endNode": {
-          "nameValuePairId": "00000000-0000-0000-0000-000000000000",
-          "name": "Enterprise Core Ontology 1.0",
-          "value": "https://pid.bayer.com/0039ee80-6e1e-452b-b470-b28ae1f238a3"
-        }
-      },
-      {
-        "mapLinkInfoId": "00000000-0000-0000-0000-000000000000",
-        "type": {
-          "nameValuePairId": "00000000-0000-0000-0000-000000000000",
-          "name": "Includes Ontology",
-          "value": "https://pid.bayer.com/kos/19050/includesOntology"
-        },
-        "status": {
-          "key": "https://pid.bayer.com/kos/19050/Created",
-          "value": "Created"
-        },
-        "startNode": {
-          "nameValuePairId": "00000000-0000-0000-0000-000000000000",
-          "name": "PID Ontology 1 (aka PID Metadata Ontology)",
-          "value": "https://pid.bayer.com/5b288873-b914-40c4-94c5-e51a95226a3c/"
-        },
-        "endNode": {
-          "nameValuePairId": "00000000-0000-0000-0000-000000000000",
-          "name": "Enterprise Core Ontology 1.0",
-          "value": "https://pid.bayer.com/0039ee80-6e1e-452b-b470-b28ae1f238a3"
-        }
-      },
-      {
-        "mapLinkInfoId": "00000000-0000-0000-0000-000000000000",
-        "type": {
-          "nameValuePairId": "00000000-0000-0000-0000-000000000000",
-          "name": "Includes Ontology",
-          "value": "https://pid.bayer.com/kos/19050/includesOntology"
-        },
-        "status": {
-          "key": "https://pid.bayer.com/kos/19050/Created",
-          "value": "Created"
-        },
-        "startNode": {
-          "nameValuePairId": "00000000-0000-0000-0000-000000000000",
-          "name": "PID Ontology 2 (PID Metadata Ontology Release 2)",
-          "value": "https://pid.bayer.com/a1d9b9ce-a4c4-48ab-a01c-9ac96c08789e/"
-        },
-        "endNode": {
-          "nameValuePairId": "00000000-0000-0000-0000-000000000000",
-          "name": "Enterprise Core Ontology 1.0",
-          "value": "https://pid.bayer.com/0039ee80-6e1e-452b-b470-b28ae1f238a3"
-        }
-      }
-    ],
-    "versions": [
-      {
-        "id": "https://pid.bayer.com/kos/19050#07d0f964-deb4-4ad9-af4a-59c4bd87e008",
-        "version": "3.0",
-        "pidUri": "https://pid.bayer.com/c12d0432-2ab3-4141-8a57-c1b0c9267440/",
-        "baseUri": "https://pid.bayer.com/kos/19014/"
-      },
-      {
-        "id": "https://pid.bayer.com/kos/19050#138de4ec-daa0-453c-9efb-d0e03691c39a",
-        "version": "2.0",
-        "pidUri": "https://pid.bayer.com/eco/v2",
-        "baseUri": "https://pid.bayer.com/kos/19014/"
-      },
-      {
-        "id": "https://pid.bayer.com/kos/19050#fb5c849b-e0a3-4b25-a07c-9b8536582e5d",
-        "version": "1.0",
-        "pidUri": "https://pid.bayer.com/0039ee80-6e1e-452b-b470-b28ae1f238a3",
-        "baseUri": "https://pid.bayer.com/kos/19014/"
-      }
-    ],
-    "previousVersion": {
-      "id": "https://pid.bayer.com/kos/19050#138de4ec-daa0-453c-9efb-d0e03691c39a",
-      "version": "2.0",
-      "pidUri": "https://pid.bayer.com/eco/v2",
-      "baseUri": "https://pid.bayer.com/kos/19014/"
-    }
+    "fx": 9,
+    "fy": 8
   }
-]
+];

@@ -1,15 +1,15 @@
 @import "../../dropdownmenu.scss";
 
 .navbar-account-item {
-    margin-right: 60px;
     font-size: 16px;
     color: #ffffff;
     letter-spacing: 0;
     line-height: 22px;
     padding-top: 19px;
     vertical-align: top;
+   // align-items: flex-end; 
     display: inline-block;
-    float: right;    
+    //float: right; 
     background-color: #00354f;
     border: none;
     outline: none;
@@ -21,7 +21,8 @@
     width: 32px;
     height: 32px;
     color: #ffffff;
-    padding-top: 16.67px;
+    margin-top: 14px;
     display: inline-block;
-    float: right;
+   // align-items: flex-end;    
+    //float: right; 
 }

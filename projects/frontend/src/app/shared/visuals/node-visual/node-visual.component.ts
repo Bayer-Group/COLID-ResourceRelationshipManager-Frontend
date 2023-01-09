@@ -1,26 +1,21 @@
-import { AfterViewInit, Component, ElementRef, Input, OnInit, QueryList, ViewChild, ViewChildren } from '@angular/core';
-import { Store } from '@ngrx/store';
+import { AfterViewInit, Component, Input, OnDestroy, ViewChild } from '@angular/core';
 import { Node } from '../../../core/d3';
-import { GraphState } from '../../../state/store-items';
 import { IconTypes } from '../../icons/models/icon-types';
-import * as graphActions from '../../../state/graph-visualisation/graph-visualisation.actions';
-import * as graphLinkingActions from '../../../state/graph-linking/graph-linking.actions';
-import { GraphLinkingData } from '../../../state/graph-linking/graph-linking.model';
-import { GraphProperties } from '../../../state/graph-visualisation/graph-visualisation.model';
-import { Observable } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 import { tap } from 'rxjs/operators';
-import { ResourceRelationshipManagerService } from '../../../core/http/resource-relationship-manager.service';
 import { ColumnSchemaInformation } from '../../models/schema-information';
 import { PidApiService } from '../../../core/http/pid-api.service';
-import { NotificationService } from '../../services/notification.service';
-
+import { ToggleExclusive, ToggleSelection } from '../../../state/graph-data.state';
+import { Select, Store } from '@ngxs/store';
+import { AddLinkableNode, GraphLinkingData, GraphLinkingDataState } from '../../../state/graph-linking.state';
+import { GraphProperties, GraphVisualisationState, SetDetailedResourceUri, ShowDetailSidebar } from '../../../state/graph-visualisation.state';
 
 @Component({
   selector: '[nodeVisual]',
   templateUrl: './node-visual.component.html',
   styleUrls: ['./node-visual.component.css']
 })
-export class NodeVisualComponent implements AfterViewInit {
+export class NodeVisualComponent implements AfterViewInit, OnDestroy {
   @Input('nodeVisual') node!: Node;
   @Input('showLongResourceName') showLongResourceName!: boolean;
 
@@ -29,8 +24,8 @@ export class NodeVisualComponent implements AfterViewInit {
   width: number = 180;
   height: number = 40;
 
-  private linkingProperties$: Observable<GraphLinkingData>;
-  private graphData$: Observable<GraphProperties> | undefined;
+  @Select(GraphLinkingDataState.getGraphLinkingState) private linkingProperties$: Observable<GraphLinkingData>;
+  @Select(GraphVisualisationState.getGraphVisualisationState) private graphData$: Observable<GraphProperties>;
 
   S3: IconTypes = IconTypes.S3;
   Default: IconTypes = IconTypes.Default;
@@ -49,12 +44,14 @@ export class NodeVisualComponent implements AfterViewInit {
   filterOutTypes: string[] = ["https://pid.bayer.com/kos/19050/444586", "https://pid.bayer.com/kos/19050/444582"]
 
   flattenedColumns: ColumnSchemaInformation[] = [];
+  ctrlPressed: boolean = false;
+
+  masterSub: Subscription = new Subscription();
 
   constructor(
-    private store: Store<GraphState>,
+    private store: Store,
     private pidApi: PidApiService) {
-    this.linkingProperties$ = this.store.select('graphLinking');
-    this.linkingProperties$.pipe(
+    this.masterSub.add(this.linkingProperties$.pipe(
       tap(
         linking => {
           this.linkingModeEnabled = linking.linkingModeEnabled;
@@ -62,17 +59,19 @@ export class NodeVisualComponent implements AfterViewInit {
           this.inLinkingSelection = linking.linkNodes.findIndex(l => l.id == this.node.id) > -1;
         }
       )
-    ).subscribe();
+    ).subscribe());
 
     //Listener for changes in the graph store and set filter accordingly
-    this.graphData$ = this.store.select('graphVisualisation');
-    this.graphData$.subscribe(
+    this.masterSub.add(this.graphData$.subscribe(
       data => {
+        this.ctrlPressed = data.ctrlPressed;
+        //filter out self if filter mode is enabled
         if (data.filterViewEnabled) {
-          if (this.filterOutTypes.includes(this.node.resourceType)) {
+          if (this.filterOutTypes.includes(this.node.resourceTypeId)) {
             this.displayNode = false;
             return
           }
+
         }
         if (data.schemaFilterUris.length > 0 && data.filterViewEnabled) {
           this.filterInfo.filterCount = 0
@@ -102,15 +101,15 @@ export class NodeVisualComponent implements AfterViewInit {
           this.displayNode = true;
         }
       }
-    )
+    ));
   }
-
   ngAfterViewInit(): void {
     this.node.width = this.width;
     this.node.height = this.height;
 
     // Collect related column/table uri's
-    this.pidApi.getSchemaInfo(this.node.resourceIdentifier).subscribe(
+    //TODO EUCAV: Move this to a central space to centralize and bundle the calls
+    this.masterSub.add(this.pidApi.getSchemaInfo(this.node.id).subscribe(
       res => {
         let consolidatedUris: string[] = [];
         res.columns.forEach(c => {
@@ -122,7 +121,11 @@ export class NodeVisualComponent implements AfterViewInit {
           })
         });
       }
-    );
+    ));
+  }
+
+  ngOnDestroy(): void {
+    this.masterSub.unsubscribe();
   }
 
   nodeClicked(event: any) {
@@ -130,19 +133,23 @@ export class NodeVisualComponent implements AfterViewInit {
     if (!this.linkingModeEnabled) {
       setTimeout(() => {
         if (this.isSingleClick) {
-          this.node.selected = !this.node.selected
+          if (this.ctrlPressed) {
+            this.store.dispatch(new ToggleSelection(this.node.id))
+          } else {
+            this.store.dispatch(new ToggleExclusive(this.node.id));
+          }
         }
       }, 250)
     } else {
       if (this.linkingModeQueue.findIndex(n => n.id == this.node.id) == -1) {
-        this.store.dispatch(graphLinkingActions.AddLinkableNode({ node: JSON.parse(JSON.stringify(this.node)) }));
+        this.store.dispatch(new AddLinkableNode(JSON.parse(JSON.stringify(this.node))));
       }
     }
   }
 
   openDetails() {
     this.isSingleClick = false;
-    this.store.dispatch(graphActions.SetDetailedResourceUri({ pidUri: this.node.resourceIdentifier }));
-    this.store.dispatch(graphActions.ShowDetailSidebar());
+    this.store.dispatch(new SetDetailedResourceUri(this.node.id));
+    this.store.dispatch(new ShowDetailSidebar());
   }
 }

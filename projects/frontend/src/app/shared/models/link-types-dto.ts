@@ -2,7 +2,7 @@ import { ItemDescriptor } from "./resource-descriptor-mini";
 
 export class LinkTypesDto {
     sourceUri: string = "";
-    linkType: UriName = new UriName();
+    linkType: any = {};
     targetUri: string = "";
 }
 
@@ -17,5 +17,5 @@ export class UriName {
 export class LinkTypeContainer {
     source: ItemDescriptor = new ItemDescriptor();
     target: ItemDescriptor = new ItemDescriptor();
-    linkType: UriName = new UriName();
+    linkType: any = {};
 }

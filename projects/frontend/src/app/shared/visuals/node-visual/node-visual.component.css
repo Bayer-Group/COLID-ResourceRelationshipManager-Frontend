@@ -6,6 +6,18 @@
   stroke-width: 1;
 }
 
+.node-cursor .ctrl-pressed {
+  cursor: copy;
+}
+
+.node-cursor:not(.ctrl-pressed) {
+  cursor: pointer;
+}
+
+.node-copy {
+  cursor: copy !important;
+}
+
 .selected .node {
   stroke-width: 2;
   stroke: blue;
@@ -13,10 +25,6 @@
 
 .node:not(.node-linking-selected) {
   stroke: rgb(180, 180, 180);
-}
-
-.node:not(.node-linking-mode) {
-  cursor: pointer;
 }
 
 .node.node-linking-selected {
@@ -27,7 +35,6 @@
 
 .node-name {
   color: #334175;
-  cursor: pointer;
   font-size: 14;
   font-weight: 500;
 }
@@ -56,10 +63,6 @@
 
 .node-linking-mode {
   cursor: grab;
-}
-
-.icon-resource-type {
-  cursor: pointer;
 }
 
 .filterInfoContainer {

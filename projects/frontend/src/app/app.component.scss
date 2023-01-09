@@ -7,8 +7,11 @@
 
 ::ng-deep .mat-simple-snackbar span{
   color: #FFFFFF;
-  font-family: "Fira Sans";
+  font-family: Roboto, "Helvetica Neue", sans-serif;
   font-size: 14px;
   letter-spacing: -0.35px;
   border: none;
+}
+.mat-drawer-inner-container::-webkit-scrollbar {
+  display: none;
 }

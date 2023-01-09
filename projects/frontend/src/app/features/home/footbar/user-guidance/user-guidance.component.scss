@@ -1,0 +1,38 @@
+.user-guidance {
+  background: white;
+  position: absolute;
+  left: 0;
+  display: inline-block;
+  color: #465053;
+  margin-top: 0.4rem;
+}
+
+.user-guidance-text {
+  margin-left: 50px;
+  padding-top: 0.7rem;
+  vertical-align: middle;
+  display: inline-flex;
+  height: 100%;
+  margin-top: 0px !important;
+}
+
+.mat-icon-button {
+  height: unset;
+  width: 20px;
+}
+
+::ng-deep .mat-tooltip{
+  font-size: 16px;
+}
+
+.mat-icon {
+  margin-left: 1rem;
+  font-size: 15px !important;
+  line-height: 35px !important;
+}
+
+.icons {
+  width: 8rem;
+  height: 2rem !important;
+  align-items: center;
+}

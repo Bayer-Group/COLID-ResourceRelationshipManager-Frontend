@@ -5,7 +5,7 @@
   <button mat-menu-item *ngIf="currentMap.graphMapId != ''"(click)="saveAs()">Save As</button>
   <button mat-menu-item *ngIf="currentMap.graphMapId != ''" (click)="deleteMap()">Delete {{currentMap.name}}
     map</button>
-  <button mat-menu-item (click)="exportPng()">Export as PNG</button>
+  <!-- <button mat-menu-item (click)="exportPng()">Export as PNG</button> -->
   <button mat-menu-item (click)="extraMap()">Load map in current map</button>
   <button mat-menu-item [matMenuTriggerFor]="myMaps">My Maps</button>
   <button mat-menu-item (click)="allMaps()">Browse all maps</button>
@@ -19,7 +19,7 @@
       <button disabled mat-menu-item>Loading...</button>
     </ng-container>
     <ng-container *ngIf="maps.length > 0 && !loadingOwnMaps">
-      <button mat-menu-item *ngFor="let map of maps" (click)="loadMap(map.graphMapId)">{{map.name}}</button>
+      <button mat-menu-item *ngFor="let map of maps" (click)="loadMap(map.id)">{{map.name}}</button>
     </ng-container>
 
   </mat-menu>

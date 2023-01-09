@@ -1,1 +1,8 @@
 @import "../../dropdownmenu.scss";
+
+.mat-drawer-inner-container::-webkit-scrollbar {
+    display: none;
+}
+.mat-dialog-container {
+    overflow: hidden !important;
+  }

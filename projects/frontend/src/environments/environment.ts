@@ -4,11 +4,15 @@
 
 export const environment = {
   production: false,
-  environment: 'local',
+  environment: 'Local',
+  versionNumber: '1.0',
   resourceRelationshipManagerApi: 'https://localhost:44301',
-  pidApi: 'https://pid-api.dev.colid.int.bayer.com/api/v3/',
-  dmpUrl: "http://localhost:4301",
-  esApi: "https://es-api.dev.colid.int.bayer.com/api/",
+  pageSize: 10,
+  dmpUrl: "http://localhost:4300",
+  colidApiUrl: 'http://localhost:51770/api/v3/',
+  appDataApiUrl: 'http://localhost:51810/api/',
+  dmpCoreApiUrl: 'http://localhost:51800/api/',
+  loggingUrl: 'http://localhost:51800/api/log',
   icons: 'https://dataservices-icons.dev.colid.int.bayer.com/',
   allowAnonymous: true,
   adalConfig: {
@@ -20,7 +24,9 @@ export const environment = {
     },
     postLogoutRedirectUri: 'http://localhost:4305'
   },
-
+  rrmUrl: 'http://localhost:4305/',
+  pidUrl: 'http://localhost:4200/',
+  kgeUrl: 'https://kge.example.com/',
   appSupportFeedBack: {
     mailToLink: 'mailTo:Product Data Marketplace and PID - Driving Data as an asset - Data Stream Open4All <9a204e0a.bayergroup.onmicrosoft.com@emea.teams.ms>s',
     supportTicketLink: 'http://placeholder.url/'

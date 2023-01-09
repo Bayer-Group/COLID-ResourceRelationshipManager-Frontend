@@ -1,13 +1,10 @@
 import { Injectable } from '@angular/core';
-import { Node, ForceDirectedGraph, NodeSaveDto } from './models';
+import { Node, ForceDirectedGraph } from './models';
 import * as d3 from 'd3';
-import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
-import { GraphState } from '../../state/store-items';
-import * as graphVisualisationActions from '../../state/graph-visualisation/graph-visualisation.actions';
 import { tap } from 'rxjs/operators';
-import * as graphPropertiesActions from '../../state/graph-visualisation/graph-visualisation.actions'
-import { GraphProperties } from '../../state/graph-visualisation/graph-visualisation.model';
+import { Select, Store } from '@ngxs/store';
+import { GraphProperties, GraphVisualisationState, ResetTransform, SetCtrlPressed, ToggleDragging, UpdateZoomScale } from '../../state/graph-visualisation.state';
 
 @Injectable()
 export class D3Service {
@@ -18,20 +15,25 @@ export class D3Service {
   private svg: any = null;
   private zoomObject!: d3.ZoomBehavior<Element, unknown>;
   private zoomScale: number = 1;
-  graphProperties$: Observable<GraphProperties>;
+  @Select(GraphVisualisationState.getGraphVisualisationState) graphProperties$: Observable<GraphProperties>;
   brush: any;
   brushArea: any;
   nodes: any[] = []
   shiftKey = false;
+  ctrlKey = false;
+  translatedX: number = 0;
+  translatedY: number = 0;
 
-  constructor(private store: Store<GraphState>) {
-    this.graphProperties$ = this.store.select('graphVisualisation');
-  }
 
-  setContainer(containerElement: any) {
+  constructor(private store: Store) { }
+
+
+  setContainer(containerElement: any, translateX: number, translateY: number) {
     if (this.container == null) {
       this.container = d3.select(containerElement);
     }
+    this.translatedX = translateX;
+    this.translatedY = translateY;
     this.graphProperties$.pipe(
       tap(
         gp => {
@@ -40,7 +42,7 @@ export class D3Service {
           }
           if (gp.resetTransform) {
             this.zoomObject.translateTo(this.svg, window.innerWidth / 1.7, window.innerHeight / 1.7);
-            this.store.dispatch(graphVisualisationActions.ResetTransform({ reset: false }));
+            this.store.dispatch(new ResetTransform(false));
           }
         }
       )
@@ -56,7 +58,7 @@ export class D3Service {
 
     this.container.attr('transform', 'translate(' + transform.x + ',' + transform.y + ') scale(' + transform.k + ')');
     this.zoomScale = transform.k;
-    this.store.dispatch(graphVisualisationActions.UpdateZoomScale({ scale: transform.k }));
+    this.store.dispatch(new UpdateZoomScale(transform.k));
   }
 
   /** A method to bind a pan and zoom behaviour to an svg element */
@@ -83,10 +85,48 @@ export class D3Service {
       }))
     this.brush.keyModifiers(false)
 
+    // d3.selectAll(".node").on("click", onNodeClick)
+
+    // function onNodeClick() {
+    //   let target = d3.select(d3.event.target);
+    //   let color = d3.color(target.attr("fill"));
+    //  target.attr("stroke", "blue")
+    // }
+
     // When shift is pressed pointer events need to be turned on for brush
     d3.select(window)
-      .on("keydown", this.keydown)
-      .on("keyup", this.keyup)
+      .on("keydown", function (event: any) {
+        // If shift key is pressed multiselect changes are triggered
+        let changed = that.shiftKey != event.shiftKey || that.ctrlKey != event.ctrlKey;
+        that.shiftKey = event.shiftKey;
+        that.ctrlKey = event.ctrlKey;
+
+
+        if (changed) {
+          if (that.shiftKey) {
+            d3.select('.overlay').attr("pointer-events", "all");
+            d3.select('.overlay').attr("cursor", "crosshair");
+            d3.select('body').style("cursor", "");
+            that.store.dispatch(new SetCtrlPressed(false));
+          } else if (that.ctrlKey) {
+            d3.select('.overlay').attr("pointer-events", "none");
+            d3.select('body').style("cursor", "copy");
+            that.store.dispatch(new SetCtrlPressed(true));
+          } else {
+            d3.select('.overlay').attr("pointer-events", "none");
+            d3.select('body').style("cursor", "");
+            that.store.dispatch(new SetCtrlPressed(false));
+          }
+        }
+      })
+      .on("keyup", function (event: any) {
+        that.shiftKey = event.shiftKey;
+        that.ctrlKey = event.ctrlKey;
+        d3.select('.overlay').attr("pointer-events", "none")
+        d3.select('.overlay').attr("cursor", "default");
+        d3.select('body').style("cursor", "");
+        that.store.dispatch(new SetCtrlPressed(false));
+      })
       .on('click', function (event: any) {
         // if clicked on the background but a node the selection should clear
         if (event.srcElement.localName == "rect") {
@@ -110,10 +150,16 @@ export class D3Service {
   }
 
   brushed = (event: any) => {
+    // Get selection x,y cord's
     var selection: any = event.selection;
     if (selection != null) {
+      const x1 = selection[0][0] - this.translatedX;
+      const x2 = selection[1][0] - this.translatedX;
+      const y1 = selection[0][1] - this.translatedY;
+      const y2 = selection[1][1] - this.translatedY;
       this.nodes.forEach(node => {
-        if (selection[0][0] <= node.fx && node.fx < selection[1][0] && selection[0][1] <= node.fy && node.fy < selection[1][1]) {
+        // Calculate if node is in the selection or not
+        if (x1 <= node.fx && node.fx < x2 && y1 <= node.fy && node.fy < y2) {
           node.selected = true;
         } else {
           node.selected = false;
@@ -122,21 +168,6 @@ export class D3Service {
     }
   }
 
-  keyup(event: any) {
-    this.shiftKey = event.shiftKey;
-    d3.select('.overlay').attr("pointer-events", "none")
-    d3.select('.overlay').attr("cursor", "default");
-  }
-
-  keydown(event: any) {
-    this.shiftKey = event.shiftKey;
-    if (this.shiftKey) {
-      d3.select('.overlay').attr("pointer-events", "all");
-      d3.select('.overlay').attr("cursor", "crosshair");
-    } else {
-      d3.select('.overlay').attr("pointer-events", "none");
-    }
-  }
 
   /** A method to bind a draggable behaviour to an svg element */
   applyDraggableBehaviour(element: any, node: Node, graph: ForceDirectedGraph) {
@@ -146,7 +177,7 @@ export class D3Service {
     function started(event: any) {
       /** Preventing propagation of dragstart to parent elements */
       event.sourceEvent.stopPropagation();
-      that.store.dispatch(graphVisualisationActions.toggleDragging({ draggingActive: true }))
+      that.store.dispatch(new ToggleDragging(true))
 
       if (!event.active) {
         graph.simulation.alphaTarget(0.3).restart();
@@ -175,7 +206,7 @@ export class D3Service {
       }
 
       function ended(event: any) {
-        that.store.dispatch(graphVisualisationActions.toggleDragging({ draggingActive: false }))
+        that.store.dispatch(new ToggleDragging(false))
         if (!event.active) {
           graph.simulation.alphaTarget(0);
         }
@@ -187,7 +218,23 @@ export class D3Service {
   }
 
   gatherNodes(node: Node) {
-    this.nodes.push(node)
+    this.nodes.push(node);
+  }
+
+  removeNode(node: Node) {
+    const index = this.nodes.findIndex(n => n.id == node.id);
+    if (index === -1) {
+      return;
+    }
+    this.nodes.splice(index, 1);
+  }
+
+  decoupleNodeList(nodes: Node[]) {
+    let newNodes: Node[] = [];
+    nodes.forEach(node => {
+      newNodes.push(Object.assign(new Node(node.id), JSON.parse(JSON.stringify(node))));
+    })
+    return newNodes;
   }
 
 }

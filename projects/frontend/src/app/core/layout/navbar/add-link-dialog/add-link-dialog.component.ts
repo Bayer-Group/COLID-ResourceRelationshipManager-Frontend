@@ -1,11 +1,10 @@
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, ElementRef, Inject, OnInit, ViewChild } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { AddLinkDialogData } from 'projects/frontend/src/app/shared/models/add-link-dialog-data';
-import { LinkTypeContainer, LinkTypesDto } from 'projects/frontend/src/app/shared/models/link-types-dto';
-import { GraphState } from 'projects/frontend/src/app/state/store-items';
+import { LinkTypeContainer } from 'projects/frontend/src/app/shared/models/link-types-dto';
 import { ResourceRelationshipManagerService } from '../../../http/resource-relationship-manager.service';
-import * as graphLinkingActions from '../../../../state/graph-linking/graph-linking.actions';
-import { Store } from '@ngrx/store';
+import { Store } from '@ngxs/store';
+import { ResetLinking } from 'projects/frontend/src/app/state/graph-linking.state';
 
 @Component({
   selector: 'colid-add-link-dialog',
@@ -16,14 +15,16 @@ export class AddLinkDialogComponent implements OnInit {
 
   loading: boolean = false;
   linkTypes: LinkTypeContainer[];
-
+  mapPageSize: number = 12;
+  checkScroll: boolean = false;
   displayColumns: string[] = ['startNode', 'linkType', 'endNode'];
 
+  @ViewChild('infiniteScroller', { static: false }) infiniteScroller!: ElementRef;
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: AddLinkDialogData,
     public dialogRef: MatDialogRef<AddLinkDialogComponent>,
     private resourceRelationshipManagerService: ResourceRelationshipManagerService,
-    private store: Store<GraphState>
+    private store: Store
   ) {
     this.linkTypes = [];
 
@@ -31,7 +32,7 @@ export class AddLinkDialogComponent implements OnInit {
     //check input parameter data for completeness
     if (this.data.linkNodes.length == 2) {
       //good to load all data
-      const pidUris: string[] = this.data.linkNodes.map(a => a.resourceIdentifier);
+      const pidUris: string[] = this.data.linkNodes.map(a => a.id);
       this.loading = true;
       this.resourceRelationshipManagerService.getLinkTypes(pidUris).subscribe(
         res => {
@@ -46,8 +47,8 @@ export class AddLinkDialogComponent implements OnInit {
             link.target.name = this.data.linkNodes.find(l => l.id == lt.targetUri)!.name;
             //link.target.name = "hallo";
 
-            link.linkType.value = lt.linkType.value;
-            link.linkType.name = lt.linkType.name;
+            link.linkType.key = lt.linkType.value;
+            link.linkType.value = lt.linkType.name;
 
             linkTypes.push(link);
           });
@@ -68,8 +69,20 @@ export class AddLinkDialogComponent implements OnInit {
     this.dialogRef.close(selectedElement);
   }
 
+  onScroll($event: any) {
+    if (this.checkScroll) return;
+
+    if (this.linkTypes.length == this.mapPageSize && !!this.infiniteScroller && this.infiniteScroller.nativeElement.scrollTop != 0) {
+      this.checkScroll = true;
+
+      setTimeout(() => {
+        this.checkScroll = false;
+      }, 200);
+    }
+  }
+
   cancel() {
-    this.store.dispatch(graphLinkingActions.ResetLinking());
+    this.store.dispatch(new ResetLinking());
     this.dialogRef.close();
   }
 

@@ -1,0 +1,22 @@
+<div class="h-100 w-100 pb-4 d-flex flex-column">
+  <h2 mat-dialog-title>Add Resource</h2>
+  <div class="w-100 d-flex" style="flex: 1; overflow: hidden;">
+    <div class="filter-panel">
+      <app-sidebar></app-sidebar>
+    </div>
+    <div class="d-flex flex-column search-results-panel">
+      <app-search-bar-autocomplete [initialSearchText]="searchText$ | async" style="padding: 8px"
+                (searchChange)="handleSearchChange($event)" (inputChange)="handleInputChange($event)"> 
+      </app-search-bar-autocomplete>
+      <app-search-results (changePage)="pageChanged($event)" class="search-results"></app-search-results>
+    </div>
+  </div>
+  <mat-dialog-actions style="padding: 0px" align="end" class="button">
+    <button mat-button mat-dialog-close>
+      Cancel
+    </button>
+    <button mat-button mat-flat-button color="primary" (click)="ongetPidUri($event)" [disabled]="pidUris.length === 0">
+      Add Resources
+    </button>
+  </mat-dialog-actions>
+</div>

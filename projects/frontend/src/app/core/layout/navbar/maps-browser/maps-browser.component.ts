@@ -1,24 +1,23 @@
-import { Component, ElementRef, Inject, OnInit, ViewChild } from '@angular/core';
+import { ChangeDetectionStrategy, Component, ElementRef, Inject, OnInit, ViewChild } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatTableDataSource } from '@angular/material/table';
-import { Store } from '@ngrx/store';
 import { GraphMapInfo } from 'projects/frontend/src/app/shared/models/graph-map-info';
 import { GraphMapSearchDTO } from 'projects/frontend/src/app/shared/models/graph-map-search-dto';
-import { GraphMapData } from 'projects/frontend/src/app/state/map-data/map-data.model';
-import { GraphState } from 'projects/frontend/src/app/state/store-items';
 import { Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
-import * as mapDataActions from '../../../../state/map-data/map-data.actions';
-import * as graphLinkingActions from '../../../../state/graph-linking/graph-linking.actions';
+import { Select, Store } from '@ngxs/store';
+import { GraphMapData, LoadMap, LoadMapsNextBatch, LoadSecondMap, MapDataState, SetCurrentMapSearchParams, SetIsOwner } from 'projects/frontend/src/app/state/map-data.state';
+import { ResetLinkEditHistory } from 'projects/frontend/src/app/state/graph-linking.state';
 
 @Component({
   selector: 'colid-maps-browser',
   templateUrl: './maps-browser.component.html',
-  styleUrls: ['./maps-browser.component.scss']
+  styleUrls: ['./maps-browser.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class MapsBrowserComponent implements OnInit {
 
-  mapsStore$: Observable<GraphMapData>;
+  @Select(MapDataState.getMapDataState) mapsStore$: Observable<GraphMapData>;
   dataSource: MatTableDataSource<GraphMapInfo> = new MatTableDataSource<GraphMapInfo>();
   loading: boolean = false;
   nameHeaderClicked: boolean = false;
@@ -32,25 +31,27 @@ export class MapsBrowserComponent implements OnInit {
 
   constructor(
     public dialogRef: MatDialogRef<MapsBrowserComponent>,
-    private store: Store<GraphState>,
+    private store: Store,
     @Inject(MAT_DIALOG_DATA) public data: any
   ) {
-    this.mapsStore$ = this.store.select('mapData');
-    this.mapsStore$.pipe(
-      tap(
-        maps => {
-          this.dataSource.data = maps.allMaps;
-          this.loading = maps.loadingAllMaps;
-          this.searchParams = maps.searchParams;
-          this.userMaps = maps.ownMaps
-        }
-      )
-    ).subscribe();
+
   }
 
   ngOnInit(): void {
     this.searchParams = { ...new GraphMapSearchDTO(), batchSize: this.mapPageSize }
     this.setSearchParams(this.searchParams);
+    setTimeout(() => {
+      this.mapsStore$.pipe(
+        tap(
+          maps => {
+            this.dataSource.data = maps.allMaps;
+            this.loading = maps.loadingAllMaps;
+            this.searchParams = maps.searchParams;
+            this.userMaps = maps.ownMaps;
+          }
+        )
+      ).subscribe();
+    }, 0);
   }
 
   applyFilter(event: Event) {
@@ -60,6 +61,7 @@ export class MapsBrowserComponent implements OnInit {
       this.nameHeaderClicked = false;
   }
 
+
   changeSorting(attribute: string) {
     if (this.searchParams.sortKey !== attribute) {
       this.setSearchParams({ ...this.searchParams, sortType: 'asc', sortKey: attribute });
@@ -68,15 +70,25 @@ export class MapsBrowserComponent implements OnInit {
     }
   }
 
+  isOverflow(el: HTMLElement): boolean {
+    let curOverflow = el.style.overflow;
+    if (!curOverflow || curOverflow === "visible")
+      el.style.overflow = "hidden";
+    let isOverflowing = el.clientWidth < el.scrollWidth
+      || el.clientHeight < el.scrollHeight;
+    el.style.overflow = curOverflow;
+    return isOverflowing;
+  }
+
   private setSearchParams(searchParams: GraphMapSearchDTO) {
     if (!!this.infiniteScroller) {
       this.infiniteScroller.nativeElement.scrollTop = 0;
     }
-    this.store.dispatch(mapDataActions.SetCurrentMapSearchParams({ searchData: searchParams }));
+    this.store.dispatch(new SetCurrentMapSearchParams(searchParams));
   }
 
   onScrolled($event: any) {
-    this.store.dispatch(mapDataActions.LoadMapsNextBatch({ offset: this.dataSource.data.length }))
+    this.store.dispatch(new LoadMapsNextBatch(this.dataSource.data.length));
   }
 
   /**
@@ -91,7 +103,7 @@ export class MapsBrowserComponent implements OnInit {
 
       setTimeout(() => {
         if (this.dataSource.data.length == this.mapPageSize) {
-          this.store.dispatch(mapDataActions.LoadMapsNextBatch({ offset: this.dataSource.data.length }))
+          this.store.dispatch(new LoadMapsNextBatch(this.dataSource.data.length));
         }
         this.checkScroll = false;
       }, 200);
@@ -107,17 +119,26 @@ export class MapsBrowserComponent implements OnInit {
   }
 
   loadMap(row: GraphMapInfo) {
-    this.store.dispatch(graphLinkingActions.ResetLinkEditHistory());
-    this.store.dispatch(mapDataActions.LoadMap({ mapId: row.graphMapId }));
-    if (this.userMaps.some(maps => maps.graphMapId === row.graphMapId)) {
-      this.store.dispatch(mapDataActions.setIsOwner({ isOwner: true }))
+    this.store.dispatch(new ResetLinkEditHistory());
+    this.store.dispatch(new LoadMap(row.id));
+    if (this.userMaps.some(maps => maps.id === row.id)) {
+      this.store.dispatch(new SetIsOwner(true))
     } else {
-      this.store.dispatch(mapDataActions.setIsOwner({ isOwner: false }))
+      this.store.dispatch(new SetIsOwner(false))
     }
     this.dialogRef.close();
   }
+
   loadSecondMap(row: GraphMapInfo) {
-    this.store.dispatch(mapDataActions.LoadSecondMap({ mapId: row.graphMapId }))
+    this.store.dispatch(new LoadSecondMap(row.id))
+    this.dialogRef.close();
+  }
+
+  // getToolTipdata(column: any) {
+  //   return column;
+  // }
+
+  cancel() {
     this.dialogRef.close();
   }
 

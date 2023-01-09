@@ -1,10 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Store } from '@ngrx/store';
-import { D3Service } from 'projects/frontend/src/app/core/d3';
-import { GraphState } from 'projects/frontend/src/app/state/store-items';
+import { Select, Store } from '@ngxs/store';
+import { CenterGraph, GraphVisualisationState, ResetTransform, UpdateZoomScale, ZoomIn, ZoomOut } from 'projects/frontend/src/app/state/graph-visualisation.state';
 import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
-import * as graphActions from '../../../../state/graph-visualisation/graph-visualisation.actions';
 
 @Component({
   selector: 'colid-treedeep',
@@ -24,19 +21,13 @@ export class TreedeepComponent implements OnInit {
   @Input() ariaLabelMore: string | undefined;
   treeDeep: string | undefined;
   treeDeepValue = 0;
-  zoomDeepValue$: Observable<number>;
+  @Select(GraphVisualisationState.getZoomDeepValue) zoomDeepValue$: Observable<number>;
   ButtonTreeDeepDecrease: HTMLElement | null | undefined;
   ButtonTreeDeepIncrease: HTMLElement | null | undefined;
   ButtonZoomDeepIn: HTMLElement | null | undefined;
   ButtonZoomDeepOut: HTMLElement | null | undefined;
 
-  constructor(private store: Store<GraphState>, private d3Service: D3Service) {
-    this.zoomDeepValue$ = this.store.select('graphVisualisation').pipe(
-      map((g) => {
-        return Math.round(g.zoomScale * 100);
-      })
-    );
-  }
+  constructor(private store: Store) { }
 
   ngOnInit(): void {
     this.treeDeepValue = 1;
@@ -84,21 +75,19 @@ export class TreedeepComponent implements OnInit {
   }
 
   zoomOut = (): void => {
-    //this.changeZoomButtonColor();
-    this.store.dispatch(graphActions.ZoomOut());
+    this.store.dispatch(new ZoomOut());
   };
 
   zoomIn = (): void => {
-    //this.changeZoomButtonColor();
-    this.store.dispatch(graphActions.ZoomIn());
+    this.store.dispatch(new ZoomIn());
   };
 
   goToCenter(): void {
-    this.store.dispatch(graphActions.CenterGraph());
+    this.store.dispatch(new CenterGraph());
   }
 
   resetZoom(): void {
-    this.store.dispatch(graphActions.UpdateZoomScale({ scale: 1 }));
-    this.store.dispatch(graphActions.ResetTransform({ reset: true }));
+    this.store.dispatch(new UpdateZoomScale(1));
+    this.store.dispatch(new ResetTransform(true));
   }
 }

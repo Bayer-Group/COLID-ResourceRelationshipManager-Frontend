@@ -1,0 +1,226 @@
+<div class="content-container">
+  <div>
+    <button mat-icon-button class="close-button" [mat-dialog-close]="true">
+      <mat-icon>close</mat-icon>
+    </button>
+  </div>
+  <h2 mat-dialog-title>Show/Hide linked resources</h2>
+  <div
+    class="table-container"
+    id="table-graph-dialog"
+    #infiniteScroller
+    infiniteScroll
+    [scrollWindow]="false"
+    (scroll)="onScroll($event)"
+  >
+    <mat-progress-bar mode="indeterminate" *ngIf="loading"></mat-progress-bar>
+
+    <table mat-table #linksTable [dataSource]="links" class="mat-elevation-z8">
+      <ng-container matColumnDef="select">
+        <th mat-header-cell *matHeaderCellDef id="header-check">
+          <div class="label-header" style="display: none;">
+            <mat-checkbox></mat-checkbox>
+          </div>
+        </th>
+        <td mat-cell *matCellDef="let element" style="vertical-align: bottom;">
+          <mat-checkbox
+            (click)="$event.stopPropagation()"
+            (change)="$event ? selection.toggle(element) : null"
+            [checked]="selection.isSelected(element)"
+          >
+          </mat-checkbox>
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="outbound">
+        <th mat-header-cell *matHeaderCellDef id="header-outbound">
+          <div
+            class="cell-content"
+            (mouseover)="hoveredKey = 'outbound'"
+            (mouseout)="hoveredKey = ''"
+            (click)="changeSorting('outbound')"
+          >
+            <div class="label-header">
+              Incoming/
+              <br />
+              Outgoing
+            </div>
+            <div class="sort-header">
+              <mat-icon
+                inline="true"
+                [style.display]="canDisplayIcon('outbound') ? 'block' : 'none'"
+                class="sorting-icon"
+               
+              >
+                {{ getSortIconCode() }}</mat-icon
+              >
+            </div>
+          </div>
+        </th>
+        <td mat-cell *matCellDef="let element" style="text-align: center; padding-left:0px !important">
+          <img
+            *ngIf="element.outbound"
+            src="assets/outgoing.svg"
+            [matTooltip]="'Outbound'"
+          />
+          <img
+            *ngIf="!element.outbound"
+            src="assets/incoming.svg"
+            [matTooltip]="'Inbound'"
+          />
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="targetType">
+        <th mat-header-cell *matHeaderCellDef id="header-targetType">
+          <div
+            class="cell-content"
+            (mouseover)="hoveredKey = 'targetType'"
+            (mouseout)="hoveredKey = ''"
+            (click)="changeSorting('targetType')"
+          >
+            <div class="label-header">Type</div>
+            <div class="sort-header">
+              <mat-icon
+                inline="true"
+                [style.display]="
+                  canDisplayIcon('targetType') ? 'block' : 'none'
+                "
+                class="sorting-icon"
+               
+              >
+                {{ getSortIconCode() }}</mat-icon
+              >
+            </div>
+          </div>
+        </th>
+        <td mat-cell *matCellDef="let element">
+          <ds-icon
+            class="icon-32"
+            [icon]="element.outbound ? element.sourceType : element.targetType"
+            [iconType]="S3"
+            [tooltipDisabled]="false" 
+            [delay]="300"
+          >
+          </ds-icon>
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="linkType">
+        <th mat-header-cell *matHeaderCellDef id="header-linkType">
+          <div
+            class="cell-content"
+            (mouseover)="hoveredKey = 'linkType'"
+            (mouseout)="hoveredKey = ''"
+            (click)="changeSorting('linkType')"
+          >
+            <div class="label-header">Link Type</div>
+            <div class="sort-header">
+              <mat-icon
+                inline="true"
+                [style.display]="canDisplayIcon('linkType') ? 'block' : 'none'"
+                class="sorting-icon"
+               
+              >
+                {{ getSortIconCode() }}</mat-icon
+              >
+            </div>
+          </div>
+        </th>
+        <td mat-cell  *matCellDef="let element" #tdElement [matTooltip]="(element.linkType.value)" [matTooltipDisabled]="!isOverflow(tdElement)">{{ element.linkType.value }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="targetName">
+        <th mat-header-cell *matHeaderCellDef id="header-targetName">
+          <div
+          class="cell-content"
+          (mouseover)="hoveredKey = 'Resource Name'"
+          (mouseout)="hoveredKey = ''"
+        >
+          <div
+            *ngIf="!nameHeaderClicked"
+            class="label-header label-header-name"
+            (click)="nameHeaderClicked = true"
+            [matTooltip]="'Filter by Resource Name'"
+          >
+            Resource Name
+            <mat-icon
+              inline="true"
+              class="search-header-icon"
+              style="margin-left: 40px; overflow: initial;"
+              >search</mat-icon
+            >
+          </div>
+          <div *ngIf="nameHeaderClicked" class="label-header-form">
+            <div class="filter-container">
+            <mat-form-field appearance="standard">
+              <mat-icon inline="true"
+              class="search-header-icon-filter"
+              matPrefix
+                >search</mat-icon
+              >
+              <input
+                matInput
+                [cdkTrapFocusAutoCapture]="nameHeaderClicked"
+                [cdkTrapFocus]="nameHeaderClicked"
+                style="float: left; padding-left: 6px"
+                (keyup)="applyFilter($event)"
+                #input
+              />
+          <div
+            [class]="!nameHeaderClicked ? 'empty-header' : 'empty-header-form'"
+            (click)="changeSorting('targetName')"
+          >
+            <mat-icon
+            inline="true"
+              [style.display]="canDisplayIcon('targetName') ? 'block' : 'none'"
+              class="sorting-icon-filter"
+            >
+              {{ getSortIconCode() }}</mat-icon
+            >
+          </div>
+        </mat-form-field>
+      </div>
+          </div>
+        </div>
+        </th>
+        <td mat-cell  *matCellDef="let element" #tdElement [matTooltip]="(element.targetName)" [matTooltipDisabled]="!isOverflow(tdElement)">
+          {{ element.targetName }}
+        </td>
+      </ng-container>
+
+      <tr
+        mat-header-row
+        *matHeaderRowDef="
+          ['select', 'outbound', 'targetType', 'linkType', 'targetName'];
+          sticky: true
+        "
+      ></tr>
+      <tr
+        mat-row
+        *matRowDef="
+          let row;
+          columns: [
+            'select',
+            'outbound',
+            'targetType',
+            'linkType',
+            'targetName'
+          ]
+        "
+      ></tr>
+
+              <!-- Row shown when there is no matching data. -->
+ <tr class="mat-row" *matNoDataRow>
+  <td class="mat-cell" colspan="4"> No data matching the filter.</td>
+</tr>
+    </table>
+  </div>
+
+  <mat-dialog-actions align="end" class="action-buttons">
+    <button mat-button mat-dialog-close>Cancel</button>
+    <button mat-button mat-flat-button color="primary" (click)="loadLinks()">
+      Update Links
+    </button>
+  </mat-dialog-actions>
+</div>

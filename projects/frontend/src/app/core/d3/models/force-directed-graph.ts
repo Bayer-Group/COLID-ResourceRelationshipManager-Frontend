@@ -2,12 +2,9 @@ import { EventEmitter } from '@angular/core';
 import { Link } from './link';
 import { Node } from './node';
 import * as d3 from 'd3';
-import { UriName } from '../../../shared/models/link-types-dto';
 import { Observable } from 'rxjs';
-import { GraphProperties } from '../../../state/graph-visualisation/graph-visualisation.model';
-import { Store } from '@ngrx/store';
-import { GraphState } from '../../../state/store-items';
-import { ResourceRelationshipManagerService } from '../../http/resource-relationship-manager.service';
+import { Select, Store } from '@ngxs/store';
+import { GraphProperties, GraphVisualisationState } from '../../../state/graph-visualisation.state';
 
 const FORCES = {
   LINKS: 1 / 100,
@@ -15,11 +12,10 @@ const FORCES = {
   CHARGE: -4000
 }
 
-
 export class ForceDirectedGraph {
   public ticker: EventEmitter<d3.Simulation<Node, Link>> = new EventEmitter();
   public simulation!: d3.Simulation<any, any>;
-  private graphData$: Observable<GraphProperties> | undefined;
+  @Select(GraphVisualisationState.getGraphVisualisationState) private graphData$: Observable<GraphProperties>;
 
   public GRID_SIZE = {
     x: 300,
@@ -37,23 +33,21 @@ export class ForceDirectedGraph {
     nodes: any,
     links: any,
     options: { width: any, height: any },
-    private store: Store<GraphState>,
-    private rrmService: ResourceRelationshipManagerService
+    private store: Store,
   ) {
     this.nodes = nodes;
     this.links = links;
     this.initSimulation(options);
 
-    this.graphData$ = this.store.select('graphVisualisation');
     this.graphData$.subscribe(r => {
-      this.simulation = this.simulation.alphaTarget(0.3).restart()
-      this.filterInfo.filterViewEnabled = r.filterViewEnabled
-      this.filterInfo.filteredNodes = r.filteredNodes
-      this.draggingActive = r.draggingActive
+      this.simulation = this.simulation.alphaTarget(0.3).restart();
+      this.filterInfo.filterViewEnabled = r.filterViewEnabled;
+      this.filterInfo.filteredNodes = r.filteredNodes;
+      this.draggingActive = r.draggingActive;
       if (r.filterViewEnabled) {
-        this.simulation.restart()
-        this.updateUnrenderedNodeCounts()
+        this.simulation.restart();
       }
+      this.updateUnrenderedNodeCounts();
     })
   }
 
@@ -75,7 +69,8 @@ export class ForceDirectedGraph {
     );
   }
 
-  linkCurve(s: { x: number, y: number }, e: { x: number, y: number, }) {
+  // Calculate the double curve in the link between nodes
+  linkCurve(s: { x: number, y: number }, e: { x: number, y: number, }, connectionPointSource: string, connectionPointTarget: string) {
     let p1x: number = s.x
     let p1y: number = s.y
     let p2x: number = e.x
@@ -86,18 +81,29 @@ export class ForceDirectedGraph {
       // if the nodes are vertically or horizontally alligned no curve is needed
       returnString = `M ${p1x} ${p1y} L ${p2x} ${p2y}`
     } else {
-      // mid-point of line:
+      // mid-point of line: 
       var mpx = (p2x + p1x) * 0.5;
       var mpy = (p2y + p1y) * 0.5;
 
       //control points
-      var c1x = p1x + ((mpx - p1x) * 0.4)
+      var c1x;
+      if (connectionPointSource == 'left' || connectionPointSource == 'right') {
+        c1x = p1x + ((mpx - p1x) * 1)
+      } else {
+        c1x = p1x
+      }
       var c1y = p1y
       var c2x = c1x
       var c2y = mpy
-      var c3x = mpx + ((p2x - mpx) * 0.4)
+      var c3x;
+      if (connectionPointSource == 'left' || connectionPointSource == 'right') {
+        c3x = mpx + ((p2x - mpx) * 0.03)
+      } else {
+        c3x = mpx + ((p2x - mpx) * 1)
+      }
       var c3y = p2y
 
+      // String used to render the link with the curves as a SVG
       returnString = `
       M ${p1x} ${p1y}
       C ${c1x} ${c1y} ${c2x} ${c2y} ${mpx} ${mpy}
@@ -107,25 +113,10 @@ export class ForceDirectedGraph {
     return returnString
   }
 
-  linkArc(s: {
-    x: number
-    y: number
-  }, e: {
-    x: number
-    y: number
-  }) {
-    const r = Math.hypot(e.x - s.x, e.y - s.y);
-    return `
-      M${s.x},${s.y}
-      A${r},${r} 0 0,1 ${e.x},${e.y}
-    `;
-  }
-
   initSimulation(options: any) {
     if (!options || !options.width || !options.height) {
       throw new Error('missing options when initializing simulation');
     }
-
 
     /** Creating the simulation */
     if (!this.simulation) {
@@ -150,19 +141,22 @@ export class ForceDirectedGraph {
         );
 
       var that = this;
-      // Connecting the d3 ticker to an angular event emitter
+      // Connecting the d3 ticker to an angular event emitter that ticks, function below is run on every tick
       this.simulation.on('tick', function () {
-        // Create the grid
+        // Reset and initialize the grid
         that.grid = [];
         that.initGrid()
+
+        // Nodes should only move themself to a grid position if user is not currently dragging nodes
         if (!that.draggingActive) {
           that.nodes.forEach(node => {
+            // Decide which gridpoint to use for the node
             let gridpoint = that.occupyNearest(node);
             if (gridpoint) {
-              // Newly loaded nodes can jump to position
-              if (!node.fx || !node.fy) {
-                node.fx = (gridpoint.x - node.x!) * .05;
-                node.fy = (gridpoint.y - node.y!) * .05;
+              // Newly loaded nodes can jump to position, existing nodes should move smooth to position
+              if (!node.fx && !node.fy) {
+                node.fx = gridpoint.x;
+                node.fy = gridpoint.y;
               } else {
                 node.fx! += (gridpoint.x - node.x!) * .05;
                 node.fy! += (gridpoint.y - node.y!) * .05;
@@ -178,30 +172,31 @@ export class ForceDirectedGraph {
             // When filterview is enabled the links need a different calculation so the attachemnt is still right
             let sourceFilter: number = 0
             let targetFilter: number = 0
-            let filterSkip = that.filterOutLinks([l.source.resourceType, l.target.resourceType])
+            // Depending on resource types, certain links don't have to be displayed since there nodes also wont be displayed
+            let filterSkip = that.filterOutLinks([l.source.resourceTypeId, l.target.resourceTypeId])
             if (that.filterInfo.filterViewEnabled == true) {
               if (filterSkip) {
                 l.display = false;
                 return
               }
               that.filterInfo.filteredNodes.forEach((item: any) => {
-                if (item.nodeuri === l.source.resourceIdentifier) {
+                if (item.nodeuri === l.source.id) {
                   sourceFilter++
                 }
-                if (item.nodeuri === l.target.resourceIdentifier) {
+                if (item.nodeuri === l.target.id) {
                   targetFilter++
                 }
               })
             }
 
-            //calculate arc for each element
+            //Calculate attachements points for links on the nodes
             const sourceWidth: number = isNaN(l.source.width) ? 0 : l.source.width;
             const targetWidth: number = isNaN(l.target.width) ? 0 : l.target.width;
             const CONNECTION_POINTS_SOURCE = {
               LEFT: { x: 0, y: 20 },
               RIGHT: { x: sourceWidth, y: 20 },
               TOP: { x: sourceWidth / 2, y: 0 },
-              BOTTOM: { x: sourceWidth / 2, y: 40 }
+              BOTTOM: { x: sourceWidth / 2, y: 20 }
             };
 
             const CONNECTION_POINTS_TARGET = {
@@ -220,8 +215,10 @@ export class ForceDirectedGraph {
             let dX: number = l.target.x! - l.source.x!;
             let sourcefiltercount = sourceFilter ? sourceFilter * 20 + 20 : 0
             let targetfiltercount = targetFilter ? sourceFilter * 20 + 20 : 0
+            let connectionPointSource: string = ""
+            let connectionPointTarget: string = ""
 
-            if (Math.abs(dX) - 137.5 > Math.abs(dY) + 30) {
+            if (!(dX >= -175 && dX <= 175)) {
               //target point is either the leftmost or rightmost
               if (dX >= 0) {
                 //its the left connection point
@@ -229,31 +226,40 @@ export class ForceDirectedGraph {
                 endPoint.y = l.target.y! + CONNECTION_POINTS_TARGET.LEFT.y;
                 startPoint.x = l.source.x! + CONNECTION_POINTS_SOURCE.RIGHT.x;
                 startPoint.y = l.source.y! + CONNECTION_POINTS_SOURCE.RIGHT.y;
+                connectionPointSource = "right"
+                connectionPointTarget = "left"
               } else {
                 //its the right connection point
                 endPoint.x = l.target.x! + CONNECTION_POINTS_TARGET.RIGHT.x;
                 endPoint.y = l.target.y! + CONNECTION_POINTS_TARGET.RIGHT.y;
                 startPoint.x = l.source.x! + CONNECTION_POINTS_SOURCE.LEFT.x;
                 startPoint.y = l.source.y! + CONNECTION_POINTS_SOURCE.LEFT.y;
+                connectionPointSource = "left"
+                connectionPointTarget = "right"
               }
-            } else {
+            }
+            else {
               if (dY >= 0) {
                 //its the upper connection point
                 endPoint.x = l.target.x! + CONNECTION_POINTS_TARGET.TOP.x;
                 endPoint.y = l.target.y! + CONNECTION_POINTS_TARGET.TOP.y;
                 startPoint.x = l.source.x! + CONNECTION_POINTS_SOURCE.BOTTOM.x;
                 startPoint.y = l.source.y! + CONNECTION_POINTS_SOURCE.BOTTOM.y + sourcefiltercount;
+                connectionPointSource = "bottom"
+                connectionPointTarget = "top"
               } else {
                 //its the lower connection point
                 endPoint.x = l.target.x! + CONNECTION_POINTS_TARGET.BOTTOM.x;
                 endPoint.y = l.target.y! + CONNECTION_POINTS_TARGET.BOTTOM.y + targetfiltercount;
                 startPoint.x = l.source.x! + CONNECTION_POINTS_SOURCE.TOP.x;
                 startPoint.y = l.source.y! + CONNECTION_POINTS_SOURCE.TOP.y;
+                connectionPointSource = "top"
+                connectionPointTarget = "bottom"
               }
             }
             l.startPoint = startPoint;
             l.endPoint = endPoint;
-            l.d = that.linkCurve(startPoint, endPoint)
+            l.d = that.linkCurve(startPoint, endPoint, connectionPointSource, connectionPointTarget)
           }
         )
         ticker.emit(this);
@@ -269,23 +275,8 @@ export class ForceDirectedGraph {
     }
     this.initNodes();
     this.initLinks();
-    /** Updating the central force of the simulation */
-    //this.simulation.force('centers', d3.forceCenter(options.width / 2, options.height / 2).strength(0.02));
-
     /** Restarting the simulation internal timer */
     this.simulation.restart();
-  }
-
-  stopSimulation() {
-    if (this.simulation) {
-      // this.simulation.stop();
-    }
-  }
-
-  startSimulation() {
-    if (this.simulation) {
-      this.simulation.restart();
-    }
   }
 
   resetGraph() {
@@ -298,53 +289,52 @@ export class ForceDirectedGraph {
   }
 
   addNode(pNode: Node) {
-    let node: Node = JSON.parse(JSON.stringify(pNode));
+    let node: Node = Object.assign(new Node(pNode.id), JSON.parse(JSON.stringify(pNode)));
     //dont add node since it is already existing
-    if (this.nodes.findIndex(n => n.resourceIdentifier == node.resourceIdentifier) > -1) {
+    if (this.nodes.findIndex(n => n.id == node.id) > -1) {
 
     } else {
       node.shortName = this.generateShortName(node.name);
-      //this.stopSimulation();
       this.nodes.push(node);
       this.initNodes();
       this.simulation = this.simulation.tick(50);
-      //this.simulation.restart();
       this.updateUnrenderedNodeCounts();
     }
   }
   addNodes(nodes: Node[]) {
-    //this.stopSimulation();
     let checkedNodes: Node[] = [];
     nodes.forEach(n => {
-      if (this.nodes.findIndex(cn => cn.resourceIdentifier == n.resourceIdentifier) > -1) {
+      if (this.nodes.findIndex(cn => cn.id == n.id) > -1) {
       } else {
-        checkedNodes.push(n);
+        checkedNodes.push(Object.assign(new Node(n.id), JSON.parse(JSON.stringify(n))));
       }
-    });
-    checkedNodes.forEach(cn => {
-      cn.shortName = this.generateShortName(cn.name);
     });
     this.nodes = this.nodes.concat(checkedNodes);
     this.initNodes();
     this.simulation = this.simulation.tick(50);
-    //this.simulation.restart();
     this.updateUnrenderedNodeCounts();
   }
 
   setNodes(nodes: Node[]) {
-    //this.stopSimulation();
     //TODO: Check the nodes array for duplicate nodes. If there are duplicates, remove one of them
-    this.nodes = JSON.parse(JSON.stringify(nodes));
+    this.nodes = this.decoupleNodeList(nodes);
     this.initNodes();
     this.simulation.restart();
     this.updateUnrenderedNodeCounts();
   }
 
+  /**Remove a single node by passing its ID */
+  removeNodeById(nodeId: string) {
+    var nodeToBeDeleted = this.nodes.find(n => n.id == nodeId);
+    if (nodeToBeDeleted) {
+      this.removeNodes([nodeToBeDeleted]);
+    }
+  }
+
   removeNodes(nodes: Node[]) {
-    this.stopSimulation();
     nodes.forEach(n => {
       this.nodes = this.nodes.filter(no => {
-        return no.resourceIdentifier != n.resourceIdentifier;
+        return no.id != n.id;
       });
     });
     //TODO: Remove links related to that node to prevent errors
@@ -360,7 +350,8 @@ export class ForceDirectedGraph {
    * @param nodeId ID of the node to be checked
    */
   validateNodeExists(nodeId: any): boolean {
-    return (this.nodes.findIndex(n => n.resourceIdentifier == nodeId) > -1);
+    const index = this.nodes.findIndex(n => n.id == nodeId);
+    return index > -1;
   }
 
   /**
@@ -372,8 +363,19 @@ export class ForceDirectedGraph {
   }
 
   addLinks(links: Link[]) {
-    this.stopSimulation();
-    let checkedLinks: Link[] = this.getValidatedLinks(links);
+
+    let checkedLinks: Link[] = this.getValidatedLinks(links.map(l => {
+      if (l.outbound) {
+        return Object.assign(new Link, l)
+      } else {
+        var originalSource = l.source;
+        var reversedLink = l;
+        reversedLink.source = reversedLink.target;
+        reversedLink.target = originalSource;
+        return Object.assign(new Link, reversedLink);
+      }
+    }
+    ));
     this.links = this.links.concat(checkedLinks);
     this.initLinks();
     this.simulation.restart();
@@ -381,30 +383,92 @@ export class ForceDirectedGraph {
   }
 
   setLinks(links: Link[]) {
-    this.stopSimulation();
-    let checkedLinks: Link[] = this.getValidatedLinks(links);
-    this.links = JSON.parse(JSON.stringify(checkedLinks));
+    let checkedLinks: Link[] = this.getValidatedLinks(links.map(l => {
+      if (l.outbound) {
+        return Object.assign(new Link, l)
+      } else {
+        var originalSource = l.source;
+        var reversedLink = l;
+        reversedLink.source = reversedLink.target;
+        reversedLink.target = originalSource;
+        return Object.assign(new Link, reversedLink);
+      }
+    }
+    ));
+    this.links = this.decoupleLinkList(checkedLinks);
     this.initLinks();
     this.simulation.restart();
     this.updateUnrenderedNodeCounts();
   }
 
+  toggleNode(id: string) {
+    var ind = this.nodes.findIndex(n => n.id == id);
+    if (ind > -1) {
+      this.nodes[ind].selected = !this.nodes[ind].selected
+    }
+  }
+
+  toggleExclusive(id: string) {
+    this.nodes.forEach(n => {
+      if (n.id != id) {
+        n.selected = false;
+      } else {
+        n.selected = !n.selected;
+      }
+    })
+  }
+
+  selectNodes(ids: string[]) {
+    this.nodes.forEach(n => {
+      if (ids.includes(n.id)) {
+        n.selected = true;
+      }
+    }
+    )
+  }
+
+  decoupleLinkList(links: Link[]) {
+    let newLinks: Link[] = [];
+    links.forEach(l => {
+      newLinks.push(Object.assign(new Link, JSON.parse(JSON.stringify(l))));
+    });
+    return newLinks;
+  }
+  decoupleNodeList(nodes: Node[]) {
+    let newNodes: Node[] = [];
+    nodes.forEach(node => {
+      newNodes.push(Object.assign(new Node(node.id), JSON.parse(JSON.stringify(node))));
+    })
+    return newNodes;
+  }
+
   updateUnrenderedNodeCounts() {
-    this.nodes.filter(nf => nf.links.length > 0).forEach((node: Node) => {
-      let nodeLinkCount: number = 0
+    this.nodes.filter(n => n.links.length > 0).forEach((node: Node) => {
       node.links.forEach((link: Link) => {
-        //assume that if a links source and target node exists, it is displayed in the map
-        if (this.validateNodeExists(link.source) && this.validateNodeExists(link.target)) {
-          link.isRendered = true;
-          // if filterview is active and a unredered node is a collumn/table it should not be counted
-        } else if (this.filterInfo.filterViewEnabled && this.filterOutNodes([JSON.stringify(link.source), JSON.stringify(link.target)])) {
-          return
+        var isSchemaResource = this.filterOutNodes([link.sourceType, link.targetType]);
+        var targetExists = this.validateNodeExists(link.target);
+        var sourceExists = this.validateNodeExists(link.source);
+        if (this.filterInfo.filterViewEnabled) {
+          if (isSchemaResource) {
+            link.display = false;
+          } else {
+            link.display = true;
+          }
+          if (link.display == true && targetExists && sourceExists) {
+            link.isRendered = true;
+          } else {
+            link.isRendered = false;
+          }
         } else {
-          link.isRendered = false;
-          nodeLinkCount++
+          link.display = true;
+          if (targetExists && sourceExists) {
+            link.isRendered = true;
+          } else {
+            link.isRendered = false;
+          }
         }
-      });
-      node.linkCount = nodeLinkCount
+
+      })
     });
   }
 
@@ -417,13 +481,22 @@ export class ForceDirectedGraph {
   getValidatedLinks(links: Link[]) {
     let checkedLinks: Link[] = [];
     links.forEach(l => {
-      if (this.validateNodeExists(l.source) && this.validateNodeExists(l.target)) {
-        l.isRendered = true;
-        //do not add duplicates
-        if (!this.isLinkDuplicate(l.source, l.target, l.name)) {
-          checkedLinks.push(l);
-        }
+      if (!l.isRendered) {
+        if (this.validateNodeExists(l.source) && this.validateNodeExists(l.target)) {
+          l.isRendered = true;
+          //Reverse source and target in accordance to outbound parameter for the duplicate check
+          var trueSource = l.outbound ? l.source : l.target;
+          var trueTarget = l.outbound ? l.target : l.source;
+          //do not add duplicates
+          if (!this.isLinkDuplicate(trueSource, trueTarget, l.linkTypeId)) {
+            const ind = checkedLinks.findIndex(chl => chl.target === l.source && chl.source === l.target && (!chl.outbound) == l.outbound);
+            if (ind === -1) {
+              checkedLinks.push(l);
+            }
 
+          }
+
+        }
       }
     });
     return this.sanitizeLinkList(checkedLinks);
@@ -439,8 +512,11 @@ export class ForceDirectedGraph {
     }
   }
 
-  isLinkDuplicate(source: any, target: any, type: UriName) {
-    return this.links.findIndex(l => l.source == source && l.target == target && l.name.value == type.value) > -1;
+  isLinkDuplicate(source: any, target: any, type: string) {
+    return this.links.findIndex(l =>
+      (l.source == source && l.target == target && l.linkTypeId == type)
+      || (l.source.id == source && l.target.id == target && l.linkTypeId == type)
+    ) > -1;
   }
 
   sanitizeLinkList(links: Link[]): Link[] {
@@ -449,7 +525,7 @@ export class ForceDirectedGraph {
 
     //check if there are duplicates in the list
     sanitizedList = links.filter(function (item, index) {
-      var ind = links.findIndex(l => l.source == item.source && l.target == item.target && item.name.value == l.name.value);
+      var ind = links.findIndex(l => l.source == item.source && l.target == item.target && item.linkTypeId == l.linkTypeId);
       return ind == index;
     });
 
@@ -464,10 +540,9 @@ export class ForceDirectedGraph {
         l =>
           l.source.id == (link.source as unknown as string) &&
           l.target.id == (link.target as unknown as string) &&
-          l.name.value == link.name.value
+          l.linkTypeId == link.linkTypeId
       );
       if (linkDuplicateIndex == -1) {
-        this.nodes[nodeIndex].linkCount++;
         this.nodes[nodeIndex].links.push(link);
       }
     }
@@ -475,21 +550,17 @@ export class ForceDirectedGraph {
   }
 
   removeLinks(links: Link[]) {
-    this.stopSimulation();
     links.forEach(l => {
       let linkIndex: number = -1;
       if (l.source.id) {
-        linkIndex = this.links.findIndex(x => x.source.id == l.source.id && x.target.id == l.target.id && x.name.value == l.name.value);
+        linkIndex = this.links.findIndex(x => x.source.id == l.source.id && x.target.id == l.target.id && x.linkType.key == l.linkType.key);
       } else {
-        linkIndex = this.links.findIndex(x => x.source.id == l.source as any && x.target.id == l.target as any && x.name.value == l.name.value);
+        linkIndex = this.links.findIndex(x => x.source.id == l.source as any && x.target.id == l.target as any && x.linkType.key == l.linkType.key);
       }
 
       if (linkIndex > -1) {
         this.links.splice(linkIndex, 1);
       }
-      // this.links = this.links.filter(li => {
-      //   return li.source != l.source && li.target != l.target;
-      // });
     });
     this.initLinks();
     this.simulation.restart();
@@ -514,33 +585,25 @@ export class ForceDirectedGraph {
   }
 
   filterOutLinks(resourceTypes: string[]) {
-    let value: Boolean = false
-    let tableType = "https://pid.bayer.com/kos/19050/444586"
-    let columnType = "https://pid.bayer.com/kos/19050/444582"
+    let value: Boolean = false;
+    let tableType = "https://pid.bayer.com/kos/19050/444586";
+    let columnType = "https://pid.bayer.com/kos/19050/444582";
     if (resourceTypes.includes(tableType)) {
-      value = true
+      value = true;
     } else if (resourceTypes.includes(columnType)) {
-      value = true
+      value = true;
     }
-    return value
+    return value;
   }
 
-  filterOutNodes(uris: string[]) {
-    let value: Boolean = false
-    let tableType = "https://pid.bayer.com/kos/19050/444586"
-    let columnType = "https://pid.bayer.com/kos/19050/444582"
-    let nodesTypes: string[] = []
-    this.rrmService.getCheckedResources(uris).subscribe(res => {
-      res.forEach(resource => {
-        nodesTypes.push(resource.resourceType)
-      })
-      if (nodesTypes.includes(tableType)) {
-        value = true
-      } else if (nodesTypes.includes(columnType)) {
-        value = true
-      }
-    })
-    return value
+  filterOutNodes(types: string[]) {
+    const tableType = "https://pid.bayer.com/kos/19050/444586";
+    const columnType = "https://pid.bayer.com/kos/19050/444582";
+
+    if (types.includes(tableType) || types.includes(columnType)) {
+      return true;
+    }
+    return false;
   }
 
   initGrid() {
