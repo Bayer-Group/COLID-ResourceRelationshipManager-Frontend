@@ -1,13 +1,31 @@
-<button mat-button [matMenuTriggerFor]="view" class="navbar-item" *ngIf="!isFilterViewSelected"
-  (click)="cancelLinking()">View</button>
-<button mat-button [matMenuTriggerFor]="view" class="navbar-item" *ngIf="isFilterViewSelected"
-  (click)="cancelLinking()">Filter View</button>
+<button
+  mat-button
+  [matMenuTriggerFor]="view"
+  class="navbar-item"
+  *ngIf="!isFilterViewSelected"
+  (click)="cancelLinking()"
+>
+  View
+</button>
+<button
+  mat-button
+  [matMenuTriggerFor]="view"
+  class="navbar-item"
+  *ngIf="isFilterViewSelected"
+  (click)="cancelLinking()"
+>
+  Filter View
+</button>
 
 <mat-menu #view="matMenu">
   <p class="menuTitle">Show</p>
   <button (click)="toggleFilterView()" mat-menu-item>
-    <ng-container *ngIf="!isFilterViewSelected">Hide schema resources</ng-container>
-    <ng-container *ngIf="isFilterViewSelected">Show schema resources</ng-container>
+    <ng-container *ngIf="!isFilterViewSelected"
+      >Hide schema resources</ng-container
+    >
+    <ng-container *ngIf="isFilterViewSelected"
+      >Show schema resources</ng-container
+    >
   </button>
   <button (click)="toggleResourceName()" mat-menu-item>
     <ng-container *ngIf="!isLongNameSelected">Long Resource Names</ng-container>

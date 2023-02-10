@@ -8,9 +8,8 @@ describe('SupportFeedbackBarComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ SupportFeedbackBarComponent ]
-    })
-    .compileComponents();
+      declarations: [SupportFeedbackBarComponent],
+    }).compileComponents();
   });
 
   beforeEach(() => {

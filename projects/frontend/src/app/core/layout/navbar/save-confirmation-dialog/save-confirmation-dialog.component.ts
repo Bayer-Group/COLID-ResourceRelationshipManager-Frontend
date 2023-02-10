@@ -1,19 +1,15 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
 
 @Component({
   selector: 'colid-save-confirmation-dialog',
   templateUrl: './save-confirmation-dialog.component.html',
-  styleUrls: ['./save-confirmation-dialog.component.scss']
+  styleUrls: ['./save-confirmation-dialog.component.scss'],
 })
-export class SaveConfirmationDialogComponent implements OnInit {
-
+export class SaveConfirmationDialogComponent {
   constructor(
     public dialogRef: MatDialogRef<SaveConfirmationDialogComponent>
-  ) { }
-
-  ngOnInit(): void {
-  }
+  ) {}
 
   cancel() {
     this.dialogRef.close();
@@ -22,5 +18,4 @@ export class SaveConfirmationDialogComponent implements OnInit {
   discard() {
     this.dialogRef.close('discard');
   }
-
 }

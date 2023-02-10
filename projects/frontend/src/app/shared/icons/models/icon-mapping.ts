@@ -1,8 +1,19 @@
-export const IconMapping : {[key: string]: IconDetailInformation} = {
-  'https://pid.bayer.com/kos/19050/draft': { icon: 'pencil-alt', tooltip: 'Draft' },
-  'https://pid.bayer.com/kos/19050/published': { icon: 'cloud-upload-alt', tooltip: 'Published' },
-  'https://pid.bayer.com/kos/19050/markedForDeletion': { icon: 'trash-alt', tooltip: 'Marked For Deletion' },
-}
+import { Constants } from '../../../shared/constants';
+
+export const IconMapping: { [key: string]: IconDetailInformation } = {
+  [Constants.Resource.LifeCycleStatus.Draft]: {
+    icon: 'pencil-alt',
+    tooltip: 'Draft',
+  },
+  [Constants.Resource.LifeCycleStatus.Published]: {
+    icon: 'cloud-upload-alt',
+    tooltip: 'Published',
+  },
+  [Constants.Resource.LifeCycleStatus.MarkedDeletion]: {
+    icon: 'trash-alt',
+    tooltip: 'Marked For Deletion',
+  },
+};
 
 export interface IconDetailInformation {
   icon: string;

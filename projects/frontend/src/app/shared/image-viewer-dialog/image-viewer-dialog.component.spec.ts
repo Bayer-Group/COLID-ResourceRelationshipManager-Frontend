@@ -8,9 +8,8 @@ describe('ImageViewerDialogComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ ImageViewerDialogComponent ]
-    })
-    .compileComponents();
+      declarations: [ImageViewerDialogComponent],
+    }).compileComponents();
   }));
 
   beforeEach(() => {

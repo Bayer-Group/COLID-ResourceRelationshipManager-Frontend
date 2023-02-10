@@ -8,9 +8,8 @@ describe('GraphContainerComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ GraphContainerComponent ]
-    })
-    .compileComponents();
+      declarations: [GraphContainerComponent],
+    }).compileComponents();
   });
 
   beforeEach(() => {

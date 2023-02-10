@@ -6,14 +6,14 @@ declare const InstallTrigger: any;
 @Component({
   selector: 'ensure-browser-support',
   templateUrl: './ensure-browser-support.component.html',
-  styles: []
+  styles: [],
 })
 export class BrowserSupportComponent implements OnInit {
-
   supportedBrowser: boolean = false;
 
-  constructor(private ensureBrowserSupportService: EnsureBrowserSupportService) {
-  }
+  constructor(
+    private ensureBrowserSupportService: EnsureBrowserSupportService
+  ) {}
 
   ngOnInit() {
     this.supportedBrowser = this.ensureBrowserSupportService.isSupported();

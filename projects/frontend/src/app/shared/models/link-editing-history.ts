@@ -1,14 +1,14 @@
-import { LinkTypeContainer, LinkTypesDto } from "./link-types-dto";
+import { LinkTypeContainer, LinkTypesDto } from './link-types-dto';
 
 export interface LinkEditHistory extends LinkTypeContainer {
-    action: LinkHistoryAction;
+  action: LinkHistoryAction;
 }
 
 export interface LinkEditHistoryDto extends LinkTypesDto {
-    action: LinkHistoryAction;
+  action: LinkHistoryAction;
 }
 
 export enum LinkHistoryAction {
-    Delete = 'remove',
-    Add = 'add'
+  Delete = 'remove',
+  Add = 'add',
 }

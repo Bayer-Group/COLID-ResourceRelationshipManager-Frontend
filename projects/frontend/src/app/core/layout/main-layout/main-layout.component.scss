@@ -12,21 +12,19 @@ mat-sidenav {
     margin-left: 25px;
 }
 .sidenav-container{
-    overflow: hidden;
+    width: 800px;
+    position: fixed;
+    top: 60px;
+    bottom: 72px;
 }
 .sidebar-close{
-    position: absolute;
-    top:15px;
-    right:20px;
-    font-weight: bold;
-    font-size: large;
+    display: flex;
+    justify-content: end;
 }
 
 
 ::ng-deep .rotated {
 
-    // margin-top: -34em;
-    // margin-left: 8em;
     right: -110px;
     top: 50%;
     position: fixed;

@@ -8,9 +8,8 @@ describe('ColidSpinnerComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ ColidSpinnerComponent ]
-    })
-    .compileComponents();
+      declarations: [ColidSpinnerComponent],
+    }).compileComponents();
   }));
 
   beforeEach(() => {

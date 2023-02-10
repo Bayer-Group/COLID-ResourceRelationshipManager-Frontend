@@ -6,17 +6,20 @@ import { Injectable } from '@angular/core';
 
 export class FetchFilter {
   static readonly type = '[Filter] FetchFilterItems';
-  constructor() { }
+  constructor() {}
 }
 
 export class SetFilterItems {
   static readonly type = '[Filter] SetFilterItems';
-  constructor(public aggregations: Aggregation[], public rangeFilters: RangeFilter[]) { }
+  constructor(
+    public aggregations: Aggregation[],
+    public rangeFilters: RangeFilter[]
+  ) {}
 }
 
 export class SetTypeItems {
   static readonly type = '[Filter] SetTypeItems';
-  constructor(public typeItemIds: string[]) { }
+  constructor(public typeItemIds: string[]) {}
 }
 export interface FilterStateModel {
   loading: boolean;
@@ -30,11 +33,10 @@ export interface FilterStateModel {
     loading: false,
     aggregationFilters: null,
     rangeFilters: null,
-  }
+  },
 })
 @Injectable()
 export class FilterState {
-
   @Selector()
   public static getAggregationFilters(state: FilterStateModel) {
     return state.aggregationFilters;
@@ -49,36 +51,39 @@ export class FilterState {
   public static loading(state: FilterStateModel) {
     return state.loading;
   }
-  constructor(private searchService: SearchService) { }
+  constructor(private searchService: SearchService) {}
 
   ngxsOnInit(ctx: StateContext<FilterStateModel>) {
     const state = ctx.getState();
-    ctx.patchState(
-      state
-    );
+    ctx.patchState(state);
   }
 
   @Action(FetchFilter)
-  fetchResource({ patchState }: StateContext<FilterStateModel>, { }: FetchFilter) {
+  fetchResource(
+    { patchState }: StateContext<FilterStateModel>,
+    {}: FetchFilter
+  ) {
     patchState({
       loading: true,
-    })
-    this.searchService.getFilterItems().subscribe(res => {
+    });
+    this.searchService.getFilterItems().subscribe((res) => {
       patchState({
         loading: false,
         aggregationFilters: res.aggregations,
-        rangeFilters: res.rangeFilters
+        rangeFilters: res.rangeFilters,
       });
     });
   }
 
   @Action(SetFilterItems)
-  setFilter({ patchState }: StateContext<FilterStateModel>, { aggregations, rangeFilters }: SetFilterItems) {
+  setFilter(
+    { patchState }: StateContext<FilterStateModel>,
+    { aggregations, rangeFilters }: SetFilterItems
+  ) {
     patchState({
       loading: false,
       aggregationFilters: aggregations,
-      rangeFilters: rangeFilters
+      rangeFilters: rangeFilters,
     });
-
   }
 }

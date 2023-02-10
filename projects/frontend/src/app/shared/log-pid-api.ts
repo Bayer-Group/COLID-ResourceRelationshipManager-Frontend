@@ -7,30 +7,28 @@ import { EdmLogEntry } from '.././shared/edm-log-entry';
 import { LogLevel } from '.././shared/log-level';
 
 export class LogPidApi implements LogPublisher {
-    location: string;
+  location: string;
 
-    constructor(private httpClient: HttpClient) {
-        // Set location
-        this.location = environment.loggingUrl;
-    }
+  constructor(private httpClient: HttpClient) {
+    // Set location
+    this.location = environment.loggingUrl;
+  }
 
-    // Add log entry to back end data store
-    log(logLevel: LogLevel, entry: EdmLogEntry): Observable<boolean> {
-        return this.httpClient.post(this.location + '/' + logLevel, entry)
-            .pipe(
-                map(response => response),
-                catchError(this.handleErrors)
-            );
-    }
+  // Add log entry to back end data store
+  log(logLevel: LogLevel, entry: EdmLogEntry): Observable<boolean> {
+    return this.httpClient.post(this.location + '/' + logLevel, entry).pipe(
+      map((response) => response),
+      catchError(this.handleErrors)
+    );
+  }
 
-    // Clear all log entries from local storage
-    clear(): Observable<boolean> {
-        // TODO: Call Web API to clear all values
-        return observableOf(true);
-    }
+  // Clear all log entries from local storage
+  clear(): Observable<boolean> {
+    // TODO: Call Web API to clear all values
+    return observableOf(true);
+  }
 
-    private handleErrors(error: any): Observable<any> {
-        return observableOf(error);
-        // return throwError(error);
-    }
+  private handleErrors(error: any): Observable<any> {
+    return observableOf(error);
+  }
 }

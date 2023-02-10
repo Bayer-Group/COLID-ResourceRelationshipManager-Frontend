@@ -1,12 +1,18 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Select, Store } from '@ngxs/store';
-import { CenterGraph, GraphVisualisationState, ResetTransform, UpdateZoomScale, ZoomIn, ZoomOut } from 'projects/frontend/src/app/state/graph-visualisation.state';
+import {
+  GraphVisualisationState,
+  ResetTransform,
+  UpdateZoomScale,
+  ZoomIn,
+  ZoomOut,
+} from 'projects/frontend/src/app/state/graph-visualisation.state';
 import { Observable } from 'rxjs';
 
 @Component({
   selector: 'colid-treedeep',
   templateUrl: './treedeep.component.html',
-  styleUrls: ['./treedeep.component.scss']
+  styleUrls: ['./treedeep.component.scss'],
 })
 export class TreedeepComponent implements OnInit {
   @Input() initialValue = 1;
@@ -21,13 +27,14 @@ export class TreedeepComponent implements OnInit {
   @Input() ariaLabelMore: string | undefined;
   treeDeep: string | undefined;
   treeDeepValue = 0;
-  @Select(GraphVisualisationState.getZoomDeepValue) zoomDeepValue$: Observable<number>;
+  @Select(GraphVisualisationState.getZoomDeepValue)
+  zoomDeepValue$: Observable<number>;
   ButtonTreeDeepDecrease: HTMLElement | null | undefined;
   ButtonTreeDeepIncrease: HTMLElement | null | undefined;
   ButtonZoomDeepIn: HTMLElement | null | undefined;
   ButtonZoomDeepOut: HTMLElement | null | undefined;
 
-  constructor(private store: Store) { }
+  constructor(private store: Store) {}
 
   ngOnInit(): void {
     this.treeDeepValue = 1;
@@ -81,10 +88,6 @@ export class TreedeepComponent implements OnInit {
   zoomIn = (): void => {
     this.store.dispatch(new ZoomIn());
   };
-
-  goToCenter(): void {
-    this.store.dispatch(new CenterGraph());
-  }
 
   resetZoom(): void {
     this.store.dispatch(new UpdateZoomScale(1));

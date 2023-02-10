@@ -8,9 +8,8 @@ describe('DeleteItemDialogComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ DeleteItemDialogComponent ]
-    })
-    .compileComponents();
+      declarations: [DeleteItemDialogComponent],
+    }).compileComponents();
   }));
 
   beforeEach(() => {

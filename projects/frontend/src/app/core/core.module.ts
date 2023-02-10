@@ -7,6 +7,7 @@ import { RouterModule } from '@angular/router';
 import { NavbarModule } from './layout/navbar/navbar.module';
 import { SharedModule } from '../shared/shared.module';
 import { SupportFeedbackBarComponent } from '../features/home/support-feedback-bar/support-feedback-bar.component';
+import { SearchModule } from '../search/search.module';
 
 @NgModule({
   declarations: [MainLayoutComponent, SupportFeedbackBarComponent],
@@ -16,8 +17,9 @@ import { SupportFeedbackBarComponent } from '../features/home/support-feedback-b
     BrowserModule,
     BrowserAnimationsModule,
     RouterModule,
-    NavbarModule
+    NavbarModule,
+    SearchModule,
   ],
-  exports: [MainLayoutComponent]
+  exports: [MainLayoutComponent],
 })
-export class CoreModule { }
+export class CoreModule {}

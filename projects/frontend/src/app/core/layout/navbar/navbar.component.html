@@ -1,9 +1,17 @@
 <div class="navbar">
   <div style="display: flex">
     <div>
-      <img class="logo" height="29" src="assets/BAG_COLID-Visual_white_lh.svg" style="margin-top:12px;vertical-align:unset"
-        (click)="newMap()" />
-      <span class="rrm-title">Resource Relationship Manager {{ versionNumber }} {{ environmentLabel }}</span>
+      <img
+        class="logo"
+        height="29"
+        src="assets/BAG_COLID-Visual_white_lh.svg"
+        style="margin-top: 12px; vertical-align: unset"
+        (click)="newMap()"
+      />
+      <span class="rrm-title"
+        >Resource Relationship Manager {{ versionNumber }}
+        {{ environmentLabel }}</span
+      >
     </div>
     <div>
       <colid-map></colid-map>

@@ -1,0 +1,36 @@
+<div class="h-100" [class.is-mobile]="(sidebarMode$ | async) === 'over'">
+  <mat-sidenav-container autosize>
+    <mat-sidenav
+      #sidenav
+      [opened]="sidebarOpened$ | async"
+      [mode]="sidebarMode$ | async"
+      [fixedInViewport]="(sidebarMode$ | async) === 'over'"
+      fixedTopGap="54"
+    >
+      <app-sidebar></app-sidebar>
+    </mat-sidenav>
+    <mat-sidenav-content>
+      <div class="h-content m-0 justify-content-center">
+        <div class="d-flex flex-column">
+          <div class="flex-fill m-0">
+            <div class="d-flex mb-2">
+              <div class="p-2 flex-grow-1">
+                <app-search-bar-autocomplete
+                  [initialSearchText]="searchText$ | async"
+                  (searchChange)="handleSearchChange($event)"
+                >
+                </app-search-bar-autocomplete>
+              </div>
+            </div>
+          </div>
+
+          <div class="flex-fill">
+            <app-search-results
+              (changePage)="pageChanged($event)"
+            ></app-search-results>
+          </div>
+        </div>
+      </div>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+</div>

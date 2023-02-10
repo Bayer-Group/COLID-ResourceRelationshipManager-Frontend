@@ -5,14 +5,19 @@ import { Observable } from 'rxjs';
 import { ColidEntrySubscriptionDto } from 'projects/frontend/src/app/shared/colid-entry-subscription-dto';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class ColidEntryApiService {
-  constructor(private httpClient: HttpClient) { }
+  constructor(private httpClient: HttpClient) {}
 
-  getColidEntrySubscriptionCount(id: string[]): Observable<ColidEntrySubscriptionDto[]> {
+  getColidEntrySubscriptionCount(
+    id: string[]
+  ): Observable<ColidEntrySubscriptionDto[]> {
     const url = `${environment.appDataApiUrl}ColidEntries/subscriptions`;
-    var subcriptionCounts = this.httpClient.post<ColidEntrySubscriptionDto[]>(url, id);
-    return subcriptionCounts
+    var subcriptionCounts = this.httpClient.post<ColidEntrySubscriptionDto[]>(
+      url,
+      id
+    );
+    return subcriptionCounts;
   }
 }

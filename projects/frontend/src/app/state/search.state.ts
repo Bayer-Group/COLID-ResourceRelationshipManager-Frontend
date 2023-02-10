@@ -1,128 +1,143 @@
-import { Action, Selector, State, StateContext, Actions, ofActionDispatched, Store } from '@ngxs/store';
+import {
+  Action,
+  Selector,
+  State,
+  StateContext,
+  Actions,
+  ofActionDispatched,
+  Store,
+} from '@ngxs/store';
 import { SearchService } from 'projects/frontend/src/app/shared/search.service';
 import { SearchResult } from 'projects/frontend/src/app/shared/search-result';
-import { Aggregation, AggregationType } from 'projects/frontend/src/app/shared/aggregation';
+import {
+  Aggregation,
+  AggregationType,
+} from 'projects/frontend/src/app/shared/aggregation';
 import { AggregationBucket } from 'projects/frontend/src/app/shared/aggregation-bucket';
 import { ActivatedRoute } from '@angular/router';
 import { finalize, tap, mergeMap, catchError, takeUntil } from 'rxjs/operators';
 import { SetFilterItems } from 'projects/frontend/src/app/shared/filter.state';
 import { RangeFilterSelection } from 'projects/frontend/src/app/shared/range-filter';
 import { ActiveRangeFilters } from 'projects/frontend/src/app/shared/active-range-filters';
-import { DmpException, ErrorCode } from 'projects/frontend/src/app/shared/dmp-exception';
+import {
+  DmpException,
+  ErrorCode,
+} from 'projects/frontend/src/app/shared/dmp-exception';
 import { of } from 'rxjs';
-import { FetchResourcePolicies } from './resource-policies.state';
 import { SchemeUi } from '../shared/schemeUI';
 import { Injectable } from '@angular/core';
-//import { SchemeUi } from '../shared/models/schemeUI';
 
 export class PerformInitialSearch {
   static readonly type = '[Search] PerformInitialSearch';
 
-  constructor(public searchTerm: string, public route: ActivatedRoute) { }
+  constructor(public searchTerm: string, public route: ActivatedRoute) {}
 }
 
 export class FetchAutocompleteResults {
   static readonly type = '[Search] FetchAutocompleteResults';
 
-  constructor(public searchText: string) { }
+  constructor(public searchText: string) {}
 }
 
 export class FetchSearchResult {
   static readonly type = '[Search] FetchSearchResult';
 
-  constructor(public route: ActivatedRoute) {
-  }
+  constructor(public route: ActivatedRoute) {}
 }
 
 export class FetchSearchResults {
   static readonly type = '[Search] FetchSearchResults';
 
-  constructor() {
-  }
+  constructor() {}
 }
 
 export class FetchNextSearchResult {
   static readonly type = '[Search] FetchNextSearchResult';
 
-  constructor(public scrollingMainView: boolean) {
-  }
+  constructor(public scrollingMainView: boolean) {}
 }
 
 export class ChangeSearchText {
   static readonly type = '[Search] ChangeSearchText';
 
-  constructor(public searchText: string, public initialChange: boolean) {
-  }
+  constructor(public searchText: string, public initialChange: boolean) {}
 }
 
 export class SearchByPidUri {
   static readonly type = '[Search] Search by PID URI';
-  constructor(public pidUri: string) { }
+  constructor(public pidUri: string) {}
 }
 
 export class ChangeActiveRangeFilter {
   static readonly type = '[Search] ChangeActiveRangeFilter';
 
-  constructor(public key: string, public selection: RangeFilterSelection, public initialChange: boolean) {
-  }
+  constructor(
+    public key: string,
+    public selection: RangeFilterSelection,
+    public initialChange: boolean
+  ) {}
 }
 
 export class OverwriteActiveRangeFilters {
   static readonly type = '[Search] OverwriteActiveRangeFilters';
 
-  constructor(public activeRangeFilters: ActiveRangeFilters, public initialChange: boolean) {
-  }
+  constructor(
+    public activeRangeFilters: ActiveRangeFilters,
+    public initialChange: boolean
+  ) {}
 }
 
 export class OverwriteActiveAggregationBuckets {
   static readonly type = '[Search] OverwriteActiveAggregationBuckets';
 
-  constructor(public activeAggregationBuckets: Map<string, string[]>, public initialChange: boolean) {
-  }
+  constructor(
+    public activeAggregationBuckets: Map<string, string[]>,
+    public initialChange: boolean
+  ) {}
 }
 
 export class ChangePage {
   static readonly type = '[Search] ChangePage';
 
-  constructor(public page: number, public initialChange: boolean) {
-  }
+  constructor(public page: number, public initialChange: boolean) {}
 }
 
 export class ChangeActiveAggregationBuckets {
   static readonly type = '[Search] ChangeActiveAggregationBuckets';
 
-  constructor(public aggregation: Aggregation, public aggregationBucket: AggregationBucket, public value: any) {
-  }
+  constructor(
+    public aggregation: Aggregation,
+    public aggregationBucket: AggregationBucket,
+    public value: any
+  ) {}
 }
 
 export class ChangeActiveAggregationBucketList {
   static readonly type = '[Search] ChangeActiveAggregationBucketList';
 
-  constructor(public aggregation: Aggregation, public aggregationBuckets: string[]) {
-  }
+  constructor(
+    public aggregation: Aggregation,
+    public aggregationBuckets: string[]
+  ) {}
 }
 
 export class ResetActiveAggregationBuckets {
   static readonly type = '[Search] ResetActiveAggregationBuckets';
 
-  constructor(public fetchSearchResults: boolean) { }
+  constructor(public fetchSearchResults: boolean) {}
 }
 
 export class FetchLinkedTableandColumnResults {
   static readonly type = '[Search] FetchLinkedTableandColumnResults';
 
-  constructor(public id: string) {
-  }
+  constructor(public id: string) {}
 }
 
 export class FetchSchemaUIResults {
   static readonly type = '[Search] FetchSchemaUIResults';
 
-  constructor(public displayTableAndColumn: SchemeUi) {
-  }
+  constructor(public displayTableAndColumn: SchemeUi) {}
 }
-
-
 
 export interface SearchStateModel {
   searching: boolean;
@@ -140,7 +155,7 @@ export interface SearchStateModel {
   linkedTableAndcolumnResource: any;
   loading: boolean;
   errorSchema: any;
-  schemaUIDetail: any
+  schemaUIDetail: any;
 }
 
 @State<SearchStateModel>({
@@ -162,13 +177,15 @@ export interface SearchStateModel {
     loading: false,
     errorSchema: null,
     schemaUIDetail: null,
-  }
+  },
 })
 @Injectable()
 export class SearchState {
-
-  constructor(private store: Store, private searchService: SearchService, private actions$: Actions) {
-  }
+  constructor(
+    private store: Store,
+    private searchService: SearchService,
+    private actions$: Actions
+  ) {}
 
   @Selector()
   public static getErrorCode(state: SearchStateModel) {
@@ -250,18 +267,19 @@ export class SearchState {
     return state.schemaUIDetail;
   }
 
-
-
   @Selector()
   public static getLoading(state: SearchStateModel) {
     return state.loading;
   }
 
   @Action(ResetActiveAggregationBuckets)
-  resetActiveAggregationBuckets(ctx: StateContext<SearchStateModel>, action: ResetActiveAggregationBuckets) {
+  resetActiveAggregationBuckets(
+    ctx: StateContext<SearchStateModel>,
+    action: ResetActiveAggregationBuckets
+  ) {
     ctx.patchState({
       activeAggregationBuckets: new Map<string, string[]>(),
-      activeRangeFilters: {}
+      activeRangeFilters: {},
     });
     if (action.fetchSearchResults) {
       this.store.dispatch(new FetchSearchResults());
@@ -269,46 +287,63 @@ export class SearchState {
   }
 
   @Action(ChangeActiveRangeFilter)
-  changeActiveRangeFilter(ctx: StateContext<SearchStateModel>, action: ChangeActiveRangeFilter) {
+  changeActiveRangeFilter(
+    ctx: StateContext<SearchStateModel>,
+    action: ChangeActiveRangeFilter
+  ) {
     const newActiveRangeFilters = { ...ctx.getState().activeRangeFilters };
     newActiveRangeFilters[action.key] = action.selection;
 
     ctx.patchState({
-      activeRangeFilters: newActiveRangeFilters
+      activeRangeFilters: newActiveRangeFilters,
     });
 
     return ctx.dispatch(new FetchSearchResults());
   }
 
   @Action(OverwriteActiveRangeFilters)
-  overwriteActiveRangeFilters(ctx: StateContext<SearchStateModel>, action: OverwriteActiveRangeFilters) {
+  overwriteActiveRangeFilters(
+    ctx: StateContext<SearchStateModel>,
+    action: OverwriteActiveRangeFilters
+  ) {
     ctx.patchState({
-      activeRangeFilters: action.activeRangeFilters
+      activeRangeFilters: action.activeRangeFilters,
     });
   }
 
-
   @Action(OverwriteActiveAggregationBuckets)
-  overwriteActiveAggregationBuckets(ctx: StateContext<SearchStateModel>, action: OverwriteActiveAggregationBuckets) {
+  overwriteActiveAggregationBuckets(
+    ctx: StateContext<SearchStateModel>,
+    action: OverwriteActiveAggregationBuckets
+  ) {
     ctx.patchState({
-      activeAggregationBuckets: action.activeAggregationBuckets
+      activeAggregationBuckets: action.activeAggregationBuckets,
     });
   }
 
   @Action(ChangeActiveAggregationBuckets)
-  changeActiveAggregationBuckets(ctx: StateContext<SearchStateModel>, action: ChangeActiveAggregationBuckets) {
+  changeActiveAggregationBuckets(
+    ctx: StateContext<SearchStateModel>,
+    action: ChangeActiveAggregationBuckets
+  ) {
     const key = action.aggregation.key;
-    let activeAggregationBuckets = new Map<string, string[]>(ctx.getState().activeAggregationBuckets);
+    let activeAggregationBuckets = new Map<string, string[]>(
+      ctx.getState().activeAggregationBuckets
+    );
     const bucketKey = action.aggregationBucket.key;
 
     // Check if some active aggregation exists
     if (activeAggregationBuckets) {
-      const activeAggregations = activeAggregationBuckets.get(action.aggregation.key);
+      const activeAggregations = activeAggregationBuckets.get(
+        action.aggregation.key
+      );
       // Check if aggregations already exist for the current filter that was changed.
       if (activeAggregations) {
         // If the changed filter (bucket) is  in the list, it will be removed.
-        if (activeAggregations.some(r => r === bucketKey)) {
-          const filteredActiveAggregations = activeAggregations.filter(r => r !== bucketKey);
+        if (activeAggregations.some((r) => r === bucketKey)) {
+          const filteredActiveAggregations = activeAggregations.filter(
+            (r) => r !== bucketKey
+          );
 
           if (filteredActiveAggregations.length !== 0) {
             activeAggregationBuckets.set(key, filteredActiveAggregations);
@@ -332,18 +367,24 @@ export class SearchState {
     }
 
     ctx.patchState({
-      activeAggregationBuckets: activeAggregationBuckets
+      activeAggregationBuckets: activeAggregationBuckets,
     });
-
   }
 
   @Action(ChangeActiveAggregationBucketList)
-  changeActiveAggregationBucketList(ctx: StateContext<SearchStateModel>, action: ChangeActiveAggregationBucketList) {
+  changeActiveAggregationBucketList(
+    ctx: StateContext<SearchStateModel>,
+    action: ChangeActiveAggregationBucketList
+  ) {
     const key = action.aggregation.key;
-    let activeAggregationBuckets = new Map<string, string[]>(ctx.getState().activeAggregationBuckets);
+    let activeAggregationBuckets = new Map<string, string[]>(
+      ctx.getState().activeAggregationBuckets
+    );
 
     if (activeAggregationBuckets) {
-      const activeAggregation = activeAggregationBuckets.get(action.aggregation.key);
+      const activeAggregation = activeAggregationBuckets.get(
+        action.aggregation.key
+      );
       if (activeAggregation) {
         if (action.aggregationBuckets.length !== 0) {
           activeAggregationBuckets.set(key, action.aggregationBuckets);
@@ -358,84 +399,64 @@ export class SearchState {
       activeAggregationBuckets.set(key, action.aggregationBuckets);
     }
     ctx.patchState({
-      activeAggregationBuckets: activeAggregationBuckets
+      activeAggregationBuckets: activeAggregationBuckets,
     });
 
-    return ctx.dispatch(new FetchSearchResults())
+    return ctx.dispatch(new FetchSearchResults());
   }
 
   @Action(ChangeSearchText)
-  changeSearchText(ctx: StateContext<SearchStateModel>, action: ChangeSearchText) {
+  changeSearchText(
+    ctx: StateContext<SearchStateModel>,
+    action: ChangeSearchText
+  ) {
     ctx.patchState({
       searchText: action.searchText,
       searchTimestamp: new Date(),
-      page: 1
+      page: 1,
     });
 
     if (!action.initialChange) {
-      return ctx.dispatch(new FetchSearchResults())
+      return ctx.dispatch(new FetchSearchResults());
     }
   }
 
   @Action(ChangePage)
   changePage(ctx: StateContext<SearchStateModel>, action: ChangePage) {
     ctx.patchState({
-      page: action.page
+      page: action.page,
     });
-  }
-
-
-  @Action(SearchByPidUri)
-  fetchSearchResultByPidUri({ patchState }: StateContext<SearchStateModel>, action: SearchByPidUri) {
-    patchState({
-      searchResult: null,
-      searching: true,
-      didYouMean: null
-    });
-
-    return this.searchService.searchDocument(action.pidUri)
-      .pipe(
-        tap(
-          s => {
-            patchState({
-              searchResult: s,
-              aggregations: s.aggregations,
-              correctedSearchText: s.suggestedSearchTerm,
-              didYouMean: s.suggestedSearchTerm,
-              errorCode: null,
-              searching: false
-            })
-          }
-        ),
-        finalize(
-          () => {
-            patchState({ searching: false });
-          }
-        )
-      )
-
   }
 
   @Action(FetchSearchResults, { cancelUncompleted: true })
-  fetchSearchResults({ getState, patchState, dispatch }: StateContext<SearchStateModel>, { }: FetchSearchResults) {
+  fetchSearchResults(
+    { getState, patchState, dispatch }: StateContext<SearchStateModel>,
+    {}: FetchSearchResults
+  ) {
     patchState({
       loading: true,
       searching: true,
-      didYouMean: null
+      didYouMean: null,
     });
     const statenow = getState();
     const searchTerm = statenow.searchText;
     const page = 1;
-    let activeAggregationBuckets: Map<string, string[]> = statenow.activeAggregationBuckets;
+    let activeAggregationBuckets: Map<string, string[]> =
+      statenow.activeAggregationBuckets;
     let activeRangeFilters: ActiveRangeFilters = statenow.activeRangeFilters;
 
-    return this.searchService.search(searchTerm, page, activeAggregationBuckets, activeRangeFilters)
+    return this.searchService
+      .search(searchTerm, page, activeAggregationBuckets, activeRangeFilters)
       .pipe(
-        tap(s => {
+        tap((s) => {
           let didYouMean = null;
           try {
             const firstSuggest = Object.values(s.suggest)[0][0];
-            if (firstSuggest && firstSuggest.options && firstSuggest.options.length) {
+            if (
+              firstSuggest &&
+              firstSuggest.options &&
+              firstSuggest.options.length
+            ) {
               didYouMean = firstSuggest.options[0].text;
             }
           } catch (e) {
@@ -451,9 +472,10 @@ export class SearchState {
             page,
           };
           patchState(stateUpdates);
-          this.store.dispatch(new FetchResourcePolicies(s))
         }),
-        mergeMap(s => dispatch(new SetFilterItems(s.aggregations, s.rangeFilters))),
+        mergeMap((s) =>
+          dispatch(new SetFilterItems(s.aggregations, s.rangeFilters))
+        ),
         catchError((err) => {
           const dmpEx = err.error as DmpException;
           patchState({ errorCode: dmpEx.errorCode });
@@ -465,32 +487,72 @@ export class SearchState {
       );
   }
 
-
-  @Action(FetchSearchResult)
-  fetchSearchResult({ getState, patchState, dispatch }: StateContext<SearchStateModel>, action: FetchSearchResult) {
-
+  @Action(SearchByPidUri)
+  fetchSearchResultByPidUri(
+    { patchState }: StateContext<SearchStateModel>,
+    action: SearchByPidUri
+  ) {
     patchState({
       searchResult: null,
       searching: true,
-      didYouMean: null
+      didYouMean: null,
+    });
+
+    return this.searchService.searchDocument(action.pidUri).pipe(
+      tap((s) => {
+        patchState({
+          searchResult: s,
+          aggregations: s.aggregations,
+          correctedSearchText: s.suggestedSearchTerm,
+          didYouMean: s.suggestedSearchTerm,
+          errorCode: null,
+          searching: false,
+        });
+      }),
+      finalize(() => {
+        patchState({ searching: false });
+      })
+    );
+  }
+
+  @Action(FetchSearchResult)
+  fetchSearchResult(
+    { getState, patchState, dispatch }: StateContext<SearchStateModel>,
+    action: FetchSearchResult
+  ) {
+    patchState({
+      searchResult: null,
+      searching: true,
+      didYouMean: null,
     });
 
     const queryParams = action.route.snapshot.queryParams;
     var searchTerm: string = queryParams['q'];
     if (searchTerm == undefined) {
-      searchTerm = "*"
+      searchTerm = '*';
     }
     const page = queryParams['p'] == null ? 1 : queryParams['p'];
-    const activeAggergationBuckets = queryParams['f'] == null ? queryParams['f'] : JSON.parse(queryParams['f']);
-    const activeRangeFilters = queryParams['r'] == null ? queryParams['r'] : JSON.parse(queryParams['r']);
+    const activeAggergationBuckets =
+      queryParams['f'] == null
+        ? queryParams['f']
+        : JSON.parse(queryParams['f']);
+    const activeRangeFilters =
+      queryParams['r'] == null
+        ? queryParams['r']
+        : JSON.parse(queryParams['r']);
 
-    return this.searchService.search(searchTerm, page, activeAggergationBuckets, activeRangeFilters)
+    return this.searchService
+      .search(searchTerm, page, activeAggergationBuckets, activeRangeFilters)
       .pipe(
-        tap(s => {
+        tap((s) => {
           let didYouMean = null;
           try {
             const firstSuggest = Object.values(s.suggest)[0][0];
-            if (firstSuggest && firstSuggest.options && firstSuggest.options.length) {
+            if (
+              firstSuggest &&
+              firstSuggest.options &&
+              firstSuggest.options.length
+            ) {
               didYouMean = firstSuggest.options[0].text;
             }
           } catch (e) {
@@ -501,12 +563,13 @@ export class SearchState {
             aggregations: s.aggregations,
             correctedSearchText: s.suggestedSearchTerm,
             didYouMean: didYouMean,
-            errorCode: null
+            errorCode: null,
           };
           patchState(stateUpdates);
-          this.store.dispatch(new FetchResourcePolicies(s))
         }),
-        mergeMap(s => dispatch(new SetFilterItems(s.aggregations, s.rangeFilters))),
+        mergeMap((s) =>
+          dispatch(new SetFilterItems(s.aggregations, s.rangeFilters))
+        ),
         catchError((err) => {
           const dmpEx = err.error as DmpException;
           patchState({ errorCode: dmpEx.errorCode });
@@ -519,24 +582,33 @@ export class SearchState {
   }
 
   @Action(FetchNextSearchResult)
-  fetchNextSearchResult({ getState, patchState, dispatch }: StateContext<SearchStateModel>, action: FetchNextSearchResult) {
+  fetchNextSearchResult(
+    { getState, patchState, dispatch }: StateContext<SearchStateModel>,
+    action: FetchNextSearchResult
+  ) {
     const state = getState();
-    const newPage = action.scrollingMainView ? state.page + 1 : 0
+    const newPage = action.scrollingMainView ? state.page + 1 : 0;
     const currentState = getState();
     const searchTerm: string = currentState.searchText;
-    const activeAggergationBuckets: Map<string, string[]> = currentState.activeAggregationBuckets;
-    const activeRangeFilters: ActiveRangeFilters = currentState.activeRangeFilters;
-    return this.searchService.search(searchTerm, newPage, activeAggergationBuckets, activeRangeFilters)
+    const activeAggergationBuckets: Map<string, string[]> =
+      currentState.activeAggregationBuckets;
+    const activeRangeFilters: ActiveRangeFilters =
+      currentState.activeRangeFilters;
+    return this.searchService
+      .search(searchTerm, newPage, activeAggergationBuckets, activeRangeFilters)
       .pipe(
-        tap(s => {
+        tap((s) => {
           let didYouMean = null;
           try {
             const firstSuggest = Object.values(s.suggest)[0][0];
-            if (firstSuggest && firstSuggest.options && firstSuggest.options.length) {
+            if (
+              firstSuggest &&
+              firstSuggest.options &&
+              firstSuggest.options.length
+            ) {
               didYouMean = firstSuggest.options[0].text;
             }
-          } catch (e) {
-          }
+          } catch (e) {}
           const oldResult = getState().searchResult;
 
           const mergedResult = [...oldResult.hits.hits, ...s.hits.hits];
@@ -545,9 +617,8 @@ export class SearchState {
           patchState({
             searchResult: { ...s },
             didYouMean: didYouMean,
-            page: newPage
+            page: newPage,
           });
-          this.store.dispatch(new FetchResourcePolicies(s))
         }),
         catchError((err) => {
           const dmpEx = err.error as DmpException;
@@ -558,36 +629,46 @@ export class SearchState {
   }
 
   @Action(FetchAutocompleteResults)
-  fetchAutocompleteResults({ getState, patchState }: StateContext<SearchStateModel>, { searchText }: FetchAutocompleteResults) {
+  fetchAutocompleteResults(
+    { getState, patchState }: StateContext<SearchStateModel>,
+    { searchText }: FetchAutocompleteResults
+  ) {
     if (searchText) {
-      return this.searchService.fetchAutoCompleteResults(searchText)
-        .pipe(
-          tap((result) => {
-            patchState({
-              autoCompleteResults: result
-            });
-          }),
-          takeUntil(this.actions$.pipe(ofActionDispatched(FetchAutocompleteResults, FetchSearchResult)))
+      return this.searchService.fetchAutoCompleteResults(searchText).pipe(
+        tap((result) => {
+          patchState({
+            autoCompleteResults: result,
+          });
+        }),
+        takeUntil(
+          this.actions$.pipe(
+            ofActionDispatched(FetchAutocompleteResults, FetchSearchResult)
+          )
         )
+      );
     } else {
       patchState({
-        autoCompleteResults: null
+        autoCompleteResults: null,
       });
     }
   }
 
   @Action(FetchLinkedTableandColumnResults)
-  fetchLinkedTableandColumnResults({ getState, patchState }: StateContext<SearchStateModel>, requesturl: { id: any; }) {
+  fetchLinkedTableandColumnResults(
+    { getState, patchState }: StateContext<SearchStateModel>,
+    requesturl: { id: any }
+  ) {
     patchState({
-      loading: true
+      loading: true,
     });
     if (requesturl) {
-      return this.searchService.fetchLinkedTableandColumnResourceById(requesturl.id)
+      return this.searchService
+        .fetchLinkedTableandColumnResourceById(requesturl.id)
         .pipe(
           tap((result) => {
             patchState({
               loading: false,
-              linkedTableAndcolumnResource: result
+              linkedTableAndcolumnResource: result,
             });
           }),
           catchError((err) => {
@@ -595,29 +676,33 @@ export class SearchState {
             return of(err);
           })
           //takeUntil(this.actions$.pipe(ofActionDispatched(FetchAutocompleteResults, FetchSearchResult)))
-        )
+        );
     } else {
       patchState({
         loading: false,
-        linkedTableAndcolumnResource: null
+        linkedTableAndcolumnResource: null,
       });
     }
   }
 
   @Action(FetchSchemaUIResults)
-  fetchSchemaUIResults({ getState, patchState }: StateContext<SearchStateModel>, requesturls: { displayTableAndColumn: any; }) {
+  fetchSchemaUIResults(
+    { getState, patchState }: StateContext<SearchStateModel>,
+    requesturls: { displayTableAndColumn: any }
+  ) {
     var detail = getState().schemaUIDetail;
 
     patchState({
-      loading: true
+      loading: true,
     });
     if (requesturls.displayTableAndColumn) {
-      return this.searchService.fetchSchemaUIItems(requesturls.displayTableAndColumn)
+      return this.searchService
+        .fetchSchemaUIItems(requesturls.displayTableAndColumn)
         .pipe(
           tap((result) => {
             patchState({
               loading: false,
-              schemaUIDetail: result
+              schemaUIDetail: result,
             });
           }),
           catchError((err) => {
@@ -625,13 +710,12 @@ export class SearchState {
             return of(err);
           })
           //takeUntil(this.actions$.pipe(ofActionDispatched(FetchAutocompleteResults, FetchSearchResult)))
-        )
+        );
     } else {
       patchState({
         loading: false,
-        schemaUIDetail: null
+        schemaUIDetail: null,
       });
     }
   }
 }
-

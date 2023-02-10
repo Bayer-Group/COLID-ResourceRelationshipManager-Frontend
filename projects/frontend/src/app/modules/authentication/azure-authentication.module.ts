@@ -4,7 +4,13 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AzureIdentityProvider } from './services/azure-identity-provider.service';
 
 // Msal
-import { BrowserCacheLocation, InteractionType, IPublicClientApplication, LogLevel, PublicClientApplication } from '@azure/msal-browser';
+import {
+  BrowserCacheLocation,
+  InteractionType,
+  IPublicClientApplication,
+  LogLevel,
+  PublicClientApplication,
+} from '@azure/msal-browser';
 
 import {
   MsalModule,
@@ -12,7 +18,6 @@ import {
   MsalService,
   MsalGuardConfiguration,
   MsalInterceptorConfiguration,
-
   MSAL_INSTANCE,
   MSAL_GUARD_CONFIG,
   MSAL_INTERCEPTOR_CONFIG,
@@ -21,8 +26,9 @@ import { environment } from 'projects/frontend/src/environments/environment';
 import { IDENT_PROV } from '../../shared/constants';
 
 // checks if the app is running on IE
-export const isIE = window.navigator.userAgent.indexOf('MSIE ') > -1 || window.navigator.userAgent.indexOf('Trident/') > -1;
-
+export const isIE =
+  window.navigator.userAgent.indexOf('MSIE ') > -1 ||
+  window.navigator.userAgent.indexOf('Trident/') > -1;
 
 export function loggerCallback(logLevel: LogLevel, message: string) {
   //console.log(message);
@@ -45,69 +51,66 @@ export function MSALInstanceFactory(): IPublicClientApplication {
       loggerOptions: {
         loggerCallback,
         logLevel: LogLevel.Info,
-        piiLoggingEnabled: false
-      }
-    }
+        piiLoggingEnabled: false,
+      },
+    },
   });
 }
 export function MSALInterceptorConfigFactory(): MsalInterceptorConfiguration {
-
-  const protectedResourceMap = new Map(Object.entries(environment.adalConfig.protectedResourceMap));
+  const protectedResourceMap = new Map(
+    Object.entries(environment.adalConfig.protectedResourceMap)
+  );
 
   return {
     interactionType: InteractionType.Redirect, //TODO: Maybe adjust?
-    protectedResourceMap
-  }
+    protectedResourceMap,
+  };
 }
 export function MSALGuardConfigFactory(): MsalGuardConfiguration {
   return {
     interactionType: InteractionType.Redirect,
     authRequest: {
-      scopes: ["user.read", "openid", "profile", "email"]
-    }
-  }
+      scopes: ['user.read', 'openid', 'profile', 'email'],
+    },
+  };
 }
 
 const providers: Provider[] = [
   MsalService,
   {
     provide: IDENT_PROV,
-    useClass: AzureIdentityProvider
+    useClass: AzureIdentityProvider,
   },
   {
     provide: MSAL_INSTANCE,
-    useFactory: MSALInstanceFactory
+    useFactory: MSALInstanceFactory,
   },
   {
     provide: MSAL_GUARD_CONFIG,
-    useFactory: MSALGuardConfigFactory
+    useFactory: MSALGuardConfigFactory,
   },
   {
     provide: MSAL_INTERCEPTOR_CONFIG,
-    useFactory: MSALInterceptorConfigFactory
+    useFactory: MSALInterceptorConfigFactory,
   },
   {
     provide: HTTP_INTERCEPTORS,
-    useClass: MsalInterceptor, multi: true
-  }
-]
+    useClass: MsalInterceptor,
+    multi: true,
+  },
+];
 
 @NgModule({
   declarations: [],
-  imports: [
-    CommonModule,
-    MsalModule,
-  ],
+  imports: [CommonModule, MsalModule],
   providers: providers,
-  exports: [
-    MsalModule
-  ]
+  exports: [MsalModule],
 })
 export class AzureAuthenticationModule {
   static forRoot(): ModuleWithProviders<AzureAuthenticationModule> {
     return {
       ngModule: AzureAuthenticationModule,
-      providers: providers
+      providers: providers,
     };
   }
 }

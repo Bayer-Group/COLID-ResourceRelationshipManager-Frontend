@@ -6,8 +6,8 @@ export class SearchFilterDataMarketplaceDto {
   name: string;
   searchTerm: string;
   filterJson: SearchFilterCollectionDto;
-  storedQuery:StoredQueryDto;
- 
+  storedQuery: StoredQueryDto;
+
   public constructor(name: string, searchTerm: string, filterJson: any) {
     this.name = name;
     this.searchTerm = searchTerm;

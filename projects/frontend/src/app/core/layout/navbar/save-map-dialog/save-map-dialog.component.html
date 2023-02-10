@@ -1,36 +1,38 @@
 <div class="inner-container-dialog">
-    <h2 mat-dialog-title *ngIf="!isSaveAs">Enter a Name and Description for your map</h2>
-    
-    <h2 mat-dialog-title *ngIf="isSaveAs">Save as</h2>
-    
-    <mat-dialog-content>
-    
-        <mat-form-field appearance="fill" class="mapNameMargin">
-            <mat-label>Map name</mat-label>
-            <input matInput type="text" [(ngModel)]="name" />
-        </mat-form-field>
-    
-        <mat-form-field appearance="fill" class="mapNameMargin">
-            <mat-label>Description</mat-label>
-            <textarea matInput type="text" [(ngModel)]="description" style="height:40px;resize: none;"></textarea>
-        </mat-form-field>
-    
-    </mat-dialog-content>
-    
-    <mat-dialog-actions align="end" class="button">
-    
-        <button mat-button mat-stroked-button color="primary" (click)="cancel()">
-            Cancel
-        </button>
-    
-        <button mat-button mat-flat-button color="primary" (click)="ok()">
-            <ng-container *ngIf="!isSaveAs">
-                Save
-            </ng-container>
-            <ng-container *ngIf="isSaveAs">
-                Save as
-            </ng-container>
-        </button>
-    
-    </mat-dialog-actions>
+  <h2 mat-dialog-title *ngIf="!isSaveAs">
+    Enter a Name and Description for your map
+  </h2>
+
+  <h2 mat-dialog-title *ngIf="isSaveAs">Save as</h2>
+
+  <mat-dialog-content>
+    <div class="input-container">
+      <mat-form-field appearance="fill" class="inputs">
+        <mat-label>Map name</mat-label>
+        <input matInput type="text" [(ngModel)]="name" />
+      </mat-form-field>
+
+      <mat-form-field appearance="fill" class="inputs">
+        <mat-label>Description</mat-label>
+        <textarea matInput type="text" [(ngModel)]="description"></textarea>
+      </mat-form-field>
+    </div>
+  </mat-dialog-content>
+
+  <mat-dialog-actions align="end" class="button">
+    <button mat-button mat-stroked-button color="primary" (click)="cancel()">
+      Cancel
+    </button>
+
+    <button
+      mat-button
+      mat-flat-button
+      color="primary"
+      (click)="ok()"
+      [disabled]="name == null || name === ''"
+    >
+      <ng-container *ngIf="!isSaveAs"> Save </ng-container>
+      <ng-container *ngIf="isSaveAs"> Save as </ng-container>
+    </button>
+  </mat-dialog-actions>
 </div>

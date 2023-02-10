@@ -1,31 +1,32 @@
+import { Constants } from "./constants";
+
 export class SchemeUiResult {
-    columns:any[]
-    tables:any[]
+  columns: any[];
+  tables: any[];
 }
 
-export class Filed{
-    resourceId:string;
-    pidURI:string;
-    
+export class Filed {
+  resourceId: string;
+  pidURI: string;
 }
 
-export class TableFiled extends Filed{
-    linkedTableFiled:Filed[]
+export class TableFiled extends Filed {
+  linkedTableFiled: Filed[];
 }
 
-export class SchemeUi{
-    columns:Filed[]
-    tables:TableFiled[]
+export class SchemeUi {
+  columns: Filed[];
+  tables: TableFiled[];
 }
 
-export class SchemaUIResult{
-    columns:any[]
-    tables:any[]
+export class SchemaUIResult {
+  columns: any[];
+  tables: any[];
 }
 
-export enum Schema_Support {
-    Dataset='https://pid.bayer.com/kos/19050/NonRDFDataset',
-    Table = 'https://pid.bayer.com/kos/19050/444586',
-    Column= 'https://pid.bayer.com/kos/19050/444582',
-    Subset= 'http://www.w3.org/2000/01/rdf-schema#subClassOf'
-  }
+export const Schema_Support = {
+  Dataset: Constants.ResourceTypes.Dataset,
+  Table: Constants.ResourceTypes.Table,
+  Column: Constants.ResourceTypes.Column,
+  Subset: Constants.OWL.SubClass,
+}

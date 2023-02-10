@@ -1,1 +1,1 @@
-declare module "save-svg-as-png";
+declare module 'save-svg-as-png';

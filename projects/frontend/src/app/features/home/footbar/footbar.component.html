@@ -1,5 +1,23 @@
 <div class="footbar">
-    <colid-user-guidance></colid-user-guidance>
-     <!-- <colid-undo></colid-undo>  -->
-    <colid-treedeep></colid-treedeep>
+  <colid-user-guidance></colid-user-guidance>
+  <!-- <colid-undo></colid-undo>  -->
+  <colid-treedeep></colid-treedeep>
+  <ng-container
+    *ngTemplateOutlet="delButton; context: { mapState: mapsStore$ | async }"
+  ></ng-container>
+  <ng-template #delButton let-mapState="mapState">
+    <button
+      mat-fab
+      color="primary"
+      class="delete-button"
+      (click)="deleteMap()"
+      *ngIf="
+        mapState.currentMap &&
+        (mapState.currentMap.modifiedBy === mapState.currentUser ||
+          (isSuperAdmin$ | async))
+      "
+    >
+      <mat-icon>delete</mat-icon>
+    </button>
+  </ng-template>
 </div>

@@ -1,6 +1,6 @@
-import { Link, Node } from "../../core/d3";
+import { Link, Node } from '../../core/d3';
 
 export class NodeLinkContainer {
-    links: Link[] = [];
-    nodes: Node[] = [];
+  links: Link[] = [];
+  nodes: Node[] = [];
 }

@@ -8,9 +8,8 @@ describe('MapsBrowserComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ MapsBrowserComponent ]
-    })
-    .compileComponents();
+      declarations: [MapsBrowserComponent],
+    }).compileComponents();
   });
 
   beforeEach(() => {

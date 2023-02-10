@@ -8,9 +8,8 @@ describe('ColidIconsComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ColidIconsComponent ]
-    })
-    .compileComponents();
+      declarations: [ColidIconsComponent],
+    }).compileComponents();
   }));
 
   beforeEach(() => {

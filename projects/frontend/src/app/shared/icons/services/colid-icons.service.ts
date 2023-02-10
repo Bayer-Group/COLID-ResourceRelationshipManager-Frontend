@@ -8,22 +8,23 @@ import { environment } from 'projects/frontend/src/environments/environment';
 declare const InstallTrigger: any;
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class ColidIconsService {
-
   public _tooltipMapping = new Map<string, string>();
 
   public iconsRegistered$ = new BehaviorSubject<boolean>(false);
 
-  constructor(private iconRegistry: MatIconRegistry, private sanitizer: DomSanitizer) { }
-
+  constructor(
+    private iconRegistry: MatIconRegistry,
+    private sanitizer: DomSanitizer
+  ) {}
 
   registerSvgIcons(icons: CustomMaterialIcon[]) {
     this.iconsRegistered$.next(false);
-    icons.forEach(icon => {
+    icons.forEach((icon) => {
       this.registerSvgIcon(icon);
-    })
+    });
     this.iconsRegistered$.next(true);
   }
 
@@ -43,7 +44,7 @@ export class ColidIconsService {
   }
 
   registerColidIcons(icons: CustomMaterialIcon[]) {
-    icons = icons.map(icon => {
+    icons = icons.map((icon) => {
       const key = this.encodeString(icon.key);
       icon.url = this.getEncodedS3Url(icon.key);
       icon.key = key;
@@ -58,7 +59,7 @@ export class ColidIconsService {
   }
 
   replaceSpecialCharacter(str: string): string {
-    return str.replace(/%/gi, "%25")
+    return str.replace(/%/gi, '%25');
   }
 
   getEncodedS3Url(str: string): string {
@@ -67,4 +68,3 @@ export class ColidIconsService {
     return environment.icons + str + '.svg';
   }
 }
-

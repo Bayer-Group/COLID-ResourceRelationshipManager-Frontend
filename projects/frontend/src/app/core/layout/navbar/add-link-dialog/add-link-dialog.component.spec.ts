@@ -8,9 +8,8 @@ describe('AddLinkDialogComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ AddLinkDialogComponent ]
-    })
-    .compileComponents();
+      declarations: [AddLinkDialogComponent],
+    }).compileComponents();
   });
 
   beforeEach(() => {

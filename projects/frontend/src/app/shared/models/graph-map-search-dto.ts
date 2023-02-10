@@ -1,9 +1,8 @@
-
 export class GraphMapSearchDTO {
-    constructor() { }
+  constructor() {}
 
-    batchSize: number = 0;
-    nameFilter: string = "";
-    sortKey: string = "";
-    sortType: 'asc' | 'des' | '' = '';
+  batchSize: number = 0;
+  nameFilter: string = '';
+  sortKey: string = '';
+  sortType: 'asc' | 'desc' | '' = '';
 }

@@ -1,25 +1,54 @@
-<colid-navbar (toggleDetailSidebar)="detailSidenav.toggle()"></colid-navbar>
-<mat-progress-bar mode="indeterminate" *ngIf="loadingResources"></mat-progress-bar>
-<mat-sidenav-container class="sidenav-container"  hasBackdrop="false">
-    <mat-sidenav #detailSidenav mode="over" position="end" [opened]="openDrawer">
-        <div class="sidenav-content">
-            <iframe id="detail-frame" width="950" height="725" [src]="dmpUrl | urlsafe" style="border:none;" ></iframe>
-        </div>
-        <div class="sidebar-close" (click)="hideSidebar()">
-            <button mat-icon-button>
-                <mat-icon>close</mat-icon>
-            </button>
-        </div>
-        
-    </mat-sidenav>
-    <main>
-        <router-outlet></router-outlet>
-    </main>
-    <div class="rotated">
-        <app-support-feedback-bar></app-support-feedback-bar>
+<colid-navbar></colid-navbar>
+<mat-progress-bar
+  mode="indeterminate"
+  *ngIf="loadingResources$ | async"
+></mat-progress-bar>
+<mat-drawer-container [hasBackdrop]="false">
+  <mat-drawer
+    mode="side"
+    position="end"
+    #drawer
+    [opened]="sidebarState$ | async"
+    class="sidenav-container"
+  >
+    <div style="padding: 8px">
+      <div class="sidebar-close" (click)="hideSidebar()">
+        <button mat-icon-button>
+          <mat-icon>close</mat-icon>
+        </button>
+      </div>
+      <app-search-result-standalone-container></app-search-result-standalone-container>
     </div>
-    
-    
-</mat-sidenav-container> 
-
-
+  </mat-drawer>
+  <main>
+    <router-outlet></router-outlet>
+  </main>
+  <div class="rotated">
+    <app-support-feedback-bar></app-support-feedback-bar>
+  </div>
+</mat-drawer-container>
+<!-- <mat-sidenav-container class="sidenav-container" hasBackdrop="false">
+  <mat-sidenav #detailSidenav mode="over" position="end" [opened]="openDrawer">
+    <div class="sidenav-content">
+      <app-search-result-standalone-container></app-search-result-standalone-container>
+      <iframe
+        id="detail-frame"
+        width="950"
+        height="725"
+        [src]="dmpUrl | urlsafe"
+        style="border: none"
+      ></iframe>
+    </div>
+    <div class="sidebar-close" (click)="hideSidebar()">
+      <button mat-icon-button>
+        <mat-icon>close</mat-icon>
+      </button>
+    </div>
+  </mat-sidenav>
+  <main>
+    <router-outlet></router-outlet>
+  </main>
+  <div class="rotated">
+    <app-support-feedback-bar></app-support-feedback-bar>
+  </div>
+</mat-sidenav-container> -->

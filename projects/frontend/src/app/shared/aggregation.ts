@@ -14,4 +14,3 @@ export enum AggregationType {
   Checkbox = 'checkbox',
   DateRange = 'dateRange',
 }
-

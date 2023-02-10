@@ -13,34 +13,34 @@ export class FetchMetadataTypes {
   static readonly type = '[Metadata] FetchMetadataTypes';
 }
 export class FetchResourceTypeHierarchy {
-  static readonly type = '[Metadata] FetchResourceTypeHierarchy';//da meta data nicht gefetcht wird, wird hier nur ein leere type zurück gegeben
+  static readonly type = '[Metadata] FetchResourceTypeHierarchy'; //da meta data nicht gefetcht wird, wird hier nur ein leere type zurück gegeben
 }
 export class ToggleCategoryFilterTab {
   static readonly type = '[Metadata] ToggleCategoryFilterTab';
-  constructor(public tabNumber: number) { }
+  constructor(public tabNumber: number) {}
 }
 export class ToggleResourceTypeItem {
   static readonly type = '[Metadata] ToggleResourceTypeItem';
-  constructor(public id: string) { }
+  constructor(public id: string) {}
 }
 export class EnableResourceTypeItem {
   static readonly type = '[Metadata] EnableResourceTypeItem';
-  constructor(public idList: string[]) { }
+  constructor(public idList: string[]) {}
 }
 export class DisableResourceTypeItem {
   static readonly type = '[Metadata] DisableResourceTypeItem';
-  constructor(public idList: string[]) { }
+  constructor(public idList: string[]) {}
 }
 export class ClearResourceTypeItem {
   static readonly type = '[Metadata] ClearResourceTypeItem';
-  constructor() { }
+  constructor() {}
 }
 export interface MetadataStateModel {
   metadata: any;
   types: any;
-  hierarchy: CheckboxHierarchyDTO[]
-  categoryTab: number
-  activeNodes: string[]
+  hierarchy: CheckboxHierarchyDTO[];
+  categoryTab: number;
+  activeNodes: string[];
 }
 
 @State<MetadataStateModel>({
@@ -50,13 +50,11 @@ export interface MetadataStateModel {
     types: null,
     hierarchy: null,
     categoryTab: 0,
-    activeNodes: []
-  }
+    activeNodes: [],
+  },
 })
-
 @Injectable()
 export class MetadataState {
-
   @Selector()
   public static getActiveCategoryTab(state: MetadataStateModel) {
     return state.categoryTab;
@@ -82,24 +80,31 @@ export class MetadataState {
     return state.types;
   }
 
-  constructor(private metadataService: MetadataService, private resourceApiService: ResourceApiService) { }
+  constructor(
+    private metadataService: MetadataService,
+    private resourceApiService: ResourceApiService
+  ) {}
 
-  ngxsOnInit(ctx: StateContext<MetadataStateModel>) {
-  }
+  ngxsOnInit(ctx: StateContext<MetadataStateModel>) {}
 
   @Action(ToggleCategoryFilterTab)
-  toggleCategoryFilterTab({ patchState }: StateContext<MetadataStateModel>, { tabNumber }: ToggleCategoryFilterTab) {
+  toggleCategoryFilterTab(
+    { patchState }: StateContext<MetadataStateModel>,
+    { tabNumber }: ToggleCategoryFilterTab
+  ) {
     patchState({
-      categoryTab: tabNumber
+      categoryTab: tabNumber,
     });
-
   }
 
   @Action(ToggleResourceTypeItem)
-  toggleResourceTypeItem({ getState, patchState }: StateContext<MetadataStateModel>, { id }: ToggleResourceTypeItem) {
-    var list = getState().activeNodes
+  toggleResourceTypeItem(
+    { getState, patchState }: StateContext<MetadataStateModel>,
+    { id }: ToggleResourceTypeItem
+  ) {
+    var list = getState().activeNodes;
     if (!list.includes(id)) {
-      list.push(id)
+      list.push(id);
     } else {
       const index = list.indexOf(id, 0);
       if (index > -1) {
@@ -107,27 +112,33 @@ export class MetadataState {
       }
     }
     patchState({
-      activeNodes: list
+      activeNodes: list,
     });
   }
 
   @Action(EnableResourceTypeItem)
-  EnableResourceTypeItem({ getState, patchState }: StateContext<MetadataStateModel>, { idList }: EnableResourceTypeItem) {
-    var list = getState().activeNodes
-    idList.forEach(element => {
+  EnableResourceTypeItem(
+    { getState, patchState }: StateContext<MetadataStateModel>,
+    { idList }: EnableResourceTypeItem
+  ) {
+    var list = getState().activeNodes;
+    idList.forEach((element) => {
       if (!list.includes(element)) {
-        list.push(element)
+        list.push(element);
       }
     });
 
     patchState({
-      activeNodes: list
+      activeNodes: list,
     });
   }
   @Action(DisableResourceTypeItem)
-  DisableResourceTypeItem({ getState, patchState }: StateContext<MetadataStateModel>, { idList }: DisableResourceTypeItem) {
-    var list = getState().activeNodes
-    idList.forEach(element => {
+  DisableResourceTypeItem(
+    { getState, patchState }: StateContext<MetadataStateModel>,
+    { idList }: DisableResourceTypeItem
+  ) {
+    var list = getState().activeNodes;
+    idList.forEach((element) => {
       if (list.includes(element)) {
         const index = list.indexOf(element, 0);
         if (index > -1) {
@@ -136,51 +147,70 @@ export class MetadataState {
       }
     });
     patchState({
-      activeNodes: list
+      activeNodes: list,
     });
   }
 
   @Action(ClearResourceTypeItem)
-  ClearResourceTypeItem({ patchState }: StateContext<MetadataStateModel>, { }: ClearResourceTypeItem) {
+  ClearResourceTypeItem(
+    { patchState }: StateContext<MetadataStateModel>,
+    {}: ClearResourceTypeItem
+  ) {
     patchState({
-      activeNodes: []
+      activeNodes: [],
     });
   }
 
   @Action(FetchResourceTypeHierarchy)
-  fetchResourceTypeHierarchy({ patchState }: StateContext<MetadataStateModel>, { }: FetchResourceTypeHierarchy) {
-    this.resourceApiService.getHierarchy().subscribe(res => {
-      patchState({
-        hierarchy: res
-      });
-    }, error => (console.log("this is the error", error)));
+  fetchResourceTypeHierarchy(
+    { patchState }: StateContext<MetadataStateModel>,
+    {}: FetchResourceTypeHierarchy
+  ) {
+    this.resourceApiService.getHierarchy().subscribe(
+      (res) => {
+        patchState({
+          hierarchy: res,
+        });
+      },
+      (error) => console.log('this is the error', error)
+    );
   }
 
   @Action(FetchMetadata)
-  fetchMetadata({ patchState }: StateContext<MetadataStateModel>, { }: FetchMetadata) {
-    this.metadataService.getMetadata().subscribe(res => {
-      const types = res[Constants.Metadata.EntityType].properties[Constants.Shacl.Taxonomy];
+  fetchMetadata(
+    { patchState }: StateContext<MetadataStateModel>,
+    {}: FetchMetadata
+  ) {
+    this.metadataService.getMetadata().subscribe((res) => {
+      const types =
+        res[Constants.Metadata.EntityType].properties[Constants.Shacl.Taxonomy];
       patchState({
-        types: types
+        types: types,
       });
 
       patchState({
-        metadata: res
+        metadata: res,
       });
     });
   }
 
   @Action(FetchMetadataTypes)
-  fetchMetadataTypes({ patchState }: StateContext<MetadataStateModel>, { }: FetchMetadataTypes) {
-    this.metadataService.getMetadata().subscribe(res => {
+  fetchMetadataTypes(
+    { patchState }: StateContext<MetadataStateModel>,
+    {}: FetchMetadataTypes
+  ) {
+    this.metadataService.getMetadata().subscribe((res) => {
       if (res) {
-        const types = res[Constants.Metadata.EntityType].properties[Constants.Shacl.Taxonomy];
+        const types =
+          res[Constants.Metadata.EntityType].properties[
+            Constants.Shacl.Taxonomy
+          ];
         patchState({
-          types: types
+          types: types,
         });
       } else {
         patchState({
-          types: null
+          types: null,
         });
       }
     });

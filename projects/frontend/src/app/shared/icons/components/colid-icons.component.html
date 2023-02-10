@@ -1,9 +1,15 @@
 <div>
-  <ng-container *ngIf="iconType != iconTypes.S3 || iconsRegistered">
+  <ng-container *ngIf="iconType !== iconTypes.S3 || iconsRegistered">
     <ng-container [ngSwitch]="iconType">
       <ng-container *ngSwitchCase="iconTypes.S3">
-        <mat-icon matTooltipShowDelay="{{delay}}" matTooltipDisabled="{{tooltipDisabled}}" matTooltip="{{label}}"
-          class="fas" svgIcon="{{iconKey}}" class="colid-icon"></mat-icon>
+        <mat-icon
+          matTooltipShowDelay="{{ delay }}"
+          matTooltipDisabled="{{ tooltipDisabled }}"
+          matTooltip="{{ label }}"
+          class="fas"
+          svgIcon="{{ iconKey }}"
+          class="colid-icon"
+        ></mat-icon>
       </ng-container>
     </ng-container>
   </ng-container>

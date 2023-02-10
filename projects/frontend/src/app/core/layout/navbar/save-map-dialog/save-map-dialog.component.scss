@@ -1,20 +1,13 @@
-.mapNameMargin {
-    margin-right: 10%;
-    display: inline;
+// .inputs {
+//     display: inline;
+// }
+
+.input-container {
+    display: flex;
+    flex-direction: column;
 }
 
-//Save as dialog proper fit
-::ng-deep mat-dialog-container[id^='mat-dialog'] {
-    margin-top: 0px;
-    padding: 24px;
-    height: fit-content;
-}
-
-::ng-deep .inner-container-dialog{
+.inner-container-dialog{
     padding: 12px !important;
     border: 2px solid #BABFC1 !important;
-}
-
-::ng-deep .button{
-    display: flex !important;
 }

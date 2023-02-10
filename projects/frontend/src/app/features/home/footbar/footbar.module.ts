@@ -6,8 +6,13 @@ import { SharedModule } from '../../../shared/shared.module';
 import { UserGuidanceComponent } from './user-guidance/user-guidance.component';
 
 @NgModule({
-  declarations: [UndoComponent, TreedeepComponent, UserGuidanceComponent, FootbarComponent],
+  declarations: [
+    UndoComponent,
+    TreedeepComponent,
+    UserGuidanceComponent,
+    FootbarComponent,
+  ],
   imports: [SharedModule],
-  exports: [FootbarComponent]
+  exports: [FootbarComponent],
 })
 export class FootbarModule {}

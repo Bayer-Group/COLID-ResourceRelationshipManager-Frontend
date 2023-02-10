@@ -1,16 +1,16 @@
-import { Component } from '@angular/core';
+import { AfterViewInit, Component } from '@angular/core';
 enum SiderBarPosition {
   Close = 0,
   HalfOpen = 1,
-  FullOpen = 2
+  FullOpen = 2,
 }
 
 @Component({
   selector: 'colid-sidebar',
   templateUrl: './sidebar.component.html',
-  styleUrls: ['./sidebar.component.scss']
+  styleUrls: ['./sidebar.component.scss'],
 })
-export class SidebarComponent {
+export class SidebarComponent implements AfterViewInit {
   siderbarPosition: SiderBarPosition = SiderBarPosition.HalfOpen;
   SelectedMenuItem: string | undefined;
   SelectedTab: string | undefined;
@@ -19,7 +19,6 @@ export class SidebarComponent {
 
   sidebar: HTMLElement | null | undefined;
 
-  // eslint-disable-next-line @angular-eslint/use-lifecycle-interface
   ngAfterViewInit(): void {
     this.sidebar = document.getElementById('siderbarComponent');
   }
@@ -28,9 +27,6 @@ export class SidebarComponent {
     this.SelectedMenuItem = tab;
     this.SelectedTab = tab;
   };
-
-  // eslint-disable-next-line @typescript-eslint/no-empty-function
-  editResource = (): void => {};
 
   toggleSidebar = (): void => {
     if (this.sidebar != undefined) {

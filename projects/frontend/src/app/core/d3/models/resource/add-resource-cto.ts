@@ -1,9 +1,7 @@
-import { AddResourceDto } from "./add-resource-dto";
-import { FetchResourceDto } from "./fetch-resource-dto";
+import { AddResourceDto } from './add-resource-dto';
+import { FetchResourceDto } from './fetch-resource-dto';
 
 export class AddResourceCto {
-       total: number = 0;
-       items: Array<FetchResourceDto> = new Array<FetchResourceDto>();
+  total: number = 0;
+  items: Array<FetchResourceDto> = new Array<FetchResourceDto>();
 }
-
-

@@ -5,15 +5,25 @@ import { Observable, of } from 'rxjs';
 import { Constants } from '../../../shared/constants';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class MockIdentityProvider implements IdentityProvider {
-
-  constructor() { }
+  constructor() {}
 
   getAccount(): Observable<ColidAccount> {
-    const idTokenClaimes: any = { roles: [Constants.Authentication.Roles.Administration] };
-    return of(new ColidAccount('SuperAdmin', 'superadmin@bayer.com', '87654321-4321-4321-4321-210987654321', idTokenClaimes))
+    const idTokenClaimes: any = [
+      Constants.Authentication.Roles.Administration,
+      Constants.Authentication.Roles.SuperAdministration,
+    ];
+    // const idTokenClaimes: any = [Constants.Authentication.Roles.Administration];
+    return of(
+      new ColidAccount(
+        'SuperAdmin',
+        'superadmin@bayer.com',
+        '87654321-4321-4321-4321-210987654321',
+        idTokenClaimes
+      )
+    );
   }
 
   loginInProgress(): boolean {
@@ -24,7 +34,7 @@ export class MockIdentityProvider implements IdentityProvider {
     return of(true);
   }
 
-  login(): void { }
+  login(): void {}
 
-  logout(): void { }
+  logout(): void {}
 }

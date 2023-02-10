@@ -8,9 +8,8 @@ describe('SaveMapDialogComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ SaveMapDialogComponent ]
-    })
-    .compileComponents();
+      declarations: [SaveMapDialogComponent],
+    }).compileComponents();
   });
 
   beforeEach(() => {

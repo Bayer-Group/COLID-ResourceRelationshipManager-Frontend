@@ -1,9 +1,9 @@
 <div class="content-container">
   <h2 mat-dialog-title>Select a relationship</h2>
   <div>
-      Below table shows all possible links between the two selected resources.
-      Click on one entry to save it.
-    </div>
+    Below table shows all possible links between the two selected resources.
+    Click on one entry to save it.
+  </div>
   <div
     class="table-container"
     id="table-graph-dialog"
@@ -12,7 +12,7 @@
     [scrollWindow]="false"
     (scroll)="onScroll($event)"
   >
-  <mat-progress-bar *ngIf="loading" mode="indeterminate"></mat-progress-bar>
+    <mat-progress-bar *ngIf="loading" mode="indeterminate"></mat-progress-bar>
     <table mat-table [dataSource]="linkTypes" class="mat-elevation-z8">
       <ng-container matColumnDef="startNode">
         <th mat-header-cell *matHeaderCellDef>Start Node</th>
@@ -36,12 +36,15 @@
         (click)="createLink(element)"
         *matRowDef="let element; columns: displayColumns"
       ></tr>
-    </table> </div> 
-    <!-- <ng-container *ngIf="!loading && linkTypes.length == 0">
+    </table>
+  </div>
+  <!-- <ng-container *ngIf="!loading && linkTypes.length == 0">
       <div>The two selected resources can not be linked.</div>
     </ng-container> -->
 
   <mat-dialog-actions align="end">
-    <button mat-button style="margin-top: -25px;" (click)="cancel()">Cancel</button>
+    <button mat-button style="margin-top: -25px" (click)="cancel()">
+      Cancel
+    </button>
   </mat-dialog-actions>
 </div>

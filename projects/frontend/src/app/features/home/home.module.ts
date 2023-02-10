@@ -8,16 +8,26 @@ import { GraphComponent } from './graph-container/graph/graph.component';
 import { GraphContainerComponent } from './graph-container/graph-container.component';
 import { SHARED_VISUALS } from '../../shared/visuals';
 import { D3_DIRECTIVES } from '../../core/d3';
-import { SearchComponent } from '../../core/search/search.component';
+import { SearchComponent } from '../../search/search.component';
 import { A11yModule } from '@angular/cdk/a11y';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
     HomeComponent,
     GraphComponent,
-    GraphContainerComponent, ...SHARED_VISUALS, ...D3_DIRECTIVES
+    GraphContainerComponent,
+    ...SHARED_VISUALS,
+    ...D3_DIRECTIVES,
   ],
-  imports: [SharedModule, HomeRoutingModule, SidebarModule, FootbarModule, A11yModule],
-  bootstrap: []
+  imports: [
+    SharedModule,
+    HomeRoutingModule,
+    SidebarModule,
+    FootbarModule,
+    A11yModule,
+    FormsModule,
+  ],
+  bootstrap: [],
 })
-export class HomeModule { }
+export class HomeModule {}

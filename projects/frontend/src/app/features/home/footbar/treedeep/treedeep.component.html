@@ -1,19 +1,25 @@
 <div class="treedeep">
-    <div class="treedeep-item">
-        <div class="stepper-input stepper__input" id="stepper_zoom">
-            <button id="btn_zoomDeepIn" (click)="zoomIn()">
-                <mat-icon>remove</mat-icon>
-            </button>
-            <div class="stepper-input-field" name="range-value" aria-atomic="true" aria-live="polite" (dblclick)="resetZoom()"
-                aria-relevant="all">
-                {{zoomDeepValue$ | async}}%
-            </div>
-            <button id="btn_zoomDeepOut" (click)="zoomOut()">
-                <mat-icon>add</mat-icon>
-            </button>
-        </div>
+  <div class="treedeep-item">
+    <div class="stepper-input stepper__input" id="stepper_zoom">
+      <button id="btn_zoomDeepIn" (click)="zoomIn()">
+        <mat-icon>remove</mat-icon>
+      </button>
+      <div
+        class="stepper-input-field"
+        name="range-value"
+        aria-atomic="true"
+        aria-live="polite"
+        (dblclick)="resetZoom()"
+        aria-relevant="all"
+      >
+        {{ zoomDeepValue$ | async }}%
+      </div>
+      <button id="btn_zoomDeepOut" (click)="zoomOut()">
+        <mat-icon>add</mat-icon>
+      </button>
     </div>
-    <!-- <div class="treedeep-item" id="vehicalLine"></div>
+  </div>
+  <!-- <div class="treedeep-item" id="vehicalLine"></div>
     <div class="treedeep-item">
         <mat-icon class="icon_push_pin" inline="true">push_pin</mat-icon>
         <button class="textButton" (click)="goToCenter()">

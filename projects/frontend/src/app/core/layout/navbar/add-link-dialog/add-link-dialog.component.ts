@@ -1,4 +1,4 @@
-import { Component, ElementRef, Inject, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, Inject, ViewChild } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { AddLinkDialogData } from 'projects/frontend/src/app/shared/models/add-link-dialog-data';
 import { LinkTypeContainer } from 'projects/frontend/src/app/shared/models/link-types-dto';
@@ -9,17 +9,17 @@ import { ResetLinking } from 'projects/frontend/src/app/state/graph-linking.stat
 @Component({
   selector: 'colid-add-link-dialog',
   templateUrl: './add-link-dialog.component.html',
-  styleUrls: ['./add-link-dialog.component.scss']
+  styleUrls: ['./add-link-dialog.component.scss'],
 })
-export class AddLinkDialogComponent implements OnInit {
-
+export class AddLinkDialogComponent {
   loading: boolean = false;
   linkTypes: LinkTypeContainer[];
   mapPageSize: number = 12;
   checkScroll: boolean = false;
   displayColumns: string[] = ['startNode', 'linkType', 'endNode'];
 
-  @ViewChild('infiniteScroller', { static: false }) infiniteScroller!: ElementRef;
+  @ViewChild('infiniteScroller', { static: false })
+  infiniteScroller!: ElementRef;
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: AddLinkDialogData,
     public dialogRef: MatDialogRef<AddLinkDialogComponent>,
@@ -32,20 +32,23 @@ export class AddLinkDialogComponent implements OnInit {
     //check input parameter data for completeness
     if (this.data.linkNodes.length == 2) {
       //good to load all data
-      const pidUris: string[] = this.data.linkNodes.map(a => a.id);
+      const pidUris: string[] = this.data.linkNodes.map((a) => a.id);
       this.loading = true;
-      this.resourceRelationshipManagerService.getLinkTypes(pidUris).subscribe(
-        res => {
+      this.resourceRelationshipManagerService
+        .getLinkTypes(pidUris)
+        .subscribe((res) => {
           let linkTypes: LinkTypeContainer[] = [];
-          res.forEach(lt => {
+          res.forEach((lt) => {
             let link: LinkTypeContainer = new LinkTypeContainer();
             link.source.uri = lt.sourceUri;
-            link.source.name = this.data.linkNodes.find(l => l.id == lt.sourceUri)!.name;
-            //link.source.name = "hallo";
+            link.source.name = this.data.linkNodes.find(
+              (l) => l.id == lt.sourceUri
+            )!.name;
 
             link.target.uri = lt.targetUri;
-            link.target.name = this.data.linkNodes.find(l => l.id == lt.targetUri)!.name;
-            //link.target.name = "hallo";
+            link.target.name = this.data.linkNodes.find(
+              (l) => l.id == lt.targetUri
+            )!.name;
 
             link.linkType.key = lt.linkType.value;
             link.linkType.value = lt.linkType.name;
@@ -54,15 +57,10 @@ export class AddLinkDialogComponent implements OnInit {
           });
           this.linkTypes = [...linkTypes];
           this.loading = false;
-        }
-      );
+        });
     } else {
       //TODO: There are no two entries in the links list, issue an error
     }
-  }
-
-  ngOnInit(): void {
-
   }
 
   createLink(selectedElement: LinkTypeContainer) {
@@ -72,7 +70,11 @@ export class AddLinkDialogComponent implements OnInit {
   onScroll($event: any) {
     if (this.checkScroll) return;
 
-    if (this.linkTypes.length == this.mapPageSize && !!this.infiniteScroller && this.infiniteScroller.nativeElement.scrollTop != 0) {
+    if (
+      this.linkTypes.length == this.mapPageSize &&
+      !!this.infiniteScroller &&
+      this.infiniteScroller.nativeElement.scrollTop != 0
+    ) {
       this.checkScroll = true;
 
       setTimeout(() => {
@@ -85,5 +87,4 @@ export class AddLinkDialogComponent implements OnInit {
     this.store.dispatch(new ResetLinking());
     this.dialogRef.close();
   }
-
 }

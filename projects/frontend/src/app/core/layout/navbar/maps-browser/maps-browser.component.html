@@ -16,108 +16,83 @@
     [infiniteScrollThrottle]="50"
     [scrollWindow]="false"
     (scrolled)="onScrolled($event)"
-    (scroll)="onScroll($event)"
   >
-    <!-- <mat-progress-bar mode="indeterminate" *ngIf="loading"></mat-progress-bar> -->
-
-    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+    <table
+      mat-table
+      [dataSource]="dataSource"
+      class="mat-elevation-z8"
+      matSort
+      (matSortChange)="onSortChange($event)"
+    >
       <ng-container matColumnDef="name">
         <th mat-header-cell *matHeaderCellDef id="header-name">
           <div
-            class="cell-content"
-            (mouseover)="hoveredKey = 'Name'"
-            (mouseout)="hoveredKey = ''"
+            *ngIf="!nameHeaderClicked"
+            class="label-header label-header-name"
+            (click)="nameHeaderClicked = true"
+            [matTooltip]="'Filter by Name'"
           >
-            <div
-              *ngIf="!nameHeaderClicked"
-              class="label-header label-header-name"
-              (click)="nameHeaderClicked = true"
-              [matTooltip]="'Filter by Name'"
+            Name
+            <mat-icon
+              inline="true"
+              class="search-header-icon"
+              style="margin-left: 10px"
+              >search</mat-icon
             >
-              Name
-              <mat-icon
-                inline="true"
-                class="search-header-icon"
-                style="margin-left: 10px"
-                >search</mat-icon
-              >
-            </div>
+          </div>
 
-            <div *ngIf="nameHeaderClicked" class="label-header-form">
-              <div class="filter-container">
-                <mat-form-field appearance="standard">
-                  <mat-icon
-                    inline="true"
-                    class="search-header-icon-filter"
-                    matPrefix
-                    >search</mat-icon
-                  >
+          <div *ngIf="nameHeaderClicked" class="filter-container">
+            <mat-icon style="color: rgb(49, 179, 223)">search</mat-icon>
 
-                  <input
-                    matInput
-                    [cdkTrapFocusAutoCapture]="nameHeaderClicked"
-                    [cdkTrapFocus]="nameHeaderClicked"
-                    style="float: left; padding-left: 6px"
-                    (keyup)="applyFilter($event)"
-                    #input
-                  />
-                  <div
-                    [class]="
-                      !nameHeaderClicked ? 'sort-header' : 'empty-header-form'
-                    "
-                    (click)="changeSorting('name')"
-                  >
-                    <mat-icon
-                      inline="true"
-                      [style.display]="
-                        canDisplayIcon('name') ? 'block' : 'none'
-                      "
-                      class="sorting-icon-filter"
-                    >
-                      {{ getSortIconCode() }}</mat-icon
-                    >
-                  </div>
-                </mat-form-field>
-              </div>
-            </div>
+            <input
+              matInput
+              class="search-input"
+              [cdkTrapFocusAutoCapture]="nameHeaderClicked"
+              [cdkTrapFocus]="nameHeaderClicked"
+              (keyup)="applyFilter($event)"
+              #input
+            />
           </div>
         </th>
-        <td mat-cell *matCellDef="let element" #tdElement [matTooltip]="(element.name)" [matTooltipDisabled]="!isOverflow(tdElement)"
-       >{{ element.name }}</td>
+        <td
+          mat-cell
+          *matCellDef="let element"
+          #tdElement
+          [matTooltip]="element.name"
+          [matTooltipDisabled]="!isOverflow(tdElement)"
+        >
+          {{ element.name }}
+        </td>
       </ng-container>
 
       <ng-container matColumnDef="description">
-        <th mat-header-cell *matHeaderCellDef id="header-description">
-          <div
-            class="cell-content"
-            (mouseover)="hoveredKey = 'description'"
-            (mouseout)="hoveredKey = ''"
-            (click)="changeSorting('description')"
-          >
-            <div class="label-header">Description</div>
-            <div class="sort-header">
-              <mat-icon
-                inline="true"
-                [style.display]="
-                  canDisplayIcon('description') ? 'block' : 'none'
-                "
-                class="sorting-icon"
-              >
-                {{ getSortIconCode() }}</mat-icon
-              >
-            </div>
-          </div>
+        <th
+          mat-header-cell
+          *matHeaderCellDef
+          id="header-description"
+          mat-sort-header
+        >
+          <div class="label-header">Description</div>
         </th>
-        <td mat-cell *matCellDef="let element" #tdElement [matTooltip]="(element.description)" [matTooltipDisabled]="!isOverflow(tdElement)"
-       >{{ element.description }}</td>
+        <td
+          mat-cell
+          *matCellDef="let element"
+          #tdElement
+          [matTooltip]="element.description"
+          [matTooltipDisabled]="!isOverflow(tdElement)"
+        >
+          {{ element.description }}
+        </td>
       </ng-container>
 
       <ng-container matColumnDef="nodeCount">
-        <th mat-header-cell *matHeaderCellDef id="header-nodeCount">
-          <div class="cell-content">
-            <div class="label-header-nodes">Nodes</div>
-            <div class="sort-header"></div>
-          </div>
+        <th
+          mat-header-cell
+          *matHeaderCellDef
+          id="header-nodeCount"
+          mat-sort-header
+        >
+          <div class="label-header-nodes">Nodes</div>
         </th>
         <td style="text-align: center" mat-cell *matCellDef="let element">
           {{ element.nodeCount }}
@@ -125,88 +100,87 @@
       </ng-container>
 
       <ng-container matColumnDef="date">
-        <th mat-header-cell *matHeaderCellDef id="header-date">
-          <div
-            class="cell-content"
-            (mouseover)="hoveredKey = 'modifiedAt'"
-            (mouseout)="hoveredKey = ''"
-            (click)="changeSorting('modifiedAt')"
-          >
-            <div class="label-header">Date</div>
-            <div class="sort-header">
-              <mat-icon
-                inline="true"
-                [style.display]="
-                  canDisplayIcon('modifiedAt') ? 'block' : 'none'
-                "
-                class="sorting-icon"
-              >
-                {{ getSortIconCode() }}
-              </mat-icon>
-            </div>
-          </div>
+        <th mat-header-cell *matHeaderCellDef id="header-date" mat-sort-header>
+          <div class="label-header">Date</div>
         </th>
         <td mat-cell *matCellDef="let element">
-          {{ element.modifiedAt | date: 'dd.MM.yyyy' }}
+          {{ element.modifiedAt | date : "dd.MM.yyyy" }}
         </td>
       </ng-container>
 
       <ng-container matColumnDef="creator">
-        <th mat-header-cell *matHeaderCellDef id="header-creator">
-          <div
-            class="cell-content"
-            (mouseover)="hoveredKey = 'modifiedBy'"
-            (mouseout)="hoveredKey = ''"
-            (click)="changeSorting('modifiedBy')"
-          >
-            <div class="label-header">Created by</div>
-            <div class="sort-header">
-              <mat-icon
-                inline="true"
-                [style.display]="
-                  canDisplayIcon('modifiedBy') ? 'block' : 'none'
-                "
-                class="sorting-icon"
-              >
-                {{ getSortIconCode() }}</mat-icon
-              >
-            </div>
-          </div>
+        <th
+          mat-header-cell
+          *matHeaderCellDef
+          id="header-creator"
+          mat-sort-header
+        >
+          <div class="label-header">Created by</div>
         </th>
         <td
-        class="modifiedBy"
+          class="modifiedBy"
           mat-cell
-          *matCellDef="let element" 
+          *matCellDef="let element"
           #tdElement
-          [matTooltip]="(element.modifiedBy)"
+          [matTooltip]="element.modifiedBy"
           [matTooltipDisabled]="!isOverflow(tdElement)"
-        >{{ element.modifiedBy }}
+        >
+          {{ element.modifiedBy }}
         </td>
       </ng-container>
+      <ng-container matColumnDef="actions">
+        <th mat-header-cell *matHeaderCellDef id="header-actions"></th>
+        <td mat-cell *matCellDef="let element">
+          <button
+            mat-icon-button
+            *ngIf="
+              (isSuperAdmin$ | async) ||
+              (currentUser$ | async) === element.modifiedBy
+            "
+            (click)="showConfirmationDialog($event, element)"
+          >
+            <mat-icon>delete_forever</mat-icon>
+          </button>
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="progress">
+        <th mat-cell *matHeaderCellDef colspan="6">
+          <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+        </th>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
       <tr
         mat-header-row
-        *matHeaderRowDef="
-          ['name', 'description', 'nodeCount', 'date', 'creator'];
-          sticky: true
-        "
+        *matHeaderRowDef="['progress']; sticky: true"
+        style="height: 20px"
+        [class.loading-finished]="(loading$ | async) === false"
       ></tr>
       <tr
         mat-row
         (click)="!data.secondMap ? loadMap(row) : loadSecondMap(row)"
-        *matRowDef="
-          let row;
-          columns: ['name', 'description', 'nodeCount', 'date', 'creator']
-        "
+        *matRowDef="let row; columns: displayedColumns"
       ></tr>
 
-        <!-- Row shown when there is no matching data. -->
- <tr class="mat-row" *matNoDataRow>
-    <td class="mat-cell" colspan="4"> No data matching the filter.</td>
-  </tr>
+      <!-- Row shown when there is no matching data. -->
+      <tr
+        class="mat-row"
+        *matNoDataRow
+        [class.loading-finished]="loading$ | async"
+      >
+        <td class="mat-cell" colspan="6">No data matching the filter.</td>
+      </tr>
     </table>
   </div>
   <mat-dialog-actions align="end">
-    <button class="cancel-button" mat-button mat-stroked-button color="primary" (click)="cancel()">
+    <button
+      class="cancel-button"
+      mat-button
+      mat-stroked-button
+      color="primary"
+      (click)="cancel()"
+    >
       Cancel
     </button>
   </mat-dialog-actions>

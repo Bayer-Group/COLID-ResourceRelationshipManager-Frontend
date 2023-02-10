@@ -4,13 +4,12 @@ import { EdmLogEntry } from '.././shared/edm-log-entry';
 import { LogLevel } from './log-level';
 
 export class LogConsole implements LogPublisher {
+  log(logLevel: LogLevel, entry: EdmLogEntry): Observable<boolean> {
+    return observableOf(true);
+  }
 
-    log(logLevel: LogLevel, entry: EdmLogEntry): Observable<boolean> {
-        return observableOf(true);
-    }
-
-    clear(): Observable<boolean> {
-        console.clear();
-        return observableOf(true);
-    }
+  clear(): Observable<boolean> {
+    console.clear();
+    return observableOf(true);
+  }
 }

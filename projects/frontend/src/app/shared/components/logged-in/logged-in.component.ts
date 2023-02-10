@@ -6,12 +6,14 @@ import { EnsureBrowserSupportService } from '../../../modules/browser-support/se
 @Component({
   selector: 'app-logged-in',
   templateUrl: './logged-in.component.html',
-  styleUrls: ['./logged-in.component.css']
+  styleUrls: ['./logged-in.component.css'],
 })
 export class LoggedInComponent implements OnInit, OnDestroy {
-
   isBrowserSupported = false;
-  constructor(private authService: AuthService, private browserSupport: EnsureBrowserSupportService) {
+  constructor(
+    private authService: AuthService,
+    private browserSupport: EnsureBrowserSupportService
+  ) {
     this.isBrowserSupported = browserSupport.isSupported();
   }
   checkAccountSubscribtion!: Subscription;
@@ -23,7 +25,7 @@ export class LoggedInComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this.checkAccountSubscribtion.unsubscribe()
+    this.checkAccountSubscribtion.unsubscribe();
   }
 
   redirect() {

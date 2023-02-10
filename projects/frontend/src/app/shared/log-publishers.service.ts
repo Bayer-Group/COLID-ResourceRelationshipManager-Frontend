@@ -6,20 +6,19 @@ import { LogPidApi } from './log-pid-api';
 
 @Injectable()
 export class LogPublishersService {
+  // Public properties
+  public publishers: LogPublisher[] = [];
 
-    // Public properties
-    public publishers: LogPublisher[] = [];
+  constructor(private httpClient: HttpClient) {
+    // Build publishers arrays
+    this.buildPublishers();
+  }
 
-    constructor(private httpClient: HttpClient) {
-        // Build publishers arrays
-        this.buildPublishers();
-    }
-
-    // Build publishers array
-    private buildPublishers(): void {
-        // Create instance of LogConsole Class
-        this.publishers.push(new LogConsole());
-        // Commented out for now... check if there is a problem with the serialization code
-        this.publishers.push(new LogPidApi(this.httpClient));
-    }
+  // Build publishers array
+  private buildPublishers(): void {
+    // Create instance of LogConsole Class
+    this.publishers.push(new LogConsole());
+    // Commented out for now... check if there is a problem with the serialization code
+    this.publishers.push(new LogPidApi(this.httpClient));
+  }
 }

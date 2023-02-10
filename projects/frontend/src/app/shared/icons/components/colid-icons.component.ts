@@ -6,15 +6,14 @@ import { IconTypes } from '../models/icon-types';
 @Component({
   selector: 'ds-icon',
   templateUrl: './colid-icons.component.html',
-  styleUrls: ['./colid-icons.component.css']
+  styleUrls: ['./colid-icons.component.css'],
 })
 export class ColidIconsComponent implements OnInit {
-
-  @Input() icon: string = "";
+  @Input() icon: string = '';
 
   @Input() delay: number = 0;
 
-  @Input() tooltip: string = "";
+  @Input() tooltip: string = '';
 
   @Input() tooltipDisabled: boolean = true;
 
@@ -28,12 +27,15 @@ export class ColidIconsComponent implements OnInit {
     return this.appIconService.encodeString(this.icon);
   }
 
-  constructor(private appIconService: ColidIconsService, private changeDetector: ChangeDetectorRef) { }
+  constructor(
+    private appIconService: ColidIconsService,
+    private changeDetector: ChangeDetectorRef
+  ) {}
 
   ngOnInit() {
-    this.appIconService.iconsRegistered$.subscribe(res => {
-      this.iconsRegistered = res
-      this.changeDetector.detectChanges()
+    this.appIconService.iconsRegistered$.subscribe((res) => {
+      this.iconsRegistered = res;
+      this.changeDetector.detectChanges();
     });
   }
 
@@ -46,16 +48,14 @@ export class ColidIconsComponent implements OnInit {
       } else {
         return this.icon;
       }
-    }
-    else {
-      return "";
+    } else {
+      return '';
     }
   }
 
-
   get label(): string {
     if (this.iconType === this.iconTypes.Mapping) {
-      return IconMapping[this.icon].tooltip
+      return IconMapping[this.icon].tooltip;
     } else if (this.iconType === this.iconTypes.S3) {
       return this.appIconService._tooltipMapping.get(this.iconKey) as string;
     } else {

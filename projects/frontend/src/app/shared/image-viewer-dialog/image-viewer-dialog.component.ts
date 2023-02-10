@@ -5,16 +5,15 @@ import { HttpClient } from '@angular/common/http';
 
 export enum KEY_CODE {
   RIGHT_ARROW = 'ArrowRight',
-  LEFT_ARROW = 'ArrowLeft'
+  LEFT_ARROW = 'ArrowLeft',
 }
 
 @Component({
   selector: 'app-image-viewer-dialog',
   templateUrl: './image-viewer-dialog.component.html',
-  styleUrls: ['./image-viewer-dialog.component.scss']
+  styleUrls: ['./image-viewer-dialog.component.scss'],
 })
 export class ImageViewerDialogComponent {
-
   currentIndex: number;
   images: Array<any>;
 
@@ -34,7 +33,9 @@ export class ImageViewerDialogComponent {
   }
 
   constructor(
-    @Inject(MAT_DIALOG_DATA) public data: any, private httpClient: HttpClient) {
+    @Inject(MAT_DIALOG_DATA) public data: any,
+    private httpClient: HttpClient
+  ) {
     this.currentIndex = data.index;
     this.images = data.images;
     this.setImage(this.currentIndex);
@@ -60,7 +61,8 @@ export class ImageViewerDialogComponent {
 
   onClickButtonDownload() {
     const imgName = this.imageUrl.substr(this.imageUrl.lastIndexOf('/') + 1);
-    this.httpClient.get(this.imageUrl, { responseType: 'blob' as 'json' })
+    this.httpClient
+      .get(this.imageUrl, { responseType: 'blob' as 'json' })
       .subscribe((res: any) => {
         const file = new Blob([res], { type: res.type });
 
@@ -70,13 +72,16 @@ export class ImageViewerDialogComponent {
         link.download = imgName;
 
         // Version link.click() to work at firefox
-        link.dispatchEvent(new MouseEvent('click', {
-          bubbles: true,
-          cancelable: true,
-          view: window
-        }));
+        link.dispatchEvent(
+          new MouseEvent('click', {
+            bubbles: true,
+            cancelable: true,
+            view: window,
+          })
+        );
 
-        setTimeout(() => { // firefox
+        setTimeout(() => {
+          // firefox
           window.URL.revokeObjectURL(blob);
           link.remove();
         }, 100);
@@ -86,6 +91,7 @@ export class ImageViewerDialogComponent {
   setImage(index: number) {
     this.imageUrl = this.images[index]['id'];
     this.imageThumbnailUrl = this.images[index]['id'];
-    this.comment = this.images[index]['properties'][Constants.Metadata.Comment][0];
+    this.comment =
+      this.images[index]['properties'][Constants.Metadata.Comment][0];
   }
 }

@@ -32,7 +32,7 @@ $font-size-base: 0.85rem;
 @import "./node_modules/bootstrap/scss/mixins";
 
 @import "./node_modules/bootstrap/scss/root";
-@import "./node_modules/bootstrap/scss/reboot";
+// @import "./node_modules/bootstrap/scss/reboot";
 @import "./node_modules/bootstrap/scss/type";
 @import "./node_modules/bootstrap/scss/grid";
 @import "./node_modules/bootstrap/scss/forms";
@@ -587,5 +587,11 @@ mat-icon.published {
 
 mat-icon.error {
   color: $bayer-raspberry;
+}
+
+.success-snackbar {
+  background-color: #51a351 !important;
+  border: 1px solid #51a351 !important;
+  color: white !important;
 }
 

@@ -10,21 +10,21 @@ export class Link implements d3.SimulationLinkDatum<Node> {
   target!: Node;
   linkType: any;
   id!: string;
-  d: string = "";
+  d: string = '';
   isVersionLink: boolean = false;
   outbound: boolean = false;
 
-  sourceName: string = "";
-  targetName: string = "";
+  sourceName: string = '';
+  targetName: string = '';
 
-  sourceType: string = "";
-  targetType: string = "";
+  sourceType: string = '';
+  targetType: string = '';
 
-  isRendered: boolean = false;  //indicator whether the link is currently being rendered or not
-  display: boolean = true;  // indicator whether a link could theoretically be displayed or not, e.g. if it is filtered out
+  isRendered: boolean = false; //indicator whether the link is currently being rendered or not
+  display: boolean = true; // indicator whether a link could theoretically be displayed or not, e.g. if it is filtered out
 
-  startPoint: { x: number, y: number } = { x: 0, y: 0 };
-  endPoint: { x: number, y: number } = { x: 0, y: 0 };
+  startPoint: { x: number; y: number } = { x: 0, y: 0 };
+  endPoint: { x: number; y: number } = { x: 0, y: 0 };
 
   constructor(source?: any, target?: any, linkType?: any) {
     this.source = source;

@@ -1,49 +1,116 @@
 import { NgModule } from '@angular/core';
-import { MatRadioModule } from '@angular/material/radio';
-import { MatIconModule } from '@angular/material/icon';
-import { MatMenuModule } from '@angular/material/menu';
-import { MatTreeModule } from '@angular/material/tree';
-import { MatButtonModule } from '@angular/material/button';
-import { MatCheckboxModule } from '@angular/material/checkbox';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
-import { ColidIconsModule } from './icons/colid-icons.module';
+
+import { A11yModule } from '@angular/cdk/a11y';
+import { DragDropModule } from '@angular/cdk/drag-drop';
+import { PortalModule } from '@angular/cdk/portal';
+import { ScrollingModule } from '@angular/cdk/scrolling';
+import { CdkStepperModule } from '@angular/cdk/stepper';
+import { CdkTableModule } from '@angular/cdk/table';
+import { CdkTreeModule } from '@angular/cdk/tree';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { MatBadgeModule } from '@angular/material/badge';
+import { MatBottomSheetModule } from '@angular/material/bottom-sheet';
+import { MatButtonModule } from '@angular/material/button';
+import { MatButtonToggleModule } from '@angular/material/button-toggle';
+import { MatCardModule } from '@angular/material/card';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatChipsModule } from '@angular/material/chips';
+import { MatStepperModule } from '@angular/material/stepper';
+import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatDialogModule } from '@angular/material/dialog';
-import { MatSidenavModule } from '@angular/material/sidenav';
-import { MatTableModule } from '@angular/material/table';
+import { MatDividerModule } from '@angular/material/divider';
 import { MatExpansionModule } from '@angular/material/expansion';
-import { MatListModule } from '@angular/material/list'
-import { MatProgressBarModule } from '@angular/material/progress-bar';
-import { FormsModule } from '@angular/forms';
-import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatGridListModule } from '@angular/material/grid-list';
+import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
-import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatListModule } from '@angular/material/list';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatNativeDateModule, MatRippleModule } from '@angular/material/core';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatRadioModule } from '@angular/material/radio';
+import { MatSelectModule } from '@angular/material/select';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatSliderModule } from '@angular/material/slider';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatSortModule } from '@angular/material/sort';
+import { MatTableModule } from '@angular/material/table';
+import { MatTabsModule } from '@angular/material/tabs';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatTreeModule } from '@angular/material/tree';
+
+import { JoinPipe } from '../join.pipe';
+import { HighlightPipe } from '../highlight.pipe';
+import { DebounceDirective } from '../search/debounce.directive';
+import { InfiniteScrollModule } from 'ngx-infinite-scroll';
+import { ColidSpinnerComponent } from '../shared/colid-spinner/colid-spinner.component';
+import { ColumnsNamePipe } from '../columnsName.pipe';
+import { FormsModule } from '@angular/forms';
+import { ColidIconsModule } from './icons/colid-icons.module';
+import { MatFormFieldModule } from '@angular/material/form-field';
 
 @NgModule({
-  declarations: [],
+  declarations: [
+    JoinPipe,
+    HighlightPipe,
+    ColumnsNamePipe,
+    DebounceDirective,
+    ColidSpinnerComponent,
+  ],
   imports: [
     // Angular Components and access to <router>
     CommonModule,
     RouterModule,
     ColidIconsModule,
+    InfiniteScrollModule,
     // Material Design
-    MatIconModule,
-    MatMenuModule,
-    MatRadioModule,
-    MatTreeModule,
-    MatCheckboxModule,
-    MatDialogModule,
-    MatSidenavModule,
-    MatSnackBarModule,
+    A11yModule,
+    CdkStepperModule,
+    CdkTableModule,
+    CdkTreeModule,
+    DragDropModule,
+    MatAutocompleteModule,
+    MatBadgeModule,
+    MatBottomSheetModule,
     MatButtonModule,
+    MatButtonToggleModule,
+    MatCardModule,
+    MatCheckboxModule,
+    MatChipsModule,
+    MatStepperModule,
+    MatDatepickerModule,
+    MatDialogModule,
+    MatDividerModule,
     MatExpansionModule,
-    MatListModule,
-    FormsModule,
-    MatProgressBarModule,
-    MatFormFieldModule,
+    MatGridListModule,
+    MatIconModule,
     MatInputModule,
-    MatTooltipModule
+    MatListModule,
+    MatMenuModule,
+    MatNativeDateModule,
+    MatPaginatorModule,
+    MatProgressBarModule,
+    MatProgressSpinnerModule,
+    MatRadioModule,
+    MatRippleModule,
+    MatSelectModule,
+    MatSidenavModule,
+    MatSliderModule,
+    MatSlideToggleModule,
+    MatSnackBarModule,
+    MatSortModule,
+    MatTableModule,
+    MatTabsModule,
+    MatToolbarModule,
+    MatTooltipModule,
+    MatTreeModule,
+    PortalModule,
+    ScrollingModule,
   ],
   providers: [],
   exports: [
@@ -52,22 +119,54 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
     RouterModule,
     ColidIconsModule,
     // Material Design
-    MatIconModule,
-    MatMenuModule,
-    MatRadioModule,
-    MatTreeModule,
-    MatTableModule,
-    MatCheckboxModule,
-    MatDialogModule,
-    MatSidenavModule,
+    A11yModule,
+    CdkStepperModule,
+    CdkTableModule,
+    CdkTreeModule,
+    DragDropModule,
+    MatAutocompleteModule,
+    MatBadgeModule,
+    MatBottomSheetModule,
     MatButtonModule,
+    MatButtonToggleModule,
+    MatCardModule,
+    MatCheckboxModule,
+    MatChipsModule,
+    MatStepperModule,
+    MatDatepickerModule,
+    MatDialogModule,
+    MatDividerModule,
     MatExpansionModule,
-    MatListModule,
-    FormsModule,
-    MatProgressBarModule,
-    MatFormFieldModule,
+    MatGridListModule,
+    MatIconModule,
     MatInputModule,
-    MatTooltipModule
-  ]
+    MatListModule,
+    MatMenuModule,
+    MatNativeDateModule,
+    MatPaginatorModule,
+    MatProgressBarModule,
+    MatProgressSpinnerModule,
+    MatRadioModule,
+    MatRippleModule,
+    MatSelectModule,
+    MatSidenavModule,
+    MatSliderModule,
+    MatSlideToggleModule,
+    MatSnackBarModule,
+    MatSortModule,
+    MatTableModule,
+    MatTabsModule,
+    MatToolbarModule,
+    MatTooltipModule,
+    MatTreeModule,
+    PortalModule,
+    ScrollingModule,
+    InfiniteScrollModule,
+    JoinPipe,
+    HighlightPipe,
+    ColumnsNamePipe,
+    DebounceDirective,
+    ColidSpinnerComponent,
+  ],
 })
-export class SharedModule { }
+export class SharedModule {}

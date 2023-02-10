@@ -1,10 +1,9 @@
-import { Injectable } from "@angular/core";
-import { Subject } from "rxjs";
+import { Injectable } from '@angular/core';
+import { Subject } from 'rxjs';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class NotificationService {
-
   public notification$: Subject<string> = new Subject();
 }

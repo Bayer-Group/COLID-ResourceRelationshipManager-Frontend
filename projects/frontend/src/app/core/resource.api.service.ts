@@ -1,24 +1,49 @@
-import { Injectable } from "@angular/core";
-import { HttpClient, HttpParams } from "@angular/common/http";
-import { environment } from "../../environments/environment";
-import { ResourceOverviewCTO } from "./../shared/resource-overview-cto";
-import { Observable } from "rxjs";
-import { ResourceSearchDTO } from "./../shared/resource-search-dto";
-import { CheckboxHierarchyDTO } from "./../shared/checkboxHierarchy-dto";
+import { Injectable } from '@angular/core';
+import { HttpClient, HttpParams } from '@angular/common/http';
+import { environment } from '../../environments/environment';
+import { ResourceOverviewCTO } from './../shared/resource-overview-cto';
+import { Observable } from 'rxjs';
+import { ResourceSearchDTO } from './../shared/resource-search-dto';
+import { CheckboxHierarchyDTO } from './../shared/checkboxHierarchy-dto';
+import { LinkHistoryDto } from '../shared/models/link-history-dto';
 
 @Injectable({
-  providedIn: "root",
+  providedIn: 'root',
 })
 export class ResourceApiService {
+  constructor(private httpClient: HttpClient) {}
 
-  constructor(private httpClient: HttpClient) { }
+  createNewLink(
+    sourcePidUri: string,
+    linkType: string,
+    targetPidUri: string,
+    requester: string
+  ) {
+    const url = `${environment.colidApiUrl}resource/addLink`;
+    const params = new HttpParams()
+      .set('pidUri', sourcePidUri)
+      .set('linkType', linkType)
+      .set('pidUriToLink', targetPidUri)
+      .set('requester', requester);
+
+    return this.httpClient.post(url, {}, { params: params });
+  }
+
+  getLinkHistory(resourcePidUri: string): Observable<LinkHistoryDto[]> {
+    const url = `${environment.colidApiUrl}resource/linkHistory`;
+    const params = new HttpParams().set(
+      'pidUri',
+      decodeURIComponent(resourcePidUri)
+    );
+
+    return this.httpClient.get<LinkHistoryDto[]>(url, { params });
+  }
 
   getFilteredResources(
     resourceSearchObject: ResourceSearchDTO
   ): Observable<ResourceOverviewCTO> {
-    const url = environment.colidApiUrl + "/resource/search";
+    const url = environment.colidApiUrl + '/resource/search';
 
-    //const params = this.toHttpParams(resourceSearchObject);
     const params = this.removeNullProperties(resourceSearchObject);
     return this.httpClient.post<ResourceOverviewCTO>(
       url,
@@ -27,7 +52,9 @@ export class ResourceApiService {
   }
 
   getHierarchy(): Observable<CheckboxHierarchyDTO[]> {
-    return this.httpClient.get<CheckboxHierarchyDTO[]>(environment.colidApiUrl + 'metadata/hierarchyDmp');
+    return this.httpClient.get<CheckboxHierarchyDTO[]>(
+      environment.colidApiUrl + 'metadata/hierarchyDmp'
+    );
   }
 
   toHttpParams(obj: Object): HttpParams {
@@ -49,7 +76,7 @@ export class ResourceApiService {
     const outParams = {};
     return Object.getOwnPropertyNames(obj).reduce((p, key) => {
       const value = obj[key];
-      if (value == null || value == "") {
+      if (value == null || value == '') {
         outParams[key] = undefined;
       } else {
         outParams[key] = value;

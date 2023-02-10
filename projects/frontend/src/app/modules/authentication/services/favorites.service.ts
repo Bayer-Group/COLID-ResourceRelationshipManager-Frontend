@@ -1,17 +1,20 @@
-import { Injectable } from "@angular/core";
-import { HttpClient } from "@angular/common/http";
-import { Observable, Subject } from "rxjs";
-import { environment } from "../../../../environments/environment";
-import { MessageDto } from "../../../shared/user/message-dto";
-import { FavoriteListEntry, FavoriteListMetadata, Favorites } from "../../../shared/favorites";
-import { tap } from "rxjs/operators";
+import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Observable, Subject } from 'rxjs';
+import { environment } from '../../../../environments/environment';
+import { MessageDto } from '../../../shared/user/message-dto';
+import {
+  FavoriteListEntry,
+  FavoriteListMetadata,
+  Favorites,
+} from '../../../shared/favorites';
+import { tap } from 'rxjs/operators';
 
 @Injectable({
-  providedIn: "root",
+  providedIn: 'root',
 })
 export class FavoritesService {
-  constructor(private httpClient: HttpClient) { }
-
+  constructor(private httpClient: HttpClient) {}
 
   //This endpoint fetches all the favorite lists
   getFavorites(userId: string): Observable<FavoriteListMetadata[]> {

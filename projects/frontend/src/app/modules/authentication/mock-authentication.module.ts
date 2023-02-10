@@ -5,20 +5,14 @@ import { IDENT_PROV } from '../../shared/constants';
 
 @NgModule({
   declarations: [],
-  imports: [
-    CommonModule,
-  ],
-  providers: [
-    { provide: IDENT_PROV, useClass: MockIdentityProvider }
-  ]
+  imports: [CommonModule],
+  providers: [{ provide: IDENT_PROV, useClass: MockIdentityProvider }],
 })
 export class MockAuthenticationModule {
   static forRoot(): ModuleWithProviders<MockAuthenticationModule> {
     return {
       ngModule: MockAuthenticationModule,
-      providers: [
-        { provide: IDENT_PROV, useClass: MockIdentityProvider }
-      ]
+      providers: [{ provide: IDENT_PROV, useClass: MockIdentityProvider }],
     };
   }
 }
