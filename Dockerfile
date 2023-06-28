@@ -14,7 +14,7 @@ ENV Build__CiCommitSha=${BUILD_CICOMMITSHA}
 
 ARG NODE_OPTIONS
 
-COPY package.json package-lock.json ./
+COPY package.json ./
 
 ## Storing node modules on a separate layer will prevent unnecessary npm installs at each build
 RUN npm install \
@@ -32,7 +32,7 @@ RUN echo "export const BUILD = {\
     jobId: '$Build__CiJobId',\
     pipelineId: '$Build__CiPipelineId',\
     ciCommitSha: '$Build__CiCommitSha'\
-}" > ./projects/frontend/src/assets/build-variables.ts
+}" > ./src/assets/build-variables.ts
 
 ## Build the angular app and store the artifacts in dist folder
 RUN $(npm bin)/ng build --configuration=$ANGULAR_ENVIRONMENT --build-optimizer=false --output-hashing=all
@@ -44,6 +44,6 @@ WORKDIR /usr/share/nginx/html
 #RUN rm -rf /usr/share/nginx/html/* && rm -rf /etc/nginx/conf.d/* && rm -rf /etc/nginx/nginx.conf*
 COPY ./nginx.conf /etc/nginx/
 
-COPY --from=build-phase /ng-app/dist/frontend .
+COPY --from=build-phase /ng-app/dist/resource-relationship-manager-frontend .
 
 EXPOSE 8080

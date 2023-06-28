@@ -1,0 +1,26 @@
+<div class="content-container">
+  <div class="dialog-header">
+    <h2 mat-dialog-title style="margin: 0px">Link history</h2>
+    <button mat-icon-button class="close-button" [mat-dialog-close]="true">
+      <mat-icon>close</mat-icon>
+    </button>
+  </div>
+  <div mat-dialog-content>
+    <colid-link-history
+      [startPidUri]="data.startPidUri"
+      [endPidUri]="data.endPidUri"
+      [isNodeLinkHistory]="false"
+    ></colid-link-history>
+  </div>
+  <div mat-dialog-actions align="end">
+    <button
+      class="cancel-button"
+      mat-button
+      mat-stroked-button
+      color="primary"
+      mat-dialog-close
+    >
+      Cancel
+    </button>
+  </div>
+</div>

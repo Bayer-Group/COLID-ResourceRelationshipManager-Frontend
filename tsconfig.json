@@ -3,26 +3,24 @@
   "compileOnSave": false,
   "compilerOptions": {
     "baseUrl": "./",
-    "outDir": "./dist/out-tsc",
-    "forceConsistentCasingInFileNames": true,
-    "strictFunctionTypes":false,
-    "strict": true,
-    "noImplicitReturns": false,
-    "noFallthroughCasesInSwitch": true,
-    "sourceMap": true,
-    "declaration": false,
     "downlevelIteration": true,
-    "experimentalDecorators": true,
-    "strictNullChecks":false,
-    "noImplicitAny": false,
-    "moduleResolution": "node",
     "importHelpers": true,
-    "target": "es2020",
-    "module": "es2020",
+    "outDir": "./dist/out-tsc",
+    "sourceMap": false,
+    "declaration": false,
+    "module": "esnext",
+    "moduleResolution": "node",
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "target": "es6",
+    "typeRoots": [
+      "node_modules/@types"
+    ],
     "lib": [
-      "es2018",
+      "es2017",
       "dom"
-    ]
+    ],
+    "allowSyntheticDefaultImports": true
   },
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false,

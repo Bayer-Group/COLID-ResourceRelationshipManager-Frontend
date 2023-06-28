@@ -1,0 +1,13 @@
+.content-container {
+    box-sizing: border-box;
+    width: auto;
+    padding: 26px;
+    border: 2px solid #BABFC1;
+    overflow: hidden;
+}
+
+.dialog-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}

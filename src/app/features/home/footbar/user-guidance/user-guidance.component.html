@@ -1,0 +1,26 @@
+<div class="user-guidance">
+  <div class="user-guidance-text">
+    <img class="icons" src="assets/icons/ctrl.svg" alt="" />
+    <mat-icon
+      class="categoryHelp"
+      matTooltip="Hold CTRL key and click on resources to select one or more"
+      >help_outline</mat-icon
+    >
+  </div>
+  <div class="user-guidance-text">
+    <img
+      class="icons"
+      src="assets/icons/shift.svg"
+      alt=""
+      style="margin-left: 2rem"
+    />
+    <mat-icon
+      class="categoryHelp"
+      matTooltip="Hold SHIFT key and use the mouse to draw a box around resources for selecting multiple nodes at once"
+      >help_outline</mat-icon
+    >
+  </div>
+  <div class="user-guidance-text" *ngIf="currentMap$ | async as currentMap">
+    Currently loaded map: {{ currentMap.name }}
+  </div>
+</div>

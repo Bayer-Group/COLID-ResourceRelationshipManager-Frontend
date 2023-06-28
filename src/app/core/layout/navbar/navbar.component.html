@@ -1,0 +1,30 @@
+<div class="navbar">
+  <div style="display: flex">
+    <div>
+      <img
+        class="logo"
+        height="29"
+        src="assets/BAG_COLID-Visual_white_lh.svg"
+        style="margin-top: 12px; vertical-align: unset"
+        (click)="newMap()"
+      />
+      <span class="rrm-title"
+        >Resource Relationship Manager
+        {{ (buildInformation$ | async)?.versionNumber }}
+        {{ environmentLabel }}</span
+      >
+    </div>
+    <div>
+      <colid-map></colid-map>
+      <colid-view></colid-view>
+      <colid-resource></colid-resource>
+      <colid-linking></colid-linking>
+    </div>
+  </div>
+  <div class="d-flex align-items-center">
+    <button mat-icon-button class="text-white mr-2" (click)="openHelpDialog()">
+      <mat-icon>help_outline</mat-icon>
+    </button>
+    <colid-authentication></colid-authentication>
+  </div>
+</div>

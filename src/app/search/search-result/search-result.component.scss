@@ -1,0 +1,133 @@
+.border-button {
+  border: 1px solid currentColor !important;
+  border-color: rgba(0, 0, 0, 0.12) !important;
+  margin-left: 4px !important;
+}
+
+.beta-feature-tag {
+  font-size: 0.8rem;
+  vertical-align: top;
+}
+
+.mat-expansion-panel-header[aria-disabled="true"] {
+  color: rgba(0, 0, 0, 0.87) !important;
+}
+
+.result {
+  padding: 0.85rem 0rem 0.85rem 0rem;
+  border-radius: 0.3rem;
+}
+
+.buttons {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.result-header-wrapper {
+  display: flex;
+  justify-content: space-between;
+}
+
+.result-header {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.result-description {
+  font-size: 0.94rem;
+  word-break: break-word;
+}
+
+.mat-expansion-panel-header {
+  padding-left: 2 !important;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  height: auto !important;
+  font-size: 0.8rem !important;
+}
+
+::ng-deep .mat-expansion-panel-body {
+  padding-left: 2 !important;
+  display: inline-block;
+  max-width: 100% !important;
+  overflow: auto;
+}
+
+::ng-deep .result-description > p {
+  margin-bottom: 0px;
+}
+
+.badge {
+  font-weight: 500 !important;
+}
+
+mat-panel-description {
+  display: flex !important;
+  justify-content: flex-end;
+  align-items: flex-start;
+  color: black;
+  height: -webkit-fit-content;
+}
+
+.line-clamp {
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.justify-content-start {
+  flex-wrap: wrap;
+  justify-content: flex-start !important;
+}
+
+::ng-deep mat-tab-body-wrapper {
+  width: 100%;
+}
+
+.mat-expansion-panel-content {
+  display: flex;
+  flex-direction: column;
+  overflow: visible;
+  width: max-content;
+}
+.searchresultlist {
+  margin-left: 20px;
+  max-width: none;
+  flex: none;
+}
+
+.mat-tab-labels {
+  margin-top: 15px;
+}
+
+::ng-deep.mat-tab-label-active {
+  opacity: 1 !important;
+}
+
+::ng-deep .mat-row {
+  height: auto;
+}
+
+::ng-deep .mat-cell {
+  padding: 8px 8px 8px 0;
+}
+
+.details-container {
+  margin-top: 10px;
+}
+html::-webkit-scrollbar {
+  display: none;
+}
+
+.detail-row {
+  display: flex;
+
+  .detail-header {
+    flex: 0 0 25%;
+  }
+
+  .detail-data {
+    flex: 0 0 75%;
+  }
+}

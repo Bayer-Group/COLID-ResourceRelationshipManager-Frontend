@@ -1,0 +1,51 @@
+.node-linking-mode {
+  cursor: grab;
+}
+
+.linking-mode-indicator {
+  position: absolute;
+  top: 20px;
+  right: 25px;
+}
+
+.linking-count {
+  font-weight: bold;
+}
+
+.linking-mode-indicator-text {
+  background-color: white;
+  padding: 14px;
+  font-size: 15px;
+  border-radius: 4px;
+  box-shadow: rgb(0 0 0 / 20%) 0px 3px 1px -2px;
+  gap: 1rem;
+}
+
+.link-history-persistence {
+  position: absolute;
+  top: 80px;
+  right: 25px;
+  display: flex;
+  min-width: 700px;
+}
+
+.link-accordion-container {
+  flex: 1;
+}
+
+.link-save-button {
+  right: -5px;
+  height: 47px;
+}
+
+.cancel-linking {
+  margin-left: 5px;
+  height: 47px;
+}
+
+.history-entry {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
