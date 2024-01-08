@@ -18,12 +18,12 @@ export const environment = {
   allowAnonymous: true,
   adalConfig: {
     authority:
-      'https://login.microsoftonline.com/fcb2b37b-5da0-466b-9b83-0014b67a7c78',
-    clientId: '4798b327-d4d0-44f8-96c4-263ee30f1e92',
+      'yourdomain.onmicrosoft.com',
+    clientId: '<rrm service client id>',
     redirectUri: 'http://localhost:4305/logged-in',
     protectedResourceMap: {
       'https://localhost:44301': [
-        '3dffe4e2-02fa-4e72-884d-189770c6bd66/Resource.Search.All',
+        '<rrm service client id>/Resource.Search.All',
       ],
     },
     postLogoutRedirectUri: 'http://localhost:4305',
