@@ -7,7 +7,7 @@ export const environment = {
   environment: 'Dev',
   baseUrl: 'bayer.com',
   versionNumber: '2.12',
-  resourceRelationshipManagerApi: 'http://localhost:51830',
+  resourceRelationshipManagerApi: 'http://localhost:51831',
   pageSize: 10,
   dmpUrl: 'http://localhost:4300',
   colidApiUrl: 'http://localhost:51770/api/v3/',

@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, ViewChild } from '@angular/core';
+import { OnInit, AfterViewInit, Component, ViewChild } from '@angular/core';
 import { Link } from '../../../core/d3';
 import { Observable } from 'rxjs';
 import {
@@ -25,13 +25,15 @@ import {
 } from '../../../state/graph-visualisation.state';
 import { GraphComponent } from './graph/graph.component';
 import { LinkDto } from '../../../shared/models/link-dto';
+import { ActivatedRoute } from '@angular/router';
+import { LoadMap } from '../../../state/map-data.state';
 
 @Component({
   selector: 'colid-graph-container',
   templateUrl: './graph-container.component.html',
   styleUrls: ['./graph-container.component.scss'],
 })
-export class GraphContainerComponent implements AfterViewInit {
+export class GraphContainerComponent implements OnInit, AfterViewInit {
   @ViewChild(GraphComponent) graphComponent: GraphComponent;
   @Select(GraphLinkingDataState.getGraphLinkingState)
   linkingProperties$: Observable<GraphLinkingData>;
@@ -41,8 +43,16 @@ export class GraphContainerComponent implements AfterViewInit {
   linkHistory: LinkEditHistory[] = [];
   constructor(
     private store: Store,
-    private service: ResourceRelationshipManagerService
+    private service: ResourceRelationshipManagerService,
+    private route: ActivatedRoute
   ) {}
+
+  ngOnInit(): void {
+    const mapId = this.route.snapshot.paramMap.get('mapId');
+    if (mapId != null) {
+      this.store.dispatch(new LoadMap(mapId));
+    }
+  }
 
   ngAfterViewInit(): void {
     this.linkingProperties$

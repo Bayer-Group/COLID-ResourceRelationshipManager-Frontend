@@ -34,7 +34,7 @@ td {
 ::-webkit-scrollbar-thumb {
   -webkit-border-radius: 7.5px;
   border-radius: 7.5px;
-  background: #BABFC1;
+  background: #babfc1;
   border-width: 12px;
 }
 
@@ -63,7 +63,7 @@ td {
   height: 650px;
   width: auto;
   padding: 26px;
-  border: 2px solid #BABFC1;
+  border: 2px solid #babfc1;
   overflow: hidden;
 
   @media (max-width: 1540px) {
@@ -215,4 +215,15 @@ td {
 
 .loading-finished {
   display: none;
+}
+
+.pid-uri-container {
+  display: flex;
+  align-items: center;
+}
+
+.pid-uri-text {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }

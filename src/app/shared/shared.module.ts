@@ -43,6 +43,7 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatTreeModule } from '@angular/material/tree';
+import { ClipboardModule } from '@angular/cdk/clipboard';
 import { NgxImageZoomModule } from 'ngx-image-zoom';
 import { QuillModule, QuillConfig } from 'ngx-quill';
 
@@ -129,6 +130,7 @@ const globalQuillConfig: QuillConfig = {
     MatToolbarModule,
     MatTooltipModule,
     MatTreeModule,
+    ClipboardModule,
     PortalModule,
     ScrollingModule,
     NgxImageZoomModule,
@@ -181,6 +183,7 @@ const globalQuillConfig: QuillConfig = {
     MatToolbarModule,
     MatTooltipModule,
     MatTreeModule,
+    ClipboardModule,
     PortalModule,
     ScrollingModule,
     InfiniteScrollModule,

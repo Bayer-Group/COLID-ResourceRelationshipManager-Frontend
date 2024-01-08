@@ -96,10 +96,7 @@ export class LoadMap {
 export class SetCurrentMapData {
   static readonly type = '[Map Data] Set current map data';
   constructor(
-    public mapId: string,
-    public mapName: string,
-    public mapDescription: string,
-    public modifiedBy: string,
+    public mapMetadata: GraphMapMetadata,
     public currentUser: string
   ) {}
 }
@@ -284,13 +281,25 @@ export class MapDataState {
     { patchState }: StateContext<GraphMapData>,
     action: SetCurrentMapData
   ) {
-    const { mapId, mapName, mapDescription, modifiedBy, currentUser } = action;
+    const { mapMetadata, currentUser } = action;
+    const {
+      graphMapId,
+      name,
+      description,
+      modifiedAt,
+      modifiedBy,
+      browsablePidUri,
+      nodesCount,
+    } = mapMetadata;
     patchState({
       currentMap: {
-        graphMapId: mapId,
-        name: mapName,
-        description: mapDescription,
-        modifiedBy: modifiedBy,
+        graphMapId,
+        name,
+        description,
+        modifiedAt,
+        modifiedBy,
+        browsablePidUri,
+        nodesCount,
       },
       isOwner: modifiedBy == currentUser,
     });
@@ -402,11 +411,23 @@ export class MapDataState {
 
   @Action(RenderMap)
   renderMap(ctx: StateContext<GraphMapData>, action: RenderMap) {
-    const { id, name, description, modifiedBy } = action.map;
+    const { id, name, description, modifiedBy, modifiedAt, nodes, pidUri } =
+      action.map;
     const userEmail = this.auth.currentUserEmailAddress;
     ctx.dispatch(new ResetAll());
     ctx.dispatch(
-      new SetCurrentMapData(id, name, description, modifiedBy, userEmail)
+      new SetCurrentMapData(
+        {
+          graphMapId: id,
+          name,
+          description,
+          modifiedBy,
+          modifiedAt,
+          browsablePidUri: pidUri,
+          nodesCount: nodes.length,
+        },
+        userEmail
+      )
     );
 
     if (!(typeof action.map.nodes === 'undefined')) {

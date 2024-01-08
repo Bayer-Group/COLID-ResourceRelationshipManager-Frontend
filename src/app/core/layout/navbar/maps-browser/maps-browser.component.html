@@ -128,6 +128,25 @@
           {{ element.modifiedBy }}
         </td>
       </ng-container>
+      <ng-container matColumnDef="pidUri">
+        <th mat-header-cell *matHeaderCellDef id="header-pid-uri">
+          Browsable URI
+        </th>
+        <td mat-cell *matCellDef="let element">
+          <div class="pid-uri-container">
+            <span class="pid-uri-text">{{ element.pidUri }}</span>
+            <button
+              *ngIf="element.pidUri != null"
+              mat-icon-button
+              [cdkCopyToClipboard]="element.pidUri"
+              (click)="$event.stopPropagation()"
+              matTooltip="Copy browsable URI to clipboard"
+            >
+              <mat-icon>content_copy</mat-icon>
+            </button>
+          </div>
+        </td>
+      </ng-container>
       <ng-container matColumnDef="actions">
         <th mat-header-cell *matHeaderCellDef id="header-actions"></th>
         <td mat-cell *matCellDef="let element">

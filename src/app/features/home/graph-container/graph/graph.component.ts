@@ -73,6 +73,7 @@ import {
 import { LinkDto } from 'src/app/shared/models/link-dto';
 import { Constants } from 'src/app/shared/constants';
 import { LinkHistoryDialogComponent } from '../../link-history-dialog/link-history-dialog.component';
+import { MapDetailsDialogComponent } from '../../footbar/user-guidance/map-details-dialog/map-details-dialog.component';
 
 const ITEMS_PER_COLUMN = 19;
 const MINIMUM_ITEMS_PER_COLUMN = 11;
@@ -86,12 +87,7 @@ const SHIFT = 5;
 })
 export class GraphComponent implements OnInit, AfterViewInit, OnDestroy {
   /** Insert already initialized nodes and links here */
-  currentMap: GraphMapMetadata = {
-    graphMapId: '',
-    name: '',
-    description: '',
-    modifiedBy: '',
-  };
+  currentMap: GraphMapMetadata | null = null;
   _nodes: Node[] = [];
   _links: Link[] = [];
 
@@ -221,6 +217,9 @@ export class GraphComponent implements OnInit, AfterViewInit, OnDestroy {
                     name: res.name,
                     description: res.description,
                     modifiedBy: res.modifiedBy,
+                    modifiedAt: res.modifiedAt,
+                    nodesCount: res.nodes.length,
+                    browsablePidUri: res.pidUri,
                   };
                   //handle when saving was successful
                   this.store.dispatch(new SetCurrentMap(map));
@@ -231,6 +230,10 @@ export class GraphComponent implements OnInit, AfterViewInit, OnDestroy {
                     'Dismiss',
                     { duration: 3000, panelClass: 'success-snackbar' }
                   );
+                  this.dialog.open(MapDetailsDialogComponent, {
+                    data: map,
+                    minWidth: '60vw',
+                  });
                   this.authService.currentEmail$.subscribe((email) => {
                     if (email) {
                       this.store.dispatch(new LoadOwnMaps(email));
