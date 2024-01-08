@@ -21,6 +21,14 @@
     >
   </div>
   <div class="user-guidance-text" *ngIf="currentMap$ | async as currentMap">
-    Currently loaded map: {{ currentMap.name }}
+    <div style="display: flex; align-items: center">
+      <span>Currently loaded map: {{ currentMap.name }}</span>
+      <mat-icon
+        style="cursor: pointer"
+        matTooltip="Show map details"
+        (click)="showMapDetails(currentMap)"
+        >info</mat-icon
+      >
+    </div>
   </div>
 </div>

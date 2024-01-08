@@ -63,6 +63,7 @@ export class MapsBrowserComponent implements OnInit {
     'nodeCount',
     'date',
     'creator',
+    'pidUri',
     'actions',
   ];
   searchInput$ = new Subject<string>();

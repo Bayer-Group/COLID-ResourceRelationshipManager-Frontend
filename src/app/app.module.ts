@@ -28,7 +28,6 @@ import {
 } from './modules/authentication/azure-authentication.module';
 import { ColidMatSnackBarComponent } from './shared/colid-mat-snack-bar/colid-mat-snack-bar.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { ClipboardModule } from '@angular/cdk/clipboard';
 import { SidebarState } from './state/sidebar.state';
 import { SearchState } from './state/search.state';
 import { ImageViewerDialogComponent } from './shared/image-viewer-dialog/image-viewer-dialog.component';
@@ -132,7 +131,6 @@ const protectedResourceMap = new Map(
     CoreModule,
     MatIconModule,
     HttpClientModule,
-    ClipboardModule,
     AuthenticationModule.forRoot(),
     BrowserSupportModule,
     InfiniteScrollModule,

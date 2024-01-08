@@ -7,4 +7,5 @@ export class GraphMapV2 {
   modifiedBy: string = '';
   modifiedAt: string = '';
   nodes: Node[] = [];
+  pidUri: string = '';
 }
