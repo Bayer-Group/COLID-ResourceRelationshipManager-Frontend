@@ -4,7 +4,7 @@ import { AggregationBucket } from '../../../../shared/models/aggregation-bucket'
 @Component({
   selector: 'app-filter-box-item',
   templateUrl: './filter-box-item.component.html',
-  styleUrls: ['./filter-box-item.component.scss'],
+  styleUrls: ['./filter-box-item.component.scss']
 })
 export class FilterBoxItemComponent {
   @Input() key: string;

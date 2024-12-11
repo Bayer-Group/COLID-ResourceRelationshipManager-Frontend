@@ -1,7 +1,7 @@
 import { State, Action, StateContext, Selector } from '@ngxs/store';
 import { Aggregation } from '../shared/models/aggregation';
 import { SearchService } from '../shared/services/search.service';
-import { MetadataService } from '../core/metadata.service';
+import { MetadataService } from '../shared/services/metadata.service';
 import { RangeFilter } from '../shared/models/range-filter';
 import { Injectable } from '@angular/core';
 import { FilterGroupingOrderRaw } from '../shared/models/filter-grouping-order-raw';
@@ -37,8 +37,8 @@ export interface FilterStateModel {
     loading: false,
     aggregationFilters: null,
     rangeFilters: null,
-    filterOrder: null,
-  },
+    filterOrder: null
+  }
 })
 @Injectable()
 export class FilterState {
@@ -78,16 +78,16 @@ export class FilterState {
     {}: FetchFilter
   ) {
     patchState({
-      loading: true,
+      loading: true
     });
     forkJoin({
       filterGroupsRaw: this.metadataService.getFilterGroups(),
-      filters: this.searchService.getFilterItems(),
+      filters: this.searchService.getFilterItems()
     }).subscribe(({ filterGroupsRaw, filters }) => {
       const filterGroups = filterGroupsRaw.map((filterGroupRaw) => {
         const singleFilterGroup: FilterGroupingOrderRaw = {
           ...filterGroupRaw,
-          expanded: filterGroupRaw.groupName === 'Generic',
+          expanded: filterGroupRaw.groupName === 'Generic'
         };
         return singleFilterGroup;
       });
@@ -95,7 +95,7 @@ export class FilterState {
         loading: false,
         aggregationFilters: filters.aggregations,
         rangeFilters: filters.rangeFilters,
-        filterOrder: filterGroups,
+        filterOrder: filterGroups
       });
     });
   }
@@ -111,7 +111,7 @@ export class FilterState {
         const filterGroups = filterGroupsRaw.map((filterGroupRaw) => {
           const singleFilterGroup: FilterGroupingOrderRaw = {
             ...filterGroupRaw,
-            expanded: filterGroupRaw.groupName === 'Generic',
+            expanded: filterGroupRaw.groupName === 'Generic'
           };
           return singleFilterGroup;
         });
@@ -119,14 +119,14 @@ export class FilterState {
           loading: false,
           aggregationFilters: aggregations,
           rangeFilters: rangeFilters,
-          filterOrder: filterGroups,
+          filterOrder: filterGroups
         });
       });
     } else {
       patchState({
         loading: false,
         aggregationFilters: aggregations,
-        rangeFilters: rangeFilters,
+        rangeFilters: rangeFilters
       });
     }
   }

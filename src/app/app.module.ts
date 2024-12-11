@@ -8,23 +8,22 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgxsModule } from '@ngxs/store';
 import { HttpClientModule } from '@angular/common/http';
 import { MetadataState } from './state/metadata.state';
-import { ResourceRelationshipManagerService } from './core/http/resource-relationship-manager.service';
+import { ResourceRelationshipManagerService } from './shared/services/resource-relationship-manager.service';
 import { AuthenticationModule } from './modules/authentication/authentication.module';
 import { BrowserSupportModule } from './modules/browser-support/browser-support.module';
 import { ConfirmationDialogComponent } from './shared/components/confirmation-dialog/confirmation-dialog.component';
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 import { ScrollingModule } from '@angular/cdk/scrolling';
-import { MsalRedirectComponent } from './modules/authentication/services/msal.redirect.component';
 import {
   BrowserCacheLocation,
   InteractionType,
   LogLevel,
-  PublicClientApplication,
+  PublicClientApplication
 } from '@azure/msal-browser';
-import { MsalModule } from '@azure/msal-angular';
+import { MsalModule, MsalRedirectComponent } from '@azure/msal-angular';
 import {
   isIE,
-  loggerCallback,
+  loggerCallback
 } from './modules/authentication/azure-authentication.module';
 import { ColidMatSnackBarComponent } from './shared/colid-mat-snack-bar/colid-mat-snack-bar.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -51,9 +50,9 @@ import { SavingTriggerState } from './state/saving-trigger.state';
 import { UserInfoState } from './state/user-info.state';
 import { LinkHistoryComponent } from './shared/link-history/link-history.component';
 import { SharedModule } from './shared/shared.module';
-import { DisplayLinksComponent } from './features/home/graph-container/graph-dialog/display-links/display-links.component';
 import { FavoritesState } from './state/favorites.state';
 import { TaxonomyState } from './state/taxonomy.state';
+import { LinksVisibilityTabComponent } from './features/home/graph-container/graph-dialog/graph-dialog/links-visibility-tab/links-visibility-tab.component';
 
 const states = [
   MetadataState,
@@ -67,7 +66,7 @@ const states = [
   SavingTriggerState,
   UserInfoState,
   FavoritesState,
-  TaxonomyState,
+  TaxonomyState
 ];
 const protectedResourceMap = new Map(
   Object.entries(environment.adalConfig.protectedResourceMap)
@@ -83,8 +82,7 @@ const protectedResourceMap = new Map(
     UnauthorizedComponent,
     LoadingIndicatorPipe,
     GraphDialogComponent,
-    LinkIconPipe,
-    DisplayLinksComponent,
+    LinkIconPipe
   ],
   imports: [
     MatIconModule,
@@ -97,31 +95,31 @@ const protectedResourceMap = new Map(
           authority: environment.adalConfig.authority,
           redirectUri: environment.adalConfig.redirectUri,
           postLogoutRedirectUri: environment.adalConfig.postLogoutRedirectUri,
-          navigateToLoginRequestUrl: false,
+          navigateToLoginRequestUrl: false
         },
         cache: {
-          cacheLocation: BrowserCacheLocation.LocalStorage,
-          storeAuthStateInCookie: isIE, // set to true for IE 11
+          cacheLocation: BrowserCacheLocation.SessionStorage,
+          storeAuthStateInCookie: isIE // set to true for IE 11
         },
         system: {
           loggerOptions: {
             loggerCallback,
             logLevel: LogLevel.Info,
-            piiLoggingEnabled: false,
-          },
-        },
+            piiLoggingEnabled: false
+          }
+        }
       }),
       {
         //MSAL GUard Config
         interactionType: InteractionType.Redirect,
         authRequest: {
-          scopes: ['user.read', 'openid', 'profile', 'email'],
+          scopes: ['user.read', 'openid', 'profile', 'email']
         },
-        loginFailedRoute: '/login-failed',
+        loginFailedRoute: '/login-failed'
       },
       {
         interactionType: InteractionType.Redirect,
-        protectedResourceMap,
+        protectedResourceMap
       }
     ),
     CommonModule,
@@ -141,14 +139,15 @@ const protectedResourceMap = new Map(
     ColidIconsModule,
     CookieModule.withOptions(),
     LinkHistoryComponent,
+    LinksVisibilityTabComponent
   ],
   providers: [
     LogPublishersService,
     D3Service,
     ResourceRelationshipManagerService,
-    DatePipe,
+    DatePipe
   ],
   bootstrap: [AppComponent, MsalRedirectComponent],
-  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class AppModule {}

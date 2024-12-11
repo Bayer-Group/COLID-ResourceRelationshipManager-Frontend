@@ -6,7 +6,7 @@ import {
   Input,
   OnInit,
   Output,
-  ViewChild,
+  ViewChild
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ResourceApiService } from '../services/resource.api.service';
@@ -48,16 +48,24 @@ export interface HistoryItemTableEntry {
   imports: [CommonModule, SharedModule],
   templateUrl: './link-history.component.html',
   styleUrls: ['./link-history.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class LinkHistoryComponent implements OnInit {
+  @Input() startPidUri: string;
+  @Input() endPidUri: string;
+  @Input() isNodeLinkHistory = true;
+
+  @Output()
+  newLink: EventEmitter<HistoryItemTableEntry> =
+    new EventEmitter<HistoryItemTableEntry>();
+
   isLoading$: BehaviorSubject<boolean> = new BehaviorSubject(true);
   inputSearchEnabled: boolean = false;
   searchInput$ = new Subject<string>();
   currentInputFilter: string = '';
   currentSorting: { column: string; sortDirection: string } = {
     column: '',
-    sortDirection: '',
+    sortDirection: ''
   };
   originalHistoryItemsSource: HistoryItemTableEntry[];
   historyItemsSource: HistoryItemTableEntry[];
@@ -83,7 +91,7 @@ export class LinkHistoryComponent implements OnInit {
     'dateDeleted',
     'deletedBy',
     'status',
-    'restoreAction',
+    'restoreAction'
   ];
 
   linkDisplayedColumns = [
@@ -97,16 +105,8 @@ export class LinkHistoryComponent implements OnInit {
     'dateDeleted',
     'deletedBy',
     'status',
-    'restoreAction',
+    'restoreAction'
   ];
-
-  @Input() startPidUri: string;
-  @Input() endPidUri: string;
-  @Input() isNodeLinkHistory = true;
-
-  @Output()
-  newLink: EventEmitter<HistoryItemTableEntry> =
-    new EventEmitter<HistoryItemTableEntry>();
 
   constructor(
     private resourceApiService: ResourceApiService,
@@ -129,7 +129,7 @@ export class LinkHistoryComponent implements OnInit {
             <HistoryItemTableEntry>{
               linkType: {
                 key: item.linkType,
-                value: item.linkTypeLabel,
+                value: item.linkTypeLabel
               },
               linkStatus: item.linkStatus,
               outbound: !item.inBound,
@@ -142,7 +142,7 @@ export class LinkHistoryComponent implements OnInit {
               dateCreated: item.dateCreated,
               dateDeleted: item.dateDeleted,
               author: item.author,
-              deletedBy: item.deletedBy,
+              deletedBy: item.deletedBy
             }
         );
         this.historyItemsSource = [...this.originalHistoryItemsSource];
@@ -300,14 +300,15 @@ export class LinkHistoryComponent implements OnInit {
 
   applyFilter(searchString: string) {
     if (searchString) {
-      this.historyItemsSource = this.originalHistoryItemsSource.filter((item) =>
-        item.outbound
-          ? item.targetName
-              .toLowerCase()
-              .includes(searchString.trim().toLowerCase())
-          : item.sourceName
-              .toLowerCase()
-              .includes(searchString.trim().toLowerCase())
+      this.historyItemsSource = this.originalHistoryItemsSource.filter(
+        (item) =>
+          item.outbound
+            ? item.targetName
+                .toLowerCase()
+                .includes(searchString.trim().toLowerCase())
+            : item.sourceName
+                .toLowerCase()
+                .includes(searchString.trim().toLowerCase())
       );
     } else {
       this.historyItemsSource = this.originalHistoryItemsSource.slice();
@@ -346,10 +347,10 @@ export class LinkHistoryComponent implements OnInit {
           <p><b>Source:</b> ${item.sourceName}</p>
           <p><b>Target:</b> ${item.targetName}</p>
           <p><b>Link Type:</b> ${item.linkType.value}</p>
-        `,
+        `
       },
       width: 'auto',
-      disableClose: true,
+      disableClose: true
     });
 
     dialogRef.afterClosed().subscribe((result) => {
@@ -368,7 +369,7 @@ export class LinkHistoryComponent implements OnInit {
                 'Dismiss',
                 {
                   duration: 3000,
-                  panelClass: 'error-snackbar',
+                  panelClass: 'error-snackbar'
                 }
               );
               return EMPTY;
@@ -378,7 +379,7 @@ export class LinkHistoryComponent implements OnInit {
             this.newLink.emit(item);
             this.snackbar.open('Successfully restored the link', 'Dismiss', {
               duration: 3000,
-              panelClass: 'success-snackbar',
+              panelClass: 'success-snackbar'
             });
           });
       }

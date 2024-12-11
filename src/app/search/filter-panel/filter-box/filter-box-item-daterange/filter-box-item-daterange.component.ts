@@ -4,11 +4,11 @@ import {
   Input,
   OnInit,
   Output,
-  ViewEncapsulation,
+  ViewEncapsulation
 } from '@angular/core';
 import {
   RangeFilter,
-  RangeFilterSelection,
+  RangeFilterSelection
 } from '../../../../shared/models/range-filter';
 import { DatePipe } from '@angular/common';
 import { MatDatepickerInputEvent } from '@angular/material/datepicker';
@@ -16,7 +16,7 @@ import { MomentDateAdapter } from '@angular/material-moment-adapter';
 import {
   MAT_DATE_FORMATS,
   MAT_DATE_LOCALE,
-  DateAdapter,
+  DateAdapter
 } from '@angular/material/core';
 import { Select } from '@ngxs/store';
 import { ActiveRangeFilters } from 'src/app/shared/models/active-range-filters';
@@ -25,20 +25,20 @@ import { Observable } from 'rxjs';
 
 export enum RangeDirection {
   From = 'from',
-  To = 'to',
+  To = 'to'
 }
 
 // https://momentjs.com/docs/#/parsing/string-format/
 export const DATE_FORMAT = {
   parse: {
-    dateInput: 'YYYY-MM-DD',
+    dateInput: 'YYYY-MM-DD'
   },
   display: {
     dateInput: 'YYYY-MM-DD',
     monthYearLabel: 'YYYY',
     dateA11yLabel: 'LL',
-    monthYearA11yLabel: 'YYYY',
-  },
+    monthYearA11yLabel: 'YYYY'
+  }
 };
 
 @Component({
@@ -49,11 +49,11 @@ export const DATE_FORMAT = {
     {
       provide: DateAdapter,
       useClass: MomentDateAdapter,
-      deps: [MAT_DATE_LOCALE],
+      deps: [MAT_DATE_LOCALE]
     },
-    { provide: MAT_DATE_FORMATS, useValue: DATE_FORMAT },
+    { provide: MAT_DATE_FORMATS, useValue: DATE_FORMAT }
   ],
-  encapsulation: ViewEncapsulation.None,
+  encapsulation: ViewEncapsulation.None
 })
 export class FilterBoxItemDaterangeComponent implements OnInit {
   @Input() key: string;
@@ -82,8 +82,8 @@ export class FilterBoxItemDaterangeComponent implements OnInit {
   }
 
   setRangeFilter() {
-    this.initial[RangeDirection.From] = new Date(this._selection.from);
-    this.initial[RangeDirection.To] = new Date(this._selection.to);
+    this.initial[RangeDirection.From] = new Date(this._selection?.from);
+    this.initial[RangeDirection.To] = new Date(this._selection?.to);
     this.internalValueFrom = this.initial[RangeDirection.From];
     this.internalValueTo = this.initial[RangeDirection.To];
   }

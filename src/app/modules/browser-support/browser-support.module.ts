@@ -6,6 +6,6 @@ import { BrowserSupportComponent } from './components/ensure-browser-support.com
 @NgModule({
   declarations: [BrowserSupportComponent],
   imports: [CommonModule],
-  exports: [BrowserSupportComponent],
+  exports: [BrowserSupportComponent]
 })
 export class BrowserSupportModule {}

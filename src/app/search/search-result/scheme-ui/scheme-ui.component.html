@@ -146,7 +146,7 @@
                   <div class="col-9 ng-star-inserted">
                     <span _ngcontent-ctu-c16="">{{
                       table.resourceDetail[dateCreated].outbound[0].value
-                        | date : "yyyy-MM-dd hh:mm"
+                        | date: 'yyyy-MM-dd hh:mm'
                     }}</span>
                   </div>
                 </div>
@@ -171,7 +171,7 @@
                         [matColumnDef]="columnName"
                       >
                         <th mat-header-cell class="header" *matHeaderCellDef>
-                          {{ columnName | columnsName : metadata }}
+                          {{ columnName | columnsName: metadata }}
                         </th>
                         <td
                           mat-cell
@@ -191,7 +191,7 @@
                               <span
                                 [innerHTML]="
                                   element[columnName].outbound[0].value
-                                    | date : 'yyyy-MM-dd hh:mm'
+                                    | date: 'yyyy-MM-dd hh:mm'
                                 "
                               ></span>
                             </ng-container>
@@ -266,7 +266,7 @@
               [matColumnDef]="columnName"
             >
               <th mat-header-cell class="header" *matHeaderCellDef>
-                {{ columnName | columnsName : metadata }}
+                {{ columnName | columnsName: metadata }}
               </th>
               <td mat-cell class="flex-stretch" *matCellDef="let element">
                 <ng-container *ngIf="element[columnName] != undefined">
@@ -280,7 +280,7 @@
                     <span
                       [innerHTML]="
                         element[columnName].outbound[0].value
-                          | date : 'yyyy-MM-dd hh:mm'
+                          | date: 'yyyy-MM-dd hh:mm'
                       "
                     ></span>
                   </ng-container>

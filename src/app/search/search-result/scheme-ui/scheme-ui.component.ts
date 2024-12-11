@@ -6,7 +6,7 @@ import {
   OnDestroy,
   ChangeDetectionStrategy,
   Output,
-  EventEmitter,
+  EventEmitter
 } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Select, Store } from '@ngxs/store';
@@ -23,7 +23,7 @@ import { skip } from 'rxjs/operators';
   selector: 'app-scheme-ui',
   changeDetection: ChangeDetectionStrategy.Default,
   templateUrl: './scheme-ui.component.html',
-  styleUrls: ['./scheme-ui.component.scss'],
+  styleUrls: ['./scheme-ui.component.scss']
 })
 export class SchemeUIComponent implements OnInit, OnDestroy {
   @Input() set schemeUiDetail(schemeUI) {
@@ -136,12 +136,12 @@ export class SchemeUIComponent implements OnInit, OnDestroy {
         columnName == this.lastChnagedByDate
       ) {
         return [
-          this.datePipe.transform(row.outbound[0].value, 'yyyy-MM-dd hh:mm'),
+          this.datePipe.transform(row.outbound[0].value, 'yyyy-MM-dd hh:mm')
         ];
       }
       if (columnName == this.nameColumn) {
         return [
-          `<a href="${pidUri}" (click)="clickColumn($event, '${pidUri}')">${row.outbound[0].value}</a href>`,
+          `<a href="${pidUri}" (click)="clickColumn($event, '${pidUri}')">${row.outbound[0].value}</a href>`
         ];
       }
       return [row.outbound[0].value];
@@ -190,14 +190,14 @@ export class SchemeUIComponent implements OnInit, OnDestroy {
     event.preventDefault();
     var pidUri = table[this.hasPIDURI].outbound[0].value;
     this.dialog.open(LinkedResourceDisplayDialogComponent, {
-      data: { id: pidUri, confirmReview: false },
+      data: { id: pidUri, confirmReview: false }
     });
   }
 
   clickColumn(event: Event, pidUri: string) {
     event.preventDefault();
     this.dialog.open(LinkedResourceDisplayDialogComponent, {
-      data: { id: pidUri, confirmReview: false },
+      data: { id: pidUri, confirmReview: false }
     });
   }
 

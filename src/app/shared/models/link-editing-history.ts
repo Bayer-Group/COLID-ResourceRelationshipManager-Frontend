@@ -10,5 +10,5 @@ export interface LinkEditHistoryDto extends LinkTypesDto {
 
 export enum LinkHistoryAction {
   Delete = 'remove',
-  Add = 'add',
+  Add = 'add'
 }

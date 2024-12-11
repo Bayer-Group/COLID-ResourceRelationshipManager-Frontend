@@ -6,17 +6,13 @@ import { IconTypes } from '../models/icon-types';
 @Component({
   selector: 'ds-icon',
   templateUrl: './colid-icons.component.html',
-  styleUrls: ['./colid-icons.component.css'],
+  styleUrls: ['./colid-icons.component.css']
 })
 export class ColidIconsComponent implements OnInit {
   @Input() icon: string = '';
-
   @Input() delay: number = 0;
-
   @Input() tooltip: string = '';
-
   @Input() tooltipDisabled: boolean = true;
-
   @Input() iconType: IconTypes = IconTypes.Default;
 
   iconTypes = IconTypes;

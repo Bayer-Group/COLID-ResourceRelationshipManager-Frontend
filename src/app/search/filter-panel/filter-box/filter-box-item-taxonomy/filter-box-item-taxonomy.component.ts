@@ -4,7 +4,7 @@ import {
   Input,
   Output,
   EventEmitter,
-  OnDestroy,
+  OnDestroy
 } from '@angular/core';
 import { AggregationBucket } from '../../../../shared/models/aggregation-bucket';
 import { MetadataState } from '../../../../state/metadata.state';
@@ -15,13 +15,13 @@ import { FlatTreeControl } from '@angular/cdk/tree';
 import { SelectionModel } from '@angular/cdk/collections';
 import {
   MatTreeFlatDataSource,
-  MatTreeFlattener,
+  MatTreeFlattener
 } from '@angular/material/tree';
 
 @Component({
   selector: 'app-filter-box-item-taxonomy',
   templateUrl: './filter-box-item-taxonomy.component.html',
-  styleUrls: ['./filter-box-item-taxonomy.component.scss'],
+  styleUrls: ['./filter-box-item-taxonomy.component.scss']
 })
 export class FilterBoxItemTaxonomyComponent implements OnInit, OnDestroy {
   @Select(MetadataState.getMetadata) metadata$: Observable<any>;

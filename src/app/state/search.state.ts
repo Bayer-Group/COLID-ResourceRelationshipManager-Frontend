@@ -5,7 +5,7 @@ import {
   StateContext,
   Actions,
   ofActionDispatched,
-  Store,
+  Store
 } from '@ngxs/store';
 import { SearchService } from 'src/app/shared/services/search.service';
 import { SearchResult } from 'src/app/shared/models/search-result';
@@ -24,7 +24,10 @@ import { Injectable } from '@angular/core';
 export class PerformInitialSearch {
   static readonly type = '[Search] PerformInitialSearch';
 
-  constructor(public searchTerm: string, public route: ActivatedRoute) {}
+  constructor(
+    public searchTerm: string,
+    public route: ActivatedRoute
+  ) {}
 }
 
 export class FetchAutocompleteResults {
@@ -54,7 +57,10 @@ export class FetchNextSearchResult {
 export class ChangeSearchText {
   static readonly type = '[Search] ChangeSearchText';
 
-  constructor(public searchText: string, public initialChange: boolean) {}
+  constructor(
+    public searchText: string,
+    public initialChange: boolean
+  ) {}
 }
 
 export class SearchByPidUri {
@@ -75,7 +81,10 @@ export class ChangeActiveRangeFilter {
 export class ResetSingleActiveRangeFilter {
   static readonly type = '[Search] ResetSingleActiveRangeFilter';
 
-  constructor(public key: string, public initialChange: boolean) {}
+  constructor(
+    public key: string,
+    public initialChange: boolean
+  ) {}
 }
 
 export class OverwriteActiveRangeFilters {
@@ -99,7 +108,10 @@ export class OverwriteActiveAggregationBuckets {
 export class ChangePage {
   static readonly type = '[Search] ChangePage';
 
-  constructor(public page: number, public initialChange: boolean) {}
+  constructor(
+    public page: number,
+    public initialChange: boolean
+  ) {}
 }
 
 export class ChangeActiveAggregationBuckets {
@@ -176,8 +188,8 @@ export interface SearchStateModel {
     linkedTableAndcolumnResource: null,
     loading: false,
     errorSchema: null,
-    schemaUIDetail: null,
-  },
+    schemaUIDetail: null
+  }
 })
 @Injectable()
 export class SearchState {
@@ -279,7 +291,7 @@ export class SearchState {
   ) {
     ctx.patchState({
       activeAggregationBuckets: new Map<string, string[]>(),
-      activeRangeFilters: {},
+      activeRangeFilters: {}
     });
     if (action.fetchSearchResults) {
       this.store.dispatch(new FetchSearchResults());
@@ -295,7 +307,7 @@ export class SearchState {
     newActiveRangeFilters[action.key] = action.selection;
 
     ctx.patchState({
-      activeRangeFilters: newActiveRangeFilters,
+      activeRangeFilters: newActiveRangeFilters
     });
 
     return ctx.dispatch(new FetchSearchResults());
@@ -310,7 +322,7 @@ export class SearchState {
     delete newActiveRangeFilters[action.key];
 
     ctx.patchState({
-      activeRangeFilters: newActiveRangeFilters,
+      activeRangeFilters: newActiveRangeFilters
     });
 
     if (!action.initialChange) {
@@ -324,7 +336,7 @@ export class SearchState {
     action: OverwriteActiveRangeFilters
   ) {
     ctx.patchState({
-      activeRangeFilters: action.activeRangeFilters,
+      activeRangeFilters: action.activeRangeFilters
     });
   }
 
@@ -334,7 +346,7 @@ export class SearchState {
     action: OverwriteActiveAggregationBuckets
   ) {
     ctx.patchState({
-      activeAggregationBuckets: action.activeAggregationBuckets,
+      activeAggregationBuckets: action.activeAggregationBuckets
     });
   }
 
@@ -384,7 +396,7 @@ export class SearchState {
     }
 
     ctx.patchState({
-      activeAggregationBuckets: activeAggregationBuckets,
+      activeAggregationBuckets: activeAggregationBuckets
     });
   }
 
@@ -416,7 +428,7 @@ export class SearchState {
       activeAggregationBuckets.set(key, action.aggregationBuckets);
     }
     ctx.patchState({
-      activeAggregationBuckets: activeAggregationBuckets,
+      activeAggregationBuckets: activeAggregationBuckets
     });
 
     return ctx.dispatch(new FetchSearchResults());
@@ -430,7 +442,7 @@ export class SearchState {
     ctx.patchState({
       searchText: action.searchText,
       searchTimestamp: new Date(),
-      page: 1,
+      page: 1
     });
 
     if (!action.initialChange) {
@@ -441,7 +453,7 @@ export class SearchState {
   @Action(ChangePage)
   changePage(ctx: StateContext<SearchStateModel>, action: ChangePage) {
     ctx.patchState({
-      page: action.page,
+      page: action.page
     });
   }
 
@@ -453,7 +465,7 @@ export class SearchState {
     patchState({
       loading: true,
       searching: true,
-      didYouMean: null,
+      didYouMean: null
     });
     const statenow = getState();
     const searchTerm = statenow.searchText;
@@ -486,7 +498,7 @@ export class SearchState {
             correctedSearchText: s.suggestedSearchTerm,
             didYouMean: didYouMean,
             errorCode: null,
-            page,
+            page
           };
           patchState(stateUpdates);
         }),
@@ -512,7 +524,7 @@ export class SearchState {
     patchState({
       searchResult: null,
       searching: true,
-      didYouMean: null,
+      didYouMean: null
     });
 
     return this.searchService.searchDocument(action.pidUri).pipe(
@@ -523,7 +535,7 @@ export class SearchState {
           correctedSearchText: s.suggestedSearchTerm,
           didYouMean: s.suggestedSearchTerm,
           errorCode: null,
-          searching: false,
+          searching: false
         });
       }),
       finalize(() => {
@@ -540,7 +552,7 @@ export class SearchState {
     patchState({
       searchResult: null,
       searching: true,
-      didYouMean: null,
+      didYouMean: null
     });
 
     const queryParams = action.route.snapshot.queryParams;
@@ -580,7 +592,7 @@ export class SearchState {
             aggregations: s.aggregations,
             correctedSearchText: s.suggestedSearchTerm,
             didYouMean: didYouMean,
-            errorCode: null,
+            errorCode: null
           };
           patchState(stateUpdates);
         }),
@@ -625,7 +637,10 @@ export class SearchState {
             ) {
               didYouMean = firstSuggest.options[0].text;
             }
-          } catch (e) {}
+          } catch (e) {
+            console.log(e);
+          }
+
           const oldResult = getState().searchResult;
 
           const mergedResult = [...oldResult.hits.hits, ...s.hits.hits];
@@ -634,7 +649,7 @@ export class SearchState {
           patchState({
             searchResult: { ...s },
             didYouMean: didYouMean,
-            page: newPage,
+            page: newPage
           });
         }),
         catchError((err) => {
@@ -654,7 +669,7 @@ export class SearchState {
       return this.searchService.fetchAutoCompleteResults(searchText).pipe(
         tap((result: string[]) => {
           patchState({
-            autoCompleteResults: result,
+            autoCompleteResults: result
           });
         }),
         takeUntil(
@@ -665,7 +680,7 @@ export class SearchState {
       );
     } else {
       patchState({
-        autoCompleteResults: null,
+        autoCompleteResults: null
       });
     }
   }
@@ -676,7 +691,7 @@ export class SearchState {
     requesturl: { id: any }
   ) {
     patchState({
-      loading: true,
+      loading: true
     });
     if (requesturl) {
       return this.searchService
@@ -685,7 +700,7 @@ export class SearchState {
           tap((result) => {
             patchState({
               loading: false,
-              linkedTableAndcolumnResource: result,
+              linkedTableAndcolumnResource: result
             });
           }),
           catchError((err) => {
@@ -697,7 +712,7 @@ export class SearchState {
     } else {
       patchState({
         loading: false,
-        linkedTableAndcolumnResource: null,
+        linkedTableAndcolumnResource: null
       });
     }
   }
@@ -708,7 +723,7 @@ export class SearchState {
     requesturls: { displayTableAndColumn: any }
   ) {
     patchState({
-      loading: true,
+      loading: true
     });
     if (requesturls.displayTableAndColumn) {
       return this.searchService
@@ -717,7 +732,7 @@ export class SearchState {
           tap((result) => {
             patchState({
               loading: false,
-              schemaUIDetail: result,
+              schemaUIDetail: result
             });
           }),
           catchError((err) => {
@@ -729,7 +744,7 @@ export class SearchState {
     } else {
       patchState({
         loading: false,
-        schemaUIDetail: null,
+        schemaUIDetail: null
       });
     }
   }

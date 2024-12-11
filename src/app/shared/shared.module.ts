@@ -54,9 +54,9 @@ import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 import { ColidSpinnerComponent } from '../shared/colid-spinner/colid-spinner.component';
 import { ColumnsNamePipe } from '../columnsName.pipe';
 import { ColidIconsModule } from './icons/colid-icons.module';
-import { EditorAccessControlDirective } from './directives/editor-access-control.directive';
 import { MapPipe } from './pipes/map.pipe';
 import { MetadataGroupByPipe } from './pipes/metadata-group-by.pipe';
+import { RemoveHtmlTagsPipe } from './pipes/remove-html-tags.pipe';
 
 // Global quill config for form items
 const globalQuillConfig: QuillConfig = {
@@ -67,9 +67,9 @@ const globalQuillConfig: QuillConfig = {
       [{ list: 'ordered' }, { list: 'bullet' }],
       [{ color: [] }, { background: [] }], // dropdown with defaults from theme
       ['clean'], // remove formatting button
-      ['link'], // link
-    ],
-  },
+      ['link'] // link
+    ]
+  }
 };
 
 @NgModule({
@@ -81,7 +81,7 @@ const globalQuillConfig: QuillConfig = {
     MetadataGroupByPipe,
     DebounceDirective,
     ColidSpinnerComponent,
-    EditorAccessControlDirective,
+    RemoveHtmlTagsPipe
   ],
   imports: [
     // Angular Components and access to <router>
@@ -134,7 +134,7 @@ const globalQuillConfig: QuillConfig = {
     PortalModule,
     ScrollingModule,
     NgxImageZoomModule,
-    QuillModule.forRoot(globalQuillConfig),
+    QuillModule.forRoot(globalQuillConfig)
   ],
   providers: [],
   exports: [
@@ -194,9 +194,9 @@ const globalQuillConfig: QuillConfig = {
     MetadataGroupByPipe,
     MapPipe,
     DebounceDirective,
-    EditorAccessControlDirective,
     ColidSpinnerComponent,
     QuillModule,
-  ],
+    RemoveHtmlTagsPipe
+  ]
 })
 export class SharedModule {}

@@ -3,7 +3,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import {
   MatDialog,
   MatDialogRef,
-  MAT_DIALOG_DATA,
+  MAT_DIALOG_DATA
 } from '@angular/material/dialog';
 import { Select, Store } from '@ngxs/store';
 import { Observable } from 'rxjs';
@@ -16,7 +16,7 @@ import { AuthService } from '../../modules/authentication/services/auth.service'
 @Component({
   selector: 'colid-create-favorite-list',
   templateUrl: './create-favorite-list.component.html',
-  styleUrls: ['./create-favorite-list.component.scss'],
+  styleUrls: ['./create-favorite-list.component.scss']
 })
 export class CreateFavoriteListComponent implements OnInit {
   @Select(FavoritesState.getFavorites) favorites$: Observable<Favorites[]>;
@@ -39,7 +39,7 @@ export class CreateFavoriteListComponent implements OnInit {
   ngOnInit(): void {
     this.authService.currentUserId$.subscribe((uid) => (this.userId = uid));
     this.favoritesForm = this.formBuilder.group({
-      name: ['', Validators.required],
+      name: ['', Validators.required]
     });
   }
   createFavorite() {
@@ -67,7 +67,7 @@ export class CreateFavoriteListComponent implements OnInit {
                 'Fail to create',
                 'This name already exists.'
               );
-            },
+            }
           });
       }
     }

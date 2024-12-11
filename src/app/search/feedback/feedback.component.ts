@@ -4,7 +4,7 @@ import { LogService } from '../../shared/services/log.service';
 @Component({
   selector: 'app-feedback',
   templateUrl: './feedback.component.html',
-  styleUrls: ['./feedback.component.scss'],
+  styleUrls: ['./feedback.component.scss']
 })
 export class FeedbackComponent {
   isFeedbackPageVisible: boolean = true;
@@ -30,7 +30,7 @@ export class FeedbackComponent {
       feature: this.feature,
       payload: this.payload,
       sentimental_score: this.iSentimentalScorePositive,
-      comment: this.comment,
+      comment: this.comment
     });
   }
 }

@@ -12,7 +12,7 @@ import { SimilarityService } from '../../../shared/services/similarity.service';
 @Component({
   selector: 'app-similarity-modal',
   templateUrl: './similarity-modal.component.html',
-  styleUrls: ['./similarity-modal.component.scss'],
+  styleUrls: ['./similarity-modal.component.scss']
 })
 export class SimilarityModalComponent implements OnInit, OnDestroy {
   docs: any[] = [];
@@ -47,7 +47,9 @@ export class SimilarityModalComponent implements OnInit, OnDestroy {
       this.metadata = met;
     });
 
-    this.loadSimilarResources();
+    if (this.source) {
+      this.loadSimilarResources();
+    }
   }
 
   get returnedPids() {
@@ -98,13 +100,13 @@ export class SimilarityModalComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this.metadataSubscription.unsubscribe();
+    this.metadataSubscription?.unsubscribe();
   }
 
   private generatePayload() {
     let payload = {
       id: '',
-      properties: {},
+      properties: {}
     };
 
     payload.properties[Constants.Metadata.HasPidUri] =

@@ -7,32 +7,32 @@ export const Constants = {
     Table: `https://pid.${environment.baseUrl}/kos/19050/444586`,
     Column: `https://pid.${environment.baseUrl}/kos/19050/444582`,
     Dataset: `https://pid.${environment.baseUrl}/kos/19050/NonRDFDataset`,
-    Document: `http://pid.${environment.baseUrl}/kos/19014/Document`,
+    Document: `http://pid.${environment.baseUrl}/kos/19014/Document`
   },
   ConsumerGroup: {
-    HasPidUriTemplate: `https://pid.${environment.baseUrl}/kos/19050#hasPidUriTemplate`,
+    HasPidUriTemplate: `https://pid.${environment.baseUrl}/kos/19050#hasPidUriTemplate`
   },
   Authentication: {
     Roles: {
       Administration: 'COLID.Administration.ReadWrite',
-      SuperAdministration: 'COLID.Superadministration.ReadWrite',
-    },
+      SuperAdministration: 'COLID.Superadministration.ReadWrite'
+    }
   },
   Logging: {
     Product: 'DMP',
-    Layer: 'Frontend(Angular)',
+    Layer: 'Frontend(Angular)'
   },
   Search: {
-    DidYouMeanField: 'hasResourceDefinition.value',
+    DidYouMeanField: 'hasResourceDefinition.value'
   },
   Shacl: {
     Group: 'http://www.w3.org/ns/shacl#group',
     Groups: {
-      LinkTypes: `http://pid.${environment.baseUrl}/kos/19050/LinkTypes`,
+      LinkTypes: `http://pid.${environment.baseUrl}/kos/19050/LinkTypes`
     },
     Name: 'http://www.w3.org/ns/shacl#name',
     Order: 'http://www.w3.org/ns/shacl#order',
-    Taxonomy: 'taxonomy',
+    Taxonomy: 'taxonomy'
   },
   Resource: {
     // For Resource Id
@@ -41,15 +41,15 @@ export const Constants = {
       Draft: `https://pid.${environment.baseUrl}/kos/19050/draft`,
       Published: `https://pid.${environment.baseUrl}/kos/19050/published`,
       Historic: `https://pid.${environment.baseUrl}/kos/19050/historic`,
-      MarkedDeletion: `https://pid.${environment.baseUrl}/kos/19050/markedForDeletion`,
+      MarkedDeletion: `https://pid.${environment.baseUrl}/kos/19050/markedForDeletion`
     },
     Groups: {
       InvisibleTechnicalInformation: `http://pid.${environment.baseUrl}/kos/19050/InvisibleTechnicalInformation`,
       TechnicalInformation: `https://pid.${environment.baseUrl}/kos/19050/TechnicalInformation`,
       LinkTypes: `http://pid.${environment.baseUrl}/kos/19050/LinkTypes`,
       DistributionEndpoints: `http://pid.${environment.baseUrl}/kos/19050/DistributionEndpoints`,
-      Images: `https://pid.${environment.baseUrl}/kos/19050/AttachmentsPropertyGroup`,
-    },
+      Images: `https://pid.${environment.baseUrl}/kos/19050/AttachmentsPropertyGroup`
+    }
   },
   Metadata: {
     Author: `https://pid.${environment.baseUrl}/kos/19050/author`,
@@ -59,11 +59,11 @@ export const Constants = {
       Decimal: 'http://www.w3.org/2001/XMLSchema#decimal',
       Boolean: 'http://www.w3.org/2001/XMLSchema#boolean',
       DateTime: 'http://www.w3.org/2001/XMLSchema#dateTime',
-      String: 'http://www.w3.org/2001/XMLSchema#string',
+      String: 'http://www.w3.org/2001/XMLSchema#string'
     },
     NodeType: {
       IRI: 'http://www.w3.org/ns/shacl#IRI',
-      Literal: 'http://www.w3.org/ns/shacl#IRI',
+      Literal: 'http://www.w3.org/ns/shacl#IRI'
     },
     Name: 'http://www.w3.org/ns/shacl#name',
     EntityType: 'http://www.w3.org/1999/02/22-rdf-syntax-ns#type',
@@ -90,10 +90,11 @@ export const Constants = {
     HasNetworkedResourceLabel: `https://pid.${environment.baseUrl}/kos/19050/hasNetworkedResourceLabel`,
     HasDataCategory: `https://pid.${environment.baseUrl}/kos/19050/hasDataCategory`,
     HasCountryContext: `https://pid.${environment.baseUrl}/kos/19050/hasCountryContext`,
+    HasNextReviewDueDate: `https://pid.${environment.baseUrl}/kos/19050/hasNextReviewDueDate`,
     HasLastReviewer: `https://pid.${environment.baseUrl}/kos/19050/hasLastReviewer`,
     RDFS: {
       Range: 'http://www.w3.org/2000/01/rdf-schema#range',
-      Label: 'http://www.w3.org/2000/01/rdf-schema#label',
+      Label: 'http://www.w3.org/2000/01/rdf-schema#label'
     },
     DataSteward: `https://pid.${environment.baseUrl}/kos/19050/hasDataSteward`,
     NodeKind: 'http://www.w3.org/ns/shacl#nodeKind',
@@ -104,28 +105,34 @@ export const Constants = {
     HasAttachment: `https://pid.${environment.baseUrl}/kos/19050/hasAttachment`,
     PIDConcept: `https://pid.${environment.baseUrl}/kos/19050/PID_Concept`,
     HasVersions: `https://pid.${environment.baseUrl}/kos/19050/hasVersions`,
+    Distribution: `https://pid.${environment.baseUrl}/kos/19050/distribution`,
+    HasBrokenDistributionEndpointLink: `https://pid.${environment.baseUrl}/kos/19050/hasEndpointURLStatus`,
+    HasBrokenDataSteward: `https://pid.${environment.baseUrl}/kos/19050/hasBrokenDataSteward`,
+    HasBrokenEndpointContact: `https://pid.${environment.baseUrl}/kos/19050/hasBrokenEndpointContact`,
+    HasLaterVersion: `https://pid.${environment.baseUrl}/kos/19050/hasLaterVersion`,
+    MetadataReleaseConfig: `https://pid.${environment.baseUrl}/kos/19050/646465`,
     BaseURIPointsAt: `https://pid.${environment.baseUrl}/kos/19050/baseURIPointsAt`,
     Link: {
       LifecycleStatus: {
         Deleted: `https://pid.${environment.baseUrl}/kos/19050/Deleted`,
-        Created: `https://pid.${environment.baseUrl}/kos/19050/Created`,
-      },
-    },
+        Created: `https://pid.${environment.baseUrl}/kos/19050/Created`
+      }
+    }
   },
   Identifier: {
-    Type: `http://pid.${environment.baseUrl}/kos/19014/PermanentIdentifier`,
+    Type: `http://pid.${environment.baseUrl}/kos/19014/PermanentIdentifier`
   },
   DistributionEndpoint: {
     LifecycleStatus: {
-      Active: `https://pid.${environment.baseUrl}/kos/19050/active`,
+      Active: `https://pid.${environment.baseUrl}/kos/19050/active`
     },
-    DistributionEndpointKey: `https://pid.${environment.baseUrl}/kos/19050/distribution`,
+    DistributionEndpointKey: `https://pid.${environment.baseUrl}/kos/19050/distribution`
   },
   OWL: {
     Class: 'http://www.w3.org/2002/07/owl#Class',
-    SubClass: 'http://www.w3.org/2000/01/rdf-schema#subClassOf',
+    SubClass: 'http://www.w3.org/2000/01/rdf-schema#subClassOf'
   },
   Assets: {
-    Logo: `https://shared.${environment.baseUrl}/img/logo.svg`,
-  },
+    Logo: `https://shared.${environment.baseUrl}/img/logo.svg`
+  }
 };

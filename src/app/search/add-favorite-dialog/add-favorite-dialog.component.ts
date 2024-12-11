@@ -2,7 +2,7 @@ import { Component, Inject, OnInit, OnDestroy } from '@angular/core';
 import {
   MatDialog,
   MatDialogRef,
-  MAT_DIALOG_DATA,
+  MAT_DIALOG_DATA
 } from '@angular/material/dialog';
 import { Select, Store } from '@ngxs/store';
 import { Observable, Subscription } from 'rxjs';
@@ -16,7 +16,7 @@ import { CreateFavoriteListComponent } from '../create-favorite-list/create-favo
 @Component({
   selector: 'colid-add-favorite-dialog',
   templateUrl: './add-favorite-dialog.component.html',
-  styleUrls: ['./add-favorite-dialog.component.scss'],
+  styleUrls: ['./add-favorite-dialog.component.scss']
 })
 export class AddFavoriteDialogComponent implements OnInit, OnDestroy {
   @Select(FavoritesState.getFavorites) favorites$: Observable<
@@ -93,7 +93,7 @@ export class AddFavoriteDialogComponent implements OnInit, OnDestroy {
         favoriteListPayload.push({
           favoritesListId: this.selectedFavoriteListIds[i],
           pidUri: this.data.pidUri,
-          personalNote: '',
+          personalNote: ''
         });
       }
     }

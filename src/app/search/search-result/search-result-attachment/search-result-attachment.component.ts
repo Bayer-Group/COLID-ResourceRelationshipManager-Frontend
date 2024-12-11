@@ -1,7 +1,7 @@
 import { Component, Input } from '@angular/core';
 import {
   DetailsViewModel,
-  DetailsViewModelNested,
+  DetailsViewModelNested
 } from '../search-result.component';
 import { Constants } from '../../../shared/constants';
 import { MatDialog } from '@angular/material/dialog';
@@ -10,7 +10,7 @@ import { ImageViewerDialogComponent } from '../../../shared/image-viewer-dialog/
 @Component({
   selector: 'app-search-result-attachment',
   templateUrl: './search-result-attachment.component.html',
-  styleUrls: ['./search-result-attachment.component.scss'],
+  styleUrls: ['./search-result-attachment.component.scss']
 })
 export class SearchResultAttachmentComponent {
   @Input() index: number;
@@ -22,7 +22,7 @@ export class SearchResultAttachmentComponent {
   invisibleProperties: Array<string> = [
     Constants.Metadata.EntityType,
     Constants.Metadata.HasTargetUri,
-    Constants.Metadata.HasNetworkedResourceLabel,
+    Constants.Metadata.HasNetworkedResourceLabel
   ];
 
   sortedMetadataProperties: any;
@@ -53,8 +53,8 @@ export class SearchResultAttachmentComponent {
     this.dialog.open(ImageViewerDialogComponent, {
       data: {
         index: this.index,
-        images: entityProperty,
-      },
+        images: entityProperty
+      }
     });
   }
 
@@ -63,17 +63,19 @@ export class SearchResultAttachmentComponent {
       var comment = a.value.filter(
         (v) => v.key === this.constants.Metadata.Comment
       )[0].value;
+
       return {
         id: a.id,
-        properties: { 'http://www.w3.org/2000/01/rdf-schema#comment': comment },
+        properties: { 'http://www.w3.org/2000/01/rdf-schema#comment': comment }
       };
     });
   }
 
   get comment() {
-    let comment = this.attachment.value.filter(
+    let comment = this.attachment?.value.filter(
       (v) => v.key === this.constants.Metadata.Comment
     )[0];
-    return comment.value[0];
+
+    return comment?.value[0];
   }
 }

@@ -14,20 +14,20 @@ export const providers: Provider[] = [AuthGuardService, AuthService];
     CommonModule,
     environment.allowAnonymous
       ? MockAuthenticationModule.forRoot()
-      : AzureAuthenticationModule.forRoot(),
+      : AzureAuthenticationModule.forRoot()
   ],
   providers: [providers],
   exports: [
     environment.allowAnonymous
       ? MockAuthenticationModule
-      : AzureAuthenticationModule,
-  ],
+      : AzureAuthenticationModule
+  ]
 })
 export class AuthenticationModule {
   static forRoot(): ModuleWithProviders<AuthenticationModule> {
     return {
       ngModule: AuthenticationModule,
-      providers: [providers],
+      providers: [providers]
     };
   }
 }

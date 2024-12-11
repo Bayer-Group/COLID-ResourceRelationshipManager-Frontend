@@ -28,5 +28,5 @@ export const Schema_Support = {
   Dataset: Constants.ResourceTypes.Dataset,
   Table: Constants.ResourceTypes.Table,
   Column: Constants.ResourceTypes.Column,
-  Subset: Constants.OWL.SubClass,
+  Subset: Constants.OWL.SubClass
 };

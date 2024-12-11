@@ -5,14 +5,14 @@ import {
   ResetTransform,
   UpdateZoomScale,
   ZoomIn,
-  ZoomOut,
+  ZoomOut
 } from 'src/app/state/graph-visualisation.state';
 import { Observable } from 'rxjs';
 
 @Component({
   selector: 'colid-treedeep',
   templateUrl: './treedeep.component.html',
-  styleUrls: ['./treedeep.component.scss'],
+  styleUrls: ['./treedeep.component.scss']
 })
 export class TreedeepComponent implements OnInit {
   @Input() initialValue = 1;

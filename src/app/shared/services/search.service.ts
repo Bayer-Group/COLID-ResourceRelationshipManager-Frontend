@@ -9,7 +9,7 @@ import { ActiveRangeFilters } from '../models/active-range-filters';
 import { AggregationsResultDto } from '../models/dto/aggregations-result-dto';
 
 @Injectable({
-  providedIn: 'root',
+  providedIn: 'root'
 })
 export class SearchService {
   private readonly baseUrl = environment.dmpCoreApiUrl;
@@ -44,7 +44,7 @@ export class SearchService {
       aggregationFilters: aggJson,
       rangeFilters: activeRangeFilters,
       enableHighlighting: true,
-      apiCallTime: new Date().toUTCString(),
+      apiCallTime: new Date().toUTCString()
     };
     return this.httpClient.post<any>(
       this.baseUrl + 'search',
@@ -87,16 +87,16 @@ export class SearchService {
                   sequenceNumber: null,
                   sorts: [],
                   type: '_doc',
-                  version: 0,
-                },
+                  version: 0
+                }
               ],
-              total: 1,
+              total: 1
             },
             originalSearchTerm: null,
             suggestedSearchTerm: null,
             aggregations: [], //done
             rangeFilters: [],
-            suggest: {},
+            suggest: {}
           };
           return output;
         })

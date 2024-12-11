@@ -5,13 +5,13 @@ import { HttpClient } from '@angular/common/http';
 
 export enum KEY_CODE {
   RIGHT_ARROW = 'ArrowRight',
-  LEFT_ARROW = 'ArrowLeft',
+  LEFT_ARROW = 'ArrowLeft'
 }
 
 @Component({
   selector: 'app-image-viewer-dialog',
   templateUrl: './image-viewer-dialog.component.html',
-  styleUrls: ['./image-viewer-dialog.component.scss'],
+  styleUrls: ['./image-viewer-dialog.component.scss']
 })
 export class ImageViewerDialogComponent {
   currentIndex: number;
@@ -76,7 +76,7 @@ export class ImageViewerDialogComponent {
           new MouseEvent('click', {
             bubbles: true,
             cancelable: true,
-            view: window,
+            view: window
           })
         );
 

@@ -11,9 +11,9 @@ import { SharedModule } from '../../../shared/shared.module';
     LineageComponent,
     DetailsComponent,
     SchemaComponent,
-    SidebarComponent,
+    SidebarComponent
   ],
   imports: [CommonModule, SharedModule],
-  exports: [SidebarComponent],
+  exports: [SidebarComponent]
 })
 export class SidebarModule {}

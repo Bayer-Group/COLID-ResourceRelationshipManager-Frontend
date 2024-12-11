@@ -3,7 +3,7 @@ import { DetailsViewModel } from '../search-result.component';
 import {
   getValueForKey,
   getPidUriForHref,
-  getUriForKey,
+  getUriForKey
 } from '../../../shared/operators/document-operators';
 import { LogService } from '../../../shared/services/log.service';
 import { Observable } from 'rxjs';
@@ -15,7 +15,7 @@ import { IconTypes } from '../../../shared/icons/models/icon-types';
 @Component({
   selector: 'app-distribution-endpoint',
   templateUrl: './distribution-endpoint.component.html',
-  styleUrls: ['./distribution-endpoint.component.scss'],
+  styleUrls: ['./distribution-endpoint.component.scss']
 })
 export class DistributionEndpointComponent implements OnInit {
   @Input() resource: DetailsViewModel[];
@@ -31,7 +31,7 @@ export class DistributionEndpointComponent implements OnInit {
   invisibleProperties: Array<string> = [
     Constants.Metadata.EntityType,
     Constants.Metadata.HasTargetUri,
-    Constants.Metadata.HasNetworkedResourceLabel,
+    Constants.Metadata.HasNetworkedResourceLabel
   ];
 
   sortedMetadataProperties: any;
@@ -129,7 +129,7 @@ export class DistributionEndpointComponent implements OnInit {
           (d) => d.key === Constants.Metadata.EntityType
         ).valueEdge[0],
         clickedLinkCategory:
-          Constants.DistributionEndpoint.DistributionEndpointKey,
+          Constants.DistributionEndpoint.DistributionEndpointKey
       }
     );
   }

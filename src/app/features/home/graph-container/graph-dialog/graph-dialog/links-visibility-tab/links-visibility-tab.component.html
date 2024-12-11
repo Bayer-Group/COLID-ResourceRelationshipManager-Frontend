@@ -1,0 +1,21 @@
+<div class="links-visibility-tab">
+  <app-ag-grid-filtering-bar [gridApi]="gridApi"></app-ag-grid-filtering-bar>
+
+  <ag-grid-angular
+    [rowData]="rowData"
+    [columnDefs]="colDefs"
+    [gridOptions]="gridOptions"
+    (gridReady)="onGridReady($event)"
+    (firstDataRendered)="onFirstDataRendered()"
+    (selectionChanged)="onSelectionChanged()"
+    (filterChanged)="onFilterChanged()"
+    class="links-visibility-tab__grid ag-theme-quartz"
+  />
+
+  <app-ag-grid-status-bar
+    [totalRowsCount]="rowData?.length"
+    [filteredRowsCount]="filteredRowsCount"
+    [selectedRowsCount]="selectedRows?.length"
+  >
+  </app-ag-grid-status-bar>
+</div>

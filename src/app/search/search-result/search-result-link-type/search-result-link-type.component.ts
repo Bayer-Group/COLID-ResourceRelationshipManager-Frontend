@@ -3,7 +3,7 @@ import { DetailsViewModel } from '../search-result.component';
 import {
   getValueForKey,
   getPidUriForHref,
-  getUriForKey,
+  getUriForKey
 } from '../../../shared/operators/document-operators';
 import { Select } from '@ngxs/store';
 import { SearchState } from '../../../state/search.state';
@@ -17,7 +17,7 @@ import { IconTypes } from '../../../shared/icons/models/icon-types';
 @Component({
   selector: 'app-search-result-link-type',
   templateUrl: './search-result-link-type.component.html',
-  styleUrls: ['./search-result-link-type.component.scss'],
+  styleUrls: ['./search-result-link-type.component.scss']
 })
 export class SearchResultLinkTypeComponent implements OnInit {
   @Input() resource: DetailsViewModel[];
@@ -41,7 +41,10 @@ export class SearchResultLinkTypeComponent implements OnInit {
   searchText: string;
   searchTimestamp: Date;
 
-  constructor(private logger: LogService, private dialog: MatDialog) {}
+  constructor(
+    private logger: LogService,
+    private dialog: MatDialog
+  ) {}
 
   ngOnInit() {
     if (this.metadata) {
@@ -86,11 +89,11 @@ export class SearchResultLinkTypeComponent implements OnInit {
       ).valueEdge[0],
       linkedResourceEdge:
         this.metadata[this.edge].properties[Constants.Metadata.HasPidUri],
-      clickedLinkCategory: Constants.Shacl.Groups.LinkTypes,
+      clickedLinkCategory: Constants.Shacl.Groups.LinkTypes
     });
 
     this.dialog.open(LinkedResourceDisplayDialogComponent, {
-      data: { id: this.pidUrlForHref },
+      data: { id: this.pidUrlForHref }
     });
   }
 }

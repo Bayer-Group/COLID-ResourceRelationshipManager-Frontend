@@ -25,6 +25,7 @@ export class Link implements d3.SimulationLinkDatum<Node> {
 
   startPoint: { x: number; y: number } = { x: 0, y: 0 };
   endPoint: { x: number; y: number } = { x: 0, y: 0 };
+  linkOffset: number = 0;
 
   constructor(source?: any, target?: any, linkType?: any) {
     this.source = source;

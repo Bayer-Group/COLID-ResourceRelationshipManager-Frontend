@@ -52,8 +52,8 @@
       #textElem
       text-anchor="middle"
       [attr.font-size]="12"
-      [attr.x]="(link!.startPoint.x + link!.endPoint.x) / 2"
-      [attr.y]="(link!.startPoint.y + link!.endPoint.y) / 2 + 4"
+      [attr.x]="(link!.startPoint.x + link!.endPoint.x) / 2 + link.linkOffset"
+      [attr.y]="(link!.startPoint.y + link!.endPoint.y) / 2 + link.linkOffset"
     >
       {{ link.linkTypeName }}
     </svg:text>
@@ -64,8 +64,8 @@
       [attr.class]="textClass"
       text-anchor="middle"
       [attr.font-size]="12"
-      [attr.x]="(link!.startPoint.x + link!.endPoint.x) / 2"
-      [attr.y]="(link!.startPoint.y + link!.endPoint.y) / 2 + 4"
+      [attr.x]="(link!.startPoint.x + link!.endPoint.x) / 2 + link.linkOffset"
+      [attr.y]="(link!.startPoint.y + link!.endPoint.y) / 2 + link.linkOffset"
     >
       {{ link.linkTypeName }}
     </svg:text>

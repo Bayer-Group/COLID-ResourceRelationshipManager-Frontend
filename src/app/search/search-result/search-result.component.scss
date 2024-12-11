@@ -1,7 +1,9 @@
-.border-button {
-  border: 1px solid currentColor !important;
-  border-color: rgba(0, 0, 0, 0.12) !important;
-  margin-left: 4px !important;
+.search-result {
+  &__indicators-and-buttons {
+    display: flex;
+    gap: 1.5rem;
+    align-items: center;
+  }
 }
 
 .beta-feature-tag {
@@ -9,7 +11,7 @@
   vertical-align: top;
 }
 
-.mat-expansion-panel-header[aria-disabled="true"] {
+.mat-expansion-panel-header[aria-disabled='true'] {
   color: rgba(0, 0, 0, 0.87) !important;
 }
 
@@ -18,33 +20,28 @@
   border-radius: 0.3rem;
 }
 
-.buttons {
-  display: flex;
-  gap: 0.5rem;
-}
-
 .result-header-wrapper {
   display: flex;
   justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 8px;
 }
 
 .result-header {
   display: flex;
   align-items: center;
-  gap: 0.25rem;
+  gap: 1rem;
+  padding-right: 1rem;
 }
 
 .result-description {
-  font-size: 0.94rem;
   word-break: break-word;
 }
 
 .mat-expansion-panel-header {
-  padding-left: 2 !important;
-  padding-top: 0.5rem;
-  padding-bottom: 0.5rem;
   height: auto !important;
   font-size: 0.8rem !important;
+  padding: 8px;
 }
 
 ::ng-deep .mat-expansion-panel-body {
@@ -115,9 +112,6 @@ mat-panel-description {
 
 .details-container {
   margin-top: 10px;
-}
-html::-webkit-scrollbar {
-  display: none;
 }
 
 .detail-row {

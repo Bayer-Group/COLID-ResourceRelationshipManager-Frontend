@@ -2,14 +2,14 @@ import {
   Component,
   OnInit,
   Input,
-  ChangeDetectionStrategy,
+  ChangeDetectionStrategy
 } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { Store } from '@ngxs/store';
 import { MetaDataProperty } from '../../../shared/models/meta-data-property';
 import {
   FetchTaxonomyList,
-  TaxonomyState,
+  TaxonomyState
 } from '../../../state/taxonomy.state';
 import { TaxonomyDTO } from '../../../shared/models/dto/taxonomy-dto';
 import { Constants } from '../../../shared/constants';
@@ -19,7 +19,7 @@ import { concatMap } from 'rxjs/operators';
   selector: 'app-entity-display-item-taxonomy',
   templateUrl: './entity-display-item-taxonomy.component.html',
   styleUrls: ['./entity-display-item-taxonomy.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class EntityDisplayItemTaxonomyComponent implements OnInit {
   @Input() values: string[] = [];
@@ -34,7 +34,7 @@ export class EntityDisplayItemTaxonomyComponent implements OnInit {
     Constants.Metadata.Keywords,
     Constants.ConsumerGroup.HasPidUriTemplate,
     Constants.Metadata.ContainsTherapeuticAreas,
-    Constants.Metadata.ContainsRwdDimensions,
+    Constants.Metadata.ContainsRwdDimensions
   ];
 
   get isBadgeTaxonomy(): boolean {

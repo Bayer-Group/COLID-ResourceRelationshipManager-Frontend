@@ -2,7 +2,7 @@ import { Pipe, PipeTransform } from '@angular/core';
 import { Constants } from '../app/shared/constants';
 
 @Pipe({
-  name: 'columnsName',
+  name: 'columnsName'
 })
 export class ColumnsNamePipe implements PipeTransform {
   transform(input: string, table: any): string {

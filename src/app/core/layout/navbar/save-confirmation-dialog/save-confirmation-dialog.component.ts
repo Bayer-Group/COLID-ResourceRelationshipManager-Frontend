@@ -4,7 +4,7 @@ import { MatDialogRef } from '@angular/material/dialog';
 @Component({
   selector: 'colid-save-confirmation-dialog',
   templateUrl: './save-confirmation-dialog.component.html',
-  styleUrls: ['./save-confirmation-dialog.component.scss'],
+  styleUrls: ['./save-confirmation-dialog.component.scss']
 })
 export class SaveConfirmationDialogComponent {
   constructor(

@@ -6,7 +6,7 @@ import {
   ChangePage,
   ChangeSearchText,
   SearchState,
-  ResetActiveAggregationBuckets,
+  ResetActiveAggregationBuckets
 } from 'src/app/state/search.state';
 import { SidebarState, SetSidebarOpened } from 'src/app/state/sidebar.state';
 import { ActiveRangeFilters } from 'src/app/shared/models/active-range-filters';
@@ -16,7 +16,7 @@ import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 @Component({
   selector: 'app-search',
   templateUrl: './search.component.html',
-  styleUrls: ['./search.component.scss'],
+  styleUrls: ['./search.component.scss']
 })
 export class SearchComponent implements OnInit, OnDestroy {
   @Select(SearchState.getActiveAggregations) activeAggregations$: Observable<

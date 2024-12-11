@@ -4,7 +4,7 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 @Component({
   selector: 'colid-save-map-dialog',
   templateUrl: './save-map-dialog.component.html',
-  styleUrls: ['./save-map-dialog.component.scss'],
+  styleUrls: ['./save-map-dialog.component.scss']
 })
 export class SaveMapDialogComponent {
   name: string | null;
@@ -31,7 +31,7 @@ export class SaveMapDialogComponent {
       id: this.data.id,
       name: this.name,
       description: this.description,
-      saveAsNew: this.data.id == null,
+      saveAsNew: this.data.id == null
     });
   }
 

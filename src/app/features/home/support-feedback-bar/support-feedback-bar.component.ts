@@ -4,7 +4,7 @@ import { environment } from '../../../../environments/environment';
 @Component({
   selector: 'app-support-feedback-bar',
   templateUrl: './support-feedback-bar.component.html',
-  styleUrls: ['./support-feedback-bar.component.scss'],
+  styleUrls: ['./support-feedback-bar.component.scss']
 })
 export class SupportFeedbackBarComponent {
   constructor() {}

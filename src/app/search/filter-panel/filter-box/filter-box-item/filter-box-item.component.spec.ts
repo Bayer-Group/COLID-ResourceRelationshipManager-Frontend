@@ -1,18 +1,18 @@
-import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { FilterBoxItemComponent } from './filter-box-item.component';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 
 describe('FilterBoxItemComponent', () => {
   let component: FilterBoxItemComponent;
   let fixture: ComponentFixture<FilterBoxItemComponent>;
 
-  beforeEach(waitForAsync(() => {
+  beforeEach(() => {
     TestBed.configureTestingModule({
       declarations: [FilterBoxItemComponent],
+      imports: [MatCheckboxModule]
     }).compileComponents();
-  }));
 
-  beforeEach(() => {
     fixture = TestBed.createComponent(FilterBoxItemComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

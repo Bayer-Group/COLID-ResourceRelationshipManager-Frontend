@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { FilterBoxItemTaxonomyComponent } from './filter-box-item-taxonomy.component';
+import { NgxsModule } from '@ngxs/store';
 
 describe('FilterBoxItemTaxonomyComponent', () => {
   let component: FilterBoxItemTaxonomyComponent;
@@ -8,7 +9,8 @@ describe('FilterBoxItemTaxonomyComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [FilterBoxItemTaxonomyComponent],
+      imports: [NgxsModule.forRoot()],
+      declarations: [FilterBoxItemTaxonomyComponent]
     }).compileComponents();
   }));
 

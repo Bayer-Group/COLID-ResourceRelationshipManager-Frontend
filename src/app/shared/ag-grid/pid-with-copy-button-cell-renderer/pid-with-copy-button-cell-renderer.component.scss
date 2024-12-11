@@ -1,0 +1,16 @@
+.pid-with-copy-button {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  gap: 0.25rem;
+
+  &__pid {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  &__copy-button {
+    margin-top: -12px;
+  }
+}

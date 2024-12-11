@@ -1,0 +1,25 @@
+<div class="icon-cell-renderer">
+  <mat-icon
+    *ngIf="fontIcon"
+    [fontIcon]="fontIcon"
+    [matTooltip]="tooltipText"
+    class="icon-cell-renderer__icon"
+  ></mat-icon>
+
+  <img
+    *ngIf="svgIcon"
+    [src]="svgIcon"
+    [matTooltip]="tooltipText"
+    class="icon-cell-renderer__svg-image"
+  />
+
+  <ds-icon
+    *ngIf="s3Icon"
+    [icon]="s3Icon"
+    [iconType]="S3"
+    [tooltipDisabled]="false"
+    [delay]="300"
+    class="icon-cell-renderer__s3-icon"
+  >
+  </ds-icon>
+</div>

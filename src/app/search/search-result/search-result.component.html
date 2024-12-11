@@ -1,12 +1,5 @@
 <mat-accordion>
-  <div style="display: flex">
-    <div *ngIf="!hideCheckbox">
-      <input
-        style="margin-top: 37px"
-        type="checkbox"
-        (change)="checkboxChanged(this, $event)"
-      />
-    </div>
+  <div class="d-flex align-items-center">
     <div style="flex: 1; width: 100%">
       <mat-expansion-panel
         [expanded]="expanded"
@@ -20,74 +13,45 @@
           <mat-panel-title>
             <div class="w-100">
               <!--Icon to do: can compare to node-visualcomponent-->
-              <div class="mb-2 result-header-wrapper">
+              <div class="result-header-wrapper">
                 <div class="result-header">
                   <ds-icon
-                    class="icon-25"
-                    [icon]="resourceType[0]"
+                    style="
+                      display: inline-block;
+                      line-height: 1;
+                      margin-right: 4px;
+                    "
                     [iconType]="S3"
                     [tooltipDisabled]="false"
                     [delay]="300"
+                    [icon]="resourceType[0]"
                   >
                   </ds-icon>
-                  <span class="h4 mb-0">{{ label }}</span>
+                  <span class="font-weight-bold">{{ label }}</span>
                 </div>
 
-                <div class="buttons">
-                  <button
-                    mat-icon-button
-                    class="border-button"
-                    matTooltip="Edit resource"
-                    (click)="openInColidEditor($event)"
-                    colidEditorAccessControl
-                    [resourceDetails]="details"
+                <div class="search-result__indicators-and-buttons">
+                  <app-resource-quality-indicators
+                    [brokenDistributionEndpoints]="brokenDistributionEndpoints"
+                    [brokenContacts]="brokenContacts"
+                    [nextReviewIsDue]="nextReviewIsDue"
                   >
-                    <mat-icon>edit</mat-icon>
-                  </button>
-                  <button
-                    mat-icon-button
-                    class="border-button"
-                    matTooltip="Subscribe to resource"
-                    *ngIf="!isSubscribed"
-                    (click)="subscribeToResource($event)"
+                  </app-resource-quality-indicators>
+
+                  <app-resource-operations-buttons
+                    [pidUri]="pidUri"
+                    [details]="details"
+                    [source]="source"
+                    [entryLifeCycleStatus]="entryLifeCycleStatus"
+                    [resourceLinkedLifecycleStatus]="
+                      resourceLinkedLifecycleStatus
+                    "
+                    [colidEntrySubscriptions]="colidEntrySubscriptions"
+                    [searchText]="searchText"
+                    [searchTimestamp]="searchTimestamp?.toDateString()"
+                    [entityType]="entityType"
                   >
-                    <mat-icon>notifications_none</mat-icon>
-                  </button>
-                  <button
-                    mat-icon-button
-                    class="border-button"
-                    matTooltip="Unsubscribe from resource"
-                    *ngIf="isSubscribed"
-                    (click)="unsubscribeFromResource($event)"
-                  >
-                    <mat-icon>notifications_active</mat-icon>
-                  </button>
-                  <button
-                    mat-icon-button
-                    class="border-button"
-                    *ngIf="!isFavorited"
-                    matTooltip="Add to favorites"
-                    (click)="openFavoritesDialog($event)"
-                  >
-                    <mat-icon>bookmark_border_none</mat-icon>
-                  </button>
-                  <button
-                    mat-icon-button
-                    class="border-button"
-                    matTooltip="Manage favorites"
-                    *ngIf="isFavorited"
-                    (click)="openFavoritesDialog($event)"
-                  >
-                    <mat-icon>bookmark_active</mat-icon>
-                  </button>
-                  <button
-                    mat-icon-button
-                    class="border-button"
-                    matTooltip="View in Resource Relationship Manager"
-                    (click)="openInResourceRelationshipManager($event)"
-                  >
-                    <img src="assets/dmp-rrm.svg" width="24" height="24" />
-                  </button>
+                  </app-resource-operations-buttons>
                 </div>
               </div>
               <!-- <span *ngIf="developmentMode">Score: {{ score }}</span> -->
@@ -144,8 +108,8 @@
                             <mat-panel-description class="text-muted">
                               {{
                                 expandedNested[detail.key]
-                                  ? "Show less"
-                                  : "Show more"
+                                  ? 'Show less'
+                                  : 'Show more'
                               }}
                             </mat-panel-description>
                           </mat-expansion-panel-header>
@@ -202,7 +166,7 @@
                                             >
                                               {{
                                                 nestedDetail.value
-                                                  | date : "yyyy-MM-dd hh:mm"
+                                                  | date: 'yyyy-MM-dd hh:mm'
                                               }}</ng-container
                                             >
                                           </span>

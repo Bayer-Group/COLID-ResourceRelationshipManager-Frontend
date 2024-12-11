@@ -24,8 +24,8 @@ export interface SavingTrigger {
   name: 'SavingTriggerState',
   defaults: {
     savingMap: false,
-    saveMapAsNew: false,
-  },
+    saveMapAsNew: false
+  }
 })
 @Injectable()
 export class SavingTriggerState {
@@ -37,14 +37,14 @@ export class SavingTriggerState {
   @Action(StartSavingMap)
   startSavingMap({ patchState }: StateContext<SavingTrigger>) {
     patchState({
-      savingMap: true,
+      savingMap: true
     });
   }
 
   @Action(EndSavingMap)
   endSavingMap({ patchState }: StateContext<SavingTrigger>) {
     patchState({
-      savingMap: false,
+      savingMap: false
     });
   }
 
@@ -54,7 +54,7 @@ export class SavingTriggerState {
     action: SetSaveAsNew
   ) {
     patchState({
-      saveMapAsNew: action.asNew,
+      saveMapAsNew: action.asNew
     });
   }
 }

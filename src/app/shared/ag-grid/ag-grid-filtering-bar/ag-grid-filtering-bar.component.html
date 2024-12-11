@@ -1,0 +1,18 @@
+<div class="ag-grid-filtering-bar">
+  <label for="ag-grid-filtering-bar--quick-filter">Filter:</label>
+
+  <input
+    type="text"
+    id="ag-grid-filtering-bar--quick-filter"
+    [(ngModel)]="quickFilterValue"
+    (keyup)="applyQuickFilter()"
+    class="ag-grid-filtering-bar__quick-filter-input"
+  />
+  <button
+    mat-icon-button
+    [matTooltip]="'Reset all filters and sorting'"
+    (click)="resetAllFilters()"
+  >
+    <mat-icon>filter_alt_off</mat-icon>
+  </button>
+</div>

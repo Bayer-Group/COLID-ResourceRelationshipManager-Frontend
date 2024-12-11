@@ -1,0 +1,12 @@
+<div *ngIf="pid" class="pid-with-copy-button">
+  <span class="pid-with-copy-button__pid">{{ pid }}</span>
+  <button
+    mat-icon-button
+    [cdkCopyToClipboard]="pid"
+    (click)="$event.stopPropagation()"
+    matTooltip="Copy PID to clipboard"
+    class="pid-with-copy-button__copy-button"
+  >
+    <mat-icon>content_copy</mat-icon>
+  </button>
+</div>

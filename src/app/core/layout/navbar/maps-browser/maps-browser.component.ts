@@ -1,76 +1,191 @@
+import { ModuleRegistry } from '@ag-grid-community/core';
+import { AgGridAngular } from '@ag-grid-community/angular';
+import { ClientSideRowModelModule } from '@ag-grid-community/client-side-row-model';
+import {
+  ColDef,
+  GridApi,
+  GridOptions,
+  GridReadyEvent,
+  ITooltipParams
+} from '@ag-grid-community/core';
 import {
   ChangeDetectionStrategy,
   Component,
-  ElementRef,
   Inject,
-  OnInit,
-  ViewChild,
+  OnDestroy,
+  OnInit
 } from '@angular/core';
 import {
   MatDialog,
   MatDialogRef,
   MAT_DIALOG_DATA,
+  MatDialogModule
 } from '@angular/material/dialog';
-import { MatTableDataSource } from '@angular/material/table';
 import { GraphMapInfo } from 'src/app/shared/models/graph-map-info';
-import { GraphMapSearchDTO } from 'src/app/shared/models/graph-map-search-dto';
-import { Observable, Subject } from 'rxjs';
-import { debounceTime, distinctUntilChanged, take, tap } from 'rxjs/operators';
+import { Observable, Subscription } from 'rxjs';
+import { take } from 'rxjs/operators';
 import { Select, Store } from '@ngxs/store';
 import {
   GraphMapData,
+  LoadAllMaps,
   LoadMap,
-  LoadMapsNextBatch,
   LoadOwnMaps,
   LoadSecondMap,
   MapDataState,
   SetCurrentMap,
-  SetCurrentMapSearchParams,
-  SetIsOwner,
+  SetIsOwner
 } from 'src/app/state/map-data.state';
 import {
   ResetLinkEditHistory,
-  ResetLinking,
+  ResetLinking
 } from 'src/app/state/graph-linking.state';
 import { AuthService } from 'src/app/modules/authentication/services/auth.service';
 import { ConfirmationDialogComponent } from 'src/app/shared/components/confirmation-dialog/confirmation-dialog.component';
 import { NotificationService } from 'src/app/shared/services/notification.service';
-import { ResourceRelationshipManagerService } from '../../../http/resource-relationship-manager.service';
-import { MatSnackBar } from '@angular/material/snack-bar';
+import { ResourceRelationshipManagerService } from '../../../../shared/services/resource-relationship-manager.service';
+import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 import { ResetAll } from 'src/app/state/graph-data.state';
-import { Sort } from '@angular/material/sort';
+import { FormsModule } from '@angular/forms';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { CdkTrapFocus } from '@angular/cdk/a11y';
+import { CdkCopyToClipboard } from '@angular/cdk/clipboard';
+import { CommonModule } from '@angular/common';
+import { DEFAULT_GRID_OPTIONS } from 'src/app/shared/ag-grid/default-grid-options';
+import { AgGridFilteringBarComponent } from '../../../../shared/ag-grid/ag-grid-filtering-bar/ag-grid-filtering-bar.component';
+import { AgGridStatusBarComponent } from '../../../../shared/ag-grid/ag-grid-status-bar/ag-grid-status-bar.component';
+import { IconButtonsCellRendererComponent } from 'src/app/shared/ag-grid/icon-buttons-cell-renderer/icon-buttons-cell-renderer.component';
+import { PidWithCopyButtonCellRendererComponent } from 'src/app/shared/ag-grid/pid-with-copy-button-cell-renderer/pid-with-copy-button-cell-renderer.component';
+import moment from 'moment';
+
+// AG-Grid module registration
+ModuleRegistry.registerModules([ClientSideRowModelModule]);
 
 @Component({
   selector: 'colid-maps-browser',
   templateUrl: './maps-browser.component.html',
   styleUrls: ['./maps-browser.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: true,
+  imports: [
+    CommonModule,
+    AgGridAngular,
+    AgGridFilteringBarComponent,
+    AgGridStatusBarComponent,
+    FormsModule,
+    MatDialogModule,
+    MatButtonModule,
+    MatIconModule,
+    MatTooltipModule,
+    MatSnackBarModule,
+    CdkTrapFocus,
+    CdkCopyToClipboard
+  ],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class MapsBrowserComponent implements OnInit {
+export class MapsBrowserComponent implements OnInit, OnDestroy {
   @Select(MapDataState.getMapDataState) mapsStore$: Observable<GraphMapData>;
   @Select(MapDataState.getCurrentUser) currentUser$: Observable<string>;
-  dataSource: MatTableDataSource<GraphMapInfo> =
-    new MatTableDataSource<GraphMapInfo>();
   @Select(MapDataState.getIsLoadingAllMaps) loading$: Observable<boolean>;
-  nameHeaderClicked: boolean = false;
-  searchParams: GraphMapSearchDTO = new GraphMapSearchDTO();
-  mapPageSize: number = 12;
-  checkScroll: boolean = false;
-  userMaps: GraphMapInfo[] = [];
-  displayedColumns = [
-    'name',
-    'description',
-    'nodeCount',
-    'date',
-    'creator',
-    'pidUri',
-    'actions',
-  ];
-  searchInput$ = new Subject<string>();
-  isSuperAdmin$: Observable<boolean>;
 
-  @ViewChild('infiniteScroller', { static: false })
-  infiniteScroller!: ElementRef;
+  allMaps: Array<GraphMapInfo> = [];
+  private mapsSubscription: Subscription;
+  private userSubscription: Subscription;
+  private superAdminSubscription: Subscription;
+
+  colDefs: Array<ColDef> = [
+    {
+      pinned: 'left',
+      headerName: '',
+      width: 50,
+      flex: 0,
+      resizable: false,
+      sortable: false,
+      suppressColumnsToolPanel: true,
+      suppressHeaderMenuButton: true,
+      suppressHeaderFilterButton: true,
+      cellRenderer: 'iconButtonsCellRendererComponent',
+      cellRendererParams: () => this.getOpenMapButtonParams()
+    },
+    {
+      pinned: 'left',
+      headerName: 'Name',
+      field: 'name',
+      minWidth: 200
+    },
+    {
+      headerName: 'Description',
+      field: 'description',
+      minWidth: 200,
+      flex: 1,
+      tooltipValueGetter: (params: ITooltipParams) => params.value
+    },
+    {
+      headerName: 'Nodes',
+      field: 'nodeCount',
+      width: 120
+    },
+    {
+      headerName: 'Last changed',
+      field: 'modifiedAt',
+      width: 140,
+      cellDataType: 'date',
+      filter: 'agDateColumnFilter',
+      valueGetter: (params: any) =>
+        params.data.modifiedAt ? new Date(params.data.modifiedAt) : '',
+      valueFormatter: (params) =>
+        params.value ? moment(params.value).format('DD MMM YYYY') : ''
+    },
+    {
+      headerName: 'Created by',
+      field: 'modifiedBy',
+      minWidth: 200
+    },
+    {
+      headerName: 'Browsable URI',
+      field: 'browsableUri',
+      minWidth: 200,
+      flex: 1,
+      cellRenderer: 'pidWithCopyButtonCellRendererComponent'
+    },
+    {
+      pinned: 'right',
+      headerName: '',
+      width: 50,
+      flex: 0,
+      resizable: false,
+      sortable: false,
+      suppressColumnsToolPanel: true,
+      suppressHeaderMenuButton: true,
+      suppressHeaderFilterButton: true,
+      cellRenderer: 'iconButtonsCellRendererComponent',
+      cellRendererParams: (params) =>
+        this.getDeleteMapButtonParams(params.data.originalMap.modifiedBy)
+    }
+  ];
+
+  gridApi: GridApi;
+
+  gridOptions: GridOptions = {
+    ...DEFAULT_GRID_OPTIONS,
+
+    components: {
+      iconButtonsCellRendererComponent: IconButtonsCellRendererComponent,
+      pidWithCopyButtonCellRendererComponent:
+        PidWithCopyButtonCellRendererComponent
+    }
+  };
+
+  rowData = [];
+  selectedRows = [];
+  filteredRowsCount = 0;
+
+  currentUser: string;
+  isSuperAdmin = false;
+
+  get dialogTitle(): string {
+    return this.data?.secondMap ? 'Load map in current map' : 'Browse all maps';
+  }
 
   constructor(
     public dialogRef: MatDialogRef<MapsBrowserComponent>,
@@ -81,88 +196,75 @@ export class MapsBrowserComponent implements OnInit {
     private resourceRelationshipManagerApiService: ResourceRelationshipManagerService,
     private snackBar: MatSnackBar,
     @Inject(MAT_DIALOG_DATA) public data: any
-  ) {
-    this.isSuperAdmin$ = auth.hasSuperAdminPrivilege$;
-  }
+  ) {}
 
   ngOnInit(): void {
-    this.searchParams = {
-      ...new GraphMapSearchDTO(),
-      batchSize: this.mapPageSize,
-    };
-    this.setSearchParams(this.searchParams);
-
-    this.mapsStore$
-      .pipe(
-        tap((maps) => {
-          this.dataSource.data = maps.allMaps;
-          this.searchParams = maps.searchParams;
-          this.userMaps = maps.ownMaps;
-        })
-      )
-      .subscribe();
-
-    this.searchInput$
-      .pipe(debounceTime(500), distinctUntilChanged())
-      .subscribe((searchTerm) =>
-        this.setSearchParams({ ...this.searchParams, nameFilter: searchTerm })
-      );
-  }
-
-  applyFilter(event: Event) {
-    this.searchInput$.next((event.target as HTMLInputElement).value);
-    const filterValue: string = (event.target as HTMLInputElement).value;
-    if (filterValue.length == 0) this.nameHeaderClicked = false;
-  }
-
-  onSortChange(sort: Sort) {
-    const { active, direction } = sort;
-    this.setSearchParams({
-      ...this.searchParams,
-      sortKey: active,
-      sortType: direction,
+    this.mapsSubscription = this.mapsStore$.subscribe((maps) => {
+      this.allMaps = maps?.allMaps;
+      this.rowData = this.generateRows(this.allMaps);
+      this.filteredRowsCount = this.rowData.length;
     });
+
+    this.userSubscription = this.currentUser$.subscribe((user) => {
+      this.currentUser = user;
+    });
+
+    this.superAdminSubscription = this.auth.hasSuperAdminPrivilege$.subscribe(
+      (isSuperAdmin) => {
+        this.isSuperAdmin = isSuperAdmin;
+      }
+    );
+
+    this.store.dispatch(new LoadAllMaps());
   }
 
-  isOverflow(el: HTMLElement): boolean {
-    let curOverflow = el.style.overflow;
-    if (!curOverflow || curOverflow === 'visible') el.style.overflow = 'hidden';
-    let isOverflowing =
-      el.clientWidth < el.scrollWidth || el.clientHeight < el.scrollHeight;
-    el.style.overflow = curOverflow;
-    return isOverflowing;
-  }
-
-  private setSearchParams(searchParams: GraphMapSearchDTO) {
-    this.searchParams = searchParams;
-    if (!!this.infiniteScroller) {
-      this.infiniteScroller.nativeElement.scrollTop = 0;
+  ngOnDestroy() {
+    if (this.mapsSubscription) {
+      this.mapsSubscription.unsubscribe();
     }
-    this.store.dispatch(new SetCurrentMapSearchParams(searchParams));
+
+    if (this.userSubscription) {
+      this.userSubscription.unsubscribe();
+    }
+
+    if (this.superAdminSubscription) {
+      this.superAdminSubscription.unsubscribe();
+    }
   }
 
-  onScrolled(_) {
-    this.store.dispatch(new LoadMapsNextBatch(this.dataSource.data.length));
+  cancel() {
+    this.dialogRef.close();
   }
 
-  loadMap(row: GraphMapInfo) {
-    this.store.dispatch(new ResetLinkEditHistory());
-    this.store.dispatch(new LoadMap(row.id));
-    if (this.userMaps.some((maps) => maps.id === row.id)) {
-      this.store.dispatch(new SetIsOwner(true));
+  onGridReady(params: GridReadyEvent): void {
+    this.gridApi = params.api;
+  }
+
+  onFilterChanged(): void {
+    let counter = 0;
+
+    if (this?.gridApi) {
+      this.gridApi.forEachNodeAfterFilter(() => {
+        counter++;
+      });
+    }
+
+    this.filteredRowsCount = counter;
+  }
+
+  private openMap(map: GraphMapInfo): void {
+    if (this.data?.secondMap) {
+      this.store.dispatch(new LoadSecondMap(map.id));
     } else {
-      this.store.dispatch(new SetIsOwner(false));
+      this.store.dispatch(new ResetLinkEditHistory());
+      this.store.dispatch(new LoadMap(map.id));
+      this.store.dispatch(new SetIsOwner(this.currentUser === map.modifiedBy));
     }
+
     this.dialogRef.close();
   }
 
-  loadSecondMap(row: GraphMapInfo) {
-    this.store.dispatch(new LoadSecondMap(row.id));
-    this.dialogRef.close();
-  }
-
-  showConfirmationDialog(ev: Event, selectedMap: GraphMapInfo) {
-    ev.stopPropagation();
+  private deleteMapWithConfirmationDialog(selectedMap: GraphMapInfo) {
     const { id: graphMapId, name, modifiedBy } = selectedMap;
     const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
       data: {
@@ -174,10 +276,10 @@ export class MapsBrowserComponent implements OnInit {
             <br />
             <p>Created by:</p>
             <b>${modifiedBy}</b>
-          `,
+          `
       },
       width: 'auto',
-      disableClose: true,
+      disableClose: true
     });
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
@@ -190,7 +292,6 @@ export class MapsBrowserComponent implements OnInit {
                 .subscribe(
                   (_) => {
                     this.mapDeletionHandler();
-                    this.setSearchParams(this.searchParams);
                   },
                   (_) => {
                     this.notificationService.notification$.next(
@@ -204,7 +305,6 @@ export class MapsBrowserComponent implements OnInit {
                 .subscribe(
                   (_) => {
                     this.mapDeletionHandler();
-                    this.setSearchParams(this.searchParams);
                   },
                   (err) => {
                     if (err.status == 403) {
@@ -222,17 +322,64 @@ export class MapsBrowserComponent implements OnInit {
     });
   }
 
-  cancel() {
-    this.dialogRef.close();
+  private generateRows(data: Array<GraphMapInfo>): Array<any> {
+    var rows: Array<any> = [];
+
+    data?.forEach((map) => {
+      const row = {
+        name: map.name,
+        description: map.description,
+        nodeCount: map.nodeCount,
+        modifiedAt: map.modifiedAt,
+        modifiedBy: map.modifiedBy,
+        browsableUri: map.pidUri,
+        originalMap: map
+      };
+
+      rows.push(row);
+    });
+
+    return rows;
+  }
+
+  private getOpenMapButtonParams(): any {
+    return {
+      actions: [
+        {
+          fontIcon: 'open_in_browser',
+          tooltipText: this.data?.secondMap
+            ? 'Load map in current map'
+            : 'Open map',
+          actionFunction: (params) => this.openMap(params.data.originalMap)
+        }
+      ]
+    };
+  }
+
+  private getDeleteMapButtonParams(mapOwner: string): any {
+    return {
+      actions:
+        this.isSuperAdmin || this.currentUser === mapOwner
+          ? [
+              {
+                fontIcon: 'delete_forever',
+                tooltipText: 'Delete map',
+                actionFunction: (params) =>
+                  this.deleteMapWithConfirmationDialog(params.data.originalMap)
+              }
+            ]
+          : []
+    };
   }
 
   private mapDeletionHandler() {
-    const userEmail = this.auth.currentUserEmailAddress;
-    this.store.dispatch(new LoadOwnMaps(userEmail));
+    this.store.dispatch(new LoadOwnMaps(this.auth.currentUserEmailAddress));
+
     this.initNewMap();
+
     this.snackBar.open('Map has been successfully deleted', 'Dismiss', {
       duration: 3000,
-      panelClass: 'success-snackbar',
+      panelClass: 'success-snackbar'
     });
   }
 

@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="utf-8" />
@@ -26,14 +26,6 @@
       rel="stylesheet"
     />
     <meta name="theme-color" content="#1976d2" />
-    <script>
-      navigator.serviceWorker.getRegistrations().then((serviceWorkers) => {
-        for (let serviceWorker of serviceWorkers) {
-          console.log("Successfully unregistered service worker");
-          serviceWorker.unregister();
-        }
-      });
-    </script>
   </head>
 
   <body class="mat-typography">

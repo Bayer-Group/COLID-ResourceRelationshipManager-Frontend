@@ -2,14 +2,14 @@ import { Component, ElementRef, Inject, ViewChild } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { AddLinkDialogData } from 'src/app/shared/models/add-link-dialog-data';
 import { LinkTypeContainer } from 'src/app/shared/models/link-types-dto';
-import { ResourceRelationshipManagerService } from '../../../http/resource-relationship-manager.service';
+import { ResourceRelationshipManagerService } from '../../../../shared/services/resource-relationship-manager.service';
 import { Store } from '@ngxs/store';
 import { ResetLinking } from 'src/app/state/graph-linking.state';
 
 @Component({
   selector: 'colid-add-link-dialog',
   templateUrl: './add-link-dialog.component.html',
-  styleUrls: ['./add-link-dialog.component.scss'],
+  styleUrls: ['./add-link-dialog.component.scss']
 })
 export class AddLinkDialogComponent {
   loading: boolean = false;
@@ -20,6 +20,7 @@ export class AddLinkDialogComponent {
 
   @ViewChild('infiniteScroller', { static: false })
   infiniteScroller!: ElementRef;
+
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: AddLinkDialogData,
     public dialogRef: MatDialogRef<AddLinkDialogComponent>,
@@ -30,7 +31,7 @@ export class AddLinkDialogComponent {
 
     //initialize dialog with data from the API
     //check input parameter data for completeness
-    if (this.data.linkNodes.length == 2) {
+    if (this.data?.linkNodes?.length == 2) {
       //good to load all data
       const pidUris: string[] = this.data.linkNodes.map((a) => a.id);
       this.loading = true;
@@ -71,7 +72,7 @@ export class AddLinkDialogComponent {
     if (this.checkScroll) return;
 
     if (
-      this.linkTypes.length == this.mapPageSize &&
+      this?.linkTypes.length == this.mapPageSize &&
       !!this.infiniteScroller &&
       this.infiniteScroller.nativeElement.scrollTop != 0
     ) {

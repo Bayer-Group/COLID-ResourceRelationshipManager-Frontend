@@ -6,72 +6,43 @@ import {
   EventEmitter,
   ViewChild,
   OnChanges,
-  OnDestroy,
+  OnDestroy
 } from '@angular/core';
 import {
   SearchHit,
   DocumentMap,
   DocumentMapDirection,
-  StringArrayMap,
+  StringArrayMap
 } from '../../shared/models/search-result';
 import { Constants } from '../../shared/constants';
 import { environment } from '../../../environments/environment';
 import {
   getValueForKey,
   getUriForKey,
-  getPidUriForHref,
+  getPidUriForHref
 } from '../../shared/operators/document-operators';
 import { LogService } from '../../shared/services/log.service';
 import {
   FetchLinkedTableandColumnResults,
-  SearchState,
+  SearchState
 } from '../../state/search.state';
 import { Select, Store } from '@ngxs/store';
 import { Observable, Subscription } from 'rxjs';
 import { MatDialog } from '@angular/material/dialog';
 import { LinkedResourceDisplayDialogComponent } from '../linked-resource-dialog/linked-resource-display-dialog.component';
-import { ColidMatSnackBarService } from '../../shared/colid-mat-snack-bar/colid-mat-snack-bar.service';
 import { SimilarityModalComponent } from './similarity-modal/similarity-modal.component';
 import { MatTabChangeEvent } from '@angular/material/tabs';
 import { Schema_Support, SchemeUi } from '../../shared/models/schemeUI';
 import { IconTypes } from '../../shared/icons/models/icon-types';
-import {
-  UserInfoState,
-  AddColidEntrySubscription,
-  RemoveColidEntrySubscription,
-} from '../../state/user-info.state';
+import { UserInfoState } from '../../state/user-info.state';
 import { ColidEntrySubscriptionDto } from '../../shared/models/dto/colid-entry-subscription-dto';
-import { AddFavoriteDialogComponent } from '../add-favorite-dialog/add-favorite-dialog.component';
-import { FavoritesState } from '../../state/favorites.state';
 
 @Component({
   selector: 'app-search-result',
   templateUrl: './search-result.component.html',
-  styleUrls: ['./search-result.component.scss'],
+  styleUrls: ['./search-result.component.scss']
 })
 export class SearchResultComponent implements OnInit, OnChanges, OnDestroy {
-  private _result: SearchHit;
-  private _source: DocumentMap;
-
-  masterSub: Subscription = new Subscription();
-  @Select(SearchState.getSearchText) searchTextObservable$: Observable<string>;
-  @Select(SearchState.getSearchTimestamp)
-  searchTimestampObservable$: Observable<Date>;
-  @Select(UserInfoState.getColidEntrySubscriptions)
-  colidEntrySubscriptions$: Observable<ColidEntrySubscriptionDto[]>;
-  colidEntrySubscriptions: ColidEntrySubscriptionDto[] = [];
-  @Select(FavoritesState.getFavoriteUriList) favUris$: Observable<string[]>;
-  favUris: string[] = [];
-  @Select(SearchState.getLinkedTableAndColumnResource)
-  private _SchemeUI$: Observable<SchemeUi>;
-  public get SchemeUI$(): Observable<SchemeUi> {
-    return this._SchemeUI$;
-  }
-  public set SchemeUI$(value: Observable<SchemeUi>) {
-    this._SchemeUI$ = value;
-  }
-  @Select(SearchState.getLoading) loading$: Observable<boolean>;
-  @ViewChild('tabGroup') tabGroup;
   @Input() set result(value: SearchHit) {
     if (value) {
       if (this._result) {
@@ -98,14 +69,36 @@ export class SearchResultComponent implements OnInit, OnChanges, OnDestroy {
   @Input() collapsible: boolean = true;
   @Input() expandByDefault: boolean = false;
   @Input() hideCheckbox: boolean = true;
+  @Input() resourceLinkedLifecycleStatus: string | null;
+
   @Output() schemeUiChange: EventEmitter<object> = new EventEmitter<object>();
+
+  @Select(SearchState.getSearchText) searchTextObservable$: Observable<string>;
+
+  @Select(SearchState.getSearchTimestamp)
+  searchTimestampObservable$: Observable<Date>;
+
+  @Select(UserInfoState.getColidEntrySubscriptions)
+  colidEntrySubscriptions$: Observable<ColidEntrySubscriptionDto[]>;
+  colidEntrySubscriptions: ColidEntrySubscriptionDto[] = [];
+
+  @Select(SearchState.getLinkedTableAndColumnResource)
+  private _SchemeUI$: Observable<SchemeUi>;
+
+  @Select(SearchState.getLoading) loading$: Observable<boolean>;
+
+  @ViewChild('tabGroup') tabGroup;
+
+  brokenDistributionEndpoints: Array<string> = [];
+  brokenContacts: Array<string> = [];
+  nextReviewIsDue: boolean;
 
   get pidUri() {
     var rawPidUri;
     if (this._result != null) {
       rawPidUri = this._result.id;
     } else {
-      rawPidUri = this._source[Constants.Metadata.HasPidUri].outbound[0].uri;
+      rawPidUri = this._source?.[Constants.Metadata.HasPidUri].outbound[0].uri;
     }
 
     return decodeURIComponent(rawPidUri);
@@ -113,13 +106,23 @@ export class SearchResultComponent implements OnInit, OnChanges, OnDestroy {
 
   get entityType() {
     const rawEntityType =
-      this._source[Constants.Metadata.EntityType].outbound[0].uri;
+      this._source?.[Constants.Metadata.EntityType].outbound[0].uri;
     return decodeURIComponent(rawEntityType);
   }
 
   get expanded() {
     return this.expandView || this.expandByDefault;
   }
+
+  public get SchemeUI$(): Observable<SchemeUi> {
+    return this._SchemeUI$;
+  }
+
+  public set SchemeUI$(value: Observable<SchemeUi>) {
+    this._SchemeUI$ = value;
+  }
+
+  masterSub: Subscription = new Subscription();
 
   expandView: boolean = false;
 
@@ -131,8 +134,6 @@ export class SearchResultComponent implements OnInit, OnChanges, OnDestroy {
   S3: IconTypes = IconTypes.S3;
   Default: IconTypes = IconTypes.Default;
   Mapping: IconTypes = IconTypes.Mapping;
-  isSubscribed = false;
-  isFavorited = false;
 
   versions: DocumentMapDirection;
   baseUriPointsAt: string;
@@ -141,6 +142,7 @@ export class SearchResultComponent implements OnInit, OnChanges, OnDestroy {
   definitionHighlight: string[] = new Array<string>();
   resourceType: string[] = new Array<string>();
   details: DetailsViewModel[];
+  entryLifeCycleStatus: string = '';
   schemeUiDetail: SchemeUi;
   showSchema: boolean = false;
   selectedPIDURIs: string[];
@@ -160,65 +162,15 @@ export class SearchResultComponent implements OnInit, OnChanges, OnDestroy {
   searchTimestamp: Date;
   InputType = InputType;
   isChecked: boolean;
+
+  private _result: SearchHit;
+  private _source: DocumentMap;
+
   constructor(
     private store: Store,
     private logger: LogService,
-    private snackBar: ColidMatSnackBarService,
     private dialog: MatDialog
   ) {}
-
-  sendMessage(event: any) {
-    var e = {
-      data: {
-        massage: 'selectedPidURIs',
-        value: '',
-      },
-    };
-    var newPid = event._source[Object.keys(event._source)[1]].outbound[0].uri;
-    if (newPid == e.data.value) {
-      e.data.value = '';
-    } else {
-      e.data.value =
-        event._source[Object.keys(event._source)[1]].outbound[0].uri;
-    }
-  }
-  checkboxChanged(values: any, event: any) {
-    this.isChecked = event.currentTarget.checked;
-    if (Constants.Metadata.HasPidUri in values._source) {
-      this.selectedPIDURIs =
-        values._source[Constants.Metadata.HasPidUri].outbound[0].value;
-    }
-    window.parent.postMessage(
-      {
-        message: 'selectedPidURIs',
-        value: this.selectedPIDURIs,
-        checked: this.isChecked,
-      },
-      '*'
-    );
-  }
-
-  ngOnChanges(_): void {
-    this.selectedIndex = 0;
-    this.isSubscribed = this.colidEntrySubscriptions.some(
-      (ces) => ces.colidPidUri === this.pidUri
-    );
-    this.isFavorited = this.favUris.indexOf(this.pidUri) > -1;
-    if (this.details) {
-      if (this.details.find((x) => x.key == this.linkedKey)) {
-        this.showLinkedResources = true;
-        this.linkedResourceData = this.details.find(
-          (x) => x.key == this.linkedKey
-        );
-        this.details = this.details.filter((x) => {
-          return x.key != this.linkedKey;
-        });
-      }
-      if (this.details.find((x) => x.key == this.distributionKey)) {
-        this.showDistribution = true;
-      }
-    }
-  }
 
   ngOnInit() {
     this.developmentMode = !environment.production;
@@ -246,25 +198,15 @@ export class SearchResultComponent implements OnInit, OnChanges, OnDestroy {
       this.colidEntrySubscriptions$.subscribe((colidEntrySubscriptions) => {
         if (colidEntrySubscriptions != null) {
           this.colidEntrySubscriptions = colidEntrySubscriptions;
-          this.isSubscribed = colidEntrySubscriptions.some(
-            (ces) => ces.colidPidUri === this.pidUri
-          );
         }
       })
     );
 
-    this.masterSub.add(
-      this.favUris$.subscribe((u) => {
-        this.favUris = u;
-        this.isFavorited = u.indexOf(this.pidUri) > -1;
-      })
-    );
-
-    if (this.details.find((x) => x.key == this.distributionKey)) {
+    if (this.details?.find((x) => x.key == this.distributionKey)) {
       this.showDistribution = true;
     }
 
-    if (this.details.find((x) => x.key == this.linkedKey)) {
+    if (this.details?.find((x) => x.key == this.linkedKey)) {
       this.showLinkedResources = true;
       this.linkedResourceData = this.details.find(
         (x) => x.key == this.linkedKey
@@ -273,10 +215,52 @@ export class SearchResultComponent implements OnInit, OnChanges, OnDestroy {
         return x.key != this.linkedKey;
       });
     }
+
+    this.setReviewDateQualityIndicators();
+    this.setBrokenContactsAndEndpointsQualityIndicators();
+  }
+
+  ngOnChanges(_): void {
+    this.selectedIndex = 0;
+
+    if (this.details) {
+      if (this.details.find((x) => x.key == this.linkedKey)) {
+        this.showLinkedResources = true;
+        this.linkedResourceData = this.details.find(
+          (x) => x.key == this.linkedKey
+        );
+        this.details = this.details.filter((x) => {
+          return x.key != this.linkedKey;
+        });
+      }
+
+      if (this.details.find((x) => x.key == this.distributionKey)) {
+        this.showDistribution = true;
+      }
+    }
+
+    this.setReviewDateQualityIndicators();
+    this.setBrokenContactsAndEndpointsQualityIndicators();
   }
 
   ngOnDestroy(): void {
     this.masterSub.unsubscribe();
+  }
+
+  sendMessage(event: any) {
+    var e = {
+      data: {
+        massage: 'selectedPidURIs',
+        value: ''
+      }
+    };
+    var newPid = event._source[Object.keys(event._source)[1]].outbound[0].uri;
+    if (newPid == e.data.value) {
+      e.data.value = '';
+    } else {
+      e.data.value =
+        event._source[Object.keys(event._source)[1]].outbound[0].uri;
+    }
   }
 
   expandPanel() {
@@ -292,10 +276,10 @@ export class SearchResultComponent implements OnInit, OnChanges, OnDestroy {
         pidUri: pidUri,
         label:
           this._result.source[Constants.Metadata.HasLabel]['outbound'][0].value,
-        source: this._result.source,
+        source: this._result.source
       },
       width: 'auto',
-      height: 'auto',
+      height: 'auto'
     });
   }
 
@@ -310,34 +294,6 @@ export class SearchResultComponent implements OnInit, OnChanges, OnDestroy {
     } else {
       this.expandedNested[key] = true;
     }
-  }
-
-  subscribeToResource(event) {
-    this.preventOpeningResultDetails(event);
-
-    let colidEntrySubscriptionDto = new ColidEntrySubscriptionDto(this.pidUri);
-    this.store
-      .dispatch(new AddColidEntrySubscription(colidEntrySubscriptionDto))
-      .subscribe(() => {
-        this.snackBar.success(
-          'Resource subscribed',
-          'The resource has been subscribed successfully.'
-        );
-      });
-  }
-
-  unsubscribeFromResource(event) {
-    this.preventOpeningResultDetails(event);
-
-    let colidEntrySubscriptionDto = new ColidEntrySubscriptionDto(this.pidUri);
-    this.store
-      .dispatch(new RemoveColidEntrySubscription(colidEntrySubscriptionDto))
-      .subscribe(() => {
-        this.snackBar.success(
-          'Resource unsubscribed',
-          'The resource has been unsubscribed successfully.'
-        );
-      });
   }
 
   onResultChange(value: SearchHit) {
@@ -364,6 +320,14 @@ export class SearchResultComponent implements OnInit, OnChanges, OnDestroy {
     //We are remove table and colum from linked resouece,we will show in schema Ui
     this.removeTableandColumn(orderable);
     this.details = orderable;
+
+    const lifeCycleStatus = this.details.find(
+      (item) => item.key === Constants.Metadata.LifeCycleStatus
+    );
+
+    if (lifeCycleStatus) {
+      this.entryLifeCycleStatus = lifeCycleStatus.valueEdge[0];
+    }
   }
 
   onSourceChange(value: DocumentMap) {
@@ -396,7 +360,7 @@ export class SearchResultComponent implements OnInit, OnChanges, OnDestroy {
       )[0],
       clickedLinkType:
         this._source[Constants.Metadata.EntityType].outbound[0].uri,
-      clickedLinkCategory: Constants.Metadata.PIDConcept,
+      clickedLinkCategory: Constants.Metadata.PIDConcept
     });
   }
 
@@ -499,41 +463,6 @@ export class SearchResultComponent implements OnInit, OnChanges, OnDestroy {
     window.open(detail.valueForHref[0], '_blank');
   }
 
-  openInColidEditor(event) {
-    this.preventOpeningResultDetails(event);
-
-    const internalResourceId = getPidUriForHref(this.details)[0];
-    // we need to replace the # with the encoded character %23,
-    // otherwise the value can not be passed as query parameter
-    const encodedId = internalResourceId.replace(new RegExp('(#)', 'g'), '%23');
-
-    const url = `${environment.pidUrl}resource?pidUri=${encodedId}`;
-    window.open(url, '_blank');
-  }
-
-  openInResourceRelationshipManager(event) {
-    this.preventOpeningResultDetails(event);
-
-    const internalResourceId = getPidUriForHref(this.details)[0];
-    // we need to replace the # with the encoded character %23,
-    // otherwise the value can not be passed as query parameter
-    const encodedId = internalResourceId.replace(new RegExp('(#)', 'g'), '%23');
-    const url = `${environment.rrmUrl}?baseNode=${encodedId}`;
-    window.open(url, '_blank');
-  }
-
-  openFavoritesDialog(event) {
-    this.preventOpeningResultDetails(event);
-    const pidUri = decodeURIComponent(this._result.id);
-    this.dialog.open(AddFavoriteDialogComponent, {
-      height: '400px',
-      width: '500px',
-      data: {
-        pidUri: pidUri,
-      },
-    });
-  }
-
   onVersionLinkClicked(
     detail: DetailsViewModel,
     version: any,
@@ -548,7 +477,7 @@ export class SearchResultComponent implements OnInit, OnChanges, OnDestroy {
       )
     );
     this.dialog.open(LinkedResourceDisplayDialogComponent, {
-      data: { id: version.value[Constants.Metadata.HasPidUri].value },
+      data: { id: version.value[Constants.Metadata.HasPidUri].value }
     });
   }
 
@@ -565,7 +494,7 @@ export class SearchResultComponent implements OnInit, OnChanges, OnDestroy {
       clickedLinkEdge: detail.key,
       clickedLinkType:
         this._source[Constants.Metadata.EntityType].outbound[0].uri,
-      clickedLinkCategory: Constants.Metadata.PIDConcept,
+      clickedLinkCategory: Constants.Metadata.PIDConcept
     };
   }
 
@@ -794,8 +723,11 @@ export class SearchResultComponent implements OnInit, OnChanges, OnDestroy {
         inputType: inputType,
         nested: nested,
         nestedInbound: nestedInbound,
+        comment: undefined,
+        description: undefined
       };
     }
+
     return null;
   }
 
@@ -828,10 +760,85 @@ export class SearchResultComponent implements OnInit, OnChanges, OnDestroy {
     }
   }
 
+  changeResourceType() {
+    const url = `${environment.pidUrl}resource?pidUri=${this.pidUri}&openChangeResourceTypeDialog=true`;
+    window.open(url, '_blank');
+  }
+
   private isPermanentIdentifier(metaProps: any): boolean {
     return (
       metaProps[Constants.Metadata.RDFS.Range] === Constants.Identifier.Type
     );
+  }
+
+  private setReviewDateQualityIndicators(): void {
+    this.nextReviewIsDue = undefined;
+
+    if (
+      this.details?.find(
+        (x) => x.key == Constants.Metadata.HasNextReviewDueDate
+      )
+    ) {
+      let nextReviewDate = new Date(
+        this.details.find(
+          (x) => x.key == Constants.Metadata.HasNextReviewDueDate
+        ).value[0]
+      );
+
+      let resourceDueDateUTC = Date.UTC(
+        nextReviewDate.getFullYear(),
+        nextReviewDate.getMonth(),
+        nextReviewDate.getDate()
+      );
+
+      const today = new Date();
+      const currentUTCDate = Date.UTC(
+        today.getFullYear(),
+        today.getMonth(),
+        today.getDate()
+      );
+
+      this.nextReviewIsDue = resourceDueDateUTC < currentUTCDate;
+    }
+  }
+
+  private setBrokenContactsAndEndpointsQualityIndicators(): void {
+    this.brokenDistributionEndpoints = [];
+    this.brokenContacts = [];
+
+    const invalidContacts = new Set<string>();
+
+    if (
+      this.details?.find(
+        (x) => x.key == Constants.Metadata.HasBrokenDataSteward
+      )
+    ) {
+      this.details
+        .find((x) => x.key == Constants.Metadata.HasBrokenDataSteward)
+        .value.forEach((contact) => invalidContacts.add(contact));
+    }
+
+    if (this.details?.find((x) => x.key == Constants.Metadata.Distribution)) {
+      let distributionEndpoints = this.details.find(
+        (x) => x.key == Constants.Metadata.Distribution
+      ).value;
+
+      for (let d of distributionEndpoints) {
+        if (d[Constants.Metadata.HasBrokenDistributionEndpointLink]) {
+          this.brokenDistributionEndpoints.push(
+            d[Constants.Metadata.HasNetworkedResourceLabel].outbound[0].value
+          );
+        }
+
+        if (d[Constants.Metadata.HasBrokenEndpointContact]) {
+          invalidContacts.add(
+            d[Constants.Metadata.HasBrokenEndpointContact].outbound[0].value
+          );
+        }
+      }
+    }
+
+    this.brokenContacts = Array.from(invalidContacts);
   }
 }
 
@@ -908,13 +915,15 @@ export class DetailsViewModel {
   order: number;
   groupOrder: number;
   label: string;
-  value: string[];
+  value: any;
   valueForHref: string[];
   valueEdge: string[];
   inputType: InputType;
 
   nested: DetailsViewModelNested[];
   nestedInbound: DetailsViewModelNested[];
+  comment: string;
+  description: string;
 }
 
 export class DetailsViewModelNested {
@@ -927,5 +936,5 @@ export enum InputType {
   HTML,
   Date,
   Link,
-  Version,
+  Version
 }

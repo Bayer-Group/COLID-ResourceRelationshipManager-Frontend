@@ -18,8 +18,8 @@ const TREE_DATA: TableNode[] = [
       { name: 'CompanyName' },
       { name: 'Address' },
       { name: 'Postcode' },
-      { name: 'City' },
-    ],
+      { name: 'City' }
+    ]
   },
   {
     name: 'Tablename - 02',
@@ -32,15 +32,15 @@ const TREE_DATA: TableNode[] = [
       { name: 'Column-03' },
       { name: 'FurtherColumns' },
       { name: 'Column-03' },
-      { name: 'FurtherColumns' },
-    ],
-  },
+      { name: 'FurtherColumns' }
+    ]
+  }
 ];
 
 @Component({
   selector: 'colid-lineage',
   templateUrl: './lineage.component.html',
-  styleUrls: ['./lineage.component.scss'],
+  styleUrls: ['./lineage.component.scss']
 })
 export class LineageComponent {
   treeControl = new NestedTreeControl<TableNode>((node) => node.children);

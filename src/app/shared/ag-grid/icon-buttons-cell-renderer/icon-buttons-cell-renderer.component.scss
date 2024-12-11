@@ -1,0 +1,13 @@
+.action-buttons-cell-renderer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 2.5rem;
+  width: 100%;
+  gap: 0.25rem;
+
+  .icon {
+    // Very dark grey, but lighter than pure black
+    color: var(--ag-data-color);
+  }
+}

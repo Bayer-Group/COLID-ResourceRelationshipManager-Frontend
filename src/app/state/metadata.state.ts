@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { State, Action, StateContext, Selector } from '@ngxs/store';
-import { MetadataService } from '../core/metadata.service';
+import { MetadataService } from '../shared/services/metadata.service';
 import { ResourceApiService } from '../shared/services/resource.api.service';
 
 import { Constants } from '../shared/constants';
@@ -60,8 +60,8 @@ export interface MetadataStateModel {
     types: null,
     hierarchy: null,
     categoryTab: 0,
-    activeNodes: [],
-  },
+    activeNodes: []
+  }
 })
 @Injectable()
 export class MetadataState {
@@ -106,7 +106,7 @@ export class MetadataState {
     { tabNumber }: ToggleCategoryFilterTab
   ) {
     patchState({
-      categoryTab: tabNumber,
+      categoryTab: tabNumber
     });
   }
 
@@ -125,7 +125,7 @@ export class MetadataState {
       }
     }
     patchState({
-      activeNodes: list,
+      activeNodes: list
     });
   }
 
@@ -142,7 +142,7 @@ export class MetadataState {
     });
 
     patchState({
-      activeNodes: list,
+      activeNodes: list
     });
   }
   @Action(DisableResourceTypeItem)
@@ -160,7 +160,7 @@ export class MetadataState {
       }
     });
     patchState({
-      activeNodes: list,
+      activeNodes: list
     });
   }
 
@@ -170,7 +170,7 @@ export class MetadataState {
     {}: ClearResourceTypeItem
   ) {
     patchState({
-      activeNodes: [],
+      activeNodes: []
     });
   }
 
@@ -182,7 +182,7 @@ export class MetadataState {
     this.resourceApiService.getHierarchy().subscribe(
       (res) => {
         patchState({
-          hierarchy: res,
+          hierarchy: res
         });
       },
       (error) => console.log('this is the error', error)
@@ -198,11 +198,11 @@ export class MetadataState {
       const types =
         res[Constants.Metadata.EntityType].properties[Constants.Shacl.Taxonomy];
       patchState({
-        types: types,
+        types: types
       });
 
       patchState({
-        metadata: res,
+        metadata: res
       });
     });
   }
@@ -222,7 +222,7 @@ export class MetadataState {
         const entityMetadataMap = ctx.getState().entityMetadata;
         entityMetadataMap.set(action.entityType, res);
         ctx.patchState({
-          entityMetadata: entityMetadataMap,
+          entityMetadata: entityMetadataMap
         });
       })
     );
@@ -240,11 +240,11 @@ export class MetadataState {
             Constants.Shacl.Taxonomy
           ];
         patchState({
-          types: types,
+          types: types
         });
       } else {
         patchState({
-          types: null,
+          types: null
         });
       }
     });

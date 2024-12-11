@@ -9,7 +9,7 @@ import { MetaDataPropertyGroup } from '../../../shared/models/meta-data-property
   selector: 'app-entity-display-group',
   templateUrl: './entity-display-group.component.html',
   styleUrls: ['./entity-display-group.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class EntityDisplayGroupComponent {
   @Input() group: string;

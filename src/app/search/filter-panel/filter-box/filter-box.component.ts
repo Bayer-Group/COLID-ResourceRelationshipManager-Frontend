@@ -2,48 +2,47 @@ import {
   Component,
   OnInit,
   Input,
-  ChangeDetectionStrategy,
+  ChangeDetectionStrategy
 } from '@angular/core';
 import { AggregationBucket } from '../../../shared/models/aggregation-bucket';
 import { Store } from '@ngxs/store';
 import {
   Aggregation,
-  AggregationType,
+  AggregationType
 } from '../../../shared/models/aggregation';
 import {
   ChangeActiveAggregationBuckets,
-  ChangeActiveAggregationBucketList,
+  ChangeActiveAggregationBucketList
 } from '../../../state/search.state';
 import { CheckboxHierarchyDTO } from '../../../shared/models/dto/checkboxHierarchy-dto';
 
 enum CollapseStates {
   Initial,
   More,
-  All,
+  All
 }
 
 @Component({
   selector: 'app-filter-box',
   changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: './filter-box.component.html',
-  styleUrls: ['./filter-box.component.scss'],
+  styleUrls: ['./filter-box.component.scss']
 })
 export class FilterBoxComponent implements OnInit {
+  @Input() aggregation: Aggregation;
+  @Input() activeAggregationBuckets: string[] = [];
+  @Input() filterType:
+    | 'taxonomy'
+    | 'checkbox'
+    | 'checkBoxHierarchy'
+    | 'select' = 'checkbox';
+
   resourceHierarchy: CheckboxHierarchyDTO[]; //muss ich added damit der code funktioniert
 
   constructor(private store: Store) {}
 
   readonly initialSize = 7;
   readonly moreSize = 20;
-
-  @Input() aggregation: Aggregation;
-  @Input() activeAggregationBuckets: string[] = [];
-
-  @Input() filterType:
-    | 'taxonomy'
-    | 'checkbox'
-    | 'checkBoxHierarchy'
-    | 'select' = 'checkbox';
 
   aggregationType = AggregationType;
   visibleBuckets: AggregationBucket[] = [];

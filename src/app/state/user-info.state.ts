@@ -32,8 +32,8 @@ export class UserInfoStateModel {
   name: 'UserInfo',
   defaults: {
     user: null,
-    consumerGroups: null,
-  },
+    consumerGroups: null
+  }
 })
 @Injectable()
 export class UserInfoState {
@@ -59,6 +59,11 @@ export class UserInfoState {
         patchState({ user: res });
       })
     );
+  }
+
+  @Selector()
+  public static getUserEmail(state: UserInfoStateModel) {
+    return state.user?.emailAddress ?? '';
   }
 
   @Action(AddColidEntrySubscription)

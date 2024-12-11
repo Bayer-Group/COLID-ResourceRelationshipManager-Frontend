@@ -2,13 +2,13 @@ import { AfterViewInit, Component } from '@angular/core';
 enum SiderBarPosition {
   Close = 0,
   HalfOpen = 1,
-  FullOpen = 2,
+  FullOpen = 2
 }
 
 @Component({
   selector: 'colid-sidebar',
   templateUrl: './sidebar.component.html',
-  styleUrls: ['./sidebar.component.scss'],
+  styleUrls: ['./sidebar.component.scss']
 })
 export class SidebarComponent implements AfterViewInit {
   siderbarPosition: SiderBarPosition = SiderBarPosition.HalfOpen;

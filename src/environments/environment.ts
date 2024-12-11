@@ -4,10 +4,10 @@
 
 export const environment = {
   production: false,
-  environment: 'Dev',
+  environment: 'Local',
   baseUrl: 'bayer.com',
   versionNumber: '2.12',
-  resourceRelationshipManagerApi: 'http://localhost:51831',
+  resourceRelationshipManagerApi: 'http://localhost:51830',
   pageSize: 10,
   dmpUrl: 'http://localhost:4300',
   colidApiUrl: 'http://localhost:51770/api/v3/',

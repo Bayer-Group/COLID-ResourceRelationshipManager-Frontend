@@ -125,8 +125,8 @@ export type StateMeta = {
     multiSelectedPidUris: [],
     filterViewEnabled: false,
     draggingActive: false,
-    ctrlPressed: false,
-  },
+    ctrlPressed: false
+  }
 })
 @Injectable()
 export class GraphVisualisationState {
@@ -163,32 +163,32 @@ export class GraphVisualisationState {
   @Action(ToggleDetailSidebar)
   toggleDetailsSidebar({
     patchState,
-    getState,
+    getState
   }: StateContext<GraphProperties>) {
     const currentToggle = getState().showDetailSidebar;
     patchState({
-      showDetailSidebar: !currentToggle,
+      showDetailSidebar: !currentToggle
     });
   }
 
   @Action(ShowDetailSidebar)
   showDetailsSidebar({ patchState }: StateContext<GraphProperties>) {
     patchState({
-      showDetailSidebar: true,
+      showDetailSidebar: true
     });
   }
 
   @Action(HideDetailSidebar)
   hideDetailsSidebar({ patchState }: StateContext<GraphProperties>) {
     patchState({
-      showDetailSidebar: false,
+      showDetailSidebar: false
     });
   }
 
   @Action(UpdateZoomScale)
   updateZoomScale({ patchState }: StateContext<GraphProperties>, { scale }) {
     patchState({
-      zoomScale: scale,
+      zoomScale: scale
     });
   }
 
@@ -197,7 +197,7 @@ export class GraphVisualisationState {
     const zoomScale = getState().zoomScale;
     patchState({
       zoomScale:
-        zoomScale + 0.1 > 2 ? 2 : Math.round((zoomScale + 0.1) * 10) / 10,
+        zoomScale + 0.1 > 2 ? 2 : Math.round((zoomScale + 0.1) * 10) / 10
     });
   }
 
@@ -206,7 +206,7 @@ export class GraphVisualisationState {
     const zoomScale = getState().zoomScale;
     patchState({
       zoomScale:
-        zoomScale - 0.1 < 0.1 ? 0.1 : Math.round((zoomScale - 0.1) * 10) / 10,
+        zoomScale - 0.1 < 0.1 ? 0.1 : Math.round((zoomScale - 0.1) * 10) / 10
     });
   }
 
@@ -216,7 +216,7 @@ export class GraphVisualisationState {
     action: ShowLongNames
   ) {
     patchState({
-      showLongNames: action.showLongNames,
+      showLongNames: action.showLongNames
     });
   }
 
@@ -226,7 +226,7 @@ export class GraphVisualisationState {
     action: ShowConnectionNames
   ) {
     patchState({
-      showConnectionNames: action.showConnectionNames,
+      showConnectionNames: action.showConnectionNames
     });
   }
 
@@ -236,21 +236,21 @@ export class GraphVisualisationState {
     { pidUri }
   ) {
     patchState({
-      detailedResource: pidUri,
+      detailedResource: pidUri
     });
   }
 
   @Action(StartLoading)
   startLoading({ patchState }: StateContext<GraphProperties>) {
     patchState({
-      loadingResources: true,
+      loadingResources: true
     });
   }
 
   @Action(EndLoading)
   endLoading({ patchState }: StateContext<GraphProperties>) {
     patchState({
-      loadingResources: false,
+      loadingResources: false
     });
   }
 
@@ -260,7 +260,7 @@ export class GraphVisualisationState {
     action: ResetTransform
   ) {
     patchState({
-      resetTransform: action.reset,
+      resetTransform: action.reset
     });
   }
 
@@ -270,14 +270,14 @@ export class GraphVisualisationState {
     action: ToggleFilterView
   ) {
     patchState({
-      filterViewEnabled: action.filterView,
+      filterViewEnabled: action.filterView
     });
   }
 
   @Action(ClearFilteredNodes)
   clearFilteredNodes({ patchState }: StateContext<GraphProperties>) {
     patchState({
-      filteredNodes: [],
+      filteredNodes: []
     });
   }
 
@@ -287,7 +287,7 @@ export class GraphVisualisationState {
     action: ToggleDragging
   ) {
     patchState({
-      draggingActive: action.draggingActive,
+      draggingActive: action.draggingActive
     });
   }
 
@@ -295,7 +295,7 @@ export class GraphVisualisationState {
   toggleCtrlPressed({ patchState, getState }: StateContext<GraphProperties>) {
     const currToggle = getState().ctrlPressed;
     patchState({
-      ctrlPressed: !currToggle,
+      ctrlPressed: !currToggle
     });
   }
 
@@ -305,7 +305,7 @@ export class GraphVisualisationState {
     action: SetCtrlPressed
   ) {
     patchState({
-      ctrlPressed: action.ctrl,
+      ctrlPressed: action.ctrl
     });
   }
 
@@ -315,7 +315,7 @@ export class GraphVisualisationState {
     action: SetMultiSelectedPidUris
   ) {
     patchState({
-      multiSelectedPidUris: [...action.selectedPidUris],
+      multiSelectedPidUris: [...action.selectedPidUris]
     });
   }
 
@@ -329,14 +329,14 @@ export class GraphVisualisationState {
     );
     action.selectedPidUris.forEach((pidUri) => selectedPidUris.add(pidUri));
     patchState({
-      multiSelectedPidUris: [...selectedPidUris],
+      multiSelectedPidUris: [...selectedPidUris]
     });
   }
 
   @Action(ResetMultiSelectedPidUris)
   resetMultiSelectedPidUris({ patchState }: StateContext<GraphProperties>) {
     patchState({
-      multiSelectedPidUris: [],
+      multiSelectedPidUris: []
     });
   }
 }

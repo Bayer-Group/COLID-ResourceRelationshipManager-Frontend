@@ -1,0 +1,13 @@
+<div class="action-buttons-cell-renderer">
+  <span *ngFor="let action of actions; index as i">
+    <button
+      mat-icon-button
+      [matTooltip]="action.tooltipText"
+      (click)="onButtonClick(action)"
+    >
+      <mat-icon class="action-buttons-cell-renderer__icon">{{
+        action.fontIcon
+      }}</mat-icon>
+    </button>
+  </span>
+</div>

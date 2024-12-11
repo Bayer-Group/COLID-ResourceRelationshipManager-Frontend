@@ -16,16 +16,16 @@ export class ResourceLinkDto {
   endNode: UriName = {
     name: '',
     value: '',
-    nameValuePairId: null,
+    nameValuePairId: null
   };
   startNode: UriName = {
     name: '',
     value: '',
-    nameValuePairId: null,
+    nameValuePairId: null
   };
   status?: GenericStatus = {
     key: '',
-    value: '',
+    value: ''
   };
   type: UriName = new UriName();
   mapLinkInfoId?: string | null = null;

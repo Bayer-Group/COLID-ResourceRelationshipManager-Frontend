@@ -1,33 +1,65 @@
-import { TestBed } from '@angular/core/testing';
-import { RouterTestingModule } from '@angular/router/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { AppComponent } from './app.component';
+import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
+import { NgxsModule } from '@ngxs/store';
+import { EMPTY } from 'rxjs';
+import { AuthService } from './modules/authentication/services/auth.service';
+import { ColidIconsService } from './shared/icons/services/colid-icons.service';
+import { NotificationService } from './shared/services/notification.service';
+import { Component } from '@angular/core';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { HttpClientModule } from '@angular/common/http';
 
 describe('AppComponent', () => {
+  let component: AppComponent;
+  let fixture: ComponentFixture<AppComponent>;
+
+  class MockColidIconsService {
+    getCustomMaterialIcons() {
+      return [];
+    }
+  }
+
+  class MockAuthService {
+    isLoggedIn$ = EMPTY;
+    currentIdentity$ = EMPTY;
+    currentEmail$ = EMPTY;
+    cleanup() {}
+  }
+
+  class MockNotificationService {
+    notification$ = EMPTY;
+  }
+
+  @Component({
+    selector: 'colid-main-layout',
+    template: ''
+  })
+  class MockMainLayoutComponent {}
+
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [RouterTestingModule],
-      declarations: [AppComponent],
+      declarations: [AppComponent, MockMainLayoutComponent],
+      imports: [
+        NoopAnimationsModule,
+        NgxsModule.forRoot(),
+        MatSnackBarModule,
+        HttpClientModule
+      ],
+      providers: [
+        { provide: ColidIconsService, useClass: MockColidIconsService },
+        { provide: AuthService, useClass: MockAuthService },
+        { provide: NotificationService, useClass: MockNotificationService },
+        { provide: MatSnackBar, useValue: {} }
+      ]
     }).compileComponents();
-  });
 
-  it('should create the app', () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.componentInstance;
-    expect(app).toBeTruthy();
-  });
-
-  it(`should have as title 'frontend'`, () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.componentInstance;
-    expect(app.title).toEqual('frontend');
-  });
-
-  it('should render title', () => {
-    const fixture = TestBed.createComponent(AppComponent);
+    fixture = TestBed.createComponent(AppComponent);
+    component = fixture.componentInstance;
     fixture.detectChanges();
-    const compiled = fixture.nativeElement;
-    expect(compiled.querySelector('.content span').textContent).toContain(
-      'frontend app is running!'
-    );
+  });
+
+  it('should create', () => {
+    expect(component).toBeTruthy();
   });
 });

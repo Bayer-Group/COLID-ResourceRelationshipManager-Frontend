@@ -15,11 +15,14 @@ import { FetchFavorites } from './state/favorites.state';
 @Component({
   selector: 'colid-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss'],
+  styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit, OnDestroy {
-  @Select(MetadataState.getMetadataTypes) metadataTypes$!: Observable<any>;
+  @Select(MetadataState.getMetadataTypes)
+  metadataTypes$!: Observable<any>;
+
   masterSub: Subscription = new Subscription();
+
   constructor(
     private iconService: ColidIconsService,
     private store: Store,
@@ -53,11 +56,12 @@ export class AppComponent implements OnInit, OnDestroy {
         .pipe(
           tap((identity) => {
             if (identity) {
-              this.store.dispatch([
-                new FetchUser(identity.accountIdentifier),
+              new FetchUser(identity.accountIdentifier),
                 new FetchFavorites(identity.accountIdentifier),
-              ]);
-              console.log('Account identifier is', identity.accountIdentifier);
+                console.log(
+                  'Account identifier is',
+                  identity.accountIdentifier
+                );
             }
           })
         )
@@ -95,5 +99,6 @@ export class AppComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.masterSub.unsubscribe();
+    this.authService.cleanup();
   }
 }

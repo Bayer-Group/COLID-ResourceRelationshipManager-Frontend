@@ -1,14 +1,17 @@
 import { Injectable } from '@angular/core';
-import { CanActivate, Router, ActivatedRouteSnapshot } from '@angular/router';
+import { Router, ActivatedRouteSnapshot } from '@angular/router';
 import { map } from 'rxjs/operators';
 import { RouteExtension } from '../../../shared/extensions/route.extension';
 import { AuthService } from '../services/auth.service';
 
 @Injectable({
-  providedIn: 'root',
+  providedIn: 'root'
 })
-export class AuthGuardService implements CanActivate {
-  constructor(private authService: AuthService, private router: Router) {}
+export class AuthGuardService {
+  constructor(
+    private authService: AuthService,
+    private router: Router
+  ) {}
 
   canActivate(route: ActivatedRouteSnapshot) {
     return this.authService.isLoggedIn$.pipe(
@@ -24,9 +27,12 @@ export class AuthGuardService implements CanActivate {
       if (!this.authService.loginInProgress) {
         RouteExtension.SetRouteInStorage(route);
       }
+
       this.router.navigate(['/login-in-progress']);
+
       return false;
     }
+
     return true;
   }
 }

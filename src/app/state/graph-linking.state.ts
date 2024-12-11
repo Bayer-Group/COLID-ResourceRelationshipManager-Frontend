@@ -3,7 +3,7 @@ import { Action, Selector, State, StateContext } from '@ngxs/store';
 import { Node } from '../core/d3';
 import {
   LinkEditHistory,
-  LinkHistoryAction,
+  LinkHistoryAction
 } from '../shared/models/link-editing-history';
 import { LinkTypeContainer } from '../shared/models/link-types-dto';
 
@@ -61,8 +61,8 @@ export type DistributionData1 = {
   defaults: {
     linkNodes: [],
     linkingModeEnabled: false,
-    linkEditHistory: [],
-  },
+    linkEditHistory: []
+  }
 })
 @Injectable()
 export class GraphLinkingDataState {
@@ -74,14 +74,14 @@ export class GraphLinkingDataState {
   @Action(EnableLinkingMode)
   enableLinkingMode({ patchState }: StateContext<GraphLinkingData>) {
     patchState({
-      linkingModeEnabled: true,
+      linkingModeEnabled: true
     });
   }
 
   @Action(DisableLinkingMode)
   disableLinkingMode({ patchState }: StateContext<GraphLinkingData>) {
     patchState({
-      linkingModeEnabled: false,
+      linkingModeEnabled: false
     });
   }
 
@@ -93,7 +93,7 @@ export class GraphLinkingDataState {
     const linkNodes = getState().linkNodes;
     patchState({
       linkingModeEnabled: true,
-      linkNodes: [...linkNodes, action.node],
+      linkNodes: [...linkNodes, action.node]
     });
   }
 
@@ -101,7 +101,7 @@ export class GraphLinkingDataState {
   resetLinking({ patchState }: StateContext<GraphLinkingData>) {
     patchState({
       linkingModeEnabled: false,
-      linkNodes: [],
+      linkNodes: []
     });
   }
 
@@ -132,16 +132,16 @@ export class GraphLinkingDataState {
           action,
           source: link.source,
           target: link.target,
-          linkType: link.linkType,
-        },
-      ],
+          linkType: link.linkType
+        }
+      ]
     });
   }
 
   @Action(ResetLinkEditHistory)
   resetLinkEditHistory({ patchState }: StateContext<GraphLinkingData>) {
     patchState({
-      linkEditHistory: [],
+      linkEditHistory: []
     });
   }
 
@@ -167,14 +167,14 @@ export class GraphLinkingDataState {
     }
 
     patchState({
-      linkEditHistory: cleanedItems,
+      linkEditHistory: cleanedItems
     });
   }
 
   @Action(ClearHistory)
   clearHistory({ patchState }: StateContext<GraphLinkingData>) {
     patchState({
-      linkEditHistory: [],
+      linkEditHistory: []
     });
   }
 }

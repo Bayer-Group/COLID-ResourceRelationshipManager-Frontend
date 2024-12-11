@@ -1,10 +1,11 @@
 export class GraphMapInfo {
   constructor() {}
 
-  name: string = '';
-  description: string = '';
-  nodeCount: number = 0;
   id: string = '';
+  description: string = '';
+  name: string = '';
+  nodeCount: number = 0;
   modifiedBy: string = '';
   modifiedAt: string = '';
+  pidUri: string = '';
 }

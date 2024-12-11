@@ -9,7 +9,7 @@ import { Entity } from '../../shared/models/entity';
   selector: 'app-entity-display',
   templateUrl: './entity-display.component.html',
   styleUrls: ['./entity-display.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class EntityDisplayComponent {
   @Input() metadata: Array<MetaDataProperty>;

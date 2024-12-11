@@ -13,7 +13,7 @@ import { HelpComponent } from './help/help.component';
 @Component({
   selector: 'colid-navbar',
   templateUrl: './navbar.component.html',
-  styleUrls: ['./navbar.component.scss'],
+  styleUrls: ['./navbar.component.scss']
 })
 export class NavbarComponent implements OnInit {
   buildInformation$: Observable<StatusBuildInformationDto>;
@@ -39,8 +39,8 @@ export class NavbarComponent implements OnInit {
   openHelpDialog() {
     this.dialog.open(HelpComponent, {
       data: {
-        buildInformation$: this.buildInformation$,
-      },
+        buildInformation$: this.buildInformation$
+      }
     });
   }
 }

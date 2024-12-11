@@ -8,13 +8,13 @@ import {
   GraphVisualisationState,
   ShowConnectionNames,
   ShowLongNames,
-  ToggleFilterView,
+  ToggleFilterView
 } from 'src/app/state/graph-visualisation.state';
 
 @Component({
   selector: 'colid-view',
   templateUrl: './view.component.html',
-  styleUrls: ['./view.component.scss'],
+  styleUrls: ['./view.component.scss']
 })
 export class ViewComponent implements OnInit {
   isLongNameSelected: boolean = true;

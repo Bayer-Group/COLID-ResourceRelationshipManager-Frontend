@@ -4,7 +4,7 @@ import {
   Inject,
   EventEmitter,
   Output,
-  OnDestroy,
+  OnDestroy
 } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Select, Store } from '@ngxs/store';
@@ -14,11 +14,10 @@ import {
   ChangePage,
   ChangeSearchText,
   SearchState,
-  ResetActiveAggregationBuckets,
+  ResetActiveAggregationBuckets
 } from '../../state/search.state';
 import { SearchResult } from '../../shared/models/search-result';
-import { ResourceRelationshipManagerService } from '../../core/http/resource-relationship-manager.service';
-import { environment } from 'src/environments/environment';
+import { ResourceRelationshipManagerService } from '../../shared/services/resource-relationship-manager.service';
 
 export interface DialogData {
   searchText: string;
@@ -29,7 +28,7 @@ export interface DialogData {
 @Component({
   selector: 'app-search-filter-dialog',
   templateUrl: './search-filter-dialog.component.html',
-  styleUrls: ['./search-filter-dialog.component.scss'],
+  styleUrls: ['./search-filter-dialog.component.scss']
 })
 export class SearchFilterDialogComponent implements OnInit, OnDestroy {
   @Select(SearchState.getSearchText) searchText$: Observable<string>;
@@ -123,7 +122,6 @@ export class SearchFilterDialogComponent implements OnInit, OnDestroy {
         this.searchResult = s;
       })
     );
-    window.addEventListener('message', this.receiveMessage.bind(this), false);
     this.handleSearchChange('*');
   }
 
@@ -136,24 +134,15 @@ export class SearchFilterDialogComponent implements OnInit, OnDestroy {
     this.dialogRef.close();
   }
 
-  //event handler to receive broadcasted message events from the iframe
-  //used for communication of PID URIs from DMP to this application
-  receiveMessage(event: any) {
-    const isChecked = event.data.checked;
-    if (isChecked) {
-      this.pidUris.push(event.data.value);
-    } else {
-      const index = this.pidUris.indexOf(event.data.value);
-      if (index > -1) {
-        this.pidUris.splice(index, 1);
-      }
-    }
+  onSelectionChange(pidUris: string[]) {
+    this.pidUris = pidUris;
   }
 
   ongetPidUri(_) {
     this.dialogRef.close();
-    if (this.pidUris.length > 0 || environment.environment == 'local') {
-      this.resourceRelationshipManagerService.loadResources(this.pidUris);
+    if (this.pidUris.length > 0) {
+      this.resourceRelationshipManagerService.pidUrisToLoadResources$ =
+        this.pidUris;
     }
   }
 }

@@ -7,7 +7,7 @@ import { StatusBuildInformationDto } from 'src/app/shared/models/dto/status-buil
 @Component({
   selector: 'app-help',
   templateUrl: './help.component.html',
-  styleUrls: ['./help.component.scss'],
+  styleUrls: ['./help.component.scss']
 })
 export class HelpComponent {
   logo = Constants.Assets.Logo;

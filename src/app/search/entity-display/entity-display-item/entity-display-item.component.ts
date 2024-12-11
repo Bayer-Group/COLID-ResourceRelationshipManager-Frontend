@@ -5,14 +5,14 @@ import { IconTypes } from '../../../shared/icons/models/icon-types';
 import { MetaDataProperty } from '../../../shared/models/meta-data-property';
 import {
   MetaDataPropertyIdentifier,
-  FieldTypeMapping,
+  FieldTypeMapping
 } from '../../../shared/resource-form-constants';
 
 @Component({
   selector: 'app-entity-display-item',
   templateUrl: './entity-display-item.component.html',
   styleUrls: ['./entity-display-item.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class EntityDisplayItemComponent {
   @Input() metadataProperty: MetaDataProperty;

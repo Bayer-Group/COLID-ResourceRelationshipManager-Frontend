@@ -5,10 +5,13 @@ import { ColidMatSnackBarData } from 'src/app/shared/models/colid-mat-snack-bar-
 import { ColidMatSnackBarType } from 'src/app/shared/models/colid-mat-snack-bar-type.model';
 
 @Injectable({
-  providedIn: 'root',
+  providedIn: 'root'
 })
 export class ColidMatSnackBarService {
-  constructor(private zone: NgZone, private snackbar: MatSnackBar) {}
+  constructor(
+    private zone: NgZone,
+    private snackbar: MatSnackBar
+  ) {}
 
   clear() {
     this.snackbar.dismiss();
@@ -86,7 +89,7 @@ export class ColidMatSnackBarService {
       verticalPosition: 'top',
       horizontalPosition: 'end',
       panelClass: [panelClass],
-      data: new ColidMatSnackBarData(header, message, data, type),
+      data: new ColidMatSnackBarData(header, message, data, type)
     });
   }
 }

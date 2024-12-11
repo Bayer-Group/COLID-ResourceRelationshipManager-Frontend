@@ -3,6 +3,7 @@
   <div class="lists-list">
     <ng-container *ngIf="data.multiSelect">
       <mat-checkbox
+        color="primary"
         class="fl-checkbox"
         *ngFor="let favorite of favorites"
         (change)="checkboxChanged($event, favorite.id)"
@@ -13,6 +14,7 @@
     <ng-container *ngIf="!data.multiSelect">
       <mat-checkbox
         class="fl-checkbox"
+        color="primary"
         *ngFor="let favorite of favorites"
         [checked]="previousFavoriteListIds.indexOf(favorite.id) > -1"
         [disabled]="previousFavoriteListIds.indexOf(favorite.id) > -1"

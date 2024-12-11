@@ -8,7 +8,7 @@ describe('ColidIconsComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ColidIconsComponent],
+      declarations: [ColidIconsComponent]
     }).compileComponents();
   }));
 

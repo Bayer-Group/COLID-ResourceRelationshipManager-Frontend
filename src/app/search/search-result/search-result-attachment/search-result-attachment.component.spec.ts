@@ -1,18 +1,18 @@
-import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { SearchResultAttachmentComponent } from './search-result-attachment.component';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 describe('SearchResultAttachmentComponent', () => {
   let component: SearchResultAttachmentComponent;
   let fixture: ComponentFixture<SearchResultAttachmentComponent>;
 
-  beforeEach(waitForAsync(() => {
+  beforeEach(() => {
     TestBed.configureTestingModule({
       declarations: [SearchResultAttachmentComponent],
+      imports: [MatTooltipModule]
     }).compileComponents();
-  }));
 
-  beforeEach(() => {
     fixture = TestBed.createComponent(SearchResultAttachmentComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

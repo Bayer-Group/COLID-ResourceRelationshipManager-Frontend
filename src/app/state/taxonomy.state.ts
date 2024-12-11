@@ -17,8 +17,8 @@ export class FetchTaxonomyList {
 @State<TaxonomyStateModel>({
   name: 'Taxonomy',
   defaults: {
-    taxonomyResults: new Map<string, TaxonomyDTO[]>(),
-  },
+    taxonomyResults: new Map<string, TaxonomyDTO[]>()
+  }
 })
 @Injectable()
 export class TaxonomyState {
@@ -44,7 +44,7 @@ export class TaxonomyState {
         const newTaxonomyList = taxonomyResults;
         newTaxonomyList.set(action.type, res);
         ctx.patchState({
-          taxonomyResults: new Map<string, TaxonomyDTO[]>(newTaxonomyList),
+          taxonomyResults: new Map<string, TaxonomyDTO[]>(newTaxonomyList)
         });
       })
     );

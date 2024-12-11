@@ -6,7 +6,7 @@ import { MessageDto } from '../user/message-dto';
 import { FavoriteListMetadata, Favorites } from '../models/favorites';
 
 @Injectable({
-  providedIn: 'root',
+  providedIn: 'root'
 })
 export class FavoritesService {
   constructor(private httpClient: HttpClient) {}

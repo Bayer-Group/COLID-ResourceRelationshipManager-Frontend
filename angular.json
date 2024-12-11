@@ -25,23 +25,19 @@
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
             "tsConfig": "src/tsconfig.app.json",
-            "assets": [
-              "src/favicon.ico",
-              "src/assets"
-            ],
+            "assets": ["src/favicon.ico", "src/assets"],
             "styles": [
               "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
               "src/styles.scss"
             ],
-            "scripts": [
-              "src/assets/js/saveSvgAsPng.js"
-            ],
-            "vendorChunk": true,
-            "extractLicenses": false,
-            "buildOptimizer": false,
-            "sourceMap": true,
+            "scripts": ["src/assets/js/saveSvgAsPng.js"],
+            "outputHashing": "none",
+            "aot": true,
             "optimization": false,
-            "namedChunks": true
+            "vendorChunk": true,
+            "buildOptimizer": false,
+            "namedChunks": true,
+            "extractLicenses": false
           },
           "configurations": {
             "production": {
@@ -51,18 +47,18 @@
                   "with": "src/environments/environment.production.ts"
                 }
               ],
-              "optimization": true,
               "outputHashing": "all",
-              "sourceMap": false,
-              "namedChunks": false,
-              "extractLicenses": true,
+              "aot": true,
+              "optimization": true,
               "vendorChunk": false,
               "buildOptimizer": true,
+              "namedChunks": true,
+              "extractLicenses": true,
               "budgets": [
                 {
                   "type": "initial",
-                  "maximumWarning": "2mb",
-                  "maximumError": "15mb"
+                  "maximumWarning": "5mb",
+                  "maximumError": "10mb"
                 },
                 {
                   "type": "anyComponentStyle",
@@ -78,17 +74,17 @@
                   "with": "src/environments/environment.release.ts"
                 }
               ],
-              "optimization": true,
               "outputHashing": "all",
-              "sourceMap": false,
-              "namedChunks": false,
-              "extractLicenses": true,
+              "aot": true,
+              "optimization": true,
               "vendorChunk": false,
               "buildOptimizer": true,
+              "namedChunks": true,
+              "extractLicenses": true,
               "budgets": [
                 {
                   "type": "initial",
-                  "maximumWarning": "2mb",
+                  "maximumWarning": "5mb",
                   "maximumError": "10mb"
                 },
                 {
@@ -106,10 +102,39 @@
                 }
               ],
               "outputHashing": "all",
-              "namedChunks": false,
-              "extractLicenses": true,
+              "aot": true,
+              "optimization": true,
               "vendorChunk": false,
               "buildOptimizer": true,
+              "namedChunks": true,
+              "extractLicenses": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "5mb",
+                  "maximumError": "10mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "12kb",
+                  "maximumError": "20kb"
+                }
+              ]
+            },
+            "docker": {
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.docker.ts"
+                }
+              ],
+              "outputHashing": "all",
+              "aot": true,
+              "optimization": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "namedChunks": true,
+              "extractLicenses": true,
               "budgets": [
                 {
                   "type": "initial",
@@ -122,26 +147,6 @@
                   "maximumError": "20kb"
                 }
               ]
-            },
-            "docker": {
-              "budgets": [
-                {
-                  "type": "anyComponentStyle",
-                  "maximumWarning": "12kb"
-                }
-              ],
-              "fileReplacements": [
-                {
-                  "replace": "src/environments/environment.ts",
-                  "with": "src/environments/environment.docker.ts"
-                }
-              ],
-              "optimization": true,
-              "outputHashing": "all",
-              "sourceMap": false,
-              "namedChunks": false,
-              "extractLicenses": true,
-              "vendorChunk": false
             }
           },
           "defaultConfiguration": ""
@@ -149,19 +154,19 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "resource-relationship-manager-frontend:build",
-            "port": 4305
+            "port": 4305,
+            "buildTarget": "resource-relationship-manager-frontend:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "resource-relationship-manager-frontend:build:production"
+              "buildTarget": "resource-relationship-manager-frontend:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "resource-relationship-manager-frontend:build"
+            "buildTarget": "resource-relationship-manager-frontend:build"
           }
         },
         "test": {
@@ -169,26 +174,21 @@
           "options": {
             "main": "src/test.ts",
             "polyfills": "src/polyfills.ts",
-            "tsConfig": "tsconfig.spec.json",
-            "karmaConfig": "karma.conf.js",
-            "assets": [
-              "src/favicon.ico",
-              "src/assets"
-            ],
+            "tsConfig": "src/tsconfig.spec.json",
+            "karmaConfig": "src/karma.conf.js",
+            "assets": ["src/favicon.ico", "src/assets"],
             "styles": [
               "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
               "src/styles.scss"
             ],
-            "scripts": []
+            "scripts": [],
+            "codeCoverage": true
           }
         },
         "lint": {
           "builder": "@angular-eslint/builder:lint",
           "options": {
-            "lintFilePatterns": [
-              "src/**/*.ts",
-              "src/**/*.html"
-            ]
+            "lintFilePatterns": ["src/**/*.ts", "src/**/*.html"]
           }
         },
         "e2e": {

@@ -9,10 +9,12 @@ import { Constants } from '../constants';
 import { ConsumerGroupResultDto } from '../models/dto/consumer-group-result-dto';
 
 @Directive({
-  selector: '[colidEditorAccessControl]',
+  selector: '[editorAccessControl]',
+  standalone: true
 })
 export class EditorAccessControlDirective implements OnInit, OnDestroy {
   @Input() resourceDetails: DetailsViewModel[];
+
   @Select(UserInfoState.getConsumerGroups) userConsumerGroups$: Observable<
     ConsumerGroupResultDto[]
   >;
@@ -35,7 +37,7 @@ export class EditorAccessControlDirective implements OnInit, OnDestroy {
   get checkAccess() {
     return combineLatest([
       this.authService.hasAdminPrivilege$,
-      this.userConsumerGroups$,
+      this.userConsumerGroups$
     ]).pipe(
       tap(([hasAdminPrivilege, userConsumerGroups]) => {
         let authorized = hasAdminPrivilege;

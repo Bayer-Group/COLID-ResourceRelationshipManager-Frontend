@@ -5,7 +5,7 @@ import { environment } from '../../../environments/environment';
 import { TaxonomyDTO } from '../models/dto/taxonomy-dto';
 
 @Injectable({
-  providedIn: 'root',
+  providedIn: 'root'
 })
 export class TaxonomyService {
   constructor(private httpClient: HttpClient) {}

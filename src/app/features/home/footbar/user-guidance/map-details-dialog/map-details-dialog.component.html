@@ -1,59 +1,74 @@
-<h3 mat-dialog-title>Map Details</h3>
-<div mat-dialog-content>
-  <mat-list>
-    <mat-list-item>
-      <div class="data-row">
-        <span class="data-cell">Name</span>
-        <span class="data-cell">{{ data.name }}</span>
-      </div>
-    </mat-list-item>
-    <mat-divider></mat-divider>
-    <mat-list-item>
-      <div class="data-row">
-        <span class="data-cell">Description</span>
-        <span class="data-cell">{{ data.description }}</span>
-      </div>
-    </mat-list-item>
-    <mat-divider></mat-divider>
-    <mat-list-item>
-      <div class="data-row">
-        <span class="data-cell">Nodes</span>
-        <span class="data-cell">{{ data.nodesCount }}</span>
-      </div>
-    </mat-list-item>
-    <mat-divider></mat-divider>
-    <mat-list-item>
-      <div class="data-row">
-        <span class="data-cell">Date</span>
-        <span class="data-cell">{{
-          data.modifiedAt | date : "dd.MM.yyyy"
-        }}</span>
-      </div>
-    </mat-list-item>
-    <mat-divider></mat-divider>
-    <mat-list-item>
-      <div class="data-row">
-        <span class="data-cell">Created by</span>
-        <span class="data-cell">{{ data.modifiedBy }}</span>
-      </div>
-    </mat-list-item>
-    <mat-divider></mat-divider>
-    <mat-list-item>
-      <div class="data-row">
-        <span class="data-cell">Browsable URI</span>
-        <div class="data-cell">
-          <div class="pid-uri-container">
-            <span class="pid-uri">{{ data.browsablePidUri }}</span>
-            <button mat-icon-button>
-              <mat-icon
-                [cdkCopyToClipboard]="data.browsablePidUri"
-                matTooltip="Copy URI to clipboard"
-                >content_copy</mat-icon
-              >
-            </button>
-          </div>
-        </div>
-      </div>
-    </mat-list-item>
-  </mat-list>
-</div>
+<h3 mat-dialog-title>
+  <span>Map Details</span>
+</h3>
+
+<mat-dialog-content class="map-details-dialog">
+  <div class="map-details-dialog__data-row">
+    <span class="map-details-dialog__field">Name: </span>
+    <span class="map-details-dialog__value">{{ data?.name }}</span>
+  </div>
+  <mat-divider></mat-divider>
+
+  <div class="map-details-dialog__data-row">
+    <span class="map-details-dialog__field">Description: </span>
+    <span class="map-details-dialog__value">
+      {{ data?.description }}
+    </span>
+  </div>
+  <mat-divider></mat-divider>
+
+  <div class="map-details-dialog__data-row">
+    <span class="map-details-dialog__field">Nodes: </span>
+    <span class="map-details-dialog__value">{{ data?.nodesCount }}</span>
+  </div>
+  <mat-divider></mat-divider>
+
+  <div class="map-details-dialog__data-row">
+    <span class="map-details-dialog__field">Date: </span>
+    <span class="map-details-dialog__value">
+      {{ data?.modifiedAt | date: 'dd.MM.yyyy' }}
+    </span>
+  </div>
+  <mat-divider></mat-divider>
+
+  <div class="map-details-dialog__data-row">
+    <span class="map-details-dialog__field">Created by: </span>
+    <span class="map-details-dialog__value">{{ data?.modifiedBy }}</span>
+  </div>
+  <mat-divider></mat-divider>
+
+  <div class="map-details-dialog__data-row">
+    <span class="map-details-dialog__field">Browsable URI:</span>
+    <div class="map-details-dialog__value">
+      <span class="map-details-dialog__pid-uri-container">
+        <span class="map-details-dialog__pid-uri">
+          {{ data?.browsablePidUri }}
+        </span>
+
+        @if (data?.browsablePidUri) {
+          <button
+            mat-icon-button
+            [cdkCopyToClipboard]="data?.browsablePidUri"
+            (click)="stopPropagation($event)"
+            matTooltip="Copy URI to clipboard"
+          >
+            <mat-icon>content_copy</mat-icon>
+          </button>
+        }
+      </span>
+    </div>
+  </div>
+</mat-dialog-content>
+
+<mat-dialog-actions class="map-details-dialog__actions">
+  <button
+    mat-button
+    mat-stroked-button
+    color="primary"
+    mat-dialog-close
+    class="map-details-dialog__action-button"
+  >
+    <mat-icon>close</mat-icon>
+    Close
+  </button>
+</mat-dialog-actions>

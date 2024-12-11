@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import {
   FetchAutocompleteResults,
-  SearchState,
+  SearchState
 } from '../../state/search.state';
 import { Select, Store } from '@ngxs/store';
 import { Observable } from 'rxjs';
@@ -9,7 +9,7 @@ import { Observable } from 'rxjs';
 @Component({
   selector: 'app-search-bar-autocomplete',
   templateUrl: './search-bar-autocomplete.component.html',
-  styleUrls: ['./search-bar-autocomplete.component.scss'],
+  styleUrls: ['./search-bar-autocomplete.component.scss']
 })
 export class SearchBarAutocompleteComponent {
   @Select(SearchState.getAutoCompleteResults) autocompleteResult$: Observable<

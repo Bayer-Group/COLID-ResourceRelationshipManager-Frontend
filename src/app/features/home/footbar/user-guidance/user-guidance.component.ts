@@ -9,7 +9,7 @@ import { MapDetailsDialogComponent } from './map-details-dialog/map-details-dial
 @Component({
   selector: 'colid-user-guidance',
   templateUrl: './user-guidance.component.html',
-  styleUrls: ['./user-guidance.component.scss'],
+  styleUrls: ['./user-guidance.component.scss']
 })
 export class UserGuidanceComponent {
   @Select(MapDataState.getCurrentMap)
@@ -21,6 +21,7 @@ export class UserGuidanceComponent {
     this.dialog.open(MapDetailsDialogComponent, {
       data: map,
       minWidth: '60vw',
+      autoFocus: 'dialog'
     });
   }
 }

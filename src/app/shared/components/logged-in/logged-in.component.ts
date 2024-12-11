@@ -2,11 +2,12 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { AuthService } from '../../../modules/authentication/services/auth.service';
 import { EnsureBrowserSupportService } from '../../../modules/browser-support/services/ensure-browser-support.service';
+import { Constants } from '../../../shared/constants';
 
 @Component({
   selector: 'app-logged-in',
   templateUrl: './logged-in.component.html',
-  styleUrls: ['./logged-in.component.css'],
+  styleUrls: ['./logged-in.component.css']
 })
 export class LoggedInComponent implements OnInit, OnDestroy {
   isBrowserSupported = false;
@@ -17,6 +18,7 @@ export class LoggedInComponent implements OnInit, OnDestroy {
     this.isBrowserSupported = browserSupport.isSupported();
   }
   checkAccountSubscribtion!: Subscription;
+  imageUrl = Constants.Assets.Logo;
 
   ngOnInit() {
     if (this.isBrowserSupported) {
@@ -25,7 +27,7 @@ export class LoggedInComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this.checkAccountSubscribtion.unsubscribe();
+    this.checkAccountSubscribtion?.unsubscribe();
   }
 
   redirect() {

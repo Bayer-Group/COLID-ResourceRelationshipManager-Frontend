@@ -1,8 +1,8 @@
 import { Directive, Input, ElementRef, OnInit } from '@angular/core';
-import { D3Service } from '../d3.service';
+import { D3Service } from '../../../shared/services/d3.service';
 
 @Directive({
-  selector: '[zoomableOf]',
+  selector: '[zoomableOf]'
 })
 export class ZoomableDirective implements OnInit {
   @Input()
@@ -10,7 +10,10 @@ export class ZoomableDirective implements OnInit {
   @Input() translateX: number;
   @Input() translateY: number;
 
-  constructor(private d3Service: D3Service, private _element: ElementRef) {}
+  constructor(
+    private d3Service: D3Service,
+    private _element: ElementRef
+  ) {}
 
   ngOnInit() {
     this.d3Service.setContainer(

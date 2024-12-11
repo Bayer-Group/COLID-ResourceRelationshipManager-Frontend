@@ -9,7 +9,7 @@ import { MetaDataProperty } from '../../../shared/models/meta-data-property';
   selector: 'app-entity-display-image',
   templateUrl: './entity-display-image.component.html',
   styleUrls: ['./entity-display-image.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class EntityDisplayImageComponent {
   @Input() group: string;
@@ -24,8 +24,8 @@ export class EntityDisplayImageComponent {
     this.dialog.open(ImageViewerDialogComponent, {
       data: {
         index,
-        images: entityProperty,
-      },
+        images: entityProperty
+      }
     });
   }
 

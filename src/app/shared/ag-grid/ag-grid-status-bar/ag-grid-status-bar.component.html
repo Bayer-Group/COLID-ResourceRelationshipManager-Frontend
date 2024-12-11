@@ -1,0 +1,11 @@
+<div class="ag-grid-status-bar">
+  <span>
+    Total: <strong>{{ totalRowsCount }}</strong>
+  </span>
+  <span>
+    Filtered: <strong>{{ filteredRowsCount }}</strong>
+  </span>
+  <span *ngIf="selectedRowsCount">
+    Selected: <strong>{{ selectedRowsCount }}</strong>
+  </span>
+</div>

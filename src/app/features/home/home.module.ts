@@ -12,6 +12,7 @@ import { A11yModule } from '@angular/cdk/a11y';
 import { FormsModule } from '@angular/forms';
 import { LinkHistoryDialogComponent } from './link-history-dialog/link-history-dialog.component';
 import { LinkHistoryComponent } from '../../shared/link-history/link-history.component';
+import { MapDetailsDialogComponent } from './footbar/user-guidance/map-details-dialog/map-details-dialog.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,7 @@ import { LinkHistoryComponent } from '../../shared/link-history/link-history.com
     GraphContainerComponent,
     ...SHARED_VISUALS,
     ...D3_DIRECTIVES,
-    LinkHistoryDialogComponent,
+    LinkHistoryDialogComponent
   ],
   imports: [
     SharedModule,
@@ -30,7 +31,8 @@ import { LinkHistoryComponent } from '../../shared/link-history/link-history.com
     A11yModule,
     FormsModule,
     LinkHistoryComponent,
+    MapDetailsDialogComponent
   ],
-  bootstrap: [],
+  bootstrap: []
 })
 export class HomeModule {}

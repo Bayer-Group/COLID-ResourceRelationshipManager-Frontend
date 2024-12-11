@@ -17,8 +17,8 @@ export class FavoritesStateModel {
 @State<FavoritesStateModel>({
   name: 'Favorites',
   defaults: {
-    favorites: [],
-  },
+    favorites: []
+  }
 })
 @Injectable()
 export class FavoritesState {

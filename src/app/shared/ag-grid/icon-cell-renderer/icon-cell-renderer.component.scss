@@ -1,0 +1,30 @@
+.icon-cell-renderer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 2.5rem;
+  width: 100%;
+
+  &__icon {
+    // Very dark grey, but lighter than pure black
+    color: var(--ag-data-color);
+  }
+
+  &__svg-image {
+    // Changes SVG color to very dark grey, but lighter than pure black
+    filter: invert(32%) sepia(14%) saturate(0%) hue-rotate(274deg)
+      brightness(91%) contrast(85%);
+  }
+
+  &__s3-icon {
+    // Very dark grey, but lighter than pure black
+    color: var(--ag-data-color);
+    height: 100%;
+
+    // Temporary solution to vertically center the icon without refactoring ds-icon component
+    ::ng-deep mat-icon {
+      height: 100%;
+      margin-top: -3px;
+    }
+  }
+}

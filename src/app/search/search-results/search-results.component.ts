@@ -4,14 +4,14 @@ import {
   EventEmitter,
   Output,
   ViewChild,
-  ElementRef,
+  ElementRef
 } from '@angular/core';
 import { SearchResult } from '../../shared/models/search-result';
 import { Select, Store } from '@ngxs/store';
 import {
   SearchState,
   ChangeSearchText,
-  FetchNextSearchResult,
+  FetchNextSearchResult
 } from '../../state/search.state';
 import { Observable } from 'rxjs';
 import { environment } from '../../../environments/environment';
@@ -19,12 +19,12 @@ import { MetadataState } from '../../state/metadata.state';
 import { ErrorCode } from '../../shared/models/dmp-exception';
 import { map } from 'rxjs/operators';
 import { LogService } from '../../shared/services/log.service';
-import { ActivatedRoute } from '@angular/router';
+import { MatCheckboxChange } from '@angular/material/checkbox';
 
 @Component({
   selector: 'app-search-results',
   templateUrl: './search-results.component.html',
-  styleUrls: ['./search-results.component.scss'],
+  styleUrls: ['./search-results.component.scss']
 })
 export class SearchResultsComponent implements OnInit {
   @Select(SearchState.getSearchResult) searchResult$: Observable<SearchResult>;
@@ -50,30 +50,26 @@ export class SearchResultsComponent implements OnInit {
   @ViewChild('searchResults', { static: false }) searchResults: ElementRef;
 
   @Output() changePage = new EventEmitter<number>();
+  @Output() selectionChange = new EventEmitter<string[]>();
 
   constructor(
     private store: Store,
-    private logger: LogService,
-    private route: ActivatedRoute
+    private logger: LogService
   ) {
     this.isInvalidSearchQuery = this.errorCode$.pipe(
       map((e) => e === ErrorCode.INVALID_SEARCH_TERM)
     );
   }
 
-  checkboxChanged(event: any) {
-    if (event.target.checked) {
-      this.selectedPIDURIs.push(event.target.id);
-      window.parent.postMessage(
-        { message: 'selectedPidURIs', value: this.selectedPIDURIs },
-        '*'
-      );
+  onCheckboxChange(event: MatCheckboxChange) {
+    if (event.checked) {
+      this.selectedPIDURIs.push(decodeURIComponent(event.source.id));
+      this.selectionChange.emit(this.selectedPIDURIs);
     } else {
-      this.selectedPIDURIs.splice(event.target.id, 1);
-      window.parent.postMessage(
-        { message: 'selectedPidURIs', value: this.selectedPIDURIs },
-        '*'
+      this.selectedPIDURIs = this.selectedPIDURIs.filter(
+        (pidUri) => pidUri !== decodeURIComponent(event.source.id)
       );
+      this.selectionChange.emit(this.selectedPIDURIs);
     }
   }
 

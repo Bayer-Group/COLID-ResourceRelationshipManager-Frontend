@@ -9,13 +9,13 @@ const routes: Routes = [
     component: HomeComponent,
     children: [
       { path: 'graph', component: GraphContainerComponent },
-      { path: 'graph/:mapId', component: GraphContainerComponent },
-    ],
-  },
+      { path: 'graph/:mapId', component: GraphContainerComponent }
+    ]
+  }
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule],
+  exports: [RouterModule]
 })
 export class HomeRoutingModule {}

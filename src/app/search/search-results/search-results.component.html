@@ -57,17 +57,14 @@
             class="row my-1 mx-0"
             *ngFor="let hit of searchResult.hits.hits; let index = index"
           >
-            <div class="w-100 px-4">
-              <ng-container *ngIf="showCheckbox">
-                <!--<mat-checkbox mat-list-icon [id]="hit.id" [metadata]="metadata" (change)="checkboxChanged($event)">-->
-                <input
-                  type="checkbox"
-                  class="checkbox"
-                  [id]="hit.id"
-                  (change)="checkboxChanged($event)"
-                />
-              </ng-container>
+            <div class="w-100 d-flex align-items-center">
+              <mat-checkbox
+                [id]="hit.id"
+                color="primary"
+                (change)="onCheckboxChange($event)"
+              />
               <app-search-result
+                class="w-100"
                 [result]="hit"
                 [metadata]="metadata"
                 [hideCheckbox]="false"
@@ -75,6 +72,7 @@
               >
               </app-search-result>
             </div>
+            <mat-divider class="w-100" />
           </div>
           <div
             class="row loading-batch-spinner justify-content-center w-100 mt-4"

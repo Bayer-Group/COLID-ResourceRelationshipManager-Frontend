@@ -7,15 +7,17 @@ import { map, takeUntil, filter } from 'rxjs/operators';
 import {
   EventMessage,
   EventType,
-  InteractionStatus,
+  InteractionStatus
 } from '@azure/msal-browser';
 
 @Injectable({
-  providedIn: 'root',
+  providedIn: 'root'
 })
 export class AzureIdentityProvider implements IdentityProvider {
   loggingIn: boolean = false;
-  isLoggedIn$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
+  isLoggedIn$: BehaviorSubject<boolean | null> = new BehaviorSubject<boolean>(
+    null
+  );
   currentStatus: InteractionStatus = InteractionStatus.None;
   private readonly _destroying$ = new Subject<void>();
 
@@ -23,8 +25,6 @@ export class AzureIdentityProvider implements IdentityProvider {
     @Inject(MsalService) private msalService: MsalService,
     private broadcastService: MsalBroadcastService
   ) {
-    this.isLoggedIn$.next(this.checkLoggedIn());
-
     //set local variable when login started
     this.broadcastService.inProgress$
       .pipe(
@@ -43,18 +43,24 @@ export class AzureIdentityProvider implements IdentityProvider {
         ),
         takeUntil(this._destroying$)
       )
-      .subscribe((_) => (this.loggingIn = false));
+      .subscribe((_) => {
+        this.loggingIn = false;
+        this.checkLoggedIn();
+      });
 
-    this.broadcastService.inProgress$.subscribe(
-      (r) => (this.currentStatus = r)
-    );
+    this.broadcastService.inProgress$.subscribe((r) => {
+      console.log('current status', r);
+      this.currentStatus = r;
+    });
 
     this.broadcastService.msalSubject$
       .pipe(
         filter((ev: EventMessage) => ev.eventType === EventType.LOGIN_SUCCESS),
         takeUntil(this._destroying$)
       )
-      .subscribe((_) => this.isLoggedIn$.next(this.checkLoggedIn()));
+      .subscribe((_) => {
+        console.log('login success', _);
+      });
 
     this.broadcastService.msalSubject$
       .pipe(
@@ -65,23 +71,29 @@ export class AzureIdentityProvider implements IdentityProvider {
       )
       .subscribe((r) => {
         console.error('Failed getting token', r.error);
-        const loggedIn = this.checkLoggedIn();
+        // const loggedIn = this.checkLoggedIn();
 
-        this.isLoggedIn$.next(loggedIn);
+        // this.isLoggedIn$.next(loggedIn);
 
-        if (!loggedIn && !this.loginInProgress) {
-          this.login();
-        }
+        // if (!loggedIn && !this.loginInProgress) {
+        //   this.login();
+        // }
       });
   }
 
-  checkLoggedIn(): boolean {
+  checkLoggedIn() {
+    console.log(
+      'checking logged in/azure identity prov',
+      this.msalService.instance.getAllAccounts()
+    );
     const loggedIn = this.msalService.instance.getAllAccounts().length > 0;
     if (loggedIn) {
-      //tokenValid = (this.msalService.instance.getAllAccounts()[0].idTokenClaims)['exp'] > new Date().getSeconds();
-      return true;
+      const tokenValid =
+        this.msalService.instance.getAllAccounts()[0].idTokenClaims['exp'] >
+        new Date().getSeconds();
+      this.isLoggedIn$.next(tokenValid);
     } else {
-      return false;
+      this.isLoggedIn$.next(false);
     }
   }
 
@@ -118,20 +130,16 @@ export class AzureIdentityProvider implements IdentityProvider {
     return this.loggingIn;
   }
 
-  async login(): Promise<void> {
-    // If the login is happening in a Iframe we need to delay it so it does not create a infinte loop
-    if (this.currentStatus == InteractionStatus.None) {
-      if (window.self !== window.top) {
-        setTimeout(async () => {
-          await this.msalService.loginRedirect();
-        }, 5000);
-      } else {
-        await this.msalService.loginRedirect();
-      }
-    }
+  login(): void {
+    this.msalService.loginRedirect();
   }
 
   logout(): void {
     this.msalService.logout();
+  }
+
+  cleanup(): void {
+    this._destroying$.next();
+    this._destroying$.complete();
   }
 }

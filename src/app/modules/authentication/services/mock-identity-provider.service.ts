@@ -5,7 +5,7 @@ import { Observable, of } from 'rxjs';
 import { Constants } from '../../../shared/constants';
 
 @Injectable({
-  providedIn: 'root',
+  providedIn: 'root'
 })
 export class MockIdentityProvider implements IdentityProvider {
   constructor() {}
@@ -13,7 +13,7 @@ export class MockIdentityProvider implements IdentityProvider {
   getAccount(): Observable<ColidAccount> {
     const idTokenClaimes: any = [
       Constants.Authentication.Roles.Administration,
-      Constants.Authentication.Roles.SuperAdministration,
+      Constants.Authentication.Roles.SuperAdministration
     ];
     // const idTokenClaimes: any = [Constants.Authentication.Roles.Administration];
     return of(
@@ -37,4 +37,6 @@ export class MockIdentityProvider implements IdentityProvider {
   login(): void {}
 
   logout(): void {}
+
+  cleanup(): void {}
 }

@@ -5,7 +5,7 @@ import { v4 as uuidv4 } from 'uuid';
 @Component({
   selector: '[linkVisual]',
   templateUrl: './link-visual.component.html',
-  styleUrls: ['./link-visual.component.css'],
+  styleUrls: ['./link-visual.component.css']
 })
 export class LinkVisualComponent implements DoCheck {
   @Input('linkVisual') link: Link = new Link();

@@ -5,7 +5,7 @@ import { Observable } from 'rxjs';
 import { ColidEntrySubscriptionDto } from 'src/app/shared/colid-entry-subscription-dto';
 
 @Injectable({
-  providedIn: 'root',
+  providedIn: 'root'
 })
 export class ColidEntryApiService {
   constructor(private httpClient: HttpClient) {}

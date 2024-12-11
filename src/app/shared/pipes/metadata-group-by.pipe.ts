@@ -4,7 +4,7 @@ import { MetaDataPropertyGroup } from '../models/meta-data-property-group';
 import { Constants } from '../constants';
 
 @Pipe({
-  name: 'groupByGroup',
+  name: 'groupByGroup'
 })
 export class MetadataGroupByPipe implements PipeTransform {
   transform(collection: Array<MetaDataProperty>): Array<any> {
@@ -31,7 +31,7 @@ export class MetadataGroupByPipe implements PipeTransform {
     // this will return an array of objects, each object containing a group of objects
     return Object.keys(groupedCollection).map((key) => ({
       key,
-      value: groupedCollection[key],
+      value: groupedCollection[key]
     }));
   }
 }

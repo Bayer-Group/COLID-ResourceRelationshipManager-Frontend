@@ -6,7 +6,7 @@ import { UserDto } from 'src/app/shared/models/dto/user-dto';
 import { ColidEntrySubscriptionDto } from '../models/dto/colid-entry-subscription-dto';
 
 @Injectable({
-  providedIn: 'root',
+  providedIn: 'root'
 })
 export class UserInfoApiService {
   constructor(private httpClient: HttpClient) {}
@@ -37,7 +37,7 @@ export class UserInfoApiService {
 
     const httpOptions = {
       headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
-      body: colidEntrySubscriptionDto,
+      body: colidEntrySubscriptionDto
     };
 
     return this.httpClient.delete(url, httpOptions);

@@ -4,10 +4,10 @@ import { Observable } from 'rxjs';
 import {
   LinkEditHistory,
   LinkEditHistoryDto,
-  LinkHistoryAction,
+  LinkHistoryAction
 } from '../../../shared/models/link-editing-history';
 import { tap } from 'rxjs/operators';
-import { ResourceRelationshipManagerService } from '../../../core/http/resource-relationship-manager.service';
+import { ResourceRelationshipManagerService } from '../../../shared/services/resource-relationship-manager.service';
 import { Select, Store } from '@ngxs/store';
 import { AddLinks, RemoveLinks } from '../../../state/graph-data.state';
 import {
@@ -17,11 +17,11 @@ import {
   GraphLinkingDataState,
   RemoveFromHistory,
   ResetLinkEditHistory,
-  ResetLinking,
+  ResetLinking
 } from '../../../state/graph-linking.state';
 import {
   EndLoading,
-  StartLoading,
+  StartLoading
 } from '../../../state/graph-visualisation.state';
 import { GraphComponent } from './graph/graph.component';
 import { LinkDto } from '../../../shared/models/link-dto';
@@ -31,7 +31,7 @@ import { LoadMap } from '../../../state/map-data.state';
 @Component({
   selector: 'colid-graph-container',
   templateUrl: './graph-container.component.html',
-  styleUrls: ['./graph-container.component.scss'],
+  styleUrls: ['./graph-container.component.scss']
 })
 export class GraphContainerComponent implements OnInit, AfterViewInit {
   @ViewChild(GraphComponent) graphComponent: GraphComponent;
@@ -49,6 +49,7 @@ export class GraphContainerComponent implements OnInit, AfterViewInit {
 
   ngOnInit(): void {
     const mapId = this.route.snapshot.paramMap.get('mapId');
+
     if (mapId != null) {
       this.store.dispatch(new LoadMap(mapId));
     }
@@ -58,9 +59,9 @@ export class GraphContainerComponent implements OnInit, AfterViewInit {
     this.linkingProperties$
       .pipe(
         tap((linking) => {
-          this.linkingModeEnabled = linking.linkingModeEnabled;
-          this.linkingNodesSelected = linking.linkNodes.length;
-          this.linkHistory = linking.linkEditHistory;
+          this.linkingModeEnabled = linking?.linkingModeEnabled;
+          this.linkingNodesSelected = linking?.linkNodes.length;
+          this.linkHistory = linking?.linkEditHistory;
         })
       )
       .subscribe();
@@ -73,7 +74,7 @@ export class GraphContainerComponent implements OnInit, AfterViewInit {
         action: sh.action,
         linkType: sh.linkType,
         sourceUri: sh.source.uri,
-        targetUri: sh.target.uri,
+        targetUri: sh.target.uri
       });
     });
     this.store.dispatch(new StartLoading());
@@ -111,7 +112,7 @@ export class GraphContainerComponent implements OnInit, AfterViewInit {
               sourceType: sourceNode.resourceTypeId,
               target: targetNode.id,
               targetName: targetNode.name,
-              targetType: targetNode.resourceTypeId,
+              targetType: targetNode.resourceTypeId
             };
             sourceNode.links.push(sourceLink);
             const targetLink: LinkDto = {
@@ -125,7 +126,7 @@ export class GraphContainerComponent implements OnInit, AfterViewInit {
               sourceType: targetNode.resourceTypeId,
               target: sourceNode.id,
               targetName: sourceNode.name,
-              targetType: sourceNode.resourceTypeId,
+              targetType: sourceNode.resourceTypeId
             };
             targetNode.links.push(targetLink);
           }

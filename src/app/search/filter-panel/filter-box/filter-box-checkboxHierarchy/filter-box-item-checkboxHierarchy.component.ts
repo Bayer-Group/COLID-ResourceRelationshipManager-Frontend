@@ -4,7 +4,7 @@ import {
   Input,
   Output,
   EventEmitter,
-  OnDestroy,
+  OnDestroy
 } from '@angular/core';
 import { AggregationBucket } from '../../../../shared/models/aggregation-bucket';
 import {
@@ -12,7 +12,7 @@ import {
   EnableResourceTypeItem,
   MetadataState,
   ToggleCategoryFilterTab,
-  ToggleResourceTypeItem,
+  ToggleResourceTypeItem
 } from '../../../../state/metadata.state';
 import { Observable, Subscription } from 'rxjs';
 import { Select, Store } from '@ngxs/store';
@@ -20,14 +20,14 @@ import { CheckboxHierarchyDTO } from '../../../../shared/models/dto/checkboxHier
 import { FlatTreeControl } from '@angular/cdk/tree';
 import {
   MatTreeFlatDataSource,
-  MatTreeFlattener,
+  MatTreeFlattener
 } from '@angular/material/tree';
 import { MatTabChangeEvent } from '@angular/material/tabs';
 
 @Component({
   selector: 'app-filter-box-item-checkboxHierarchy',
   templateUrl: './filter-box-item-checkboxHierarchy.component.html',
-  styleUrls: ['./filter-box-item-checkboxHierarchy.component.scss'],
+  styleUrls: ['./filter-box-item-checkboxHierarchy.component.scss']
 })
 export class FilterBoxItemCheckboxHierarchyComponent
   implements OnInit, OnDestroy
@@ -156,7 +156,7 @@ export class FilterBoxItemCheckboxHierarchyComponent
       if (!node.instantiable) {
         var element = {
           key: node.name,
-          doc_count: 0,
+          doc_count: 0
         };
         if (!this.aggregationBuckets.some((x) => x.key == node.name)) {
           this.aggregationBuckets.push(element);

@@ -54,7 +54,7 @@ export class Node implements d3.SimulationNodeDatum {
 
   filterOutTypes: string[] = [
     Constants.ResourceTypes.Table,
-    Constants.ResourceTypes.Column,
+    Constants.ResourceTypes.Column
   ];
 
   constructor(id: any) {

@@ -6,10 +6,11 @@ import { EnsureBrowserSupportService } from '../../../modules/browser-support/se
 @Component({
   selector: 'app-login-in-progress',
   templateUrl: './login-in-progress.component.html',
-  styleUrls: ['./login-in-progress.component.css'],
+  styleUrls: ['./login-in-progress.component.css']
 })
 export class LoginInProgressComponent implements OnInit, OnDestroy {
   isBrowserSupported = false;
+
   constructor(
     private authService: AuthService,
     private browserSupport: EnsureBrowserSupportService
@@ -25,6 +26,6 @@ export class LoginInProgressComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this.checkAccountSubscribtion.unsubscribe();
+    this.checkAccountSubscribtion?.unsubscribe();
   }
 }

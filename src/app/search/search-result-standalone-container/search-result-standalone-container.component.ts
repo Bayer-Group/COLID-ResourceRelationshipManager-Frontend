@@ -11,7 +11,7 @@ import { GraphVisualisationState } from '../../state/graph-visualisation.state';
 @Component({
   selector: 'app-search-result-standalone-container',
   templateUrl: './search-result-standalone-container.component.html',
-  styleUrls: ['./search-result-standalone-container.component.scss'],
+  styleUrls: ['./search-result-standalone-container.component.scss']
 })
 export class SearchResultStandaloneContainerComponent implements OnInit {
   @Select(GraphVisualisationState.getSelectedPidUri)

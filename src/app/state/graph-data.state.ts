@@ -4,7 +4,10 @@ import { Link, Node } from '../core/d3';
 
 export class SetGraphContent {
   static readonly type = '[GraphData] Set nodes and links in graph state';
-  constructor(public nodes: Node[], public links: Link[]) {}
+  constructor(
+    public nodes: Node[],
+    public links: Link[]
+  ) {}
 }
 
 export class AddNodes {
@@ -81,8 +84,8 @@ export interface GraphData {
     resetAll: false,
     toggle: '',
     toggleExclusive: '',
-    selectNodes: [],
-  },
+    selectNodes: []
+  }
 })
 @Injectable()
 export class GraphDataState {
@@ -108,7 +111,7 @@ export class GraphDataState {
       resetAll: false,
       toggle: '',
       toggleExclusive: '',
-      selectNodes: [],
+      selectNodes: []
     });
   }
 
@@ -124,7 +127,7 @@ export class GraphDataState {
       resetAll: false,
       toggle: '',
       toggleExclusive: '',
-      selectNodes: [],
+      selectNodes: []
     });
   }
 
@@ -140,7 +143,7 @@ export class GraphDataState {
       resetAll: false,
       toggle: '',
       toggleExclusive: '',
-      selectNodes: [],
+      selectNodes: []
     });
   }
 
@@ -156,7 +159,7 @@ export class GraphDataState {
       resetAll: false,
       toggle: '',
       toggleExclusive: '',
-      selectNodes: [],
+      selectNodes: []
     });
   }
 
@@ -172,7 +175,7 @@ export class GraphDataState {
       resetAll: false,
       toggle: '',
       toggleExclusive: '',
-      selectNodes: [],
+      selectNodes: []
     });
   }
 
@@ -188,7 +191,7 @@ export class GraphDataState {
       resetAll: false,
       toggle: '',
       toggleExclusive: '',
-      selectNodes: [],
+      selectNodes: []
     });
   }
 
@@ -204,7 +207,7 @@ export class GraphDataState {
       resetAll: true,
       toggle: '',
       toggleExclusive: '',
-      selectNodes: [],
+      selectNodes: []
     });
   }
 
@@ -223,7 +226,7 @@ export class GraphDataState {
       resetAll: false,
       toggle: action.id,
       toggleExclusive: '',
-      selectNodes: [],
+      selectNodes: []
     });
   }
 
@@ -242,7 +245,7 @@ export class GraphDataState {
       resetAll: false,
       toggle: '',
       toggleExclusive: action.id,
-      selectNodes: [],
+      selectNodes: []
     });
   }
 
@@ -258,7 +261,7 @@ export class GraphDataState {
       resetAll: false,
       toggle: '',
       toggleExclusive: '',
-      selectNodes: action.ids,
+      selectNodes: action.ids
     });
   }
 }

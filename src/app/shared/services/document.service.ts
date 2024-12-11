@@ -5,7 +5,7 @@ import { environment } from '../../../environments/environment';
 import { DocumentMap } from '../models/search-result';
 
 @Injectable({
-  providedIn: 'root',
+  providedIn: 'root'
 })
 export class DocumentService {
   private readonly baseUrl = environment.dmpCoreApiUrl;
@@ -15,7 +15,7 @@ export class DocumentService {
   getDocument(id: string): Observable<DocumentMap> {
     let params = new HttpParams().set('id', id);
     return this.httpClient.get<DocumentMap>(this.baseUrl + 'document', {
-      params: params,
+      params: params
     });
   }
 }

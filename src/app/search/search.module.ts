@@ -36,6 +36,8 @@ import { EntityDisplayImageComponent } from './entity-display/entity-display-ima
 import { EntityDisplayItemComponent } from './entity-display/entity-display-item/entity-display-item.component';
 import { EntityDisplayGroupComponent } from './entity-display/entity-display-group/entity-display-group.component';
 import { ImageViewerDialogComponent } from './entity-display/entity-display-image/image-viewer-dialog/image-viewer-dialog.component';
+import { ResourceOperationsButtonsComponent } from './search-result/resource-operations-buttons/resource-operations-buttons.component';
+import { ResourceQualityIndicatorsComponent } from './search-result/resource-quality-indicators/resource-quality-indicators.component';
 
 @NgModule({
   declarations: [
@@ -71,7 +73,7 @@ import { ImageViewerDialogComponent } from './entity-display/entity-display-imag
     EntityDisplayImageComponent,
     EntityDisplayItemComponent,
     EntityDisplayGroupComponent,
-    ImageViewerDialogComponent,
+    ImageViewerDialogComponent
   ],
   imports: [
     CommonModule,
@@ -79,10 +81,12 @@ import { ImageViewerDialogComponent } from './entity-display/entity-display-imag
     NgSelectModule,
     FormsModule,
     ReactiveFormsModule,
+    ResourceOperationsButtonsComponent,
+    ResourceQualityIndicatorsComponent
   ],
   exports: [
     SearchResultStandaloneContainerComponent,
-    SearchFilterDialogComponent,
-  ],
+    SearchFilterDialogComponent
+  ]
 })
 export class SearchModule {}

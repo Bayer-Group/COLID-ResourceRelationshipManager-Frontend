@@ -36,7 +36,7 @@
       <mat-datepicker #pickerTo></mat-datepicker>
     </mat-form-field>
   </div>
-  <div *ngIf="(activeRangeFilters$ | async)[rangeFilter.key]">
+  <div *ngIf="(activeRangeFilters$ | async)[rangeFilter?.key]">
     <button
       mat-icon-button
       (click)="removeDateSelectionFromFiltering()"

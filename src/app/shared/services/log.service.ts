@@ -7,7 +7,7 @@ import { EdmLogEntry } from '../models/edm-log-entry';
 import { LogType } from '../../shared/log-type';
 
 @Injectable({
-  providedIn: 'root',
+  providedIn: 'root'
 })
 export class LogService {
   publishers: LogPublisher[];
@@ -70,7 +70,7 @@ export class LogService {
       hostname: '',
       userId: '',
       elapsedMilliseconds: null,
-      additionalInfo: {},
+      additionalInfo: {}
     };
 
     logEntry.additionalInfo = {};

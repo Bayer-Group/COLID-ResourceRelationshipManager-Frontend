@@ -20,7 +20,7 @@
       width="100%"
       height="100%"
       fill="#f4f5f6"
-      (contextmenu)="onMainContextMenu($event)"
+      (contextmenu)="onBackgroundContextMenu($event)"
     ></rect>
     <defs>
       <marker
@@ -43,9 +43,9 @@
         <g
           [linkVisual]="link"
           class="nodeLink"
-          (contextmenu)="onContextMenu($event, link)"
+          (contextmenu)="onLinkContextMenu($event, link)"
           [showConnectionLinkName]="graphProperties.showConnectionNames"
-          *ngFor="let link of _links"
+          *ngFor="let link of links"
         ></g>
 
         <g
@@ -53,7 +53,7 @@
           (doubleClickXPosition)="setDoubleClickXPosition($event)"
           [showLongResourceName]="graphProperties.showLongNames"
           (contextmenu)="onNodeContextMenu($event, node)"
-          *ngFor="let node of _nodes"
+          *ngFor="let node of nodes"
           [draggableNode]="node"
           [draggableInGraph]="graph"
           [class.node-linking-mode]="linkingModeEnabled"
@@ -119,9 +119,123 @@
     [overlapTrigger]="false"
   >
     <ng-template matMenuContent let-item="item">
-      <button class="context-menu" mat-menu-item (click)="expandNodes(item)">
-        Expand linked nodes
+      <button
+        mat-menu-item
+        [matMenuTriggerFor]="expandSubmenu"
+        (click)="extractLinkProperties(item)"
+      >
+        Expand...
       </button>
+      <mat-menu
+        #expandSubmenu="matMenu"
+        backdropClass="menu"
+        [overlapTrigger]="false"
+      >
+        <button
+          class="context-menu"
+          mat-menu-item
+          [disabled]="!hasAnyLinks"
+          (click)="expand(item)"
+        >
+          <mat-icon>zoom_out_map</mat-icon> All linked nodes ({{
+            counters.allLinks
+          }})
+        </button>
+
+        @if (hasAnyLinks) {
+          <button mat-menu-item [matMenuTriggerFor]="expandDirectionSubmenu">
+            Only links directed...
+          </button>
+          <mat-menu
+            #expandDirectionSubmenu="matMenu"
+            backdropClass="menu"
+            [overlapTrigger]="false"
+          >
+            <button
+              mat-menu-item
+              [disabled]="!hasInboundLinks"
+              (click)="expand(item, filterType.Outbound, 'false')"
+            >
+              <div class="graph__expand-submenu-contents">
+                <img src="assets/incoming.svg" />
+                <span>Inbound ({{ counters.inbound }})</span>
+              </div>
+            </button>
+
+            <button
+              mat-menu-item
+              [disabled]="!hasOutboundLinks"
+              (click)="expand(item, filterType.Outbound, 'true')"
+            >
+              <div class="graph__expand-submenu-contents">
+                <img src="assets/outgoing.svg" />
+                <span>Outbound ({{ counters.outbound }})</span>
+              </div>
+            </button>
+          </mat-menu>
+
+          <button mat-menu-item [matMenuTriggerFor]="expandResourceTypeSubmenu">
+            Only resource type...
+          </button>
+          <mat-menu
+            #expandResourceTypeSubmenu="matMenu"
+            backdropClass="menu"
+            [overlapTrigger]="false"
+          >
+            @for (resourceType of resourceTypes; track resourceType) {
+              <button
+                class="context-menu"
+                mat-menu-item
+                (click)="
+                  expand(
+                    item,
+                    filterType.ResourceType,
+                    resourceType.originalValue
+                  )
+                "
+              >
+                <div class="graph__expand-submenu-contents">
+                  <ds-icon
+                    [iconType]="S3"
+                    [tooltipDisabled]="true"
+                    [delay]="300"
+                    [icon]="resourceType.originalValue"
+                  >
+                  </ds-icon>
+                  <span
+                    >{{ resourceType.readableValue }} ({{
+                      resourceType.counter
+                    }})</span
+                  >
+                </div>
+              </button>
+            }
+          </mat-menu>
+
+          <button mat-menu-item [matMenuTriggerFor]="expandLinkTypeSubmenu">
+            Only link type...
+          </button>
+          <mat-menu
+            #expandLinkTypeSubmenu="matMenu"
+            backdropClass="menu"
+            [overlapTrigger]="false"
+          >
+            @for (linkType of linkTypes; track linkType) {
+              <button
+                class="context-menu"
+                mat-menu-item
+                (click)="
+                  expand(item, filterType.LinkType, linkType.originalValue)
+                "
+              >
+                <mat-icon>link</mat-icon>
+                {{ linkType.readableValue }} ({{ linkType.counter }})
+              </button>
+            }
+          </mat-menu>
+        }
+      </mat-menu>
+
       <button
         class="context-menu"
         mat-menu-item
@@ -213,17 +327,17 @@
     backdropClass="menu"
     [overlapTrigger]="false"
   >
-    <button class="context-menu" mat-menu-item (click)="expandSelectedNodes()">
+    <button class="context-menu" mat-menu-item (click)="expandSelected()">
       Expand highlighted linked nodes
     </button>
     <button
       class="context-menu"
       mat-menu-item
-      (click)="selectLinkedNodesMultipleNodes()"
+      (click)="selectAllHighlightedLinkedNodes()"
     >
       Select highlighted linked nodes
     </button>
-    <button class="context-menu" mat-menu-item (click)="hideMultipleNodes()">
+    <button class="context-menu" mat-menu-item (click)="hideHighlightedNodes()">
       Hide highlighted resources
     </button>
     <button

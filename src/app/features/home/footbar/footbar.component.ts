@@ -5,18 +5,18 @@ import {
   GraphMapData,
   LoadOwnMaps,
   MapDataState,
-  SetCurrentMap,
+  SetCurrentMap
 } from 'src/app/state/map-data.state';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { NotificationService } from 'src/app/shared/services/notification.service';
 import { ConfirmationDialogComponent } from '../../../shared/components/confirmation-dialog/confirmation-dialog.component';
-import { ResourceRelationshipManagerService } from '../../../core/http/resource-relationship-manager.service';
+import { ResourceRelationshipManagerService } from '../../../shared/services/resource-relationship-manager.service';
 import { Store } from '@ngxs/store';
 import { ResetAll } from '../../../state/graph-data.state';
 import {
   ResetLinkEditHistory,
-  ResetLinking,
+  ResetLinking
 } from '../../../state/graph-linking.state';
 import { AuthService } from '../../../modules/authentication/services/auth.service';
 import { take } from 'rxjs/operators';
@@ -24,7 +24,7 @@ import { take } from 'rxjs/operators';
 @Component({
   selector: 'colid-footbar',
   templateUrl: './footbar.component.html',
-  styleUrls: ['./footbar.component.scss'],
+  styleUrls: ['./footbar.component.scss']
 })
 export class FootbarComponent {
   @Select(MapDataState.getMapDataState) mapsStore$: Observable<GraphMapData>;
@@ -54,10 +54,10 @@ export class FootbarComponent {
             <br />
             <p>Created by:</p>
             <b>${currentMap.modifiedBy}</b>
-          `,
+          `
       },
       width: 'auto',
-      disableClose: true,
+      disableClose: true
     });
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
@@ -105,7 +105,7 @@ export class FootbarComponent {
     this.initNewMap();
     this.snackBar.open('Map has been successfully deleted', 'Dismiss', {
       duration: 3000,
-      panelClass: 'success-snackbar',
+      panelClass: 'success-snackbar'
     });
   }
 

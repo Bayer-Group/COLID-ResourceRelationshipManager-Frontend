@@ -18,8 +18,8 @@ import { SearchModule } from '../search/search.module';
     BrowserAnimationsModule,
     RouterModule,
     NavbarModule,
-    SearchModule,
+    SearchModule
   ],
-  exports: [MainLayoutComponent],
+  exports: [MainLayoutComponent]
 })
 export class CoreModule {}

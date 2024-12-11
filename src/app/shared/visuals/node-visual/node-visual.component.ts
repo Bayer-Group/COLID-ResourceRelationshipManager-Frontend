@@ -6,7 +6,7 @@ import {
   Input,
   OnDestroy,
   Output,
-  ViewChild,
+  ViewChild
 } from '@angular/core';
 import { Node } from '../../../core/d3';
 import { IconTypes } from '../../icons/models/icon-types';
@@ -14,26 +14,26 @@ import { Observable, Subscription } from 'rxjs';
 import { tap } from 'rxjs/operators';
 import {
   ToggleExclusive,
-  ToggleSelection,
+  ToggleSelection
 } from '../../../state/graph-data.state';
 import { Select, Store } from '@ngxs/store';
 import {
   AddLinkableNode,
   GraphLinkingData,
-  GraphLinkingDataState,
+  GraphLinkingDataState
 } from '../../../state/graph-linking.state';
 import {
   GraphProperties,
   GraphVisualisationState,
   SetDetailedResourceUri,
-  ShowDetailSidebar,
+  ShowDetailSidebar
 } from '../../../state/graph-visualisation.state';
 import { Constants } from '../../constants';
 
 @Component({
   selector: '[nodeVisual]',
   templateUrl: './node-visual.component.html',
-  styleUrls: ['./node-visual.component.css'],
+  styleUrls: ['./node-visual.component.css']
 })
 export class NodeVisualComponent implements OnInit, AfterViewInit, OnDestroy {
   @Input('nodeVisual') node!: Node;
@@ -61,7 +61,7 @@ export class NodeVisualComponent implements OnInit, AfterViewInit, OnDestroy {
   displayNode: boolean = true;
   filterOutTypes: string[] = [
     Constants.ResourceTypes.Table,
-    Constants.ResourceTypes.Column,
+    Constants.ResourceTypes.Column
   ];
   ctrlPressed: boolean = false;
 

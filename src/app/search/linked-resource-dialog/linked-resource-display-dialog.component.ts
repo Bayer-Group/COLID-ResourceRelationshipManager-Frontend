@@ -13,7 +13,7 @@ export interface DialogData {
 @Component({
   selector: 'app-linked-resource-display-dialog',
   templateUrl: 'linked-resource-display-dialog.component.html',
-  styleUrls: ['linked-resource-display-dialog.component.scss'],
+  styleUrls: ['linked-resource-display-dialog.component.scss']
 })
 export class LinkedResourceDisplayDialogComponent implements OnInit, OnDestroy {
   private metadataSubscription: Subscription;
@@ -51,7 +51,7 @@ export class LinkedResourceDisplayDialogComponent implements OnInit, OnDestroy {
           sequenceNumber: null,
           sorts: [],
           type: '_doc',
-          version: 0,
+          version: 0
         };
         this.hit = result;
       },

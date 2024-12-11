@@ -7,17 +7,20 @@ import { ResetLinking } from 'src/app/state/graph-linking.state';
 @Component({
   selector: 'colid-resource',
   templateUrl: './resource.component.html',
-  styleUrls: ['./resource.component.scss'],
+  styleUrls: ['./resource.component.scss']
 })
 export class ResourceComponent {
-  constructor(public dialog: MatDialog, private store: Store) {}
+  constructor(
+    public dialog: MatDialog,
+    private store: Store
+  ) {}
 
   openModal() {
     this.cancelLinking();
     this.dialog.open(SearchFilterDialogComponent, {
       width: '80vw',
       minWidth: '1400px',
-      height: '90vh',
+      height: '90vh'
     });
   }
 

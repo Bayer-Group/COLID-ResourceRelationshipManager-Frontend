@@ -69,18 +69,6 @@ td {
     box-shadow: -2px 4px 16px 0 rgba(0, 0, 0, 0.5);
   }
   
-  .content-container {
-    box-sizing: border-box;
-    height: 550px;
-    width: auto;
-    padding: 26px;
-    border: 2px solid #BABFC1;
-    overflow-y: hidden;
-  
-    @media (max-width: 1540px) {
-      height: 550px;
-    }
-  }
 
   .mat-dialog-title {
     font-size: 24px;

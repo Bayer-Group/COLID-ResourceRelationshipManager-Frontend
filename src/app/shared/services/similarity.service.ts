@@ -5,7 +5,7 @@ import { SimilarityResult } from '../models/similarity-result';
 import { environment } from '../../../environments/environment';
 
 @Injectable({
-  providedIn: 'root',
+  providedIn: 'root'
 })
 export class SimilarityService {
   baseUrl: string = `${environment.dmpCoreApiUrl}Search/similarity/`;
@@ -14,7 +14,7 @@ export class SimilarityService {
 
   loadSimilarityResource(pidUri: string): Observable<SimilarityResult> {
     const requestObject = {
-      id: pidUri,
+      id: pidUri
     };
 
     return this.httpClient.post<SimilarityResult>(
@@ -37,7 +37,7 @@ export class SimilarityService {
     threshold: number
   ): Observable<SimilarityResult> {
     const requestObject = {
-      id: pidUri,
+      id: pidUri
     };
 
     return this.httpClient.post<SimilarityResult>(

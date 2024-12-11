@@ -1,35 +1,30 @@
 main {
-    background-color: #f4f5f6;
+  background-color: #f4f5f6;
 }
 
-mat-sidenav { 
-    width: 1000px; 
-    height: 90%; 
+mat-sidenav {
+  width: 1000px;
+  height: 90%;
 }
 
 .sidenav-content {
-    margin-top: 45px;
-    margin-left: 25px;
+  margin-top: 45px;
+  margin-left: 25px;
 }
-.sidenav-container{
-    width: 800px;
-    position: fixed;
-    top: 60px;
-    bottom: 72px;
+.sidenav-container {
+  width: 800px;
+  position: fixed;
+  top: 60px;
+  bottom: 72px;
 }
-.sidebar-close{
-    display: flex;
-    justify-content: flex-end;
+.sidebar-close {
+  display: flex;
+  justify-content: flex-end;
 }
 
-
-::ng-deep .rotated {
-
-    right: -110px;
-    top: 50%;
-    position: fixed;
-    width: 3em;
-    height: 18em;
-    transform: rotate(270deg);
-  
-  }
+.rotated {
+  right: 0;
+  top: 50%;
+  position: fixed;
+  transform: rotate(270deg) translateY(100px);
+}

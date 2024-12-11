@@ -1,12 +1,12 @@
-<div>
-  <button
-    mat-raised-button
-    color="accent"
-    class="supportfeedbackbar"
-    (click)="sendFeedbackMail()"
-  >
+<button
+  mat-raised-button
+  color="accent"
+  class="supportfeedbackbar"
+  (click)="sendFeedbackMail()"
+>
+  <div class="d-flex">
     <mat-icon
-      class="icon-display mat-icon notranslate material-icons-outlined mat-icon-inline mat-icon-no-color"
+      class="icon-display mat-icon notranslate material-icons-outlined mat-icon-inline mat-icon-no-color mr-2"
       fontset="material-icons-outlined"
       inline="true"
       role="img"
@@ -15,6 +15,6 @@
       data-mat-icon-namespace="material-icons-outlined"
       >feedback</mat-icon
     >
-    We value your feedback
-  </button>
-</div>
+    <span>We value your feedback</span>
+  </div>
+</button>

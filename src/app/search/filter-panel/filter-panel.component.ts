@@ -6,7 +6,7 @@ import { Aggregation } from '../../shared/models/aggregation';
 import {
   ResetActiveAggregationBuckets,
   SearchState,
-  SearchStateModel,
+  SearchStateModel
 } from '../../state/search.state';
 import { RangeFilter } from '../../shared/models/range-filter';
 import { ActiveRangeFilters } from '../../shared/models/active-range-filters';
@@ -15,7 +15,7 @@ import { FilterGroupingOrderRaw } from '../../shared/models/filter-grouping-orde
 import { Constants } from '../../shared/constants';
 import {
   ClearResourceTypeItem,
-  FetchResourceTypeHierarchy,
+  FetchResourceTypeHierarchy
 } from '../../state/metadata.state';
 import { MetadataState } from '../../state/metadata.state';
 import { ActivatedRoute } from '@angular/router';
@@ -23,7 +23,7 @@ import { ActivatedRoute } from '@angular/router';
 @Component({
   selector: 'app-filter-panel',
   templateUrl: './filter-panel.component.html',
-  styleUrls: ['./filter-panel.component.scss'],
+  styleUrls: ['./filter-panel.component.scss']
 })
 export class FilterPanelComponent implements OnInit, OnDestroy {
   @Select(FilterState.getAggregationFilters) aggregationFilters$: Observable<
@@ -59,7 +59,10 @@ export class FilterPanelComponent implements OnInit, OnDestroy {
 
   masterSub: Subscription = new Subscription();
 
-  constructor(private store: Store, private route: ActivatedRoute) {}
+  constructor(
+    private store: Store,
+    private route: ActivatedRoute
+  ) {}
 
   ngOnInit() {
     this.store.dispatch(new FetchResourceTypeHierarchy());
@@ -106,12 +109,12 @@ export class FilterPanelComponent implements OnInit, OnDestroy {
         const filters = group.filters.map((filter) => {
           return {
             ...filter,
-            aggregation: null,
+            aggregation: null
           };
         });
         return {
           ...group,
-          filters,
+          filters
         };
       });
       aggregationFilters.forEach((aggregationFilter) => {

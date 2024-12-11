@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { ResourceRelationshipManagerService } from '../../../http/resource-relationship-manager.service';
+import { ResourceRelationshipManagerService } from '../../../../shared/services/resource-relationship-manager.service';
 import { take, tap } from 'rxjs/operators';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { SaveMapDialogComponent } from '../save-map-dialog/save-map-dialog.component';
@@ -19,7 +19,7 @@ import {
   LoadOwnMaps,
   MapDataState,
   SetIsOwner,
-  SetCurrentMap,
+  SetCurrentMap
 } from 'src/app/state/map-data.state';
 import { ResetAll } from 'src/app/state/graph-data.state';
 import {
@@ -27,11 +27,11 @@ import {
   GraphLinkingDataState,
   RemoveFromHistory,
   ResetLinkEditHistory,
-  ResetLinking,
+  ResetLinking
 } from 'src/app/state/graph-linking.state';
 import {
   SetSaveAsNew,
-  StartSavingMap,
+  StartSavingMap
 } from 'src/app/state/saving-trigger.state';
 import { AuthService } from 'src/app/modules/authentication/services/auth.service';
 import { HideDetailSidebar } from 'src/app/state/graph-visualisation.state';
@@ -40,7 +40,7 @@ declare const saveSvgAsPng: any;
 @Component({
   selector: 'colid-map',
   templateUrl: './map.component.html',
-  styleUrls: ['./map.component.scss'],
+  styleUrls: ['./map.component.scss']
 })
 export class MapComponent implements OnInit, OnDestroy {
   maps: GraphMapInfo[] = [];
@@ -148,7 +148,7 @@ export class MapComponent implements OnInit, OnDestroy {
           graphMapId: this.currentMap?.graphMapId ?? null,
           name: mapName,
           description: mapDescription,
-          modifiedBy: null,
+          modifiedBy: null
         })
       );
       this.store.dispatch(new SetSaveAsNew(isNewMap));
@@ -164,7 +164,7 @@ export class MapComponent implements OnInit, OnDestroy {
       let confirmDialogRef: MatDialogRef<SaveConfirmationDialogComponent> =
         this.dialog.open(SaveConfirmationDialogComponent, {
           width: '40vw',
-          disableClose: true,
+          disableClose: true
         });
 
       confirmDialogRef.afterClosed().subscribe((result: string) => {
@@ -202,8 +202,8 @@ export class MapComponent implements OnInit, OnDestroy {
         data: {
           name: this.currentMap?.name,
           description: this.currentMap?.description,
-          id: this.currentMap?.graphMapId,
-        },
+          id: this.currentMap?.graphMapId
+        }
       }
     );
 
@@ -233,8 +233,8 @@ export class MapComponent implements OnInit, OnDestroy {
         data: {
           name: this.currentMap.name,
           description: this.currentMap.description,
-          isSaveAs: true,
-        },
+          isSaveAs: true
+        }
       }
     );
 
@@ -253,11 +253,11 @@ export class MapComponent implements OnInit, OnDestroy {
     let dialogRef: MatDialogRef<MapsBrowserComponent> = this.dialog.open(
       MapsBrowserComponent,
       {
-        height: 'auto',
-        width: 'auto',
+        height: '80vh',
+        width: '80vw',
         data: {
-          secondMap: false,
-        },
+          secondMap: false
+        }
       }
     );
 
@@ -274,11 +274,11 @@ export class MapComponent implements OnInit, OnDestroy {
 
   extraMap() {
     this.dialog.open(MapsBrowserComponent, {
-      height: 'auto',
-      width: 'auto',
+      height: '80vh',
+      width: '80vw',
       data: {
-        secondMap: true,
-      },
+        secondMap: true
+      }
     });
   }
 
@@ -295,10 +295,10 @@ export class MapComponent implements OnInit, OnDestroy {
             <br />
             <p>Created by:</p>
             <b>${this.currentMap.modifiedBy}</b>
-          `,
+          `
         },
         width: 'auto',
-        disableClose: true,
+        disableClose: true
       });
 
       dialogRef.afterClosed().subscribe((result) => {
@@ -354,7 +354,7 @@ export class MapComponent implements OnInit, OnDestroy {
       this.initNewMap();
       this.snackBar.open('Map has been successfully deleted', 'Dismiss', {
         duration: 3000,
-        panelClass: 'success-snackbar',
+        panelClass: 'success-snackbar'
       });
     });
   }

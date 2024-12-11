@@ -7,7 +7,7 @@ import { RawDeploymentInformationDto } from '../models/dto/raw-deployment-inform
 import { map } from 'rxjs/operators';
 
 @Injectable({
-  providedIn: 'root',
+  providedIn: 'root'
 })
 export class StatusApiService {
   constructor(private httpClient: HttpClient) {}
@@ -23,7 +23,7 @@ export class StatusApiService {
           imageTags: dmpInformation.image_tags,
           latestReleaseDate: new Date(
             dmpInformation.image_pushed_at_epoch_utc_seconds * 1000
-          ),
+          )
         } as StatusBuildInformationDto;
       })
     );

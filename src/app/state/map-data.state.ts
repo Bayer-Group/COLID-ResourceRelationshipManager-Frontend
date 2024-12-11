@@ -3,7 +3,7 @@ import { Action, Selector, State, StateContext, Store } from '@ngxs/store';
 import { EMPTY } from 'rxjs';
 import { catchError, finalize, switchMap, tap } from 'rxjs/operators';
 import { Link, Node } from '../core/d3';
-import { ResourceRelationshipManagerService } from '../core/http/resource-relationship-manager.service';
+import { ResourceRelationshipManagerService } from '../shared/services/resource-relationship-manager.service';
 import { AuthService } from '../modules/authentication/services/auth.service';
 import { GraphMapInfo } from '../shared/models/graph-map-info';
 import { GraphMapMetadata } from '../shared/models/graph-map-metadata';
@@ -15,7 +15,7 @@ import {
   AddNodes,
   ResetAll,
   SetLinks,
-  SetNodes,
+  SetNodes
 } from './graph-data.state';
 import { GraphLinkingData, GraphLinkingDataState } from './graph-linking.state';
 import { EndLoading, StartLoading } from './graph-visualisation.state';
@@ -113,7 +113,10 @@ export class RenderMap {
 
 export class RenderSecondMap {
   static readonly type = '[Map Data] Render second maps';
-  constructor(public map: GraphMapV2, public oldMapId: string | null) {}
+  constructor(
+    public map: GraphMapV2,
+    public oldMapId: string | null
+  ) {}
 }
 
 export class LoadSecondMap {
@@ -150,10 +153,10 @@ export interface GraphMapData {
       batchSize: 0,
       nameFilter: '',
       sortKey: '',
-      sortType: '',
+      sortType: ''
     },
-    isOwner: false,
-  },
+    isOwner: false
+  }
 })
 @Injectable()
 export class MapDataState {
@@ -202,7 +205,7 @@ export class MapDataState {
   @Action(SetOwnMaps)
   setOwnMaps({ patchState }: StateContext<GraphMapData>, action: SetOwnMaps) {
     patchState({
-      ownMaps: action.maps,
+      ownMaps: action.maps
     });
   }
 
@@ -212,7 +215,7 @@ export class MapDataState {
     action: SetCurrentMap
   ) {
     patchState({
-      currentMap: action.map,
+      currentMap: action.map
     });
   }
 
@@ -225,8 +228,8 @@ export class MapDataState {
     patchState({
       currentMap: {
         ...currMap,
-        graphMapId: action.id,
-      },
+        graphMapId: action.id
+      }
     });
   }
 
@@ -239,8 +242,8 @@ export class MapDataState {
     patchState({
       currentMap: {
         ...currMap,
-        name: action.name,
-      },
+        name: action.name
+      }
     });
   }
 
@@ -253,15 +256,15 @@ export class MapDataState {
     patchState({
       currentMap: {
         ...currMap,
-        description: action.description,
-      },
+        description: action.description
+      }
     });
   }
 
   @Action(SetAllMaps)
   setAllMaps({ patchState }: StateContext<GraphMapData>, action: SetAllMaps) {
     patchState({
-      allMaps: action.maps,
+      allMaps: action.maps
     });
   }
 
@@ -272,7 +275,7 @@ export class MapDataState {
   ) {
     const allMaps = getState().allMaps;
     patchState({
-      allMaps: [...allMaps, ...action.maps],
+      allMaps: [...allMaps, ...action.maps]
     });
   }
 
@@ -289,7 +292,7 @@ export class MapDataState {
       modifiedAt,
       modifiedBy,
       browsablePidUri,
-      nodesCount,
+      nodesCount
     } = mapMetadata;
     patchState({
       currentMap: {
@@ -299,23 +302,23 @@ export class MapDataState {
         modifiedAt,
         modifiedBy,
         browsablePidUri,
-        nodesCount,
+        nodesCount
       },
-      isOwner: modifiedBy == currentUser,
+      isOwner: modifiedBy == currentUser
     });
   }
 
   @Action(StartLoadOwnMaps)
   startLoadOwnMaps({ patchState }: StateContext<GraphMapData>) {
     patchState({
-      loadingOwnMaps: true,
+      loadingOwnMaps: true
     });
   }
 
   @Action(EndLoadOwnMaps)
   endLoadOwnMaps({ patchState }: StateContext<GraphMapData>) {
     patchState({
-      loadingOwnMaps: false,
+      loadingOwnMaps: false
     });
   }
 
@@ -325,23 +328,24 @@ export class MapDataState {
     action: SetLoadingAllMapsState
   ) {
     patchState({
-      loadingAllMaps: action.loading,
+      loadingAllMaps: action.loading
     });
   }
 
   @Action(SetIsOwner)
   setIsOwner({ patchState }: StateContext<GraphMapData>, action: SetIsOwner) {
     patchState({
-      isOwner: action.isOwner,
+      isOwner: action.isOwner
     });
   }
 
   @Action(LoadOwnMaps)
   loadOwnMaps(ctx: StateContext<GraphMapData>, action: LoadOwnMaps) {
     ctx.patchState({
-      currentUser: action.email,
+      currentUser: action.email
     });
-    return this.rrmService.getGraphsForUser(action.email).pipe(
+
+    return this.rrmService.getGraphMapsByUser(action.email).pipe(
       tap((maps) => ctx.dispatch(new SetOwnMaps(maps))),
       catchError(() => EMPTY)
     );
@@ -350,7 +354,8 @@ export class MapDataState {
   @Action(LoadAllMaps)
   loadAllMaps(ctx: StateContext<GraphMapData>) {
     ctx.dispatch(new SetLoadingAllMapsState(true));
-    return this.rrmService.getGraphs().pipe(
+
+    return this.rrmService.getAllGraphMaps().pipe(
       tap((response) => ctx.dispatch(new SetAllMaps(response))),
       catchError((_) => {
         this.notificationService.notification$.next(
@@ -368,9 +373,11 @@ export class MapDataState {
     action: LoadMapsNextBatch
   ) {
     ctx.dispatch(new SetLoadingAllMapsState(true));
+
     const currentSearchParam: GraphMapSearchDTO = ctx.getState().searchParams;
+
     return this.rrmService
-      .getGraphsPage(action.offset, currentSearchParam)
+      .getGraphMapsPage(action.offset, currentSearchParam)
       .pipe(
         tap((response) => ctx.dispatch(new AppendNewMaps(response))),
         catchError(() => EMPTY),
@@ -384,10 +391,12 @@ export class MapDataState {
     action: SetCurrentMapSearchParams
   ) {
     ctx.patchState({
-      searchParams: action.searchData,
+      searchParams: action.searchData
     });
+
     ctx.dispatch(new SetLoadingAllMapsState(true));
-    return this.rrmService.getGraphsPage(0, action.searchData).pipe(
+
+    return this.rrmService.getGraphMapsPage(0, action.searchData).pipe(
       tap((response) => ctx.dispatch(new SetAllMaps(response))),
       catchError(() => EMPTY),
       finalize(() => ctx.dispatch(new SetLoadingAllMapsState(false)))
@@ -397,13 +406,18 @@ export class MapDataState {
   @Action(LoadMap)
   loadMap(ctx: StateContext<GraphMapData>, action: LoadMap) {
     ctx.dispatch(new StartLoading());
-    return this.rrmService.getGraphv2(action.mapId).pipe(
-      switchMap((response) => ctx.dispatch(new RenderMap(response))),
+
+    return this.rrmService.getGraphMap(action.mapId).pipe(
+      switchMap((response: GraphMapV2) =>
+        ctx.dispatch(new RenderMap(response))
+      ),
       catchError(() => {
         this.notificationService.notification$.next(
           'Something went wrong while trying to load the map.'
         );
+
         ctx.dispatch(new EndLoading());
+
         return EMPTY;
       })
     );
@@ -424,7 +438,7 @@ export class MapDataState {
           modifiedBy,
           modifiedAt,
           browsablePidUri: pidUri,
-          nodesCount: nodes.length,
+          nodesCount: nodes.length
         },
         userEmail
       )
@@ -471,8 +485,10 @@ export class MapDataState {
   @Action(LoadSecondMap)
   loadSecondMap(ctx: StateContext<GraphMapData>, action: LoadSecondMap) {
     const currentState = ctx.getState();
+
     ctx.dispatch(new StartLoading());
-    return this.rrmService.getGraphv2(action.mapId).pipe(
+
+    return this.rrmService.getGraphMap(action.mapId).pipe(
       tap((response: GraphMapV2) => {
         this.store.dispatch(
           new RenderSecondMap(response, currentState.currentMap?.graphMapId)
@@ -480,6 +496,7 @@ export class MapDataState {
       }),
       catchError(() => {
         ctx.dispatch(new EndLoading());
+
         return EMPTY;
       })
     );
@@ -494,7 +511,7 @@ export class MapDataState {
     let highFy: number = 0;
     if (action.oldMapId != null) {
       this.rrmService
-        .getGraphv2(action.oldMapId)
+        .getGraphMap(action.oldMapId)
         .subscribe((cm: GraphMapV2) => {
           let firstMapHighFy = Math.max(...cm.nodes.map((n) => n.fy));
           let secondMapLowestFy = Math.min(

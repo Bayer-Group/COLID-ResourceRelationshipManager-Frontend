@@ -28,8 +28,8 @@ export class SidebarStateModel {
   name: 'sidebar',
   defaults: {
     sidebarOpened: true,
-    sidebarMode: 'side',
-  },
+    sidebarMode: 'side'
+  }
 })
 @Injectable()
 export class SidebarState {
@@ -51,7 +51,7 @@ export class SidebarState {
     { payload }: SetSidebarOpened
   ) {
     patchState({
-      sidebarOpened: payload,
+      sidebarOpened: payload
     });
   }
 
@@ -61,7 +61,7 @@ export class SidebarState {
     { payload }: SetSidebarMode
   ) {
     patchState({
-      sidebarMode: payload,
+      sidebarMode: payload
     });
   }
 
@@ -72,7 +72,7 @@ export class SidebarState {
   ) {
     if (getState().sidebarMode === 'over') {
       patchState({
-        sidebarOpened: false,
+        sidebarOpened: false
       });
     }
   }
@@ -83,7 +83,7 @@ export class SidebarState {
     {}: ToggleSidebar
   ) {
     patchState({
-      sidebarOpened: !getState().sidebarOpened,
+      sidebarOpened: !getState().sidebarOpened
     });
   }
 }

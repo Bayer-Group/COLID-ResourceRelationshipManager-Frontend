@@ -4,7 +4,7 @@ import { EnsureBrowserSupportService } from '../services/ensure-browser-support.
 @Component({
   selector: 'ensure-browser-support',
   templateUrl: './ensure-browser-support.component.html',
-  styles: [],
+  styles: []
 })
 export class BrowserSupportComponent implements OnInit {
   supportedBrowser: boolean = false;

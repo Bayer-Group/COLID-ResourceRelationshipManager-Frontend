@@ -1,6 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { SupportFeedbackBarComponent } from './support-feedback-bar.component';
+import { MatIconModule } from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
 
 describe('SupportFeedbackBarComponent', () => {
   let component: SupportFeedbackBarComponent;
@@ -9,10 +11,9 @@ describe('SupportFeedbackBarComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [SupportFeedbackBarComponent],
+      imports: [MatIconModule, MatButtonModule]
     }).compileComponents();
-  });
 
-  beforeEach(() => {
     fixture = TestBed.createComponent(SupportFeedbackBarComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

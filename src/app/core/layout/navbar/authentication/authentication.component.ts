@@ -6,7 +6,7 @@ import { tap } from 'rxjs/operators';
 @Component({
   selector: 'colid-authentication',
   templateUrl: './authentication.component.html',
-  styleUrls: ['./authentication.component.scss'],
+  styleUrls: ['./authentication.component.scss']
 })
 export class AuthenticationComponent implements OnInit {
   S3: IconTypes = IconTypes.S3;

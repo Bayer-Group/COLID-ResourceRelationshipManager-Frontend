@@ -157,7 +157,7 @@
         </div>
       </th>
       <td mat-cell *matCellDef="let element">
-        {{ element.dateCreated | date : "MM/dd/yyyy HH:mm" }}
+        {{ element.dateCreated | date: 'MM/dd/yyyy HH:mm' }}
       </td>
     </ng-container>
     <ng-container matColumnDef="deletedBy">
@@ -177,7 +177,7 @@
         </div>
       </th>
       <td mat-cell *matCellDef="let element">
-        {{ element.dateDeleted | date : "MM/dd/yyyy HH:mm" }}
+        {{ element.dateDeleted | date: 'MM/dd/yyyy HH:mm' }}
       </td>
     </ng-container>
     <ng-container matColumnDef="status">

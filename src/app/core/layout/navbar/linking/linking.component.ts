@@ -13,19 +13,22 @@ import {
   EnableLinkingMode,
   GraphLinkingData,
   GraphLinkingDataState,
-  ResetLinking,
+  ResetLinking
 } from 'src/app/state/graph-linking.state';
 
 @Component({
   selector: 'colid-linking',
   templateUrl: './linking.component.html',
-  styleUrls: ['./linking.component.scss'],
+  styleUrls: ['./linking.component.scss']
 })
 export class LinkingComponent implements OnInit {
   @Select(GraphLinkingDataState.getGraphLinkingState)
   private linkingProperties$!: Observable<GraphLinkingData>;
 
-  constructor(public dialog: MatDialog, private store: Store) {}
+  constructor(
+    public dialog: MatDialog,
+    private store: Store
+  ) {}
 
   ngOnInit() {
     this.linkingProperties$
@@ -38,8 +41,8 @@ export class LinkingComponent implements OnInit {
                 width: '800px',
                 disableClose: true,
                 data: {
-                  linkNodes: linkingProperties.linkNodes,
-                },
+                  linkNodes: linkingProperties.linkNodes
+                }
               });
 
             dialogRef.afterClosed().subscribe((result: LinkTypeContainer) => {

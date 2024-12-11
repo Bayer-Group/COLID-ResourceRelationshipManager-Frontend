@@ -8,40 +8,40 @@ import { UnauthorizedComponent } from './shared/components/unauthorized/unauthor
 const routes: Routes = [
   {
     path: 'unauthorized',
-    component: UnauthorizedComponent,
+    component: UnauthorizedComponent
   },
   {
     path: 'logged-in',
-    component: LoggedInComponent,
+    component: LoggedInComponent
   },
   {
     path: 'login-in-progress',
-    component: LoginInProgressComponent,
+    component: LoginInProgressComponent
   },
   {
     path: '',
     pathMatch: 'full',
-    redirectTo: 'home/graph',
+    redirectTo: 'home/graph'
   },
   {
     path: 'home',
     loadChildren: () =>
       import('./features/home/home.module').then((m) => m.HomeModule),
-    canActivate: [AuthGuardService],
+    canActivate: [AuthGuardService]
   },
   {
     path: '**',
-    redirectTo: 'home/graph',
+    redirectTo: 'home/graph'
   } /*
   {
     path: 'search',
     component: SearchComponent, canActivate: [AuthGuardService]
   }
-  */,
+  */
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes, { onSameUrlNavigation: 'ignore' })],
-  exports: [RouterModule],
+  exports: [RouterModule]
 })
 export class AppRoutingModule {}

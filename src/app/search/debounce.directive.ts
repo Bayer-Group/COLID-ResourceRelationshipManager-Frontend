@@ -4,14 +4,14 @@ import {
   Output,
   EventEmitter,
   OnInit,
-  OnDestroy,
+  OnDestroy
 } from '@angular/core';
 import { NgControl } from '@angular/forms';
 import { Subject } from 'rxjs';
 import { debounceTime, takeUntil, distinctUntilChanged } from 'rxjs/operators';
 
 @Directive({
-  selector: '[debounce]',
+  selector: '[debounce]'
 })
 export class DebounceDirective implements OnInit, OnDestroy {
   @Output()

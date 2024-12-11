@@ -12,5 +12,5 @@ export class Aggregation {
 export enum AggregationType {
   Switch = 'switch',
   Checkbox = 'checkbox',
-  DateRange = 'dateRange',
+  DateRange = 'dateRange'
 }

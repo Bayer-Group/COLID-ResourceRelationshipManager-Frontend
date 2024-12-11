@@ -9,7 +9,7 @@ import { LinkHistoryDto } from '../models/link-history-dto';
 import { ResourceRevisionHistory } from '../models/dto/historic-resource-overview-dto';
 
 @Injectable({
-  providedIn: 'root',
+  providedIn: 'root'
 })
 export class ResourceApiService {
   constructor(private httpClient: HttpClient) {}
@@ -85,6 +85,7 @@ export class ResourceApiService {
       return p;
     }, new HttpParams());
   }
+
   removeNullProperties(obj: object): object {
     const outParams = {};
     return Object.getOwnPropertyNames(obj).reduce((p, key) => {
@@ -96,5 +97,48 @@ export class ResourceApiService {
       }
       return outParams;
     }, outParams);
+  }
+
+  rejectResourcesMarkedDeleted(resourcePidUris: string[]): Observable<any> {
+    const url = environment.colidApiUrl + '/resource/resourceList/reject';
+    return this.httpClient.put(url, resourcePidUris);
+  }
+
+  deleteResource(resourcePidUri: string, requester: string): Observable<any> {
+    const url = environment.colidApiUrl + '/resource';
+    let params = new HttpParams();
+    params = params.append('pidUri', resourcePidUri);
+    params = params.append('requester', requester);
+    return this.httpClient.delete(url, { params });
+  }
+
+  deleteResources(
+    resourcePidUris: string[],
+    requester: string
+  ): Observable<any> {
+    const url = environment.colidApiUrl + '/resource/resourceList';
+    let params = new HttpParams();
+    params = params.append('requester', requester);
+
+    return this.httpClient.put(url, resourcePidUris, { params });
+  }
+
+  markResourceAsDeleted(
+    resourcePidUri: string,
+    requester: string
+  ): Observable<any> {
+    const url = environment.colidApiUrl + '/resource/markForDeletion';
+    let params = new HttpParams();
+    params = params.append('pidUri', resourcePidUri);
+    params = params.append('requester', requester);
+
+    return this.httpClient.put(url, null, { params });
+  }
+
+  unlinkResource(pidUri: string): Observable<string> {
+    const url = environment.colidApiUrl + '/resource/version/unlink';
+    let params = new HttpParams();
+    params = params.append('pidUri', pidUri);
+    return this.httpClient.put<string>(url, null, { params });
   }
 }

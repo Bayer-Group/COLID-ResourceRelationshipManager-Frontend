@@ -1,5 +1,5 @@
 import { Observable } from 'rxjs';
-import { map, tap } from 'rxjs/operators';
+import { distinctUntilChanged, map, tap } from 'rxjs/operators';
 import { ActivatedRoute, Router } from '@angular/router';
 import { IdentityProvider } from './identity-provider.service';
 import { ColidAccount } from '../models/colid-account.model';
@@ -8,7 +8,7 @@ import { IDENT_PROV } from '../../../shared/constants';
 import { RolePermissions } from '../role-permissions';
 
 @Injectable({
-  providedIn: 'root',
+  providedIn: 'root'
 })
 export class AuthService {
   private _currentUserEmailAddress: string | null;
@@ -90,18 +90,22 @@ export class AuthService {
   }
 
   subscribeCheckAccount() {
-    return this.isLoggedIn$.subscribe((val) => {
-      if (!val && !this.loginInProgress) {
+    // val is on startup of the application null, in this case we do nothing
+    return this.isLoggedIn$.pipe(distinctUntilChanged()).subscribe((val) => {
+      console.log('Subscribe check account', val, this.loginInProgress);
+      if (val === false) {
+        console.log('Login ready');
         this.login();
-      } else {
+      } else if (val === true) {
+        console.log('Redirecting');
         this.redirect();
       }
     });
   }
 
   redirect() {
-    const redirectPathString = window.localStorage.getItem('url');
-    const queryParamString = window.localStorage.getItem('queryParams');
+    const redirectPathString = window.sessionStorage.getItem('url');
+    const queryParamString = window.sessionStorage.getItem('queryParams');
 
     if (redirectPathString == null || queryParamString == null) {
       this.router.navigate(['']);
@@ -110,6 +114,7 @@ export class AuthService {
 
     const redirectPath = JSON.parse(redirectPathString);
     const queryParams = JSON.parse(queryParamString);
+
     this.router.navigate(redirectPath, { queryParams: queryParams });
   }
 
@@ -119,5 +124,9 @@ export class AuthService {
 
   logout() {
     this.identityProvider.logout();
+  }
+
+  cleanup() {
+    this.identityProvider.cleanup();
   }
 }

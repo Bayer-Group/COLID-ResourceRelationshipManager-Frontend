@@ -1,8 +1,8 @@
-.node-linking-mode{
-    cursor:grab;
-  }
+.node-linking-mode {
+  cursor: grab;
+}
 
-.linking-mode-indicator{
+.linking-mode-indicator {
   position: absolute;
   top: 20px;
   right: 20px;
@@ -14,7 +14,7 @@
   position: absolute;
   right: 20px;
   width: 600px;
-  padding:10px;
+  padding: 10px;
 }
 
 .link-accordion-container {
@@ -22,11 +22,11 @@
   display: inline-block;
 }
 
-.link-history-persistence:not(.linkingModeEnabled){
+.link-history-persistence:not(.linkingModeEnabled) {
   top: 20px;
 }
 
-.link-history-persistence.linkingModeEnabled{
+.link-history-persistence.linkingModeEnabled {
   top: 90px;
 }
 
@@ -36,19 +36,20 @@
   height: 47px;
 }
 
-::ng-deep .mat-menu-content.context-menu{
+::ng-deep .mat-menu-content.context-menu {
   padding-top: 0px !important;
   padding-bottom: 0px !important;
 }
 
-.mat-menu-item.context-menu{
+.mat-menu-item.context-menu {
   line-height: 25px !important;
   height: 25px !important;
   font-size: 12px !important;
 }
 
-.context-menu.menu-header, .context-menu.no-items {
-  color: rgb(160,160,160);
+.context-menu.menu-header,
+.context-menu.no-items {
+  color: rgb(160, 160, 160);
 }
 
 ::ng-deep .mat-menu-panel {
@@ -64,4 +65,14 @@
 
 .mat-menu-item-submenu-trigger::after {
   color: white;
+}
+
+.graph__expand-submenu-contents {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.graph__expand-submenu-contents ds-icon {
+  margin-right: -15px !important;
 }

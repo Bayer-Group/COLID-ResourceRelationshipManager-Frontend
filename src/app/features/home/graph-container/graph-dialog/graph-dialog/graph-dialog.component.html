@@ -1,20 +1,22 @@
 <div class="dialog-content">
   <div class="dialog-topbar">
-    <h2>Linking actions for Resource {{ resourceName }}</h2>
+    <h2>Linking actions for Resource "{{ resourceName }}"</h2>
     <button mat-icon-button class="close-button" [mat-dialog-close]="true">
       <mat-icon>close</mat-icon>
     </button>
   </div>
+
   <mat-tab-group
     (selectedIndexChange)="selectedTabIndex = $event"
     [selectedIndex]="selectedTabIndex"
   >
     <mat-tab label="Show/Hide linked resources">
-      <colid-display-links
+      <app-links-visibility-tab
         [links]="links"
-        [selection]="selection"
-      ></colid-display-links>
+        (selectedLinks)="processSelectedLinks($event)"
+      ></app-links-visibility-tab>
     </mat-tab>
+
     <mat-tab label="Link History">
       <colid-link-history
         [startPidUri]="resourcePidUri"
@@ -22,13 +24,14 @@
       ></colid-link-history>
     </mat-tab>
   </mat-tab-group>
+
   <div mat-dialog-actions align="end">
     <button mat-button mat-dialog-close>Cancel</button>
     <button
       mat-button
       mat-flat-button
       color="primary"
-      (click)="loadLinks()"
+      (click)="updateLinks()"
       *ngIf="selectedTabIndex === 0"
     >
       Update Links

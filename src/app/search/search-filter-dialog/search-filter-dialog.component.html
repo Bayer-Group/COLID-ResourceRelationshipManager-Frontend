@@ -1,5 +1,5 @@
 <div class="h-100 w-100 d-flex flex-column">
-  <h2 mat-dialog-title>Add Resource</h2>
+  <span mat-dialog-title>Add Resource</span>
   <div class="w-100 d-flex" style="flex: 1; overflow: hidden">
     <div class="filter-panel">
       <app-sidebar></app-sidebar>
@@ -14,6 +14,7 @@
       </app-search-bar-autocomplete>
       <app-search-results
         (changePage)="pageChanged($event)"
+        (selectionChange)="onSelectionChange($event)"
         class="search-results"
       ></app-search-results>
     </div>

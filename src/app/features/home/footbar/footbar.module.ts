@@ -11,10 +11,9 @@ import { MapDetailsDialogComponent } from './user-guidance/map-details-dialog/ma
     UndoComponent,
     TreedeepComponent,
     UserGuidanceComponent,
-    FootbarComponent,
-    MapDetailsDialogComponent,
+    FootbarComponent
   ],
-  imports: [SharedModule],
-  exports: [FootbarComponent],
+  imports: [SharedModule, MapDetailsDialogComponent],
+  exports: [FootbarComponent]
 })
 export class FootbarModule {}

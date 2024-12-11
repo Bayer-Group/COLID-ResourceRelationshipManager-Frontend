@@ -1,20 +1,42 @@
-.data-row {
-  width: 100%;
-}
+.map-details-dialog {
+  color: black !important;
 
-.data-cell {
-  display: inline-block;
-  width: 50%;
-}
+  &__data-row {
+    display: flex;
+    align-items: center;
+    padding: 1rem;
+  }
 
-.pid-uri-container {
-  display: flex;
-  width: 100%;
-  align-items: center;
-}
+  &__field {
+    display: flex;
+    align-items: center;
+    min-width: 9rem;
+  }
 
-.pid-uri {
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
+  &__value {
+    max-width: 51rem;
+  }
+
+  &__pid-uri-container {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  &__pid-uri {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  &__actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 0.5rem;
+  }
+
+  &__action-button {
+    display: flex;
+    align-items: center;
+  }
 }

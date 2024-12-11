@@ -4,16 +4,14 @@ import { AggregationBucket } from '../../../../shared/models/aggregation-bucket'
 @Component({
   selector: 'app-filter-box-item-switch',
   templateUrl: './filter-box-item-switch.component.html',
-  styleUrls: ['./filter-box-item-switch.component.scss'],
+  styleUrls: ['./filter-box-item-switch.component.scss']
 })
 export class FilterBoxItemSwitchComponent {
   @Input() aggregation: AggregationBucket;
+  @Input() active = false;
 
   @Output() changeFilterBucket: EventEmitter<boolean> =
     new EventEmitter<boolean>();
-
-  @Input() active = false;
-  constructor() {}
 
   changeFilterItem() {
     this.active = !this.active;
