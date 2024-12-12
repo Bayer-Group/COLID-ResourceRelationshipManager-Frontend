@@ -14,7 +14,6 @@ import { SaveMapDialogComponent } from './save-map-dialog/save-map-dialog.compon
 import { ViewComponent } from './view/view.component';
 import { FormsModule } from '@angular/forms';
 import { HelpComponent } from './help/help.component';
-import { SupportFeedbackBarComponent } from './support-feedback-bar/support-feedback-bar.component';
 @NgModule({
   declarations: [
     AuthenticationComponent,
@@ -26,8 +25,7 @@ import { SupportFeedbackBarComponent } from './support-feedback-bar/support-feed
     AddLinkDialogComponent,
     SaveMapDialogComponent,
     SaveConfirmationDialogComponent,
-    HelpComponent,
-    SupportFeedbackBarComponent
+    HelpComponent
   ],
   imports: [
     SharedModule,

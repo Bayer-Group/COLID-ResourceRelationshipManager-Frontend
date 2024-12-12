@@ -3,6 +3,7 @@ import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Constants } from 'src/app/shared/constants';
 import { Observable } from 'rxjs';
 import { StatusBuildInformationDto } from 'src/app/shared/models/dto/status-build-information-dto';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-help',
@@ -16,4 +17,12 @@ export class HelpComponent {
     @Inject(MAT_DIALOG_DATA)
     public data: { buildInformation$: Observable<StatusBuildInformationDto> }
   ) {}
+
+  sendFeedbackMail() {
+    window.open(environment.appSupportFeedBack.mailToLink);
+  }
+
+  createSupportTicket() {
+    window.open(environment.appSupportFeedBack.supportTicketLink);
+  }
 }
